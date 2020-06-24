@@ -62,9 +62,6 @@ function GetPlayer(String) -- Credit to Timeless/xFunnieuss
 	
 lplayer.Chatted:Connect(function(msg)
     if string.sub(msg, 1, 6) == (prefix.."kill ") then
-        if string.sub(msg, 7) == "me" then
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(100000,0,100000)
-        else
             for i,v in pairs(GetPlayer(string.sub(msg, 7)))do
 					local args = {
     [1] = game.Players[v.Name].Character.Humanoid,
@@ -83,7 +80,6 @@ lplayer.Chatted:Connect(function(msg)
 					game:GetService("ReplicatedStorage").SpecialDamage:FireServer(unpack(args))
         end
 			    end
-		end
 		end)
 
 -------------------------------------------------------------------------------------------------------
