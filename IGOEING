@@ -821,7 +821,13 @@ loadstring(game:HttpGet("https://pastebin.com/raw/qRNwJb1Q",true))()
 	
 -------------------------------------------------------------------------------------------------------
 
-
+	function valuetier()
+		loadstring(game:HttpGet("https://pastebin.com/raw/uBnxJUdz",true))()
+	end
+	
+	function pvptier()
+		loadstring(game:HttpGet("https://pastebin.com/raw/Vef7Hfmu",true))()
+	end
 
 -------------------------------------------------------------------------------------------------------
 	if Command:match(";god") then
@@ -940,5 +946,13 @@ loadstring(game:HttpGet("https://pastebin.com/raw/qRNwJb1Q",true))()
 		autoheal()
 	elseif Command:match(";autoheal") then
 		autoheal()
+	elseif Command:match(";valuetier") then
+		valuetier()
+	elseif Command:match(";Valuetier") then
+		valuetier()
+	elseif Command:match(";Pvptier") then
+		pvptier()()
+	elseif Command:match(";pvptier") then
+		pvptier()
 	end
 	end)
