@@ -992,7 +992,7 @@ loadstring(game:HttpGet("https://pastebin.com/raw/qRNwJb1Q",true))()
 		esp()()
 	elseif Command:match(";Itemesp") then
 		esp()
-	elseif Command:match(";Unesp") then
+	elseif Command:match(";unesp") then
 		unesp()
 	elseif Command:match(";Unesp") then
 		unesp()
