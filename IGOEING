@@ -297,6 +297,21 @@ else
 				return old(self,...)
 			end
 		end)
+	local meta = getrawmetatable(game)
+local old = meta.__namecall
+setreadonly(meta,false)
+meta.__namecall = newcclosure(function(self,...)
+local method = getnamecallmethod()
+local args = {...}
+if method == "FireServer" and self.Name == "Toad"  then
+for i = -10, -1 do
+old(self,...)
+end
+return old(self,...)
+else
+				return old(self,...)
+			end
+		end)
 local meta = getrawmetatable(game)
 local old = meta.__namecall
 setreadonly(meta,false)
