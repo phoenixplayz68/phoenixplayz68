@@ -141,6 +141,49 @@ lplayer.Chatted:Connect(function(msg)
 -------------------------------------------------------------------------------------------------------
 	
 lplayer.Chatted:Connect(function(msg)
+    if string.sub(msg, 1, 7) == (prefix.."bring ") then
+            for i,v in pairs(GetPlayer(string.sub(msg, 8)))do
+					local args = {
+    [1] = game.Players[v.Name].Character.Humanoid,
+    [2] = 0,
+    [3] = 0,
+    [4] = Vector3.new(0, 0, 0),
+}
+
+game:GetService("ReplicatedStorage").VampireDamage:FireServer(unpack(args))
+			        end
+			    end
+		end)
+	
+-------------------------------------------------------------------------------------------------------	
+	
+lplayer.Chatted:Connect(function(msg)
+    if string.sub(msg, 1, 8) == (prefix.."fbring ") then
+            for i,v in pairs(GetPlayer(string.sub(msg, 9)))do
+					local args = {
+    [1] = game.Players[v.Name].Character.Humanoid,
+    [2] = 0,
+    [3] = 10000000000,
+    [4] = Vector3.new(0, 0, 0),
+}
+
+game:GetService("ReplicatedStorage").VampireDamage:FireServer(unpack(args))
+			        end
+			    end
+		end)
+	
+-------------------------------------------------------------------------------------------------------	
+	
+lplayer.Chatted:Connect(function(msg)
+    if string.sub(msg, 1, 6) == (prefix.."goto ") then
+            for i,v in pairs(GetPlayer(string.sub(msg, 7)))do
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[v.Name].Character.Torso.CFrame
+			    end
+		end
+		end)
+	
+-------------------------------------------------------------------------------------------------------	
+	lplayer.Chatted:Connect(function(msg)
     if string.sub(msg, 1, 5) == (prefix.."god ") then
             for i,v in pairs(GetPlayer(string.sub(msg, 6)))do
 					local args = {
