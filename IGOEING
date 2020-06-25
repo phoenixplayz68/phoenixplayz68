@@ -15,13 +15,26 @@ game.StarterGui:SetCore("SendNotification",  {
  Callback = NotificationBindable;
 })
 
+local function callback(Text)
+ if Text == "Okay" then
+ end
+end
 
+local NotificationBindable = Instance.new("BindableFunction")
+NotificationBindable.OnInvoke = callback
+--
+game.StarterGui:SetCore("SendNotification",  {
+ Title = "";
+ Text = "say ;e before using commands";
+ Icon = "";
+ Duration = 5;
+ Button1 = "Okay";
+ Callback = NotificationBindable;
+})
+game.Players.LocalPlayer.PlayerGui.NewMenu.Changelog.changelogtext.Text = "Added - Fling and ItemESP"
 local Player = game.Players.LocalPlayer
 Player.Chatted:connect(function(Command)
 	prefix = ";"
-
-	
-
 ------------------------------------------------------------------------------------------------------
 	
 local lplayer = game.Players.LocalPlayer
@@ -56,7 +69,50 @@ function GetPlayer(String) -- Credit to Timeless/xFunnieuss
 	
 -------------------------------------------------------------------------------------------------------
 	
+	function esp()
+		for i,v in pairs(game.Workspace:GetDescendants()) do
+if v.ClassName == "TouchTransmitter" and v.Parent.Name == "Handle" then
+local BillboardGui = Instance.new("BillboardGui")
+local TextLabel = Instance.new("TextLabel")
+
+BillboardGui.Parent = v.Parent
+BillboardGui.AlwaysOnTop = true
+BillboardGui.LightInfluence = 1
+BillboardGui.Size = UDim2.new(0, 50, 0, 50)
+BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
+
+TextLabel.Parent = BillboardGui
+TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel.BackgroundTransparency = 1
+TextLabel.Size = UDim2.new(1, 0, 1, 0)
+TextLabel.Text = v.Parent.Parent.Name
+TextLabel.TextColor3 = Color3.new(100000, 100000, 100000)
+TextLabel.TextScaled = true
+end
+end
+	end
 	
+	function unesp()
+		local DestroyList = {"BillboardGui","BillboardGui"}
+local DestroyDescendants = {"BillboardGui","BillboardGui"}
+
+function Destroy()
+    for _,Object in pairs(game.Workspace:GetDescendants()) do
+        for _,WorkspaceItem in pairs(DestroyList) do
+            for _,Descendants in pairs(DestroyDescendants) do
+                if Object.Name == WorkspaceItem then
+                    Object:Destroy()
+                end
+                if Object.Name == Descendants then
+                    Object:Destroy()
+                end
+            end
+        end
+    end
+end
+
+Destroy()
+	end
 	
 -------------------------------------------------------------------------------------------------------
 	
@@ -83,23 +139,14 @@ lplayer.Chatted:Connect(function(msg)
 		end)
 
 -------------------------------------------------------------------------------------------------------
-		
-
 	
--------------------------------------------------------------------------------------------------------
-		
-
-		
--------------------------------------------------------------------------------------------------------
-	
-
-	
--------------------------------------------------------------------------------------------------------
-function god()
-	local args = {
-    [1] = game.Players.LocalPlayer.Character:WaitForChild("Humanoid"),
+lplayer.Chatted:Connect(function(msg)
+    if string.sub(msg, 1, 5) == (prefix.."god ") then
+            for i,v in pairs(GetPlayer(string.sub(msg, 6)))do
+					local args = {
+    [1] = game.Players[v.Name].Character.Humanoid,
     [2] = CFrame.new(-12140.0303, 1568.42651, 1296.6449, 0.983187735, 0.133869708, 0.124181375, 0.0735228062, 0.332280695, -0.940310597, -0.167142212, 0.933631837, 0.316851765),
-    [3] = -9999999999999999,
+    [3] = -9999999999999,
     [4] = 0,
     [5] = Vector3.new(-1.54727578, 0.000982540078, -1.9636538),
     [6] = "rbxassetid://241837157",
@@ -110,20 +157,78 @@ function god()
     [11] = 0,
 }
 
-game:GetService("ReplicatedStorage").SpecialDamage:FireServer(unpack(args))
-	end
+					game:GetService("ReplicatedStorage").SpecialDamage:FireServer(unpack(args))
+        end
+			    end
+	end)
+	
 -------------------------------------------------------------------------------------------------------
-function ungod()
-	local args = {
-    [1] = CFrame.new(6061.357941, 1111.82825, 7.87677777719162, 0.922315776, 0.0115016177, -0.386265874, -0.00382397091, 0.999779701, 0.0206390861, 0.386418164, -1.0175586827, 1.922156513),
-    [2] = 10,
-    [3] = "rbxassetid://137579113",
-    [4] = 1.8,
-    [5] = 0.18,
+		
+lplayer.Chatted:Connect(function(msg)
+    if string.sub(msg, 1, 7) == (prefix.."fling ") then
+            for i,v in pairs(GetPlayer(string.sub(msg, 8)))do
+local args = {
+    [1] = game.Players[v.Name].Character.Humanoid,
+    [2] = 0,
+    [3] = 0.25,
+    [4] = Vector3.new(1000, 1000, 1000),
 }
 
-game:GetService("ReplicatedStorage").Heal:FireServer(unpack(args))
-	end
+game:GetService("ReplicatedStorage").Damage13:FireServer(unpack(args))
+        end
+			    end
+	end)
+		
+-------------------------------------------------------------------------------------------------------
+	
+lplayer.Chatted:Connect(function(msg)
+		    if string.sub(msg, 1, 2) == (prefix.."e") then
+			
+			end
+		end)
+	
+-------------------------------------------------------------------------------------------------------
+
+lplayer.Chatted:Connect(function(msg)
+    if string.sub(msg, 1, 6) == (prefix.."heal ") then
+            for i,v in pairs(GetPlayer(string.sub(msg, 7)))do
+local args = {
+    [1] = game.Players[v.Name].Character.Humanoid,
+    [2] = CFrame.new(100000000000, 1111.13892, -19.8408966, -0.192829564, -0.955851674, -0.221729204, 0.155828059, 0.193271622, -0.968691707, 0.968779564, -0.221344039, 0.111680053),
+    [3] = 1000,
+    [4] = 0.25,
+    [5] = Vector3.new(39.2514496, 2.36321148e-06, -30.9729347),
+    [6] = 0.25,
+    [7] = "rbxassetid://1202656211",
+    [8] = 1.3333333333333,
+    [9] = 0.9,
+}
+
+game:GetService("ReplicatedStorage").Heal7:FireServer(unpack(args))
+			end
+		end
+		end)
+
+-------------------------------------------------------------------------------------------------------
+lplayer.Chatted:Connect(function(msg)
+    if string.sub(msg, 1, 7) == (prefix.."ungod ") then
+            for i,v in pairs(GetPlayer(string.sub(msg, 8)))do
+local args = {
+    [1] = game.Players[v.Name].Character.Humanoid,
+    [2] = CFrame.new(100000000000, 1111.13892, -19.8408966, -0.192829564, -0.955851674, -0.221729204, 0.155828059, 0.193271622, -0.968691707, 0.968779564, -0.221344039, 0.111680053),
+    [3] = 1,
+    [4] = 0.25,
+    [5] = Vector3.new(39.2514496, 2.36321148e-06, -30.9729347),
+    [6] = 0.25,
+    [7] = "rbxassetid://1202656211",
+    [8] = 1.3333333333333,
+    [9] = 0.9,
+}
+
+game:GetService("ReplicatedStorage").Heal7:FireServer(unpack(args))
+			end
+		end
+		end)
 -------------------------------------------------------------------------------------------------------
 function respawn()
 	game.workspace.Entities:LoadCharacter()
@@ -523,27 +628,7 @@ end
 
 
 -------------------------------------------------------------------------------------------------------
-function killall()
-	for i, player in ipairs(game.Players:GetChildren()) do
 
-local args = {
-    [1] = player.Character.Humanoid,
-    [2] = CFrame.new(-12140.0303, 1568.42651, 1296.6449, 0.983187735, 0.133869708, 0.124181375, 0.0735228062, 0.332280695, -0.940310597, -0.167142212, 0.933631837, 0.316851765),
-    [3] = 9999999999999,
-    [4] = 0,
-    [5] = Vector3.new(-1.54727578, 0.000982540078, -1.9636538),
-    [6] = "rbxassetid://241837157",
-    [7] = 0,
-    [8] = Color3.new(1, 1, 0),
-    [9] = "rbxassetid://542443306",
-    [10] = 0,
-    [11] = 0,
-}
-
-game:GetService("ReplicatedStorage").SpecialDamage:FireServer(unpack(args))
-wait()
-	end
-	end
 -------------------------------------------------------------------------------------------------------
 function invisible()
 	local args = {
@@ -799,15 +884,7 @@ loadstring(game:HttpGet("https://pastebin.com/raw/qRNwJb1Q",true))()
 	end
 
 -------------------------------------------------------------------------------------------------------
-	if Command:match(";god") then
-		god()
-	elseif Command:match(";God") then
-		god()
-	elseif Command:match(";Ungod") then
-		ungod()
-	elseif Command:match(";ungod") then
-		ungod()
-	elseif Command:match(";Respawn") then
+	if Command:match(";Respawn") then
 		respawn()
 	elseif Command:match(";respawn") then
 		respawn()
@@ -847,14 +924,6 @@ loadstring(game:HttpGet("https://pastebin.com/raw/qRNwJb1Q",true))()
 		killaura()
 	elseif Command:match(";Kill aura") then
 		killaura()
-	elseif Command:match(";noclip") then
-		noclip()
-	elseif Command:match(";Noclip") then
-		noclip()
-	elseif Command:match(";kill all") then
-		killall()
-	elseif Command:match(";Kill all") then
-		killall()
 	elseif Command:match(";nocooldown") then
 		nocooldown()
 	elseif Command:match(";Nocooldown") then
@@ -916,8 +985,16 @@ loadstring(game:HttpGet("https://pastebin.com/raw/qRNwJb1Q",true))()
 	elseif Command:match(";Valuetier") then
 		valuetier()
 	elseif Command:match(";Pvptier") then
-		pvptier()()
+		pvptier()
 	elseif Command:match(";pvptier") then
 		pvptier()
+	elseif Command:match(";itemesp") then
+		esp()()
+	elseif Command:match(";Itemesp") then
+		esp()
+	elseif Command:match(";Unesp") then
+		unesp()
+	elseif Command:match(";Unesp") then
+		unesp()
 	end
 	end)
