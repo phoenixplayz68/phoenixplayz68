@@ -851,38 +851,60 @@ function stopmusic()
 }
 game:GetService("ReplicatedStorage").Taunt:FireServer(unpack(args))
 	end
+	-------------------------------------------------------------------------------------------------------
+	lplayer.Chatted:Connect(function(msg)
+    if string.sub(msg, 1, 5) == (prefix.."mute") then
+				game.Workspace.Music.Playing = false
+		end
+		end)
+	lplayer.Chatted:Connect(function(msg)
+    if string.sub(msg, 1, 7) == (prefix.."unmute") then
+				game.Workspace.Music.Playing = true
+		end
+		end)
+
+		lplayer.Chatted:Connect(function(msg)
+    if string.sub(msg, 1, 8) == (prefix.."muteall") then
+			for i, player in ipairs(game.Players:GetChildren()) do
+					game.Workspace.Music.Playing = false
+					player.Character.Stand.StandHumanoidRootPart.PoseMusic.Playing = false
+						end
+		end
+		end)
+	
+		lplayer.Chatted:Connect(function(msg)
+		    if string.sub(msg, 1, 10) == (prefix.."unmuteall") then
+				game.Workspace.Music.Playing = true
+	end
+		end)
 -------------------------------------------------------------------------------------------------------
-	function mute()
-    while true do
-		if game.Workspace.Music.Playing == true then
-	game.Workspace.Music.Playing = false
-			end
-			wait()
-		end
-		end
+
+	function Pose()
+		game.Players.LocalPlayer.Character.Stand.StandHumanoidRootPart.PoseMusic.Playing = true
+	end
+	
 -------------------------------------------------------------------------------------------------------
 function roadroller()
 			if game.Players.LocalPlayer.Character.Head.Anchored == false then
 local args = {
     [1] = game:GetService("Players").LocalPlayer.Character.Head,
-    [2] = "rbxassetid://4997892695",
+    [2] = "rbxassetid://4569573112",
     [3] = 10,
     [4] = 3,
     [5] = 0,
 }
     game:GetService("ReplicatedStorage").Taunt:FireServer(unpack(args))
-wait(2.5)
 local args = {
     [1] = game:GetService("Players").LocalPlayer.Character.Head,
-    [2] = "rbxassetid://4997892695",
+    [2] = "rbxassetid://4569573112",
     [3] = 20,
     [4] = 20,
     [5] = 0,
 }
     game:GetService("ReplicatedStorage").Taunt:FireServer(unpack(args))
-    end
-wait(16.9)
-if game.Players.LocalPlayer.Character.Head.Anchored == false then
+		    end
+		wait(16.9)
+		if game.Players.LocalPlayer.Character.Head.Anchored == false then
 for i, player in ipairs(game.Players:GetChildren()) do
 local args = {
     [1] = 2,
@@ -1029,10 +1051,6 @@ loadstring(game:HttpGet("https://pastebin.com/raw/qRNwJb1Q",true))()
 		stopmusic()
 	elseif Command:match(";stop") then
 		stopmusic()
-	elseif Command:match(";Mute") then
-		mute()
-	elseif Command:match(";mute") then
-		mute()
 	elseif Command:match(";roadroller") then
 		roadroller()
 	elseif Command:match(";Roadroller") then
@@ -1069,5 +1087,9 @@ loadstring(game:HttpGet("https://pastebin.com/raw/qRNwJb1Q",true))()
 		unesp()
 	elseif Command:match(";Unesp") then
 		unesp()
+	elseif Command:match(";pose") then
+		Pose()
+	elseif Command:match(";Pose") then
+		Pose()
 	end
 	end)
