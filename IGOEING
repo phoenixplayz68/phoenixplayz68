@@ -31,7 +31,7 @@ game.StarterGui:SetCore("SendNotification",  {
  Button1 = "Okay";
  Callback = NotificationBindable;
 })
-game.Players.LocalPlayer.PlayerGui.NewMenu.Changelog.changelogtext.Text = "Added - Fling and ItemESP"
+game.Players.LocalPlayer.PlayerGui.NewMenu.Changelog.changelogtext.Text = "Added - Fling and ItemESP and more"
 local Player = game.Players.LocalPlayer
 Player.Chatted:connect(function(Command)
 	prefix = ";"
