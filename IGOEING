@@ -905,7 +905,10 @@ game:GetService("ReplicatedStorage").Taunt:FireServer(unpack(args))
 	end
 	
 -------------------------------------------------------------------------------------------------------
-function roadroller()
+lplayer.Chatted:Connect(function(msg)
+    if string.sub(msg, 1, 12) == (prefix.."roadroller ") then
+			            for i,v in pairs(GetPlayer(string.sub(msg, 13)))do
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[v.Name].Character.Torso.CFrame
         local args = {
     [1] = game:GetService("Players").LocalPlayer.Character.Head,
     [2] = "rbxassetid://170620840 ",
@@ -941,8 +944,8 @@ local args = {
 				game:GetService("ReplicatedStorage").RoadRollerExplosion:FireServer(unpack(args))
 				for i, player in ipairs(game.Players:GetChildren()) do
 local args = {
-    [1] = player.Character.Humanoid,
-    [2] = 0,
+    [1] = v.Character.Humanoid,
+    [2] = 250,
     [3] = 0.25,
     [4] = Vector3.new(0, 0, 0),
 }
@@ -956,7 +959,9 @@ game:GetService("ReplicatedStorage").RoadRollerExplosion:FireServer(unpack(args)
 end
 end
 		end
+			end
 		end
+		end)
 -------------------------------------------------------------------------------------------------------
 function cmds()
 loadstring(game:HttpGet("https://pastebin.com/raw/mz9HQLcR",true))()
@@ -1079,10 +1084,6 @@ loadstring(game:HttpGet("https://pastebin.com/raw/qRNwJb1Q",true))()
 		stopmusic()
 	elseif Command:match(";stop") then
 		stopmusic()
-	elseif Command:match(";roadroller") then
-		roadroller()
-	elseif Command:match(";Roadroller") then
-		roadroller()
 	elseif Command:match(";cmds") then
 		cmds()
 	elseif Command:match(";Cmds") then
