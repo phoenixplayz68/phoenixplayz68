@@ -704,7 +704,7 @@ function flingaura()
 	local player = game.Players.LocalPlayer
 while wait() do
 for i,v in pairs(game.Players:GetPlayers()) do
-if v ~= player and v.Character and v.Character:FindFirstChild("HumanoidRootPart") and player:DistanceFromCharacter(v.Character.HumanoidRootPart.Position) < 5 then
+if v ~= player and v.Character and v.Character:FindFirstChild("HumanoidRootPart") and player:DistanceFromCharacter(v.Character.HumanoidRootPart.Position) < 2 then
 local args = {
     [1] = v.Character.Humanoid,
     [2] = 0,
