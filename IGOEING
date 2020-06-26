@@ -421,7 +421,8 @@ end
 end)
 		end
 -------------------------------------------------------------------------------------------------------
-function freezeall()
+	function freezeall()
+		lplayer.Chatted:Connect(function(msg)
 	local function callback(Text)
  if Text == "Okay" then
  end
@@ -438,7 +439,7 @@ game.StarterGui:SetCore("SendNotification",  {
  Button1 = "Okay";
  Callback = NotificationBindable;
 		})
-		if cht:match("Yes") then
+    if string.sub(msg, 1, 4) == (prefix.."yes") then
 		while true do
 for i, player in ipairs(game.Players:GetChildren()) do
 
@@ -454,7 +455,8 @@ local args = {
 end
 end
 end
-	end
+		end)
+		end
 -------------------------------------------------------------------------------------------------------
 function tsoff()
 	while true do
@@ -893,10 +895,12 @@ local args = {
     [4] = 3,
     [5] = 0,
 }
-    game:GetService("ReplicatedStorage").Taunt:FireServer(unpack(args))
+			    game:GetService("ReplicatedStorage").Taunt:FireServer(unpack(args))
+				wait(2.5)
+		if game.Players.LocalPlayer.Character.Head.Anchored == false then
 local args = {
     [1] = game:GetService("Players").LocalPlayer.Character.Head,
-    [2] = "rbxassetid://4569573112",
+    [2] = "rbxassetid://4997892695",
     [3] = 20,
     [4] = 20,
     [5] = 0,
@@ -928,7 +932,8 @@ game:GetService("ReplicatedStorage").RoadRollerExplosion:FireServer(unpack(args)
 end
 end
 	end
-	end
+		end
+		end
 -------------------------------------------------------------------------------------------------------
 function cmds()
 loadstring(game:HttpGet("https://pastebin.com/raw/mz9HQLcR",true))()
