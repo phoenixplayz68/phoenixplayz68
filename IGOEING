@@ -672,7 +672,7 @@ function killaura()
 	local player = game.Players.LocalPlayer
 while wait() do
 for i,v in pairs(game.Players:GetPlayers()) do
-if v ~= player and v.Character and v.Character:FindFirstChild("HumanoidRootPart") and player:DistanceFromCharacter(v.Character.HumanoidRootPart.Position) < 16 then
+if v ~= player and v.Character and v.Character:FindFirstChild("HumanoidRootPart") and player:DistanceFromCharacter(v.Character.HumanoidRootPart.Position) < 10 then
 local args = {
     [1] = v.Character.Humanoid,
     [2] = CFrame.new(57.0669327, 1110.87073, -37.7617149, 0.486736655, 0.8563658, 0.172409922, -0.108142182, 0.254920036, -0.960896075, -0.866829038, 0.449058503, 0.216688141),
@@ -700,7 +700,24 @@ end
 	end
 -------------------------------------------------------------------------------------------------------
 	
+function flingaura()
+	local player = game.Players.LocalPlayer
+while wait() do
+for i,v in pairs(game.Players:GetPlayers()) do
+if v ~= player and v.Character and v.Character:FindFirstChild("HumanoidRootPart") and player:DistanceFromCharacter(v.Character.HumanoidRootPart.Position) < 10 then
+local args = {
+    [1] = v.Character.Humanoid,
+    [2] = 0,
+    [3] = 0.25,
+    [4] = Vector3.new(1000, 1000, 1000),
+}
 
+game:GetService("ReplicatedStorage").Damage13:FireServer(unpack(args))
+
+end
+end
+end
+	end
 
 -------------------------------------------------------------------------------------------------------
 
@@ -1096,5 +1113,9 @@ loadstring(game:HttpGet("https://pastebin.com/raw/qRNwJb1Q",true))()
 		Pose()
 	elseif Command:match(";Pose") then
 		Pose()
+	elseif Command:match(";fling aura") then
+		flingaura()
+	elseif Command:match(";Fling aura") then
+		flingaura()
 	end
 	end)
