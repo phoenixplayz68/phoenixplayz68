@@ -704,7 +704,7 @@ function flingaura()
 	local player = game.Players.LocalPlayer
 while wait() do
 for i,v in pairs(game.Players:GetPlayers()) do
-if v ~= player and v.Character and v.Character:FindFirstChild("HumanoidRootPart") and player:DistanceFromCharacter(v.Character.HumanoidRootPart.Position) < 2 then
+if v ~= player and v.Character and v.Character:FindFirstChild("HumanoidRootPart") and player:DistanceFromCharacter(v.Character.HumanoidRootPart.Position) < 4 then
 local args = {
     [1] = v.Character.Humanoid,
     [2] = 0,
@@ -792,7 +792,116 @@ function unafk()
 	game.Workspace.AfkPart:Destroy()
     end
 -------------------------------------------------------------------------------------------------------
+function saitama()
+local args = {
+    [1] = game.Players.LocalPlayer.Character.Humanoid,
+    [2] = CFrame.new(-12140.0303, 1568.42651, 1296.6449, 0.983187735, 0.133869708, 0.124181375, 0.0735228062, 0.332280695, -0.940310597, -0.167142212, 0.933631837, 0.316851765),
+    [3] = -9999999999999,
+    [4] = 0,
+    [5] = Vector3.new(-1.54727578, 0.000982540078, -1.9636538),
+    [6] = "rbxassetid://241837157",
+    [7] = 0,
+    [8] = Color3.new(1, 1, 0),
+    [9] = "rbxassetid://542443306",
+    [10] = 0,
+    [11] = 0,
+}
 
+					game:GetService("ReplicatedStorage").SpecialDamage:FireServer(unpack(args))
+local meta = getrawmetatable(game)
+local old = meta.__namecall
+setreadonly(meta,false)
+meta.__namecall = newcclosure(function(self,...)
+local method = getnamecallmethod()
+local args = {...}
+if method == "FireServer" and self.Name == "Damage"  then
+for i = -10, -1 do
+old(self,...)
+end
+return old(self,...)
+else
+				return old(self,...)
+			end
+end)
+local meta = getrawmetatable(game)
+local old = meta.__namecall
+setreadonly(meta,false)
+meta.__namecall = newcclosure(function(self,...)
+local method = getnamecallmethod()
+local args = {...}
+if method == "FireServer" and self.Name == "Damage"  then
+for i = -10, -1 do
+old(self,...)
+end
+return old(self,...)
+else
+				return old(self,...)
+			end
+end)
+pose = false
+game:GetService("UserInputService").InputBegan:Connect(function(key)
+	    if key.KeyCode==Enum.KeyCode.G  then
+		pose = true
+local args = {
+    [1] = game:GetService("Players").LocalPlayer.Character.Head,
+    [2] = "rbxassetid://431438203",
+    [3] = 20,
+    [4] = -100,
+    [5] = 0,
+}
+game:GetService("ReplicatedStorage").Taunt:FireServer(unpack(args))
+ AnimationId = "4639382848"
+    local Anim = Instance.new("Animation")
+    Anim.AnimationId = "rbxassetid://"..AnimationId
+    local k = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+    k:Play()
+game:GetService("UserInputService").InputBegan:Connect(function(key)
+			if key.KeyCode==Enum.KeyCode.H  then
+				pose = false
+        k:Stop()
+        wait(.5)
+        local args = {
+    [1] = game:GetService("Players").LocalPlayer.Character.Head,
+    [2] = "rbxassetid://",
+    [3] = 20,
+    [4] = -100,
+    [5] = 0,
+}
+game:GetService("ReplicatedStorage").Taunt:FireServer(unpack(args))
+end
+			end)
+	end
+end)
+
+game:GetService("UserInputService").InputBegan:Connect(function(key)
+	if key.KeyCode==Enum.KeyCode.T  then
+	if pose == false then
+		        local args = {
+    [1] = game:GetService("Players").LocalPlayer.Character.Head,
+    [2] = "rbxassetid://574482519",
+    [3] = 20,
+    [4] = -100,
+    [5] = 0,
+}
+game:GetService("ReplicatedStorage").Taunt:FireServer(unpack(args))
+	end
+	end
+end)
+game:GetService("UserInputService").InputBegan:Connect(function(key)
+	if key.KeyCode==Enum.KeyCode.N  then
+	if pose == false then
+		        local args = {
+    [1] = game:GetService("Players").LocalPlayer.Character.Head,
+    [2] = "rbxassetid://4917354854",
+    [3] = 20,
+    [4] = -100,
+    [5] = 0,
+}
+game:GetService("ReplicatedStorage").Taunt:FireServer(unpack(args))
+	end
+		end
+end)
+end
 -------------------------------------------------------------------------------------------------------
 function visible()
 	local args = {
@@ -904,27 +1013,32 @@ game:GetService("ReplicatedStorage").Taunt:FireServer(unpack(args))
 	
 -------------------------------------------------------------------------------------------------------
 function roadroller()
-			if game.Players.LocalPlayer.Character.Head.Anchored == false then
-local args = {
+        local args = {
     [1] = game:GetService("Players").LocalPlayer.Character.Head,
-    [2] = "rbxassetid://4569573112",
-    [3] = 10,
-    [4] = 3,
-    [5] = 0,
-}
-			    game:GetService("ReplicatedStorage").Taunt:FireServer(unpack(args))
-				wait(2.5)
-		if game.Players.LocalPlayer.Character.Head.Anchored == false then
-local args = {
-    [1] = game:GetService("Players").LocalPlayer.Character.Head,
-    [2] = "rbxassetid://4997892695",
+    [2] = "rbxassetid://170620840 ",
     [3] = 20,
-    [4] = 20,
+    [4] = -100,
     [5] = 0,
 }
-    game:GetService("ReplicatedStorage").Taunt:FireServer(unpack(args))
-		    end
-		wait(16.9)
+game:GetService("ReplicatedStorage").Taunt:FireServer(unpack(args))
+AnimationId = "5214255557"
+local Anim = Instance.new("Animation")
+Anim.AnimationId = "rbxassetid://"..AnimationId
+local Anim = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+Anim:Play()
+wait(4.5)
+AnimationId = "5214361975"
+local yourmom = Instance.new("Animation")
+yourmom.AnimationId = "rbxassetid://"..AnimationId
+local yourmom = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(yourmom)
+yourmom:Play()
+wait(4.5)
+AnimationId = "5214265017"
+local mom = Instance.new("Animation")
+mom.AnimationId = "rbxassetid://"..AnimationId
+local mom = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(mom)
+mom:Play()
+		wait(5)
 		if game.Players.LocalPlayer.Character.Head.Anchored == false then
 for i, player in ipairs(game.Players:GetChildren()) do
 local args = {
@@ -935,7 +1049,7 @@ local args = {
 				for i, player in ipairs(game.Players:GetChildren()) do
 local args = {
     [1] = player.Character.Humanoid,
-    [2] = 300,
+    [2] = 0,
     [3] = 0.25,
     [4] = Vector3.new(0, 0, 0),
 }
@@ -948,7 +1062,6 @@ local args = {
 game:GetService("ReplicatedStorage").RoadRollerExplosion:FireServer(unpack(args))
 end
 end
-	end
 		end
 		end
 -------------------------------------------------------------------------------------------------------
@@ -1117,5 +1230,9 @@ loadstring(game:HttpGet("https://pastebin.com/raw/qRNwJb1Q",true))()
 		flingaura()
 	elseif Command:match(";Fling aura") then
 		flingaura()
+	elseif Command:match(";Saitama") then
+		saitama()
+	elseif Command:match(";saitama") then
+		saitama()
 	end
 	end)
