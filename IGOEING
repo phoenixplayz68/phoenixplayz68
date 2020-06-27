@@ -147,10 +147,10 @@ lplayer.Chatted:Connect(function(msg)
     [1] = game.Players[v.Name].Character.Humanoid,
     [2] = 0,
     [3] = 0,
-    [4] = Vector3.new(0, 0, 0),
+    [4] = Vector3.new(-46.0572662, 0.000154659632, -19.4609432),
 }
 
-game:GetService("ReplicatedStorage").VampireDamage:FireServer(unpack(args))
+    game:GetService("ReplicatedStorage").VampireFreeze:FireServer(unpack(args))
 			        end
 			    end
 		end)
@@ -422,41 +422,21 @@ end)
 		end
 -------------------------------------------------------------------------------------------------------
 	function freezeall()
-		lplayer.Chatted:Connect(function(msg)
-	local function callback(Text)
- if Text == "Okay" then
- end
-end
-
-local NotificationBindable = Instance.new("BindableFunction")
-NotificationBindable.OnInvoke = callback
---
-game.StarterGui:SetCore("SendNotification",  {
- Title = "WARNING (yes to continue)";
- Text = "DESTROYS THE GAME";
- Icon = "";
- Duration = 5;
- Button1 = "Okay";
- Callback = NotificationBindable;
-		})
-    if string.sub(msg, 1, 4) == (prefix.."yes") then
 		while true do
 for i, player in ipairs(game.Players:GetChildren()) do
 
 local args = {
     [1] = player.Character.Humanoid,
     [2] = 75,
-    [3] = 0.75,
+    [3] = 100000,
     [4] = Vector3.new(-46.0572662, 0.000154659632, -19.4609432),
 }
 
     game:GetService("ReplicatedStorage").VampireFreeze:FireServer(unpack(args))
-    wait()
+    wait(.2)
 end
 end
 end
-		end)
-		end
 -------------------------------------------------------------------------------------------------------
 function tsoff()
 	while true do
