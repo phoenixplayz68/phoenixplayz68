@@ -720,6 +720,16 @@ end
 	end
 
 -------------------------------------------------------------------------------------------------------
+	
+	function keytp()
+		print("B to TP")
+	local mouse = game.Players.LocalPlayer:GetMouse()
+	_G.contc = mouse.KeyDown:Connect(function(key)
+		if key == 'b' then
+				game.Players.LocalPlayer.Character:MoveTo(mouse.Hit.p)
+			end
+		end)
+		end
 
 -------------------------------------------------------------------------------------------------------
 function invisible()
@@ -792,7 +802,14 @@ function unafk()
 	game.Workspace.AfkPart:Destroy()
     end
 -------------------------------------------------------------------------------------------------------
-function saitama()
+	function saitama()
+		print("LeftClick to One Punch")
+		print("E to Barrage")
+		print("R to HeavyAttack")
+		print("F to FlingFire")
+		print("G to Pose")
+		print("H to Unpose")
+		print("T to Play OPM Song")
 		loadstring(game:HttpGet("https://pastebin.com/raw/yNuh2iri",true))()
 		end
 -------------------------------------------------------------------------------------------------------
@@ -1128,5 +1145,9 @@ loadstring(game:HttpGet("https://pastebin.com/raw/qRNwJb1Q",true))()
 		saitama()
 	elseif Command:match(";saitama") then
 		saitama()
+	elseif Command:match(";Clicktp") then
+		keytp()
+	elseif Command:match(";clicktp") then
+		keytp()
 	end
 	end)
