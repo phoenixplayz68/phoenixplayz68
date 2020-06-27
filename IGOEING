@@ -31,7 +31,7 @@ game.StarterGui:SetCore("SendNotification",  {
  Button1 = "Okay";
  Callback = NotificationBindable;
 })
-game.Players.LocalPlayer.PlayerGui.NewMenu.Changelog.changelogtext.Text = "Added - Clicktp, Roadroller [Player], Deflect"
+game.Players.LocalPlayer.PlayerGui.NewMenu.Changelog.changelogtext.Text = "Added - Fling and ItemESP and more"
 local Player = game.Players.LocalPlayer
 Player.Chatted:connect(function(Command)
 	prefix = ";"
@@ -793,6 +793,8 @@ function unafk()
 		print("G to Pose")
 		print("H to Unpose")
 		print("T to Play OPM Song")
+		print("B to Teleport")
+		print("Q to Barrage Heal")
 		loadstring(game:HttpGet("https://pastebin.com/raw/yNuh2iri",true))()
 		end
 -------------------------------------------------------------------------------------------------------
