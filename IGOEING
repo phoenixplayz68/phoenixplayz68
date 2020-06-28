@@ -115,7 +115,25 @@ Destroy()
 	end
 	
 -------------------------------------------------------------------------------------------------------
+
 	
+lplayer.Chatted:Connect(function(msg)
+        if string.sub(msg, 1, 7) == (prefix.."music ") then
+            local ID = string.sub(msg, 8)
+            	local args = {
+    [1] = game:GetService("Players").LocalPlayer.Character.Head,
+    [2] = "rbxassetid://"..ID,
+    [3] = 20,
+    [4] = -100,
+    [5] = 0,
+}
+
+game:GetService("ReplicatedStorage").Taunt:FireServer(unpack(args))
+
+        end
+    end)
+	
+-------------------------------------------------------------------------------------------------------
 lplayer.Chatted:Connect(function(msg)
     if string.sub(msg, 1, 6) == (prefix.."kill ") then
             for i,v in pairs(GetPlayer(string.sub(msg, 7)))do
