@@ -136,6 +136,31 @@ lplayer.Chatted:Connect(function(msg)
 					game:GetService("ReplicatedStorage").SpecialDamage:FireServer(unpack(args))
         end
 			    end
+	end)
+	
+lplayer.Chatted:Connect(function(msg)
+    if string.sub(msg, 1, 10) == (prefix.."loopkill ") then
+			            for i,v in pairs(GetPlayer(string.sub(msg, 11)))do
+				while true do
+					local args = {
+    [1] = game.Players[v.Name].Character.Humanoid,
+    [2] = CFrame.new(-12140.0303, 1568.42651, 1296.6449, 0.983187735, 0.133869708, 0.124181375, 0.0735228062, 0.332280695, -0.940310597, -0.167142212, 0.933631837, 0.316851765),
+    [3] = 9999999999999,
+    [4] = 0,
+    [5] = Vector3.new(-1.54727578, 0.000982540078, -1.9636538),
+    [6] = "rbxassetid://241837157",
+    [7] = 0,
+    [8] = Color3.new(1, 1, 0),
+    [9] = "rbxassetid://542443306",
+    [10] = 0,
+    [11] = 0,
+}
+
+					game:GetService("ReplicatedStorage").SpecialDamage:FireServer(unpack(args))
+					wait(5)
+					end
+        end
+			    end
 		end)
 
 -------------------------------------------------------------------------------------------------------
