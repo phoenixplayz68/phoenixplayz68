@@ -157,7 +157,7 @@ lplayer.Chatted:Connect(function(msg)
 }
 
 					game:GetService("ReplicatedStorage").SpecialDamage:FireServer(unpack(args))
-					wait(5)
+					wait(6)
 					end
         end
 			    end
