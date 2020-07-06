@@ -209,7 +209,29 @@ game:GetService("ReplicatedStorage").Damage5:FireServer(unpack(args))
 
 -------------------------------------------------------------------------------------------------------
 
+	lplayer.Chatted:Connect(function(msg)
+		    if string.sub(msg, 1, 9) == (prefix.."autoheal") then
+			heal = true
+			autoheal()
+			
+		end
+	end)
 	
+	lplayer.Chatted:Connect(function(msg)
+		    if string.sub(msg, 1, 10) == (prefix.."flingaura") then
+			flingaura = true
+			flingaura()
+		end
+	end)
+	
+	lplayer.Chatted:Connect(function(msg)
+		    if string.sub(msg, 1, 9) == (prefix.."killaura") then
+			killaura = true
+			killaura()
+			
+		end
+		end)
+
 -------------------------------------------------------------------------------------------------------
 lplayer.Chatted:Connect(function(msg)
     if string.sub(msg, 1, 7) == (prefix.."bring ") then
@@ -1019,12 +1041,10 @@ game:GetService("ReplicatedStorage").RTZ:FireServer(unpack(args))
 		panic()
 	elseif Command:match(";Panic") then
 		panic()
-	elseif Command:match(";kill aura") then
-		killaura = true
-		killaura()
-	elseif Command:match(";Kill aura") then
-		killaura = true
-		killaura()
+	elseif Command:match(";unkillaura") then
+		killaura = false
+	elseif Command:match(";Unkillaura") then
+		killaura = false
 	elseif Command:match(";nocooldown") then
 		nocooldown()
 	elseif Command:match(";Nocooldown") then
@@ -1069,12 +1089,10 @@ game:GetService("ReplicatedStorage").RTZ:FireServer(unpack(args))
 		healthboost()
 	elseif Command:match(";healthboost") then
 		healthboost()
-	elseif Command:match(";Autoheal") then
-		heal = true
-		autoheal()
-	elseif Command:match(";autoheal") then
-		heal = true
-		autoheal()
+	elseif Command:match(";Unautoheal") then
+		heal = false
+	elseif Command:match(";unautoheal") then
+		heal = false
 	elseif Command:match(";valuetier") then
 		valuetier()
 	elseif Command:match(";Valuetier") then
@@ -1095,12 +1113,10 @@ game:GetService("ReplicatedStorage").RTZ:FireServer(unpack(args))
 		Pose()
 	elseif Command:match(";Pose") then
 		Pose()
-	elseif Command:match(";fling aura") then
-		flingaura = true
-		flingaura()
-	elseif Command:match(";Fling aura") then
-		flingaura = true
-		flingaura()
+	elseif Command:match(";Unflingaura") then
+		flingaura = false
+	elseif Command:match(";unfling aura") then
+		flingaura = false
 	elseif Command:match(";Saitama") then
 		saitama()
 	elseif Command:match(";saitama") then
@@ -1113,17 +1129,5 @@ game:GetService("ReplicatedStorage").RTZ:FireServer(unpack(args))
 		deflect()
 	elseif Command:match(";deflect") then
 		deflect()
-	elseif Command:match(";Unautoheal") then
-		heal = false
-	elseif Command:match(";unautoheal") then
-		heal = false
-	elseif Command:match(";Unkillaura") then
-		killaura = false
-	elseif Command:match(";unkillaura") then
-		killaura = false
-	elseif Command:match(";Unflingaura") then
-		flingaura = false
-	elseif Command:match(";unflingaura") then
-		flingaura = false
 	end
 	end)
