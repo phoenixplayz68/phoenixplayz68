@@ -584,7 +584,8 @@ function panic()
 	end
 -------------------------------------------------------------------------------------------------------
 killaura = false
-function killaura()
+	function killaura()
+		killaura = true
 	local player = game.Players.LocalPlayer
 		while wait() do
 			if killaura == true then
@@ -618,7 +619,8 @@ end
 	end
 -------------------------------------------------------------------------------------------------------
 flingaura = false
-function flingaura()
+	function flingaura()
+		flingaura = true
 	local player = game.Players.LocalPlayer
 		while wait() do
 			if flingaura == true then
@@ -931,6 +933,7 @@ loadstring(game:HttpGet("https://pastebin.com/raw/qRNwJb1Q",true))()
 -------------------------------------------------------------------------------------------------------
 	heal = false
 	function autoheal()
+		heal = true
 		while true do
 			if heal == true then
 			if game.Players.LocalPlayer.Character.Humanoid.Health <= 75 then
@@ -1009,10 +1012,8 @@ game:GetService("ReplicatedStorage").RTZ:FireServer(unpack(args))
 	elseif Command:match(";Panic") then
 		panic()
 	elseif Command:match(";kill aura") then
-		killaura = true
 		killaura()
 	elseif Command:match(";Kill aura") then
-		killaura = true
 		killaura()
 	elseif Command:match(";nocooldown") then
 		nocooldown()
@@ -1059,10 +1060,8 @@ game:GetService("ReplicatedStorage").RTZ:FireServer(unpack(args))
 	elseif Command:match(";healthboost") then
 		healthboost()
 	elseif Command:match(";Autoheal") then
-		heal = true
 		autoheal()
 	elseif Command:match(";autoheal") then
-		heal = true
 		autoheal()
 	elseif Command:match(";valuetier") then
 		valuetier()
@@ -1085,10 +1084,8 @@ game:GetService("ReplicatedStorage").RTZ:FireServer(unpack(args))
 	elseif Command:match(";Pose") then
 		Pose()
 	elseif Command:match(";fling aura") then
-		flingaura = true
 		flingaura()
 	elseif Command:match(";Fling aura") then
-		flingaura = true
 		flingaura()
 	elseif Command:match(";Saitama") then
 		saitama()
