@@ -67,12 +67,6 @@ function GetPlayer(String) -- Credit to Timeless/xFunnieuss
     return Found    
 	end
 	
-	
-	
-	
-	heal = false
-	killaura = false
-	flingaura = false
 -------------------------------------------------------------------------------------------------------
 	
 	function esp()
@@ -208,30 +202,9 @@ game:GetService("ReplicatedStorage").Damage5:FireServer(unpack(args))
 	end)
 
 -------------------------------------------------------------------------------------------------------
-
-	lplayer.Chatted:Connect(function(msg)
-		    if string.sub(msg, 1, 9) == (prefix.."autoheal") then
-			heal = true
-			autoheal()
-			
-		end
-	end)
 	
-	lplayer.Chatted:Connect(function(msg)
-		    if string.sub(msg, 1, 10) == (prefix.."flingaura") then
-			flingaura = true
-			flingaura()
-		end
-	end)
-	
-	lplayer.Chatted:Connect(function(msg)
-		    if string.sub(msg, 1, 9) == (prefix.."killaura") then
-			killaura = true
-			killaura()
-			
-		end
-		end)
 
+	
 -------------------------------------------------------------------------------------------------------
 lplayer.Chatted:Connect(function(msg)
     if string.sub(msg, 1, 7) == (prefix.."bring ") then
@@ -370,16 +343,13 @@ function respawn()
 	game.workspace.Entities:LoadCharacter()
 	end
 -------------------------------------------------------------------------------------------------------
-lplayer.Chatted:Connect(function(msg)
-if string.sub(msg, 1, 7) == (prefix.."music ") then
-		
-		end
-		end)
+	
+
 	
 -------------------------------------------------------------------------------------------------------
 	function damage()
-		loadstring(game:HttpGet("https://pastebin.com/raw/tNDvnFta",true))()
-		end
+	loadstring(game:HttpGet("https://pastebin.com/raw/tNDvnFta",true))()
+end
 function healthboost()
 				loadstring(game:HttpGet("https://pastebin.com/raw/n1YQ87PX",true))()
 		end
@@ -611,10 +581,9 @@ function panic()
 	game:GetService("TeleportService"):Teleport(game.PlaceId)
 	end
 -------------------------------------------------------------------------------------------------------
-	function killaura()
-		local player = game.Players.LocalPlayer
-		if killaura == true then
-		while wait() do
+function killaura()
+	local player = game.Players.LocalPlayer
+while wait() do
 for i,v in pairs(game.Players:GetPlayers()) do
 if v ~= player and v.Character and v.Character:FindFirstChild("HumanoidRootPart") and player:DistanceFromCharacter(v.Character.HumanoidRootPart.Position) < 10 then
 local args = {
@@ -636,21 +605,17 @@ local args = {
     [1] = v.Character.Humanoid,
 }
 
-						game:GetService("ReplicatedStorage").Knock:FireServer(unpack(args))
-						
-						if killaura == false then
-						break
-						end
-						end
+game:GetService("ReplicatedStorage").Knock:FireServer(unpack(args))
+
 end
 end
 end
-end
+	end
 -------------------------------------------------------------------------------------------------------
-	function flingaura()
-		local player = game.Players.LocalPlayer
-		if flingaura == true then
-		while wait() do
+	
+function flingaura()
+	local player = game.Players.LocalPlayer
+while wait() do
 for i,v in pairs(game.Players:GetPlayers()) do
 if v ~= player and v.Character and v.Character:FindFirstChild("HumanoidRootPart") and player:DistanceFromCharacter(v.Character.HumanoidRootPart.Position) < 4 then
 local args = {
@@ -660,16 +625,12 @@ local args = {
     [4] = Vector3.new(1000, 1000, 1000),
 }
 
-						game:GetService("ReplicatedStorage").Damage13:FireServer(unpack(args))
-						if flingaura == false then
-							break
-						end
-						end
-						
+game:GetService("ReplicatedStorage").Damage13:FireServer(unpack(args))
+
 end
 end
 end
-end
+	end
 
 -------------------------------------------------------------------------------------------------------
 	
@@ -962,18 +923,20 @@ loadstring(game:HttpGet("https://pastebin.com/raw/qRNwJb1Q",true))()
 
 -------------------------------------------------------------------------------------------------------
 	function autoheal()
-		if heal == true then
 		while true do
 			if game.Players.LocalPlayer.Character.Humanoid.Health <= 75 then
-				          heal()
-				if heal == false then
-					break
+	          heal()
+				if Command:match(";unautoheal") then
+		        break
+				end
+				if Command:match(";Unautoheal") then
+		        break
 				end
 				end
-				wait()
-				end
+			wait()
 		end
-		end
+		wait()
+	end
 	
 -------------------------------------------------------------------------------------------------------
 
@@ -1041,10 +1004,10 @@ game:GetService("ReplicatedStorage").RTZ:FireServer(unpack(args))
 		panic()
 	elseif Command:match(";Panic") then
 		panic()
-	elseif Command:match(";unkillaura") then
-		killaura = false
-	elseif Command:match(";Unkillaura") then
-		killaura = false
+	elseif Command:match(";kill aura") then
+		killaura()
+	elseif Command:match(";Kill aura") then
+		killaura()
 	elseif Command:match(";nocooldown") then
 		nocooldown()
 	elseif Command:match(";Nocooldown") then
@@ -1089,10 +1052,10 @@ game:GetService("ReplicatedStorage").RTZ:FireServer(unpack(args))
 		healthboost()
 	elseif Command:match(";healthboost") then
 		healthboost()
-	elseif Command:match(";Unautoheal") then
-		heal = false
-	elseif Command:match(";unautoheal") then
-		heal = false
+	elseif Command:match(";Autoheal") then
+		autoheal()
+	elseif Command:match(";autoheal") then
+		autoheal()
 	elseif Command:match(";valuetier") then
 		valuetier()
 	elseif Command:match(";Valuetier") then
@@ -1113,10 +1076,10 @@ game:GetService("ReplicatedStorage").RTZ:FireServer(unpack(args))
 		Pose()
 	elseif Command:match(";Pose") then
 		Pose()
-	elseif Command:match(";Unflingaura") then
-		flingaura = false
-	elseif Command:match(";unfling aura") then
-		flingaura = false
+	elseif Command:match(";fling aura") then
+		flingaura()
+	elseif Command:match(";Fling aura") then
+		flingaura()
 	elseif Command:match(";Saitama") then
 		saitama()
 	elseif Command:match(";saitama") then
