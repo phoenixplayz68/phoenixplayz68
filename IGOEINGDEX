@@ -381,6 +381,12 @@ for i, v in pairs(game.Workspace.Frog.Handle:GetChildren()) do
 						v.CanCollide = false
 v.CFrame = game.Players.LocalPlayer.Character.Torso.CFrame
 end
+				end
+				for i, f in pairs(game.Workspace.Frog:GetChildren()) do
+					    if f:IsA("Part") or f:IsA("UnionOperation") or f:IsA("MeshPart") then
+						f.CanCollide = false
+f.CFrame = game.Players.LocalPlayer.Character.Torso.CFrame
+end
 end
 end
 			end
