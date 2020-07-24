@@ -102,7 +102,7 @@ local Torso = game.Players.LocalPlayer.Character:FindFirstChild("Torso")
 if Arrow2 and Torso and arrow == true then
 for i, v in pairs(Arrow2:GetChildren()) do
 					    if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") then
-						v.CanCollide = false v.Anchored = true
+						v.CanCollide = false
 v.CFrame = game.Players.LocalPlayer.Character.Torso.CFrame
 	end
 	end
@@ -147,7 +147,7 @@ local Torso = game.Players.LocalPlayer.Character:FindFirstChild("Torso")
 			if Roka2 and Torso and roka == true then
 for i, v in pairs(Roka2:GetChildren()) do
 					    if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") then
-						v.CanCollide = false v.Anchored = true
+						v.CanCollide = false
 v.CFrame = game.Players.LocalPlayer.Character.Torso.CFrame
 	end
 	end
@@ -192,7 +192,7 @@ local Torso = game.Players.LocalPlayer.Character:FindFirstChild("Torso")
 			if banknote2 and Torso and banknote == true then
 for i, v in pairs(banknote2:GetChildren()) do
 					    if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") then
-						v.CanCollide = false v.Anchored = true
+						v.CanCollide = false
 v.CFrame = game.Players.LocalPlayer.Character.Torso.CFrame
 	end
 	end
@@ -237,7 +237,7 @@ local Torso = game.Players.LocalPlayer.Character:FindFirstChild("Torso")
 			if Vampire and Torso and vampire == true then
 for i, v in pairs(Vampire:GetChildren()) do
 					    if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") then
-						v.CanCollide = false v.Anchored = true
+						v.CanCollide = false
 v.CFrame = game.Players.LocalPlayer.Character.Torso.CFrame
 	end
 	end
@@ -282,7 +282,7 @@ local Torso = game.Players.LocalPlayer.Character:FindFirstChild("Torso")
 if diarydio and Torso and diodiary == true then
 for i, v in pairs(diarydio:GetChildren()) do
 					    if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") then
-						v.CanCollide = false v.Anchored = true
+						v.CanCollide = false
 v.CFrame = game.Players.LocalPlayer.Character.Torso.CFrame
 	end
 	end
@@ -327,7 +327,7 @@ local Torso = game.Players.LocalPlayer.Character:FindFirstChild("Torso")
 if Star2 and Torso and star == true then
 for i, v in pairs(Star2:GetChildren()) do
 					    if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") then
-						v.CanCollide = false v.Anchored = true
+						v.CanCollide = false
 v.CFrame = game.Players.LocalPlayer.Character.Torso.CFrame
 end
 				end
@@ -378,7 +378,7 @@ local Torso = game.Players.LocalPlayer.Character:FindFirstChild("Torso")
 if frog2 and Torso and frog == true then
 for i, v in pairs(game.Workspace.Frog.Handle:GetChildren()) do
 					    if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") then
-						v.CanCollide = false v.Anchored = true
+						v.CanCollide = false
 v.CFrame = game.Players.LocalPlayer.Character.Torso.CFrame
 end
 end
@@ -423,7 +423,7 @@ local Torso = game.Players.LocalPlayer.Character:FindFirstChild("Torso")
 if req2 and Torso and req == true then
 for i, v in pairs(game.Workspace["Requiem Arrow"]:GetChildren()) do
 					    if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") then
-						v.CanCollide = false v.Anchored = true
+						v.CanCollide = false
 v.CFrame = game.Players.LocalPlayer.Character.Torso.CFrame
 end
 end
@@ -468,7 +468,7 @@ local Torso = game.Players.LocalPlayer.Character:FindFirstChild("Torso")
 if true2 and Torso and truereq == true then
 for i, v in pairs(true2:GetChildren()) do
 					    if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") then
-						v.CanCollide = false v.Anchored = true
+						v.CanCollide = false
 v.CFrame = game.Players.LocalPlayer.Character.Torso.CFrame
 end
 end
@@ -513,7 +513,7 @@ local Torso = game.Players.LocalPlayer.Character:FindFirstChild("Torso")
 if hell2 and Torso and hell == true then
 for i, v in pairs(hell2:GetChildren()) do
 					    if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") then
-						v.CanCollide = false v.Anchored = true
+						v.CanCollide = false
 v.CFrame = game.Players.LocalPlayer.Character.Torso.CFrame
 	end
 	end
@@ -558,7 +558,7 @@ local Torso = game.Players.LocalPlayer.Character:FindFirstChild("Torso")
 if aja2 and Torso and aja == true then
 for i, v in pairs(aja2:GetChildren()) do
 					    if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") then
-						v.CanCollide = false v.Anchored = true
+						v.CanCollide = false
 v.CFrame = game.Players.LocalPlayer.Character.Torso.CFrame
 	end
 				end
@@ -604,7 +604,7 @@ local Torso = game.Players.LocalPlayer.Character:FindFirstChild("Torso")
 if Pot2 and Torso and pot == true then
 for i, v in pairs(Pot2:GetChildren()) do
 					    if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") then
-						v.CanCollide = false v.Anchored = true
+						v.CanCollide = false
 v.CFrame = game.Players.LocalPlayer.Character.Torso.CFrame
 	end
 	end
@@ -649,7 +649,7 @@ local Torso = game.Players.LocalPlayer.Character:FindFirstChild("Torso")
 			if potdiary2 and Torso and potdiary == true then
 for i, v in pairs(potdiary2:GetChildren()) do
 					    if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") then
-						v.CanCollide = false v.Anchored = true
+						v.CanCollide = false
 v.CFrame = game.Players.LocalPlayer.Character.Torso.CFrame
 	end
 	end
@@ -694,7 +694,7 @@ local Torso = game.Players.LocalPlayer.Character:FindFirstChild("Torso")
 if spear2 and Torso and spear == true then
 for i, v in pairs(spear2:GetChildren()) do
 					    if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") then
-						v.CanCollide = false v.Anchored = true
+						v.CanCollide = false
 v.CFrame = game.Players.LocalPlayer.Character.Torso.CFrame
 	end
 	end
@@ -739,7 +739,7 @@ local Torso = game.Players.LocalPlayer.Character:FindFirstChild("Torso")
 if jotaroshat2 and Torso and jotaroshat == true then
 for i, v in pairs(jotaroshat2:GetChildren()) do
 					    if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") then
-						v.CanCollide = false v.Anchored = true
+						v.CanCollide = false
 v.CFrame = game.Players.LocalPlayer.Character.Torso.CFrame
 end
 				end
@@ -831,7 +831,7 @@ local Torso = game.Players.LocalPlayer.Character:FindFirstChild("Torso")
 if Camera2 and Torso and camera == true then
 for i, v in pairs(Camera2:GetChildren()) do
 					    if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") then
-						v.CanCollide = false v.Anchored = true
+						v.CanCollide = false
 v.CFrame = game.Players.LocalPlayer.Character.Torso.CFrame
 end
 				end
@@ -882,7 +882,7 @@ local Torso = game.Players.LocalPlayer.Character:FindFirstChild("Torso")
 if ender2 and Torso and ender == true then
 for i, v in pairs(ender2:GetChildren()) do
 					    if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") then
-						v.CanCollide = false v.Anchored = true
+						v.CanCollide = false
 v.CFrame = game.Players.LocalPlayer.Character.Torso.CFrame
 end
 end
