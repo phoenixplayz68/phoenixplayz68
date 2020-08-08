@@ -1,0 +1,234 @@
+local Torso = game.Players.LocalPlayer.Character.Torso
+local Player = game:GetService("Players").LocalPlayer
+local Mouse = Player:GetMouse()
+local meta = getrawmetatable(game)
+local old = meta.__namecall
+setreadonly(meta,false)
+meta.__namecall = newcclosure(function(self,...)
+local method = getnamecallmethod()
+local args = {...}
+if method == "FireServer" and self.Name == "Damage"  then
+for i = -10, -1 do
+old(self,...)
+end
+return old(self,...)
+else
+				return old(self,...)
+			end
+end)
+local Torso = game.Players.LocalPlayer.Character.Torso
+local Player = game:GetService("Players").LocalPlayer
+local Mouse = Player:GetMouse()
+local meta = getrawmetatable(game)
+local old = meta.__namecall
+setreadonly(meta,false)
+meta.__namecall = newcclosure(function(self,...)
+local method = getnamecallmethod()
+local args = {...}
+if method == "FireServer" and self.Name == "Damage2"  then
+for i = -10, -1 do
+old(self,...)
+end
+return old(self,...)
+else
+				return old(self,...)
+			end
+end)
+local Torso = game.Players.LocalPlayer.Character.Torso
+local Player = game:GetService("Players").LocalPlayer
+local Mouse = Player:GetMouse()
+local meta = getrawmetatable(game)
+local old = meta.__namecall
+setreadonly(meta,false)
+meta.__namecall = newcclosure(function(self,...)
+local method = getnamecallmethod()
+local args = {...}
+if method == "FireServer" and self.Name == "Damage3"  then
+for i = -10, -1 do
+old(self,...)
+end
+return old(self,...)
+else
+				return old(self,...)
+			end
+end)
+local Torso = game.Players.LocalPlayer.Character.Torso
+local Player = game:GetService("Players").LocalPlayer
+local Mouse = Player:GetMouse()
+local meta = getrawmetatable(game)
+local old = meta.__namecall
+setreadonly(meta,false)
+meta.__namecall = newcclosure(function(self,...)
+local method = getnamecallmethod()
+local args = {...}
+if method == "FireServer" and self.Name == "Damage4"  then
+for i = -10, -1 do
+old(self,...)
+end
+return old(self,...)
+else
+				return old(self,...)
+			end
+end)
+local Torso = game.Players.LocalPlayer.Character.Torso
+local Player = game:GetService("Players").LocalPlayer
+local Mouse = Player:GetMouse()
+local meta = getrawmetatable(game)
+local old = meta.__namecall
+setreadonly(meta,false)
+meta.__namecall = newcclosure(function(self,...)
+local method = getnamecallmethod()
+local args = {...}
+if method == "FireServer" and self.Name == "Damage5"  then
+for i = -10, -1 do
+old(self,...)
+end
+return old(self,...)
+else
+				return old(self,...)
+			end
+end)
+local Torso = game.Players.LocalPlayer.Character.Torso
+local Player = game:GetService("Players").LocalPlayer
+local Mouse = Player:GetMouse()
+local meta = getrawmetatable(game)
+local old = meta.__namecall
+setreadonly(meta,false)
+meta.__namecall = newcclosure(function(self,...)
+local method = getnamecallmethod()
+local args = {...}
+if method == "FireServer" and self.Name == "Damage6"  then
+for i = -10, -1 do
+old(self,...)
+end
+return old(self,...)
+else
+				return old(self,...)
+			end
+end)
+local Torso = game.Players.LocalPlayer.Character.Torso
+local Player = game:GetService("Players").LocalPlayer
+local Mouse = Player:GetMouse()
+local meta = getrawmetatable(game)
+local old = meta.__namecall
+setreadonly(meta,false)
+meta.__namecall = newcclosure(function(self,...)
+local method = getnamecallmethod()
+local args = {...}
+if method == "FireServer" and self.Name == "Damage7"  then
+for i = -10, -1 do
+old(self,...)
+end
+return old(self,...)
+else
+				return old(self,...)
+			end
+end)
+local Torso = game.Players.LocalPlayer.Character.Torso
+local Player = game:GetService("Players").LocalPlayer
+local Mouse = Player:GetMouse()
+local meta = getrawmetatable(game)
+local old = meta.__namecall
+setreadonly(meta,false)
+meta.__namecall = newcclosure(function(self,...)
+local method = getnamecallmethod()
+local args = {...}
+if method == "FireServer" and self.Name == "Damage8"  then
+for i = -10, -1 do
+old(self,...)
+end
+return old(self,...)
+else
+				return old(self,...)
+			end
+end)
+local Torso = game.Players.LocalPlayer.Character.Torso
+local Player = game:GetService("Players").LocalPlayer
+local Mouse = Player:GetMouse()
+local meta = getrawmetatable(game)
+local old = meta.__namecall
+setreadonly(meta,false)
+meta.__namecall = newcclosure(function(self,...)
+local method = getnamecallmethod()
+local args = {...}
+if method == "FireServer" and self.Name == "Damage9"  then
+for i = -10, -1 do
+old(self,...)
+end
+return old(self,...)
+else
+				return old(self,...)
+			end
+end)
+local Torso = game.Players.LocalPlayer.Character.Torso
+local Player = game:GetService("Players").LocalPlayer
+local Mouse = Player:GetMouse()
+local meta = getrawmetatable(game)
+local old = meta.__namecall
+setreadonly(meta,false)
+meta.__namecall = newcclosure(function(self,...)
+local method = getnamecallmethod()
+local args = {...}
+if method == "FireServer" and self.Name == "Damage10"  then
+for i = -10, -1 do
+old(self,...)
+end
+return old(self,...)
+else
+				return old(self,...)
+			end
+end)
+local Torso = game.Players.LocalPlayer.Character.Torso
+local Player = game:GetService("Players").LocalPlayer
+local Mouse = Player:GetMouse()
+local meta = getrawmetatable(game)
+local old = meta.__namecall
+setreadonly(meta,false)
+meta.__namecall = newcclosure(function(self,...)
+local method = getnamecallmethod()
+local args = {...}
+if method == "FireServer" and self.Name == "VampireRush"  then
+for i = -10, -1 do
+old(self,...)
+end
+return old(self,...)
+else
+				return old(self,...)
+			end
+end)
+local Torso = game.Players.LocalPlayer.Character.Torso
+local Player = game:GetService("Players").LocalPlayer
+local Mouse = Player:GetMouse()
+local meta = getrawmetatable(game)
+local old = meta.__namecall
+setreadonly(meta,false)
+meta.__namecall = newcclosure(function(self,...)
+local method = getnamecallmethod()
+local args = {...}
+if method == "FireServer" and self.Name == "SonicBarrage"  then
+for i = -10, -1 do
+old(self,...)
+end
+return old(self,...)
+else
+				return old(self,...)
+			end
+end)
+local Torso = game.Players.LocalPlayer.Character.Torso
+local Player = game:GetService("Players").LocalPlayer
+local Mouse = Player:GetMouse()
+local meta = getrawmetatable(game)
+local old = meta.__namecall
+setreadonly(meta,false)
+meta.__namecall = newcclosure(function(self,...)
+local method = getnamecallmethod()
+local args = {...}
+if method == "FireServer" and self.Name == "STWKnife"  then
+for i = -10, -1 do
+old(self,...)
+end
+return old(self,...)
+else
+				return old(self,...)
+			end
+end)
