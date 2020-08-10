@@ -1,0 +1,18 @@
+local Torso = game.Players.LocalPlayer.Character.Torso
+local Player = game:GetService("Players").LocalPlayer
+local Mouse = Player:GetMouse()
+local meta = getrawmetatable(game)
+local old = meta.__namecall
+setreadonly(meta,false)
+meta.__namecall = newcclosure(function(self,...)
+local method = getnamecallmethod()
+local args = {...}
+if method == "FireServer" and self.Name == "Heal" or self.Name == "Heal2"or self.Name == "Heal3" or self.Name == "Heal4"  or self.Name == "Heal5"  or self.Name == "Heal6"or self.Name == "Heal7" then
+for i = -10, -1 do
+old(self,...)
+end
+return old(self,...)
+else
+				return old(self,...)
+			end
+end)
