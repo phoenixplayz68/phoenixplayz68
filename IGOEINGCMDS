@@ -1,3 +1,8 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
 local CMDS = Instance.new("ScreenGui")
 local ScrollingFrame = Instance.new("ScrollingFrame")
 local Prefix = Instance.new("TextLabel")
@@ -55,6 +60,7 @@ local TextLabel_50 = Instance.new("TextLabel")
 local TextLabel_51 = Instance.new("TextLabel")
 local TextLabel_52 = Instance.new("TextLabel")
 local TextLabel_53 = Instance.new("TextLabel")
+local TextLabel_54 = Instance.new("TextLabel")
 local TextButton = Instance.new("TextButton")
 
 --Properties:
@@ -521,7 +527,7 @@ TextLabel_38.TextXAlignment = Enum.TextXAlignment.Left
 TextLabel_39.Parent = ScrollingFrame
 TextLabel_39.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel_39.BackgroundTransparency = 1.000
-TextLabel_39.Position = UDim2.new(0.0250000022, 0, 0.522747338, 0)
+TextLabel_39.Position = UDim2.new(0.0250000022, 0, 0.532282531, 0)
 TextLabel_39.Size = UDim2.new(0.569999993, 0, 0.00999999978, 0)
 TextLabel_39.Font = Enum.Font.SourceSansBold
 TextLabel_39.Text = "Cmds"
@@ -634,7 +640,7 @@ TextLabel_49.BackgroundTransparency = 1.000
 TextLabel_49.Position = UDim2.new(0.0250000022, 0, 0.475071579, 0)
 TextLabel_49.Size = UDim2.new(0.569999993, 0, 0.00999999978, 0)
 TextLabel_49.Font = Enum.Font.SourceSansBold
-TextLabel_49.Text = "Storage1/2/3"
+TextLabel_49.Text = "Lag/Unlag"
 TextLabel_49.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel_49.TextSize = 17.000
 TextLabel_49.TextXAlignment = Enum.TextXAlignment.Left
@@ -682,6 +688,17 @@ TextLabel_53.Text = "Banish [Player]"
 TextLabel_53.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel_53.TextSize = 17.000
 TextLabel_53.TextXAlignment = Enum.TextXAlignment.Left
+
+TextLabel_54.Parent = ScrollingFrame
+TextLabel_54.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_54.BackgroundTransparency = 1.000
+TextLabel_54.Position = UDim2.new(0.0250000022, 0, 0.522747397, 0)
+TextLabel_54.Size = UDim2.new(0.569999993, 0, 0.00999999978, 0)
+TextLabel_54.Font = Enum.Font.SourceSansBold
+TextLabel_54.Text = "Decal [ID]"
+TextLabel_54.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_54.TextSize = 17.000
+TextLabel_54.TextXAlignment = Enum.TextXAlignment.Left
 
 TextButton.Parent = CMDS
 TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
