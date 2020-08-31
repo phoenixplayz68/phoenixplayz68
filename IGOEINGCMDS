@@ -63,6 +63,7 @@ local TextLabel_53 = Instance.new("TextLabel")
 local TextLabel_54 = Instance.new("TextLabel")
 local TextLabel_55 = Instance.new("TextLabel")
 local TextLabel_56 = Instance.new("TextLabel")
+local TextLabel_57 = Instance.new("TextLabel")
 local TextButton = Instance.new("TextButton")
 
 --Properties:
@@ -529,7 +530,7 @@ TextLabel_38.TextXAlignment = Enum.TextXAlignment.Left
 TextLabel_39.Parent = ScrollingFrame
 TextLabel_39.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel_39.BackgroundTransparency = 1.000
-TextLabel_39.Position = UDim2.new(0.0207983218, 0, 0.551352859, 0)
+TextLabel_39.Position = UDim2.new(0.0250000022, 0, 0.560887992, 0)
 TextLabel_39.Size = UDim2.new(0.569999993, 0, 0.00999999978, 0)
 TextLabel_39.Font = Enum.Font.SourceSansBold
 TextLabel_39.Text = "Cmds"
@@ -723,6 +724,17 @@ TextLabel_56.Text = "Antits"
 TextLabel_56.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel_56.TextSize = 17.000
 TextLabel_56.TextXAlignment = Enum.TextXAlignment.Left
+
+TextLabel_57.Parent = ScrollingFrame
+TextLabel_57.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_57.BackgroundTransparency = 1.000
+TextLabel_57.Position = UDim2.new(0.0250000022, 0, 0.551352799, 0)
+TextLabel_57.Size = UDim2.new(0.569999993, 0, 0.00999999978, 0)
+TextLabel_57.Font = Enum.Font.SourceSansBold
+TextLabel_57.Text = "Clean"
+TextLabel_57.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_57.TextSize = 17.000
+TextLabel_57.TextXAlignment = Enum.TextXAlignment.Left
 
 TextButton.Parent = CMDS
 TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
