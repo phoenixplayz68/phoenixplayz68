@@ -1,0 +1,18 @@
+_G.updatecooldown = false
+local Updated = game.Lighting:FindFirstChild("Update1")
+if not Updated then
+if _G.updatecooldown == false then
+_G.updatecooldown = true
+local NotificationBindable = Instance.new("BindableFunction")
+NotificationBindable.OnInvoke = callback
+--
+game.StarterGui:SetCore("SendNotification",  {
+ Title = "UPDATE DETECTED";
+ Text = "NEW UPDATE PLEASE REJOIN!";
+ Icon = "";
+ Duration = 5;
+ Button1 = "Okay";
+ Callback = NotificationBindable;
+})
+end
+end
