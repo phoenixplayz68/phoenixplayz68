@@ -1,5 +1,5 @@
 _G.updatecooldown = false
-local Updated = game.Lighting:FindFirstChild("Update1")
+local Updated = game.Lighting:FindFirstChild("Update2")
 if not Updated then
 if _G.updatecooldown == false then
 _G.updatecooldown = true
