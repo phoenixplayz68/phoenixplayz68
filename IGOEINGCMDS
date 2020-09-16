@@ -80,7 +80,6 @@ ScrollingFrame.BorderSizePixel = 0
 ScrollingFrame.Position = UDim2.new(0.752496481, 0, 0.764004767, 0)
 ScrollingFrame.Size = UDim2.new(0, 238, 0, 231)
 ScrollingFrame.BottomImage = ""
-ScrollingFrame.CanvasPosition = Vector2.new(0, 750)
 ScrollingFrame.MidImage = ""
 ScrollingFrame.TopImage = ""
 
