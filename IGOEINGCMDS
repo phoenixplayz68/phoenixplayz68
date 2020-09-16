@@ -58,6 +58,10 @@ local TextLabel_48 = Instance.new("TextLabel")
 local TextLabel_49 = Instance.new("TextLabel")
 local TextLabel_50 = Instance.new("TextLabel")
 local TextLabel_51 = Instance.new("TextLabel")
+local TextLabel_52 = Instance.new("TextLabel")
+local TextLabel_53 = Instance.new("TextLabel")
+local TextLabel_54 = Instance.new("TextLabel")
+local TextLabel_55 = Instance.new("TextLabel")
 local TextButton = Instance.new("TextButton")
 
 --Properties:
@@ -76,6 +80,7 @@ ScrollingFrame.BorderSizePixel = 0
 ScrollingFrame.Position = UDim2.new(0.752496481, 0, 0.764004767, 0)
 ScrollingFrame.Size = UDim2.new(0, 238, 0, 231)
 ScrollingFrame.BottomImage = ""
+ScrollingFrame.CanvasPosition = Vector2.new(0, 750)
 ScrollingFrame.MidImage = ""
 ScrollingFrame.TopImage = ""
 
@@ -525,7 +530,7 @@ TextLabel_38.TextXAlignment = Enum.TextXAlignment.Left
 TextLabel_39.Parent = ScrollingFrame
 TextLabel_39.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel_39.BackgroundTransparency = 1.000
-TextLabel_39.Position = UDim2.new(0.0250000022, 0, 0.502485096, 0)
+TextLabel_39.Position = UDim2.new(0.0250000022, 0, 0.540029764, 0)
 TextLabel_39.Size = UDim2.new(0.569999993, 0, 0.00999999978, 0)
 TextLabel_39.Font = Enum.Font.SourceSansBold
 TextLabel_39.Text = "Cmds"
@@ -664,6 +669,50 @@ TextLabel_51.Text = "Disabletrades"
 TextLabel_51.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel_51.TextSize = 17.000
 TextLabel_51.TextXAlignment = Enum.TextXAlignment.Left
+
+TextLabel_52.Parent = ScrollingFrame
+TextLabel_52.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_52.BackgroundTransparency = 1.000
+TextLabel_52.Position = UDim2.new(0.0250000022, 0, 0.502485096, 0)
+TextLabel_52.Size = UDim2.new(0.569999993, 0, 0.00999999978, 0)
+TextLabel_52.Font = Enum.Font.SourceSansBold
+TextLabel_52.Text = "Arrow"
+TextLabel_52.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_52.TextSize = 17.000
+TextLabel_52.TextXAlignment = Enum.TextXAlignment.Left
+
+TextLabel_53.Parent = ScrollingFrame
+TextLabel_53.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_53.BackgroundTransparency = 1.000
+TextLabel_53.Position = UDim2.new(0.0250000022, 0, 0.51202023, 0)
+TextLabel_53.Size = UDim2.new(0.569999993, 0, 0.00999999978, 0)
+TextLabel_53.Font = Enum.Font.SourceSansBold
+TextLabel_53.Text = "Roka"
+TextLabel_53.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_53.TextSize = 17.000
+TextLabel_53.TextXAlignment = Enum.TextXAlignment.Left
+
+TextLabel_54.Parent = ScrollingFrame
+TextLabel_54.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_54.BackgroundTransparency = 1.000
+TextLabel_54.Position = UDim2.new(0.0250000022, 0, 0.521555364, 0)
+TextLabel_54.Size = UDim2.new(0.569999993, 0, 0.00999999978, 0)
+TextLabel_54.Font = Enum.Font.SourceSansBold
+TextLabel_54.Text = "Admin [Player]"
+TextLabel_54.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_54.TextSize = 17.000
+TextLabel_54.TextXAlignment = Enum.TextXAlignment.Left
+
+TextLabel_55.Parent = ScrollingFrame
+TextLabel_55.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_55.BackgroundTransparency = 1.000
+TextLabel_55.Position = UDim2.new(0.0250000022, 0, 0.530494571, 0)
+TextLabel_55.Size = UDim2.new(0.569999993, 0, 0.00999999978, 0)
+TextLabel_55.Font = Enum.Font.SourceSansBold
+TextLabel_55.Text = "Antifling"
+TextLabel_55.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_55.TextSize = 17.000
+TextLabel_55.TextXAlignment = Enum.TextXAlignment.Left
 
 TextButton.Parent = CMDS
 TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
