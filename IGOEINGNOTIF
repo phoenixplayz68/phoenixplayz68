@@ -9,7 +9,7 @@ game.StarterGui:SetCore("SendNotification",  {
  Title = "UPDATE DETECTED";
  Text = "NEW UPDATE PLEASE REJOIN!";
  Icon = "";
- Duration = 5;
+ Duration = 10;
  Button1 = "Okay";
  Callback = NotificationBindable;
 })
