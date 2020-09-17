@@ -1,4 +1,4 @@
-local Updated = game.Lighting:FindFirstChild("Update1")
+local Updated = game.Lighting:FindFirstChild("Update2")
 if not Updated then
 if _G.updatecooldown == false then
 _G.updatecooldown = true
@@ -18,7 +18,6 @@ audio.Parent = game.Workspace
 audio.SoundId = "rbxassetid://587971443"
 audio.Volume = 10
 audio.Playing = true
-audio.audio.Playing = true
 wait(5)
 audio.Playing = false
 end
