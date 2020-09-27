@@ -64,6 +64,8 @@ local TextLabel_54 = Instance.new("TextLabel")
 local TextLabel_55 = Instance.new("TextLabel")
 local TextLabel_56 = Instance.new("TextLabel")
 local TextLabel_57 = Instance.new("TextLabel")
+local TextLabel_58 = Instance.new("TextLabel")
+local TextLabel_59 = Instance.new("TextLabel")
 local TextButton = Instance.new("TextButton")
 
 --Properties:
@@ -531,7 +533,7 @@ TextLabel_38.TextXAlignment = Enum.TextXAlignment.Left
 TextLabel_39.Parent = ScrollingFrame
 TextLabel_39.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel_39.BackgroundTransparency = 1.000
-TextLabel_39.Position = UDim2.new(0.0250000022, 0, 0.559100091, 0)
+TextLabel_39.Position = UDim2.new(0.0250000022, 0, 0.578141928, 0)
 TextLabel_39.Size = UDim2.new(0.569999993, 0, 0.00999999978, 0)
 TextLabel_39.Font = Enum.Font.SourceSansBold
 TextLabel_39.Text = "Cmds"
@@ -736,6 +738,28 @@ TextLabel_57.Text = "Antisfx"
 TextLabel_57.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel_57.TextSize = 17.000
 TextLabel_57.TextXAlignment = Enum.TextXAlignment.Left
+
+TextLabel_58.Parent = ScrollingFrame
+TextLabel_58.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_58.BackgroundTransparency = 1.000
+TextLabel_58.Position = UDim2.new(0.0250000022, 0, 0.558778644, 0)
+TextLabel_58.Size = UDim2.new(0.569999993, 0, 0.00999999978, 0)
+TextLabel_58.Font = Enum.Font.SourceSansBold
+TextLabel_58.Text = "Un/lockserver"
+TextLabel_58.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_58.TextSize = 17.000
+TextLabel_58.TextXAlignment = Enum.TextXAlignment.Left
+
+TextLabel_59.Parent = ScrollingFrame
+TextLabel_59.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_59.BackgroundTransparency = 1.000
+TextLabel_59.Position = UDim2.new(0.0250000022, 0, 0.568606675, 0)
+TextLabel_59.Size = UDim2.new(0.569999993, 0, 0.00999999978, 0)
+TextLabel_59.Font = Enum.Font.SourceSansBold
+TextLabel_59.Text = "Antiragdoll"
+TextLabel_59.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_59.TextSize = 17.000
+TextLabel_59.TextXAlignment = Enum.TextXAlignment.Left
 
 TextButton.Parent = CMDS
 TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
