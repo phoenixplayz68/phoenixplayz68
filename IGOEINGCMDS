@@ -66,6 +66,8 @@ local TextLabel_56 = Instance.new("TextLabel")
 local TextLabel_57 = Instance.new("TextLabel")
 local TextLabel_58 = Instance.new("TextLabel")
 local TextLabel_59 = Instance.new("TextLabel")
+local TextLabel_60 = Instance.new("TextLabel")
+local TextLabel_61 = Instance.new("TextLabel")
 local TextButton = Instance.new("TextButton")
 
 --Properties:
@@ -533,7 +535,7 @@ TextLabel_38.TextXAlignment = Enum.TextXAlignment.Left
 TextLabel_39.Parent = ScrollingFrame
 TextLabel_39.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel_39.BackgroundTransparency = 1.000
-TextLabel_39.Position = UDim2.new(0.0250000022, 0, 0.578141928, 0)
+TextLabel_39.Position = UDim2.new(0.0250000022, 0, 0.59779799, 0)
 TextLabel_39.Size = UDim2.new(0.569999993, 0, 0.00999999978, 0)
 TextLabel_39.Font = Enum.Font.SourceSansBold
 TextLabel_39.Text = "Cmds"
@@ -760,6 +762,28 @@ TextLabel_59.Text = "Antiragdoll"
 TextLabel_59.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel_59.TextSize = 17.000
 TextLabel_59.TextXAlignment = Enum.TextXAlignment.Left
+
+TextLabel_60.Parent = ScrollingFrame
+TextLabel_60.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_60.BackgroundTransparency = 1.000
+TextLabel_60.Position = UDim2.new(0.0250000022, 0, 0.57782042, 0)
+TextLabel_60.Size = UDim2.new(0.569999993, 0, 0.00999999978, 0)
+TextLabel_60.Font = Enum.Font.SourceSansBold
+TextLabel_60.Text = "Tradeoff"
+TextLabel_60.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_60.TextSize = 17.000
+TextLabel_60.TextXAlignment = Enum.TextXAlignment.Left
+
+TextLabel_61.Parent = ScrollingFrame
+TextLabel_61.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_61.BackgroundTransparency = 1.000
+TextLabel_61.Position = UDim2.new(0.0250000022, 0, 0.587648451, 0)
+TextLabel_61.Size = UDim2.new(0.569999993, 0, 0.00999999978, 0)
+TextLabel_61.Font = Enum.Font.SourceSansBold
+TextLabel_61.Text = "Dex"
+TextLabel_61.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_61.TextSize = 17.000
+TextLabel_61.TextXAlignment = Enum.TextXAlignment.Left
 
 TextButton.Parent = CMDS
 TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
