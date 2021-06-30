@@ -9,99 +9,100 @@ local TextLabel = Instance.new("TextLabel")
 local TextLabel2 = Instance.new("TextLabel")
 local UICorner = Instance.new("UICorner")
 local Frame2 = Instance.new("Frame")
-local sidebar = Instance.new("Frame")
 local UICorner_2 = Instance.new("UICorner")
-local homeshadow = Instance.new("ImageLabel")
-local selected = Instance.new("Frame")
-local UICorner_3 = Instance.new("UICorner")
-local infoshadow = Instance.new("ImageLabel")
-local info = Instance.new("ImageButton")
-local home = Instance.new("ImageButton")
-local UICorner_4 = Instance.new("UICorner")
-local shadow = Instance.new("ImageLabel")
-local toggles = Instance.new("Frame")
-local togglestext = Instance.new("TextLabel")
-local line2 = Instance.new("Frame")
-local UICorner_5 = Instance.new("UICorner")
-local togglesbutton = Instance.new("TextButton")
-local thinline = Instance.new("ImageLabel")
+local ScrollingFrame = Instance.new("ScrollingFrame")
 local section1 = Instance.new("Frame")
 local shop = Instance.new("Frame")
-local UICorner_6 = Instance.new("UICorner")
+local UICorner_3 = Instance.new("UICorner")
 local shopbutton = Instance.new("TextButton")
-local UICorner_7 = Instance.new("UICorner")
+local UICorner_4 = Instance.new("UICorner")
 local fruit = Instance.new("Frame")
-local UICorner_8 = Instance.new("UICorner")
+local UICorner_5 = Instance.new("UICorner")
 local fruitbutton = Instance.new("TextButton")
-local UICorner_9 = Instance.new("UICorner")
+local UICorner_6 = Instance.new("UICorner")
 local debris = Instance.new("Frame")
-local UICorner_10 = Instance.new("UICorner")
+local UICorner_7 = Instance.new("UICorner")
 local debrisbutton = Instance.new("TextButton")
-local UICorner_11 = Instance.new("UICorner")
+local UICorner_8 = Instance.new("UICorner")
 local autostats = Instance.new("Frame")
-local UICorner_12 = Instance.new("UICorner")
+local UICorner_9 = Instance.new("UICorner")
 local autostatstext = Instance.new("TextLabel")
 local melee = Instance.new("TextLabel")
 local meleestats = Instance.new("TextBox")
-local UICorner_13 = Instance.new("UICorner")
+local UICorner_10 = Instance.new("UICorner")
 local defense = Instance.new("TextLabel")
 local defensestats = Instance.new("TextBox")
-local UICorner_14 = Instance.new("UICorner")
+local UICorner_11 = Instance.new("UICorner")
 local fruitstats = Instance.new("TextBox")
-local UICorner_15 = Instance.new("UICorner")
+local UICorner_12 = Instance.new("UICorner")
 local blox = Instance.new("TextLabel")
-local main = Instance.new("Frame")
-local maintext = Instance.new("TextLabel")
-local line1 = Instance.new("Frame")
-local UICorner_16 = Instance.new("UICorner")
-local mainbutton = Instance.new("TextButton")
-local section2 = Instance.new("Frame")
-local fruitesp = Instance.new("Frame")
-local UICorner_17 = Instance.new("UICorner")
-local fruitespbutton = Instance.new("TextButton")
-local UICorner_18 = Instance.new("UICorner")
-local fruitcircle = Instance.new("ImageLabel")
-local X = Instance.new("TextLabel")
-local fruitesptext = Instance.new("TextLabel")
-local islandesp = Instance.new("Frame")
-local UICorner_19 = Instance.new("UICorner")
-local islandespbutton = Instance.new("TextButton")
-local UICorner_20 = Instance.new("UICorner")
-local islandcircle = Instance.new("ImageLabel")
-local islandesptext = Instance.new("TextLabel")
-local personesp = Instance.new("Frame")
-local UICorner_21 = Instance.new("UICorner")
-local personespbutton = Instance.new("TextButton")
-local UICorner_22 = Instance.new("UICorner")
-local personcircle = Instance.new("ImageLabel")
-local X_2 = Instance.new("TextLabel")
-local personesptext = Instance.new("TextLabel")
-local background1 = Instance.new("Frame")
-local UICorner_23 = Instance.new("UICorner")
-local locate = Instance.new("TextLabel")
-local locatebutton = Instance.new("TextBox")
-local UICorner_24 = Instance.new("UICorner")
-local locateplayer = Instance.new("Frame")
-local UICorner_25 = Instance.new("UICorner")
-local locateon = Instance.new("TextButton")
-local UICorner_26 = Instance.new("UICorner")
-local locatecircle = Instance.new("ImageLabel")
-local X_3 = Instance.new("TextLabel")
-local locatetext = Instance.new("TextLabel")
-local backgroundshadow1 = Instance.new("Frame")
-local UICorner_27 = Instance.new("UICorner")
-local X_4 = Instance.new("TextLabel")
-local close = Instance.new("TextButton")
-local minimize = Instance.new("TextButton")
 local section3 = Instance.new("Frame")
 local ImageLabel = Instance.new("ImageLabel")
 local TextLabel_2 = Instance.new("TextLabel")
 local Frame_2 = Instance.new("Frame")
-local UICorner_28 = Instance.new("UICorner")
+local UICorner_13 = Instance.new("UICorner")
 local teleportbutton = Instance.new("TextButton")
-local UICorner_29 = Instance.new("UICorner")
+local UICorner_14 = Instance.new("UICorner")
 local teleporttext = Instance.new("TextBox")
+local UICorner_15 = Instance.new("UICorner")
+local section2 = Instance.new("Frame")
+local fruitesp = Instance.new("Frame")
+local UICorner_16 = Instance.new("UICorner")
+local fruitespbutton = Instance.new("TextButton")
+local UICorner_17 = Instance.new("UICorner")
+local fruitcircle = Instance.new("ImageLabel")
+local X = Instance.new("TextLabel")
+local fruitesptext = Instance.new("TextLabel")
+local islandesp = Instance.new("Frame")
+local UICorner_18 = Instance.new("UICorner")
+local islandespbutton = Instance.new("TextButton")
+local UICorner_19 = Instance.new("UICorner")
+local islandcircle = Instance.new("ImageLabel")
+local X_2 = Instance.new("TextLabel")
+local islandesptext = Instance.new("TextLabel")
+local personesp = Instance.new("Frame")
+local UICorner_20 = Instance.new("UICorner")
+local personespbutton = Instance.new("TextButton")
+local UICorner_21 = Instance.new("UICorner")
+local personcircle = Instance.new("ImageLabel")
+local X_3 = Instance.new("TextLabel")
+local personesptext = Instance.new("TextLabel")
+local background1 = Instance.new("Frame")
+local UICorner_22 = Instance.new("UICorner")
+local locate = Instance.new("TextLabel")
+local locatebutton = Instance.new("TextBox")
+local UICorner_23 = Instance.new("UICorner")
+local locateplayer = Instance.new("Frame")
+local UICorner_24 = Instance.new("UICorner")
+local locateon = Instance.new("TextButton")
+local UICorner_25 = Instance.new("UICorner")
+local locatecircle = Instance.new("ImageLabel")
+local X_4 = Instance.new("TextLabel")
+local locatetext = Instance.new("TextLabel")
+local backgroundshadow1 = Instance.new("Frame")
+local UICorner_26 = Instance.new("UICorner")
+local thinline = Instance.new("ImageLabel")
+local shadow = Instance.new("ImageLabel")
+local minimize = Instance.new("TextButton")
+local close = Instance.new("TextButton")
+local toggles = Instance.new("Frame")
+local togglestext = Instance.new("TextLabel")
+local line2 = Instance.new("Frame")
+local UICorner_27 = Instance.new("UICorner")
+local togglesbutton = Instance.new("TextButton")
+local sidebar = Instance.new("Frame")
+local UICorner_28 = Instance.new("UICorner")
+local homeshadow = Instance.new("ImageLabel")
+local selected = Instance.new("Frame")
+local UICorner_29 = Instance.new("UICorner")
+local settingsshadow = Instance.new("ImageLabel")
+local settings = Instance.new("ImageButton")
+local home = Instance.new("ImageButton")
+local main = Instance.new("Frame")
+local maintext = Instance.new("TextLabel")
+local line1 = Instance.new("Frame")
 local UICorner_30 = Instance.new("UICorner")
+local mainbutton = Instance.new("TextButton")
 local devilfruits = Instance.new("Frame")
 local devilfruittext = Instance.new("TextLabel")
 local line3 = Instance.new("Frame")
@@ -161,140 +162,25 @@ Frame2.Position = UDim2.new(0.387716919, 0, 0.342206568, 0)
 Frame2.Size = UDim2.new(0.222585216, 0, 0.313788116, 0)
 Frame2.Visible = false
 
-sidebar.Name = "sidebar"
-sidebar.Parent = Frame2
-sidebar.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
-sidebar.BorderSizePixel = 0
-sidebar.Position = UDim2.new(-0.00109247526, 0, 0, 0)
-sidebar.Size = UDim2.new(0.167588755, 0, 1, 0)
-sidebar.ZIndex = 2
+UICorner_2.CornerRadius = UDim.new(0.0199999996, 0)
+UICorner_2.Parent = Frame2
 
-UICorner_2.CornerRadius = UDim.new(0.0700000003, 0)
-UICorner_2.Parent = sidebar
-
-homeshadow.Name = "homeshadow"
-homeshadow.Parent = sidebar
-homeshadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-homeshadow.BackgroundTransparency = 1.000
-homeshadow.Position = UDim2.new(0.240695655, 0, 0.0620984025, 0)
-homeshadow.Size = UDim2.new(0.495130748, 0, 0.115081191, 0)
-homeshadow.ZIndex = 5
-homeshadow.Image = "http://www.roblox.com/asset/?id=173616340"
-homeshadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
-homeshadow.ImageTransparency = 0.500
-
-selected.Name = "selected"
-selected.Parent = sidebar
-selected.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
-selected.BorderSizePixel = 0
-selected.Position = UDim2.new(-0.00109258317, 0, 0, 0)
-selected.Size = UDim2.new(1.00109255, 0, 0.229986265, 0)
-selected.ZIndex = 2
-
-UICorner_3.CornerRadius = UDim.new(0.0700000003, 0)
-UICorner_3.Parent = selected
-
-infoshadow.Name = "infoshadow"
-infoshadow.Parent = sidebar
-infoshadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-infoshadow.BackgroundTransparency = 1.000
-infoshadow.Position = UDim2.new(0.250000119, 0, 0.282064945, 0)
-infoshadow.Size = UDim2.new(0.466184855, 0, 0.111213036, 0)
-infoshadow.Image = "http://www.roblox.com/asset/?id=5832745500"
-infoshadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
-infoshadow.ImageTransparency = 0.600
-
-info.Name = "info"
-info.Parent = sidebar
-info.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-info.BackgroundTransparency = 1.000
-info.Position = UDim2.new(0.272000015, 0, 0.282000005, 0)
-info.Size = UDim2.new(0.444000006, 0, 0.103, 0)
-info.ZIndex = 6
-info.Image = "http://www.roblox.com/asset/?id=5832745500"
-
-home.Name = "home"
-home.Parent = sidebar
-home.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-home.BackgroundTransparency = 1.000
-home.Position = UDim2.new(0.259000003, 0, 0.0520000011, 0)
-home.Size = UDim2.new(0.495000005, 0, 0.115000002, 0)
-home.ZIndex = 6
-home.Image = "http://www.roblox.com/asset/?id=173616340"
-
-UICorner_4.CornerRadius = UDim.new(0.0199999996, 0)
-UICorner_4.Parent = Frame2
-
-shadow.Name = "shadow"
-shadow.Parent = Frame2
-shadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-shadow.BackgroundTransparency = 1.000
-shadow.Position = UDim2.new(0.153390899, 0, 0.011999961, 0)
-shadow.Size = UDim2.new(0.0445096232, 0, 0.987999976, 0)
-shadow.ZIndex = 0
-shadow.Image = "http://www.roblox.com/asset/?id=163204903"
-shadow.ImageTransparency = 0.800
-
-toggles.Name = "toggles"
-toggles.Parent = Frame2
-toggles.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-toggles.BackgroundTransparency = 1.000
-toggles.Position = UDim2.new(0.465000004, 0, 0.115000002, 0)
-toggles.Size = UDim2.new(0.214581296, 0, 0.103277989, 0)
-toggles.ZIndex = 2
-
-togglestext.Name = "togglestext"
-togglestext.Parent = toggles
-togglestext.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-togglestext.BackgroundTransparency = 1.000
-togglestext.Size = UDim2.new(1, 0, 0.685714304, 0)
-togglestext.ZIndex = 0
-togglestext.Font = Enum.Font.SourceSansBold
-togglestext.Text = "Toggles"
-togglestext.TextColor3 = Color3.fromRGB(255, 255, 255)
-togglestext.TextSize = 22.000
-togglestext.TextStrokeTransparency = 0.000
-togglestext.TextWrapped = true
-
-line2.Name = "line2"
-line2.Parent = toggles
-line2.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
-line2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-line2.BorderSizePixel = 0
-line2.Position = UDim2.new(0.481000006, 0, 0.779999971, 0)
-line2.Size = UDim2.new(0, 0, 0.114, 0)
-line2.ZIndex = 0
-
-UICorner_5.CornerRadius = UDim.new(0.800000012, 0)
-UICorner_5.Parent = line2
-
-togglesbutton.Name = "togglesbutton"
-togglesbutton.Parent = toggles
-togglesbutton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-togglesbutton.BackgroundTransparency = 1.000
-togglesbutton.Position = UDim2.new(0.191919193, 0, 0, 0)
-togglesbutton.Size = UDim2.new(0, 62, 0, 34)
-togglesbutton.Font = Enum.Font.SourceSans
-togglesbutton.Text = ""
-togglesbutton.TextColor3 = Color3.fromRGB(0, 0, 0)
-togglesbutton.TextSize = 14.000
-
-thinline.Name = "thinline"
-thinline.Parent = Frame2
-thinline.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-thinline.BackgroundTransparency = 1.000
-thinline.BorderSizePixel = 5
-thinline.Position = UDim2.new(-0.00216748775, 0, 0.0875891894, 0)
-thinline.Size = UDim2.new(0.999211848, 0, 0.295079976, 0)
-thinline.ZIndex = 0
-thinline.Image = "http://www.roblox.com/asset/?id=4084568046"
-thinline.ImageColor3 = Color3.fromRGB(156, 156, 156)
+ScrollingFrame.Parent = Frame2
+ScrollingFrame.Active = true
+ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollingFrame.BackgroundTransparency = 1.000
+ScrollingFrame.Size = UDim2.new(0, 426, 0, 338)
+ScrollingFrame.BottomImage = ""
+ScrollingFrame.CanvasSize = UDim2.new(0, 0, 20, 0)
+ScrollingFrame.MidImage = ""
+ScrollingFrame.TopImage = ""
+ScrollingFrame.VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
 
 section1.Name = "section1"
-section1.Parent = Frame2
+section1.Parent = ScrollingFrame
 section1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 section1.BackgroundTransparency = 1.000
-section1.Size = UDim2.new(0.999211848, 0, 0.997370303, 0)
+section1.Size = UDim2.new(0.999000013, 0, 0.0500000007, 0)
 
 shop.Name = "shop"
 shop.Parent = section1
@@ -305,8 +191,8 @@ shop.Position = UDim2.new(0.206, 0, 0.270000041, 0)
 shop.Size = UDim2.new(0.219170749, 0, 0.121306643, 0)
 shop.ZIndex = 2
 
-UICorner_6.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_6.Parent = shop
+UICorner_3.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_3.Parent = shop
 
 shopbutton.Name = "shopbutton"
 shopbutton.Parent = shop
@@ -321,8 +207,8 @@ shopbutton.TextSize = 30.000
 shopbutton.TextStrokeTransparency = 0.500
 shopbutton.TextWrapped = true
 
-UICorner_7.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_7.Parent = shopbutton
+UICorner_4.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_4.Parent = shopbutton
 
 fruit.Name = "fruit"
 fruit.Parent = section1
@@ -333,8 +219,8 @@ fruit.Position = UDim2.new(0.458000004, 0, 0.270000041, 0)
 fruit.Size = UDim2.new(0.237823948, 0, 0.121306643, 0)
 fruit.ZIndex = 2
 
-UICorner_8.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_8.Parent = fruit
+UICorner_5.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_5.Parent = fruit
 
 fruitbutton.Name = "fruitbutton"
 fruitbutton.Parent = fruit
@@ -348,8 +234,8 @@ fruitbutton.TextSize = 29.000
 fruitbutton.TextStrokeTransparency = 0.500
 fruitbutton.TextWrapped = true
 
-UICorner_9.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_9.Parent = fruitbutton
+UICorner_6.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_6.Parent = fruitbutton
 
 debris.Name = "debris"
 debris.Parent = section1
@@ -360,8 +246,8 @@ debris.Position = UDim2.new(0.728000343, 0, 0.273008168, 0)
 debris.Size = UDim2.new(0.237823948, 0, 0.121306643, 0)
 debris.ZIndex = 2
 
-UICorner_10.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_10.Parent = debris
+UICorner_7.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_7.Parent = debris
 
 debrisbutton.Name = "debrisbutton"
 debrisbutton.Parent = debris
@@ -375,8 +261,8 @@ debrisbutton.TextSize = 20.000
 debrisbutton.TextStrokeTransparency = 0.500
 debrisbutton.TextWrapped = true
 
-UICorner_11.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_11.Parent = debrisbutton
+UICorner_8.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_8.Parent = debrisbutton
 
 autostats.Name = "autostats"
 autostats.Parent = section1
@@ -386,8 +272,8 @@ autostats.Position = UDim2.new(0.208169207, 0, 0.420887589, 0)
 autostats.Size = UDim2.new(0.757655025, 0, 0.540688813, 0)
 autostats.ZIndex = 2
 
-UICorner_12.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_12.Parent = autostats
+UICorner_9.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_9.Parent = autostats
 
 autostatstext.Name = "autostatstext"
 autostatstext.Parent = autostats
@@ -430,8 +316,8 @@ meleestats.TextColor3 = Color3.fromRGB(255, 255, 255)
 meleestats.TextSize = 20.000
 meleestats.TextXAlignment = Enum.TextXAlignment.Left
 
-UICorner_13.CornerRadius = UDim.new(0.300000012, 0)
-UICorner_13.Parent = meleestats
+UICorner_10.CornerRadius = UDim.new(0.300000012, 0)
+UICorner_10.Parent = meleestats
 
 defense.Name = "defense"
 defense.Parent = autostats
@@ -460,8 +346,8 @@ defensestats.TextColor3 = Color3.fromRGB(255, 255, 255)
 defensestats.TextSize = 20.000
 defensestats.TextXAlignment = Enum.TextXAlignment.Left
 
-UICorner_14.CornerRadius = UDim.new(0.300000012, 0)
-UICorner_14.Parent = defensestats
+UICorner_11.CornerRadius = UDim.new(0.300000012, 0)
+UICorner_11.Parent = defensestats
 
 fruitstats.Name = "fruitstats"
 fruitstats.Parent = autostats
@@ -475,8 +361,8 @@ fruitstats.TextColor3 = Color3.fromRGB(255, 255, 255)
 fruitstats.TextSize = 20.000
 fruitstats.TextXAlignment = Enum.TextXAlignment.Left
 
-UICorner_15.CornerRadius = UDim.new(0.300000012, 0)
-UICorner_15.Parent = fruitstats
+UICorner_12.CornerRadius = UDim.new(0.300000012, 0)
+UICorner_12.Parent = fruitstats
 
 blox.Name = "blox"
 blox.Parent = autostats
@@ -493,57 +379,71 @@ blox.TextStrokeTransparency = 0.500
 blox.TextWrapped = true
 blox.TextXAlignment = Enum.TextXAlignment.Left
 
-main.Name = "main"
-main.Parent = Frame2
-main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-main.BackgroundTransparency = 1.000
-main.Position = UDim2.new(0.209999993, 0, 0.115000002, 0)
-main.Size = UDim2.new(0.214581296, 0, 0.103277989, 0)
-main.ZIndex = 2
+section3.Name = "section3"
+section3.Parent = ScrollingFrame
+section3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+section3.BackgroundTransparency = 1.000
+section3.Position = UDim2.new(0.0199999996, 0, 0.133000001, 0)
+section3.Size = UDim2.new(0.968999982, 0, 0.0500000007, 0)
 
-maintext.Name = "maintext"
-maintext.Parent = main
-maintext.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-maintext.BackgroundTransparency = 1.000
-maintext.Size = UDim2.new(1, 0, 0.685714304, 0)
-maintext.ZIndex = 0
-maintext.Font = Enum.Font.SourceSansBold
-maintext.Text = "Main"
-maintext.TextColor3 = Color3.fromRGB(255, 255, 255)
-maintext.TextScaled = true
-maintext.TextSize = 14.000
-maintext.TextStrokeTransparency = 0.000
-maintext.TextWrapped = true
+ImageLabel.Parent = section3
+ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel.BackgroundTransparency = 1.000
+ImageLabel.Position = UDim2.new(0.188720152, 0, 0.251511574, 0)
+ImageLabel.Size = UDim2.new(0.0474292673, 0, 0.0613519698, 0)
+ImageLabel.Image = "http://www.roblox.com/asset/?id=216049808"
 
-line1.Name = "line1"
-line1.Parent = main
-line1.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
-line1.BorderColor3 = Color3.fromRGB(0, 0, 0)
-line1.BorderSizePixel = 0
-line1.Position = UDim2.new(0.117488362, 0, 0.780140042, 0)
-line1.Size = UDim2.new(0.808080792, 0, 0.114285715, 0)
-line1.ZIndex = 0
+TextLabel_2.Parent = section3
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.Position = UDim2.new(0.249457717, 0, 0.251479328, 0)
+TextLabel_2.Size = UDim2.new(0.127981395, 0, 0.0613838211, 0)
+TextLabel_2.Font = Enum.Font.SourceSansBold
+TextLabel_2.Text = "Workspace"
+TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.TextSize = 14.000
+TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
 
-UICorner_16.CornerRadius = UDim.new(0.800000012, 0)
-UICorner_16.Parent = line1
+Frame_2.Parent = section3
+Frame_2.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
+Frame_2.Position = UDim2.new(0.188720167, 0, 0.334319532, 0)
+Frame_2.Size = UDim2.new(0.379609555, 0, 0.644970417, 0)
 
-mainbutton.Name = "mainbutton"
-mainbutton.Parent = main
-mainbutton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-mainbutton.BackgroundTransparency = 1.000
-mainbutton.Position = UDim2.new(0.191919193, 0, 0, 0)
-mainbutton.Size = UDim2.new(0, 62, 0, 34)
-mainbutton.Font = Enum.Font.SourceSans
-mainbutton.Text = ""
-mainbutton.TextColor3 = Color3.fromRGB(0, 0, 0)
-mainbutton.TextSize = 14.000
+UICorner_13.CornerRadius = UDim.new(0.0199999996, 0)
+UICorner_13.Parent = Frame_2
+
+teleportbutton.Name = "teleportbutton"
+teleportbutton.Parent = Frame_2
+teleportbutton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+teleportbutton.Position = UDim2.new(0.497142851, 0, 0.0321100913, 0)
+teleportbutton.Size = UDim2.new(0.462667495, 0, 0.105504587, 0)
+teleportbutton.Font = Enum.Font.SourceSansBold
+teleportbutton.Text = "Teleport"
+teleportbutton.TextColor3 = Color3.fromRGB(255, 255, 255)
+teleportbutton.TextSize = 14.000
+
+UICorner_14.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_14.Parent = teleportbutton
+
+teleporttext.Name = "teleporttext"
+teleporttext.Parent = Frame_2
+teleporttext.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+teleporttext.Position = UDim2.new(0.024594726, 0, 0.0321100913, 0)
+teleporttext.Size = UDim2.new(0.444160789, 0, 0.105504587, 0)
+teleporttext.Font = Enum.Font.SourceSansBold
+teleporttext.Text = ""
+teleporttext.TextColor3 = Color3.fromRGB(255, 255, 255)
+teleporttext.TextSize = 14.000
+
+UICorner_15.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_15.Parent = teleporttext
 
 section2.Name = "section2"
-section2.Parent = Frame2
+section2.Parent = ScrollingFrame
 section2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 section2.BackgroundTransparency = 1.000
-section2.Size = UDim2.new(0.999211848, 0, 0.997370303, 0)
-section2.Visible = false
+section2.Position = UDim2.new(0, 0, 0.0670000017, 0)
+section2.Size = UDim2.new(0.999000013, 0, 0.0500000007, 0)
 
 fruitesp.Name = "fruitesp"
 fruitesp.Parent = section2
@@ -554,8 +454,8 @@ fruitesp.Position = UDim2.new(0.227691978, 0, 0.281834334, 0)
 fruitesp.Size = UDim2.new(0.219170749, 0, 0.120973788, 0)
 fruitesp.ZIndex = 2
 
-UICorner_17.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_17.Parent = fruitesp
+UICorner_16.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_16.Parent = fruitesp
 
 fruitespbutton.Name = "fruitespbutton"
 fruitespbutton.Parent = fruitesp
@@ -571,8 +471,8 @@ fruitespbutton.TextStrokeTransparency = 0.500
 fruitespbutton.TextTransparency = 1.000
 fruitespbutton.TextWrapped = true
 
-UICorner_18.CornerRadius = UDim.new(1.5, 0)
-UICorner_18.Parent = fruitespbutton
+UICorner_17.CornerRadius = UDim.new(1.5, 0)
+UICorner_17.Parent = fruitespbutton
 
 fruitcircle.Name = "fruitcircle"
 fruitcircle.Parent = fruitespbutton
@@ -615,8 +515,8 @@ islandesp.Position = UDim2.new(0.73528415, 0, 0.281834334, 0)
 islandesp.Size = UDim2.new(0.219170749, 0, 0.120973788, 0)
 islandesp.ZIndex = 2
 
-UICorner_19.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_19.Parent = islandesp
+UICorner_18.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_18.Parent = islandesp
 
 islandespbutton.Name = "islandespbutton"
 islandespbutton.Parent = islandesp
@@ -632,8 +532,8 @@ islandespbutton.TextStrokeTransparency = 0.500
 islandespbutton.TextTransparency = 1.000
 islandespbutton.TextWrapped = true
 
-UICorner_20.CornerRadius = UDim.new(1.5, 0)
-UICorner_20.Parent = islandespbutton
+UICorner_19.CornerRadius = UDim.new(1.5, 0)
+UICorner_19.Parent = islandespbutton
 
 islandcircle.Name = "islandcircle"
 islandcircle.Parent = islandespbutton
@@ -642,6 +542,17 @@ islandcircle.BackgroundTransparency = 1.000
 islandcircle.Position = UDim2.new(0.0299997013, 0, 0.100000046, 0)
 islandcircle.Size = UDim2.new(0.372882098, 0, 0.819082499, 0)
 islandcircle.Image = "http://www.roblox.com/asset/?id=6401676565"
+
+X_2.Name = "X"
+X_2.Parent = islandcircle
+X_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+X_2.BackgroundTransparency = 1.000
+X_2.Position = UDim2.new(0, 0, 0.0500000007, 0)
+X_2.Size = UDim2.new(1, 0, 0.787878811, 0)
+X_2.Font = Enum.Font.SourceSansBold
+X_2.Text = "x"
+X_2.TextColor3 = Color3.fromRGB(255, 0, 4)
+X_2.TextSize = 30.000
 
 islandesptext.Name = "islandesptext"
 islandesptext.Parent = islandesp
@@ -665,8 +576,8 @@ personesp.Position = UDim2.new(0.480603516, 0, 0.281834334, 0)
 personesp.Size = UDim2.new(0.219170749, 0, 0.120973788, 0)
 personesp.ZIndex = 2
 
-UICorner_21.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_21.Parent = personesp
+UICorner_20.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_20.Parent = personesp
 
 personespbutton.Name = "personespbutton"
 personespbutton.Parent = personesp
@@ -682,8 +593,8 @@ personespbutton.TextStrokeTransparency = 0.500
 personespbutton.TextTransparency = 1.000
 personespbutton.TextWrapped = true
 
-UICorner_22.CornerRadius = UDim.new(1.5, 0)
-UICorner_22.Parent = personespbutton
+UICorner_21.CornerRadius = UDim.new(1.5, 0)
+UICorner_21.Parent = personespbutton
 
 personcircle.Name = "personcircle"
 personcircle.Parent = personespbutton
@@ -693,16 +604,16 @@ personcircle.Position = UDim2.new(0.0299997013, 0, 0.100000046, 0)
 personcircle.Size = UDim2.new(0.372882098, 0, 0.819082499, 0)
 personcircle.Image = "http://www.roblox.com/asset/?id=6401676565"
 
-X_2.Name = "X"
-X_2.Parent = personcircle
-X_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-X_2.BackgroundTransparency = 1.000
-X_2.Position = UDim2.new(0, 0, 0.0500000007, 0)
-X_2.Size = UDim2.new(1, 0, 0.787878811, 0)
-X_2.Font = Enum.Font.SourceSansBold
-X_2.Text = "x"
-X_2.TextColor3 = Color3.fromRGB(255, 0, 4)
-X_2.TextSize = 30.000
+X_3.Name = "X"
+X_3.Parent = personcircle
+X_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+X_3.BackgroundTransparency = 1.000
+X_3.Position = UDim2.new(0, 0, 0.0500000007, 0)
+X_3.Size = UDim2.new(1, 0, 0.787878811, 0)
+X_3.Font = Enum.Font.SourceSansBold
+X_3.Text = "x"
+X_3.TextColor3 = Color3.fromRGB(255, 0, 4)
+X_3.TextSize = 30.000
 
 personesptext.Name = "personesptext"
 personesptext.Parent = personesp
@@ -723,8 +634,8 @@ background1.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
 background1.Position = UDim2.new(0.229493797, 0, 0.763313591, 0)
 background1.Size = UDim2.new(0.49411419, 0, 0.198224857, 0)
 
-UICorner_23.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_23.Parent = background1
+UICorner_22.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_22.Parent = background1
 
 locate.Name = "locate"
 locate.Parent = background1
@@ -747,8 +658,8 @@ locatebutton.Text = ""
 locatebutton.TextColor3 = Color3.fromRGB(255, 255, 255)
 locatebutton.TextSize = 14.000
 
-UICorner_24.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_24.Parent = locatebutton
+UICorner_23.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_23.Parent = locatebutton
 
 locateplayer.Name = "locateplayer"
 locateplayer.Parent = section2
@@ -759,8 +670,8 @@ locateplayer.Position = UDim2.new(0.227691978, 0, 0.503727853, 0)
 locateplayer.Size = UDim2.new(0.219170749, 0, 0.120973788, 0)
 locateplayer.ZIndex = 2
 
-UICorner_25.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_25.Parent = locateplayer
+UICorner_24.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_24.Parent = locateplayer
 
 locateon.Name = "locateon"
 locateon.Parent = locateplayer
@@ -776,8 +687,8 @@ locateon.TextStrokeTransparency = 0.500
 locateon.TextTransparency = 1.000
 locateon.TextWrapped = true
 
-UICorner_26.CornerRadius = UDim.new(1.5, 0)
-UICorner_26.Parent = locateon
+UICorner_25.CornerRadius = UDim.new(1.5, 0)
+UICorner_25.Parent = locateon
 
 locatecircle.Name = "locatecircle"
 locatecircle.Parent = locateon
@@ -787,16 +698,16 @@ locatecircle.Position = UDim2.new(0.0299997013, 0, 0.100000046, 0)
 locatecircle.Size = UDim2.new(0.372882098, 0, 0.819082499, 0)
 locatecircle.Image = "http://www.roblox.com/asset/?id=6401676565"
 
-X_3.Name = "X"
-X_3.Parent = locatecircle
-X_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-X_3.BackgroundTransparency = 1.000
-X_3.Position = UDim2.new(0, 0, 0.0500000007, 0)
-X_3.Size = UDim2.new(1, 0, 0.787878811, 0)
-X_3.Font = Enum.Font.SourceSansBold
-X_3.Text = "x"
-X_3.TextColor3 = Color3.fromRGB(255, 0, 4)
-X_3.TextSize = 30.000
+X_4.Name = "X"
+X_4.Parent = locatecircle
+X_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+X_4.BackgroundTransparency = 1.000
+X_4.Position = UDim2.new(0, 0, 0.0500000007, 0)
+X_4.Size = UDim2.new(1, 0, 0.787878811, 0)
+X_4.Font = Enum.Font.SourceSansBold
+X_4.Text = "x"
+X_4.TextColor3 = Color3.fromRGB(255, 0, 4)
+X_4.TextSize = 30.000
 
 locatetext.Name = "locatetext"
 locatetext.Parent = locateplayer
@@ -819,33 +730,29 @@ backgroundshadow1.Position = UDim2.new(0.223000005, 0, 0.773000002, 0)
 backgroundshadow1.Size = UDim2.new(0.493924379, 0, 0.198224857, 0)
 backgroundshadow1.ZIndex = 0
 
-UICorner_27.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_27.Parent = backgroundshadow1
+UICorner_26.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_26.Parent = backgroundshadow1
 
-X_4.Name = "X"
-X_4.Parent = section2
-X_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-X_4.BackgroundTransparency = 1.000
-X_4.Position = UDim2.new(0, 0, 0.0500000007, 0)
-X_4.Size = UDim2.new(1, 0, 0.787878811, 0)
-X_4.Font = Enum.Font.SourceSansBold
-X_4.Text = "x"
-X_4.TextColor3 = Color3.fromRGB(255, 0, 4)
-X_4.TextSize = 30.000
+thinline.Name = "thinline"
+thinline.Parent = Frame2
+thinline.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+thinline.BackgroundTransparency = 1.000
+thinline.BorderSizePixel = 5
+thinline.Position = UDim2.new(-0.00216748775, 0, 0.0875891894, 0)
+thinline.Size = UDim2.new(0.999211848, 0, 0.295079976, 0)
+thinline.ZIndex = 0
+thinline.Image = "http://www.roblox.com/asset/?id=4084568046"
+thinline.ImageColor3 = Color3.fromRGB(156, 156, 156)
 
-close.Name = "close"
-close.Parent = Frame2
-close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-close.BackgroundTransparency = 1.000
-close.Position = UDim2.new(0.927840889, 0, 0.0118043702, 0)
-close.Size = UDim2.new(0.0561648905, 0, 0.075784795, 0)
-close.Font = Enum.Font.SourceSansBold
-close.Text = "X"
-close.TextColor3 = Color3.fromRGB(255, 255, 255)
-close.TextScaled = true
-close.TextSize = 14.000
-close.TextStrokeTransparency = 0.000
-close.TextWrapped = true
+shadow.Name = "shadow"
+shadow.Parent = Frame2
+shadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+shadow.BackgroundTransparency = 1.000
+shadow.Position = UDim2.new(0.153390899, 0, 0.011999961, 0)
+shadow.Size = UDim2.new(0.0445096232, 0, 0.987999976, 0)
+shadow.ZIndex = 0
+shadow.Image = "http://www.roblox.com/asset/?id=163204903"
+shadow.ImageTransparency = 0.800
 
 minimize.Name = "minimize"
 minimize.Parent = Frame2
@@ -861,64 +768,170 @@ minimize.TextSize = 14.000
 minimize.TextStrokeTransparency = 0.000
 minimize.TextWrapped = true
 
-section3.Name = "section3"
-section3.Parent = Frame2
-section3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-section3.BackgroundTransparency = 1.000
-section3.Size = UDim2.new(0.999211848, 0, 0.997370303, 0)
-section3.Visible = false
+close.Name = "close"
+close.Parent = Frame2
+close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+close.BackgroundTransparency = 1.000
+close.Position = UDim2.new(0.927840889, 0, 0.0118043702, 0)
+close.Size = UDim2.new(0.0561648905, 0, 0.075784795, 0)
+close.Font = Enum.Font.SourceSansBold
+close.Text = "X"
+close.TextColor3 = Color3.fromRGB(255, 255, 255)
+close.TextScaled = true
+close.TextSize = 14.000
+close.TextStrokeTransparency = 0.000
+close.TextWrapped = true
 
-ImageLabel.Parent = section3
-ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageLabel.BackgroundTransparency = 1.000
-ImageLabel.Position = UDim2.new(0.188720167, 0, 0.254437894, 0)
-ImageLabel.Size = UDim2.new(0.00256264932, 0, 0.00575279398, 0)
-ImageLabel.Image = "http://www.roblox.com/asset/?id=216049808"
+toggles.Name = "toggles"
+toggles.Parent = Frame2
+toggles.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+toggles.BackgroundTransparency = 1.000
+toggles.Position = UDim2.new(0.465000004, 0, 0.115000002, 0)
+toggles.Size = UDim2.new(0.214581296, 0, 0.103277989, 0)
+toggles.ZIndex = 2
 
-TextLabel_2.Parent = section3
-TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_2.BackgroundTransparency = 1.000
-TextLabel_2.Position = UDim2.new(0.249457702, 0, 0.251479298, 0)
-TextLabel_2.Size = UDim2.new(0.00719982432, 0, 0.00575279398, 0)
-TextLabel_2.Font = Enum.Font.SourceSansBold
-TextLabel_2.Text = "Workspace"
-TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_2.TextSize = 14.000
-TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
+togglestext.Name = "togglestext"
+togglestext.Parent = toggles
+togglestext.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+togglestext.BackgroundTransparency = 1.000
+togglestext.Size = UDim2.new(1, 0, 0.685714304, 0)
+togglestext.ZIndex = 0
+togglestext.Font = Enum.Font.SourceSansBold
+togglestext.Text = "Toggles"
+togglestext.TextColor3 = Color3.fromRGB(255, 255, 255)
+togglestext.TextSize = 22.000
+togglestext.TextStrokeTransparency = 0.000
+togglestext.TextWrapped = true
 
-Frame_2.Parent = section3
-Frame_2.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
-Frame_2.Position = UDim2.new(0.188720167, 0, 0.334319532, 0)
-Frame_2.Size = UDim2.new(0.379609555, 0, 0.644970417, 0)
+line2.Name = "line2"
+line2.Parent = toggles
+line2.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+line2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+line2.BorderSizePixel = 0
+line2.Position = UDim2.new(0.481000006, 0, 0.779999971, 0)
+line2.Size = UDim2.new(0, 0, 0.114, 0)
+line2.ZIndex = 0
 
-UICorner_28.CornerRadius = UDim.new(0.0199999996, 0)
-UICorner_28.Parent = Frame_2
+UICorner_27.CornerRadius = UDim.new(0.800000012, 0)
+UICorner_27.Parent = line2
 
-teleportbutton.Name = "teleportbutton"
-teleportbutton.Parent = Frame_2
-teleportbutton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-teleportbutton.Position = UDim2.new(0.497142851, 0, 0.0321100913, 0)
-teleportbutton.Size = UDim2.new(0.462667495, 0, 0.105504587, 0)
-teleportbutton.Font = Enum.Font.SourceSansBold
-teleportbutton.Text = "Teleport"
-teleportbutton.TextColor3 = Color3.fromRGB(255, 255, 255)
-teleportbutton.TextSize = 14.000
+togglesbutton.Name = "togglesbutton"
+togglesbutton.Parent = toggles
+togglesbutton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+togglesbutton.BackgroundTransparency = 1.000
+togglesbutton.Position = UDim2.new(0.191919193, 0, 0, 0)
+togglesbutton.Size = UDim2.new(0, 62, 0, 34)
+togglesbutton.Font = Enum.Font.SourceSans
+togglesbutton.Text = ""
+togglesbutton.TextColor3 = Color3.fromRGB(0, 0, 0)
+togglesbutton.TextSize = 14.000
 
-UICorner_29.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_29.Parent = teleportbutton
+sidebar.Name = "sidebar"
+sidebar.Parent = Frame2
+sidebar.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
+sidebar.BorderSizePixel = 0
+sidebar.Position = UDim2.new(-0.00109247526, 0, 0, 0)
+sidebar.Size = UDim2.new(0.167588755, 0, 1, 0)
+sidebar.ZIndex = 2
 
-teleporttext.Name = "teleporttext"
-teleporttext.Parent = Frame_2
-teleporttext.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-teleporttext.Position = UDim2.new(0.024594726, 0, 0.0321100913, 0)
-teleporttext.Size = UDim2.new(0.444160789, 0, 0.105504587, 0)
-teleporttext.Font = Enum.Font.SourceSansBold
-teleporttext.Text = ""
-teleporttext.TextColor3 = Color3.fromRGB(255, 255, 255)
-teleporttext.TextSize = 14.000
+UICorner_28.CornerRadius = UDim.new(0.0700000003, 0)
+UICorner_28.Parent = sidebar
 
-UICorner_30.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_30.Parent = teleporttext
+homeshadow.Name = "homeshadow"
+homeshadow.Parent = sidebar
+homeshadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+homeshadow.BackgroundTransparency = 1.000
+homeshadow.Position = UDim2.new(0.240695655, 0, 0.0620984025, 0)
+homeshadow.Size = UDim2.new(0.495130748, 0, 0.115081191, 0)
+homeshadow.ZIndex = 5
+homeshadow.Image = "http://www.roblox.com/asset/?id=173616340"
+homeshadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+homeshadow.ImageTransparency = 0.500
+
+selected.Name = "selected"
+selected.Parent = sidebar
+selected.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+selected.BorderSizePixel = 0
+selected.Position = UDim2.new(-0.00109258317, 0, 0, 0)
+selected.Size = UDim2.new(1.00109255, 0, 0.229986265, 0)
+selected.ZIndex = 2
+
+UICorner_29.CornerRadius = UDim.new(0.0700000003, 0)
+UICorner_29.Parent = selected
+
+settingsshadow.Name = "settingsshadow"
+settingsshadow.Parent = sidebar
+settingsshadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+settingsshadow.BackgroundTransparency = 1.000
+settingsshadow.Position = UDim2.new(0.219999999, 0, 0.294999987, 0)
+settingsshadow.Size = UDim2.new(0.513304234, 0, 0.111277878, 0)
+settingsshadow.ZIndex = 2
+settingsshadow.Image = "rbxassetid://2484556379"
+settingsshadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+settingsshadow.ImageTransparency = 0.500
+
+settings.Name = "settings"
+settings.Parent = sidebar
+settings.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+settings.BackgroundTransparency = 1.000
+settings.Position = UDim2.new(0.272000015, 0, 0.282000005, 0)
+settings.Size = UDim2.new(0.444000006, 0, 0.103, 0)
+settings.ZIndex = 6
+settings.Image = "rbxassetid://1185031129"
+
+home.Name = "home"
+home.Parent = sidebar
+home.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+home.BackgroundTransparency = 1.000
+home.Position = UDim2.new(0.259000003, 0, 0.0520000011, 0)
+home.Size = UDim2.new(0.495000005, 0, 0.115000002, 0)
+home.ZIndex = 6
+home.Image = "http://www.roblox.com/asset/?id=173616340"
+
+main.Name = "main"
+main.Parent = Frame2
+main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+main.BackgroundTransparency = 1.000
+main.Position = UDim2.new(0.209999993, 0, 0.115000002, 0)
+main.Size = UDim2.new(0.214581296, 0, 0.103277989, 0)
+main.ZIndex = 2
+
+maintext.Name = "maintext"
+maintext.Parent = main
+maintext.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+maintext.BackgroundTransparency = 1.000
+maintext.Size = UDim2.new(1, 0, 0.685714304, 0)
+maintext.ZIndex = 0
+maintext.Font = Enum.Font.SourceSansBold
+maintext.Text = "Main"
+maintext.TextColor3 = Color3.fromRGB(255, 255, 255)
+maintext.TextScaled = true
+maintext.TextSize = 14.000
+maintext.TextStrokeTransparency = 0.000
+maintext.TextWrapped = true
+
+line1.Name = "line1"
+line1.Parent = main
+line1.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+line1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+line1.BorderSizePixel = 0
+line1.Position = UDim2.new(0.117488362, 0, 0.780140042, 0)
+line1.Size = UDim2.new(0.808080792, 0, 0.114285715, 0)
+line1.ZIndex = 0
+
+UICorner_30.CornerRadius = UDim.new(0.800000012, 0)
+UICorner_30.Parent = line1
+
+mainbutton.Name = "mainbutton"
+mainbutton.Parent = main
+mainbutton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+mainbutton.BackgroundTransparency = 1.000
+mainbutton.Position = UDim2.new(0.191919193, 0, 0, 0)
+mainbutton.Size = UDim2.new(0, 62, 0, 34)
+mainbutton.Font = Enum.Font.SourceSans
+mainbutton.Text = ""
+mainbutton.TextColor3 = Color3.fromRGB(0, 0, 0)
+mainbutton.TextSize = 14.000
 
 devilfruits.Name = "devilfruits"
 devilfruits.Parent = Frame2
@@ -972,6 +985,8 @@ ImageButton.Size = UDim2.new(0.0203230847, 0, 0.0361111127, 0)
 ImageButton.Image = "rbxassetid://7027534015"
 
 local TweenService = game:GetService("TweenService")
+
+ScrollingFrame.CanvasPosition = Vector2.new(0, 0)
 
 --dragging
 local UserInputService = game:GetService("UserInputService")
@@ -1101,6 +1116,13 @@ ImageButton.MouseButton1Click:Connect(function()
 	end
 end)
 
+settingsopen = false
+settings.MouseButton1Click:Connect(function()
+	if settingsopen == false then
+		settingsopen = true
+		selected:TweenSizeAndPosition(UDim2.new(1.001, 0,0.23, 0), UDim2.new(-0.001, 0,0.218, 0),Enum.EasingDirection.InOut,Enum.EasingStyle.Sine,.5)
+	end
+end)
 
 fruitbutton.MouseButton1Click:Connect(function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
@@ -1115,6 +1137,15 @@ section2true = false
 section3true = false
 waiting = false
 
+local canvaspos = TweenInfo.new(
+	.25, -- Time
+	Enum.EasingStyle.Linear, -- EasingStyle
+	Enum.EasingDirection.Out, -- EasingDirection
+	0, -- RepeatCount (when less than zero the tween will loop indefinitely)
+	false, -- Reverses (tween will reverse once reaching it's goal)
+	0 -- DelayTime
+)
+
 togglesbutton.MouseButton1Down:Connect(function()
 	if section2true == false then
 		if waiting == true then return end
@@ -1122,16 +1153,20 @@ togglesbutton.MouseButton1Down:Connect(function()
 		section1true = false
 		section3true = false
 		section2true = true
+		local tween = TweenService:Create(ScrollingFrame, canvaspos, {CanvasPosition = Vector2.new(0, 410)})
+		tween:Play()
+		section1.Visible = false
+		section2.Visible = true
+		section3.Visible = false
 		line1:TweenSizeAndPosition(UDim2.new(0, 0,0.114, 0), UDim2.new(0.481, 0,0.78, 0),Enum.EasingDirection.InOut,Enum.EasingStyle.Sine,.5)
 		line2:TweenSizeAndPosition(UDim2.new(0.808, 0,0.114, 0), UDim2.new(0.117, 0,0.78, 0),Enum.EasingDirection.InOut,Enum.EasingStyle.Sine,.5)
 		line3:TweenSizeAndPosition(UDim2.new(0, 0,0.114, 0), UDim2.new(0.481, 0,0.78, 0),Enum.EasingDirection.InOut,Enum.EasingStyle.Sine,.5)
-		section1.Visible = false
-		section3.Visible = false
-		section2.Visible = true
 		wait(.5)
 		waiting = false
 	end
 end)
+
+
 
 mainbutton.MouseButton1Down:Connect(function()
 	if section1true == false then
@@ -1140,12 +1175,14 @@ mainbutton.MouseButton1Down:Connect(function()
 		section2true = false
 		section3true = false
 		section1true = true
+		local tween = TweenService:Create(ScrollingFrame, canvaspos, {CanvasPosition = Vector2.new(0, 0)})
+		tween:Play()
+		section1.Visible = true
+		section2.Visible = false
+		section3.Visible = false
 		line1:TweenSizeAndPosition(UDim2.new(0.808, 0,0.114, 0), UDim2.new(0.117, 0,0.78, 0),Enum.EasingDirection.InOut,Enum.EasingStyle.Sine,.5)
 		line2:TweenSizeAndPosition(UDim2.new(0, 0,0.114, 0), UDim2.new(0.481, 0,0.78, 0),Enum.EasingDirection.InOut,Enum.EasingStyle.Sine,.5)
 		line3:TweenSizeAndPosition(UDim2.new(0, 0,0.114, 0), UDim2.new(0.481, 0,0.78, 0),Enum.EasingDirection.InOut,Enum.EasingStyle.Sine,.5)
-		section2.Visible = false
-		section3.Visible = false
-		section1.Visible = true
 		wait(.5)
 		waiting = false
 	end
@@ -1158,12 +1195,14 @@ devilfruitbutton.MouseButton1Down:Connect(function()
 		section2true = false
 		section3true = true
 		section1true = false
+		local tween = TweenService:Create(ScrollingFrame, canvaspos, {CanvasPosition = Vector2.new(0, 820)})
+		tween:Play()
+		section1.Visible = false
+		section2.Visible = false
+		section3.Visible = true
 		line1:TweenSizeAndPosition(UDim2.new(0, 0,0.114, 0), UDim2.new(0.481, 0,0.78, 0),Enum.EasingDirection.InOut,Enum.EasingStyle.Sine,.5)
 		line2:TweenSizeAndPosition(UDim2.new(0, 0,0.114, 0), UDim2.new(0.481, 0,0.78, 0),Enum.EasingDirection.InOut,Enum.EasingStyle.Sine,.5)
 		line3:TweenSizeAndPosition(UDim2.new(1, 0,0.114, 0), UDim2.new(0, 0,0.78, 0),Enum.EasingDirection.InOut,Enum.EasingStyle.Sine,.5)
-		section2.Visible = false
-		section3.Visible = true
-		section1.Visible = false
 		wait(.5)
 		waiting = false
 	end
