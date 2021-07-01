@@ -1514,11 +1514,11 @@ workspace.ChildAdded:Connect(function(child)
 				billboard("String Fruit",child.Handle,Color3.fromRGB(255,0,0))
 			elseif child.Fruit.BrickColor == BrickColor.new("Buttermilk") and child.Stem.BrickColor == BrickColor.new("Brown") then
 				billboard("Dough Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			elseif v.Fruit.BrickColor == BrickColor.new("Pink") and child.Stem.BrickColor == BrickColor.new("Brown") then
+			elseif child.Fruit.BrickColor == BrickColor.new("Pink") and child.Stem.BrickColor == BrickColor.new("Brown") then
 				billboard("Rubber Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			elseif v.Fruit.BrickColor == BrickColor.new("Toothpaste") and child.Stem.BrickColor == BrickColor.new("Brown") then
+			elseif child.Fruit.BrickColor == BrickColor.new("Toothpaste") and child.Stem.BrickColor == BrickColor.new("Brown") then
 				billboard("Rumble Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			elseif v.Fruit.BrickColor == BrickColor.new("Cork") and child.Stem.BrickColor == BrickColor.new("Reddish brown") then
+			elseif child.Fruit.BrickColor == BrickColor.new("Cork") and child.Stem.BrickColor == BrickColor.new("Reddish brown") then
 				billboard("Buddha Fruit",child.Handle,Color3.fromRGB(255,0,0))
 			else
 				billboard(child.Name,child.Handle,Color3.fromRGB(255,0,0))
