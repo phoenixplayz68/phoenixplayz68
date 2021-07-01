@@ -992,6 +992,8 @@ local TweenService = game:GetService("TweenService")
 
 ScrollingFrame.CanvasPosition = Vector2.new(0, 0)
 
+Frame2.Visible = false
+
 --dragging
 local UserInputService = game:GetService("UserInputService")
 
