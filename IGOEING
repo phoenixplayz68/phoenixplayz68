@@ -36,51 +36,109 @@ local UICorner_11 = Instance.new("UICorner")
 local fruitstats = Instance.new("TextBox")
 local UICorner_12 = Instance.new("UICorner")
 local blox = Instance.new("TextLabel")
+local rejoin = Instance.new("Frame")
+local UICorner_13 = Instance.new("UICorner")
+local rejoinbutton = Instance.new("TextButton")
+local UICorner_14 = Instance.new("UICorner")
 local section3 = Instance.new("Frame")
 local ImageLabel = Instance.new("ImageLabel")
 local TextLabel_2 = Instance.new("TextLabel")
 local Frame_2 = Instance.new("Frame")
-local UICorner_13 = Instance.new("UICorner")
-local teleportbutton = Instance.new("TextButton")
-local UICorner_14 = Instance.new("UICorner")
-local teleporttext = Instance.new("TextBox")
 local UICorner_15 = Instance.new("UICorner")
+local phoen = Instance.new("Frame")
+local UICorner_16 = Instance.new("UICorner")
+local phoenix = Instance.new("TextBox")
+local phoenixnum = Instance.new("TextLabel")
+local UICorner_17 = Instance.new("UICorner")
+local phoenixtp = Instance.new("TextButton")
+local UICorner_18 = Instance.new("UICorner")
+local rumbl = Instance.new("Frame")
+local UICorner_19 = Instance.new("UICorner")
+local rumble = Instance.new("TextBox")
+local rumblenum = Instance.new("TextLabel")
+local UICorner_20 = Instance.new("UICorner")
+local rumbletp = Instance.new("TextButton")
+local UICorner_21 = Instance.new("UICorner")
+local pa = Instance.new("Frame")
+local UICorner_22 = Instance.new("UICorner")
+local paw = Instance.new("TextBox")
+local pawnum = Instance.new("TextLabel")
+local UICorner_23 = Instance.new("UICorner")
+local pawtp = Instance.new("TextButton")
+local UICorner_24 = Instance.new("UICorner")
+local grav = Instance.new("Frame")
+local UICorner_25 = Instance.new("UICorner")
+local gravity = Instance.new("TextBox")
+local gravitynum = Instance.new("TextLabel")
+local UICorner_26 = Instance.new("UICorner")
+local gravitytp = Instance.new("TextButton")
+local UICorner_27 = Instance.new("UICorner")
+local doug = Instance.new("Frame")
+local UICorner_28 = Instance.new("UICorner")
+local dough = Instance.new("TextBox")
+local doughnum = Instance.new("TextLabel")
+local UICorner_29 = Instance.new("UICorner")
+local doughtp = Instance.new("TextButton")
+local UICorner_30 = Instance.new("UICorner")
+local contro = Instance.new("Frame")
+local UICorner_31 = Instance.new("UICorner")
+local control = Instance.new("TextBox")
+local controlnum = Instance.new("TextLabel")
+local UICorner_32 = Instance.new("UICorner")
+local controltp = Instance.new("TextButton")
+local UICorner_33 = Instance.new("UICorner")
+local drago = Instance.new("Frame")
+local UICorner_34 = Instance.new("UICorner")
+local dragon = Instance.new("TextBox")
+local dragonnum = Instance.new("TextLabel")
+local UICorner_35 = Instance.new("UICorner")
+local dragontp = Instance.new("TextButton")
+local UICorner_36 = Instance.new("UICorner")
+local Frame_3 = Instance.new("Frame")
+local UICorner_37 = Instance.new("UICorner")
 local section2 = Instance.new("Frame")
 local fruitesp = Instance.new("Frame")
-local UICorner_16 = Instance.new("UICorner")
+local UICorner_38 = Instance.new("UICorner")
 local fruitespbutton = Instance.new("TextButton")
-local UICorner_17 = Instance.new("UICorner")
+local UICorner_39 = Instance.new("UICorner")
 local fruitcircle = Instance.new("ImageLabel")
 local X = Instance.new("TextLabel")
 local fruitesptext = Instance.new("TextLabel")
 local islandesp = Instance.new("Frame")
-local UICorner_18 = Instance.new("UICorner")
+local UICorner_40 = Instance.new("UICorner")
 local islandespbutton = Instance.new("TextButton")
-local UICorner_19 = Instance.new("UICorner")
+local UICorner_41 = Instance.new("UICorner")
 local islandcircle = Instance.new("ImageLabel")
 local X_2 = Instance.new("TextLabel")
 local islandesptext = Instance.new("TextLabel")
 local personesp = Instance.new("Frame")
-local UICorner_20 = Instance.new("UICorner")
+local UICorner_42 = Instance.new("UICorner")
 local personespbutton = Instance.new("TextButton")
-local UICorner_21 = Instance.new("UICorner")
+local UICorner_43 = Instance.new("UICorner")
 local personcircle = Instance.new("ImageLabel")
 local X_3 = Instance.new("TextLabel")
 local personesptext = Instance.new("TextLabel")
 local background1 = Instance.new("Frame")
-local UICorner_22 = Instance.new("UICorner")
+local UICorner_44 = Instance.new("UICorner")
 local locate = Instance.new("TextLabel")
 local locatebutton = Instance.new("TextBox")
-local UICorner_23 = Instance.new("UICorner")
+local UICorner_45 = Instance.new("UICorner")
 local locateplayer = Instance.new("Frame")
-local UICorner_24 = Instance.new("UICorner")
+local UICorner_46 = Instance.new("UICorner")
 local locateon = Instance.new("TextButton")
-local UICorner_25 = Instance.new("UICorner")
+local UICorner_47 = Instance.new("UICorner")
 local locatecircle = Instance.new("ImageLabel")
 local X_4 = Instance.new("TextLabel")
 local locatetext = Instance.new("TextLabel")
 local backgroundshadow1 = Instance.new("Frame")
-local UICorner_26 = Instance.new("UICorner")
+local UICorner_48 = Instance.new("UICorner")
+local autodash = Instance.new("Frame")
+local UICorner_49 = Instance.new("UICorner")
+local autodashbutton = Instance.new("TextButton")
+local UICorner_50 = Instance.new("UICorner")
+local autodashcircle = Instance.new("ImageLabel")
+local X_5 = Instance.new("TextLabel")
+local autodashtext = Instance.new("TextLabel")
 local thinline = Instance.new("ImageLabel")
 local shadow = Instance.new("ImageLabel")
 local minimize = Instance.new("TextButton")
@@ -88,25 +146,25 @@ local close = Instance.new("TextButton")
 local toggles = Instance.new("Frame")
 local togglestext = Instance.new("TextLabel")
 local line2 = Instance.new("Frame")
-local UICorner_27 = Instance.new("UICorner")
+local UICorner_51 = Instance.new("UICorner")
 local togglesbutton = Instance.new("TextButton")
 local sidebar = Instance.new("Frame")
-local UICorner_28 = Instance.new("UICorner")
+local UICorner_52 = Instance.new("UICorner")
 local homeshadow = Instance.new("ImageLabel")
 local selected = Instance.new("Frame")
-local UICorner_29 = Instance.new("UICorner")
+local UICorner_53 = Instance.new("UICorner")
 local settingsshadow = Instance.new("ImageLabel")
 local settings = Instance.new("ImageButton")
 local home = Instance.new("ImageButton")
 local main = Instance.new("Frame")
 local maintext = Instance.new("TextLabel")
 local line1 = Instance.new("Frame")
-local UICorner_30 = Instance.new("UICorner")
+local UICorner_54 = Instance.new("UICorner")
 local mainbutton = Instance.new("TextButton")
 local devilfruits = Instance.new("Frame")
 local devilfruittext = Instance.new("TextLabel")
 local line3 = Instance.new("Frame")
-local UICorner_31 = Instance.new("UICorner")
+local UICorner_55 = Instance.new("UICorner")
 local devilfruitbutton = Instance.new("TextButton")
 local ImageButton = Instance.new("ImageButton")
 
@@ -171,7 +229,6 @@ ScrollingFrame.BackgroundTransparency = 1.000
 ScrollingFrame.Position = UDim2.new(0, 0, 0.229986235, 0)
 ScrollingFrame.Size = UDim2.new(0.996809244, 0, 0.731974602, 0)
 ScrollingFrame.BottomImage = ""
-ScrollingFrame.CanvasPosition = Vector2.new(0, 900)
 ScrollingFrame.CanvasSize = UDim2.new(0, 0, 20, 0)
 ScrollingFrame.HorizontalScrollBarInset = Enum.ScrollBarInset.ScrollBar
 ScrollingFrame.MidImage = ""
@@ -272,8 +329,8 @@ autostats.Name = "autostats"
 autostats.Parent = section1
 autostats.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
 autostats.BorderSizePixel = 0
-autostats.Position = UDim2.new(0.208169207, 0, 0.420887589, 0)
-autostats.Size = UDim2.new(0.757655025, 0, 0.540688813, 0)
+autostats.Position = UDim2.new(0.208169281, 0, 0.574329019, 0)
+autostats.Size = UDim2.new(0.757655084, 0, 0.387247324, 0)
 autostats.ZIndex = 2
 
 UICorner_9.CornerRadius = UDim.new(0.100000001, 0)
@@ -283,8 +340,8 @@ autostatstext.Name = "autostatstext"
 autostatstext.Parent = autostats
 autostatstext.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 autostatstext.BackgroundTransparency = 1.000
-autostatstext.Position = UDim2.new(0, 0, 0.0164156146, 0)
-autostatstext.Size = UDim2.new(1.07925749, 0, 0.164156154, 0)
+autostatstext.Position = UDim2.new(0, 0, 0.0164155923, 0)
+autostatstext.Size = UDim2.new(1.07925749, 0, 0.182145298, 0)
 autostatstext.ZIndex = 2
 autostatstext.Font = Enum.Font.SourceSansBold
 autostatstext.Text = "Auto Stats"
@@ -297,8 +354,8 @@ melee.Name = "melee"
 melee.Parent = autostats
 melee.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 melee.BackgroundTransparency = 1.000
-melee.Position = UDim2.new(0.0177928321, 0, 0.180571765, 0)
-melee.Size = UDim2.new(0.16699113, 0, 0.103965566, 0)
+melee.Position = UDim2.new(0.0177928209, 0, 0.0690221786, 0)
+melee.Size = UDim2.new(0.16699113, 0, 0.121939532, 0)
 melee.ZIndex = 2
 melee.Font = Enum.Font.SourceSansBold
 melee.Text = "Melee"
@@ -311,8 +368,8 @@ melee.TextXAlignment = Enum.TextXAlignment.Left
 meleestats.Name = "meleestats"
 meleestats.Parent = autostats
 meleestats.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-meleestats.Position = UDim2.new(0.00347762182, 0, 0.284537315, 0)
-meleestats.Size = UDim2.new(0.569006801, 0, 0.136796787, 0)
+meleestats.Position = UDim2.new(0.00347761321, 0, 0.190961629, 0)
+meleestats.Size = UDim2.new(0.56900686, 0, 0.160446763, 0)
 meleestats.ZIndex = 2
 meleestats.Font = Enum.Font.SourceSansBold
 meleestats.Text = ""
@@ -327,8 +384,8 @@ defense.Name = "defense"
 defense.Parent = autostats
 defense.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 defense.BackgroundTransparency = 1.000
-defense.Position = UDim2.new(0.0177928321, 0, 0.421334147, 0)
-defense.Size = UDim2.new(0.210285112, 0, 0.103965566, 0)
+defense.Position = UDim2.new(0.0177928209, 0, 0.351408154, 0)
+defense.Size = UDim2.new(0.210285112, 0, 0.121939532, 0)
 defense.ZIndex = 2
 defense.Font = Enum.Font.SourceSansBold
 defense.Text = "Defense"
@@ -341,8 +398,8 @@ defense.TextXAlignment = Enum.TextXAlignment.Left
 defensestats.Name = "defensestats"
 defensestats.Parent = autostats
 defensestats.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-defensestats.Position = UDim2.new(0.00347762182, 0, 0.525299668, 0)
-defensestats.Size = UDim2.new(0.569006801, 0, 0.136796787, 0)
+defensestats.Position = UDim2.new(0.00347761321, 0, 0.473347574, 0)
+defensestats.Size = UDim2.new(0.56900686, 0, 0.160446763, 0)
 defensestats.ZIndex = 2
 defensestats.Font = Enum.Font.SourceSansBold
 defensestats.Text = ""
@@ -356,8 +413,8 @@ UICorner_11.Parent = defensestats
 fruitstats.Name = "fruitstats"
 fruitstats.Parent = autostats
 fruitstats.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-fruitstats.Position = UDim2.new(0.00347762182, 0, 0.766061962, 0)
-fruitstats.Size = UDim2.new(0.569006801, 0, 0.136796787, 0)
+fruitstats.Position = UDim2.new(0.00347761321, 0, 0.755734086, 0)
+fruitstats.Size = UDim2.new(0.56900686, 0, 0.160446763, 0)
 fruitstats.ZIndex = 2
 fruitstats.Font = Enum.Font.SourceSansBold
 fruitstats.Text = ""
@@ -372,8 +429,8 @@ blox.Name = "blox"
 blox.Parent = autostats
 blox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 blox.BackgroundTransparency = 1.000
-blox.Position = UDim2.new(0.0177928321, 0, 0.662096441, 0)
-blox.Size = UDim2.new(0.235024542, 0, 0.103965566, 0)
+blox.Position = UDim2.new(0.0177928209, 0, 0.633794546, 0)
+blox.Size = UDim2.new(0.235024557, 0, 0.121939532, 0)
 blox.ZIndex = 2
 blox.Font = Enum.Font.SourceSansBold
 blox.Text = "Blox Fruit"
@@ -382,6 +439,34 @@ blox.TextSize = 20.000
 blox.TextStrokeTransparency = 0.500
 blox.TextWrapped = true
 blox.TextXAlignment = Enum.TextXAlignment.Left
+
+rejoin.Name = "rejoin"
+rejoin.Parent = section1
+rejoin.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+rejoin.BackgroundTransparency = 0.850
+rejoin.BorderSizePixel = 0
+rejoin.Position = UDim2.new(0.206, 0, 0.414589226, 0)
+rejoin.Size = UDim2.new(0.219170749, 0, 0.121306643, 0)
+rejoin.ZIndex = 2
+
+UICorner_13.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_13.Parent = rejoin
+
+rejoinbutton.Name = "rejoinbutton"
+rejoinbutton.Parent = rejoin
+rejoinbutton.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
+rejoinbutton.Position = UDim2.new(0.0250002574, 0, 0, 0)
+rejoinbutton.Size = UDim2.new(0.974999666, 0, 0.927990735, 0)
+rejoinbutton.ZIndex = 0
+rejoinbutton.Font = Enum.Font.SourceSansBold
+rejoinbutton.Text = "Rejoin"
+rejoinbutton.TextColor3 = Color3.fromRGB(255, 255, 255)
+rejoinbutton.TextSize = 30.000
+rejoinbutton.TextStrokeTransparency = 0.500
+rejoinbutton.TextWrapped = true
+
+UICorner_14.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_14.Parent = rejoinbutton
 
 section3.Name = "section3"
 section3.Parent = ScrollingFrame
@@ -410,37 +495,371 @@ TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
 
 Frame_2.Parent = section3
 Frame_2.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
-Frame_2.Position = UDim2.new(0.188720167, 0, 0.334319532, 0)
-Frame_2.Size = UDim2.new(0.379609555, 0, 0.644970417, 0)
+Frame_2.Position = UDim2.new(0.188720226, 0, 0.334319532, 0)
+Frame_2.Size = UDim2.new(0.379609525, 0, 0.600810647, 0)
 
-UICorner_13.CornerRadius = UDim.new(0.0199999996, 0)
-UICorner_13.Parent = Frame_2
+UICorner_15.CornerRadius = UDim.new(0.0199999996, 0)
+UICorner_15.Parent = Frame_2
 
-teleportbutton.Name = "teleportbutton"
-teleportbutton.Parent = Frame_2
-teleportbutton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-teleportbutton.Position = UDim2.new(0.497142851, 0, 0.0321100913, 0)
-teleportbutton.Size = UDim2.new(0.462667495, 0, 0.105504587, 0)
-teleportbutton.Font = Enum.Font.SourceSansBold
-teleportbutton.Text = "Teleport"
-teleportbutton.TextColor3 = Color3.fromRGB(255, 255, 255)
-teleportbutton.TextSize = 14.000
+phoen.Name = "phoen"
+phoen.Parent = Frame_2
+phoen.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+phoen.Position = UDim2.new(0.0250000581, 0, 0.0320000648, 0)
+phoen.Size = UDim2.new(0.444000006, 0, 0.120250084, 0)
 
-UICorner_14.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_14.Parent = teleportbutton
+UICorner_16.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_16.Parent = phoen
 
-teleporttext.Name = "teleporttext"
-teleporttext.Parent = Frame_2
-teleporttext.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-teleporttext.Position = UDim2.new(0.024594726, 0, 0.0321100913, 0)
-teleporttext.Size = UDim2.new(0.444160789, 0, 0.105504587, 0)
-teleporttext.Font = Enum.Font.SourceSansBold
-teleporttext.Text = ""
-teleporttext.TextColor3 = Color3.fromRGB(255, 255, 255)
-teleporttext.TextSize = 14.000
+phoenix.Name = "phoenix"
+phoenix.Parent = phoen
+phoenix.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+phoenix.BackgroundTransparency = 1.000
+phoenix.Position = UDim2.new(0.065582253, 0, 0.0321101435, 0)
+phoenix.Selectable = false
+phoenix.Size = UDim2.new(0.934417427, 0, 0.967889607, 0)
+phoenix.Font = Enum.Font.SourceSansBold
+phoenix.Text = "Phoenix"
+phoenix.TextColor3 = Color3.fromRGB(255, 255, 255)
+phoenix.TextSize = 14.000
+phoenix.TextXAlignment = Enum.TextXAlignment.Left
 
-UICorner_15.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_15.Parent = teleporttext
+phoenixnum.Name = "phoenixnum"
+phoenixnum.Parent = phoen
+phoenixnum.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+phoenixnum.BorderColor3 = Color3.fromRGB(53, 53, 53)
+phoenixnum.Position = UDim2.new(0.999999762, 0, 0.00103883306, 0)
+phoenixnum.Size = UDim2.new(0.133428499, 0, 0.998960674, 0)
+phoenixnum.Font = Enum.Font.SourceSansBold
+phoenixnum.Text = ""
+phoenixnum.TextColor3 = Color3.fromRGB(255, 255, 255)
+phoenixnum.TextSize = 14.000
+phoenixnum.TextWrapped = true
+
+UICorner_17.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_17.Parent = phoenixnum
+
+phoenixtp.Name = "phoenixtp"
+phoenixtp.Parent = phoen
+phoenixtp.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+phoenixtp.Position = UDim2.new(1.14189696, 0, 0.00103925273, 0)
+phoenixtp.Size = UDim2.new(0.939315677, 0, 0.998960495, 0)
+phoenixtp.Font = Enum.Font.SourceSansBold
+phoenixtp.Text = "Teleport"
+phoenixtp.TextColor3 = Color3.fromRGB(255, 255, 255)
+phoenixtp.TextSize = 14.000
+
+UICorner_18.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_18.Parent = phoenixtp
+
+rumbl.Name = "rumbl"
+rumbl.Parent = Frame_2
+rumbl.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+rumbl.Position = UDim2.new(0.0250000581, 0, 0.165863186, 0)
+rumbl.Size = UDim2.new(0.444000006, 0, 0.120250084, 0)
+
+UICorner_19.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_19.Parent = rumbl
+
+rumble.Name = "rumble"
+rumble.Parent = rumbl
+rumble.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+rumble.BackgroundTransparency = 1.000
+rumble.Position = UDim2.new(0.065582253, 0, 0.0321101435, 0)
+rumble.Selectable = false
+rumble.Size = UDim2.new(0.934417427, 0, 0.967889607, 0)
+rumble.Font = Enum.Font.SourceSansBold
+rumble.Text = "Rumble"
+rumble.TextColor3 = Color3.fromRGB(255, 255, 255)
+rumble.TextSize = 14.000
+rumble.TextXAlignment = Enum.TextXAlignment.Left
+
+rumblenum.Name = "rumblenum"
+rumblenum.Parent = rumbl
+rumblenum.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+rumblenum.BorderColor3 = Color3.fromRGB(53, 53, 53)
+rumblenum.Position = UDim2.new(0.999999762, 0, 0, 0)
+rumblenum.Size = UDim2.new(0.133428499, 0, 0.993748486, 0)
+rumblenum.Font = Enum.Font.SourceSansBold
+rumblenum.Text = ""
+rumblenum.TextColor3 = Color3.fromRGB(255, 255, 255)
+rumblenum.TextSize = 14.000
+rumblenum.TextWrapped = true
+
+UICorner_20.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_20.Parent = rumblenum
+
+rumbletp.Name = "rumbletp"
+rumbletp.Parent = rumbl
+rumbletp.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+rumbletp.Position = UDim2.new(1.14189696, 0, 0, 0)
+rumbletp.Size = UDim2.new(0.939315677, 0, 1, 0)
+rumbletp.Font = Enum.Font.SourceSansBold
+rumbletp.Text = "Teleport"
+rumbletp.TextColor3 = Color3.fromRGB(255, 255, 255)
+rumbletp.TextSize = 14.000
+
+UICorner_21.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_21.Parent = rumbletp
+
+pa.Name = "pa"
+pa.Parent = Frame_2
+pa.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+pa.Position = UDim2.new(0.0250000581, 0, 0.301995456, 0)
+pa.Size = UDim2.new(0.444000006, 0, 0.120250084, 0)
+
+UICorner_22.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_22.Parent = pa
+
+paw.Name = "paw"
+paw.Parent = pa
+paw.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+paw.BackgroundTransparency = 1.000
+paw.Position = UDim2.new(0.065582253, 0, 0.0321101435, 0)
+paw.Selectable = false
+paw.Size = UDim2.new(0.934417427, 0, 0.967889607, 0)
+paw.Font = Enum.Font.SourceSansBold
+paw.Text = "Paw"
+paw.TextColor3 = Color3.fromRGB(255, 255, 255)
+paw.TextSize = 14.000
+paw.TextXAlignment = Enum.TextXAlignment.Left
+
+pawnum.Name = "pawnum"
+pawnum.Parent = pa
+pawnum.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+pawnum.BorderColor3 = Color3.fromRGB(53, 53, 53)
+pawnum.Position = UDim2.new(0.999999762, 0, 0.00103925273, 0)
+pawnum.Size = UDim2.new(0.133428499, 0, 0.992708921, 0)
+pawnum.Font = Enum.Font.SourceSansBold
+pawnum.Text = ""
+pawnum.TextColor3 = Color3.fromRGB(255, 255, 255)
+pawnum.TextSize = 14.000
+pawnum.TextWrapped = true
+
+UICorner_23.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_23.Parent = pawnum
+
+pawtp.Name = "pawtp"
+pawtp.Parent = pa
+pawtp.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+pawtp.Position = UDim2.new(1.14189696, 0, 0.00103925273, 0)
+pawtp.Size = UDim2.new(0.939315677, 0, 0.998960495, 0)
+pawtp.Font = Enum.Font.SourceSansBold
+pawtp.Text = "Teleport"
+pawtp.TextColor3 = Color3.fromRGB(255, 255, 255)
+pawtp.TextSize = 14.000
+
+UICorner_24.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_24.Parent = pawtp
+
+grav.Name = "grav"
+grav.Parent = Frame_2
+grav.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+grav.Position = UDim2.new(0.0250000581, 0, 0.438127726, 0)
+grav.Size = UDim2.new(0.444000006, 0, 0.120250084, 0)
+
+UICorner_25.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_25.Parent = grav
+
+gravity.Name = "gravity"
+gravity.Parent = grav
+gravity.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+gravity.BackgroundTransparency = 1.000
+gravity.Position = UDim2.new(0.065582253, 0, 0.0321101435, 0)
+gravity.Selectable = false
+gravity.Size = UDim2.new(0.934417427, 0, 0.967889607, 0)
+gravity.Font = Enum.Font.SourceSansBold
+gravity.Text = "Gravity"
+gravity.TextColor3 = Color3.fromRGB(255, 255, 255)
+gravity.TextSize = 14.000
+gravity.TextXAlignment = Enum.TextXAlignment.Left
+
+gravitynum.Name = "gravitynum"
+gravitynum.Parent = grav
+gravitynum.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+gravitynum.BorderColor3 = Color3.fromRGB(53, 53, 53)
+gravitynum.Position = UDim2.new(0.999999762, 0, 0.00103883306, 0)
+gravitynum.Size = UDim2.new(0.133428499, 0, 0.998960674, 0)
+gravitynum.Font = Enum.Font.SourceSansBold
+gravitynum.Text = ""
+gravitynum.TextColor3 = Color3.fromRGB(255, 255, 255)
+gravitynum.TextSize = 14.000
+gravitynum.TextWrapped = true
+
+UICorner_26.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_26.Parent = gravitynum
+
+gravitytp.Name = "gravitytp"
+gravitytp.Parent = grav
+gravitytp.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+gravitytp.Position = UDim2.new(1.14189696, 0, 0.00103925273, 0)
+gravitytp.Size = UDim2.new(0.939315677, 0, 0.998960495, 0)
+gravitytp.Font = Enum.Font.SourceSansBold
+gravitytp.Text = "Teleport"
+gravitytp.TextColor3 = Color3.fromRGB(255, 255, 255)
+gravitytp.TextSize = 14.000
+
+UICorner_27.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_27.Parent = gravitytp
+
+doug.Name = "doug"
+doug.Parent = Frame_2
+doug.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+doug.Position = UDim2.new(0.0250000581, 0, 0.574259996, 0)
+doug.Size = UDim2.new(0.444000006, 0, 0.120250084, 0)
+
+UICorner_28.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_28.Parent = doug
+
+dough.Name = "dough"
+dough.Parent = doug
+dough.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+dough.BackgroundTransparency = 1.000
+dough.Position = UDim2.new(0.065582253, 0, 0.0321101435, 0)
+dough.Selectable = false
+dough.Size = UDim2.new(0.934417427, 0, 0.967889607, 0)
+dough.Font = Enum.Font.SourceSansBold
+dough.Text = "Dough"
+dough.TextColor3 = Color3.fromRGB(255, 255, 255)
+dough.TextSize = 14.000
+dough.TextXAlignment = Enum.TextXAlignment.Left
+
+doughnum.Name = "doughnum"
+doughnum.Parent = doug
+doughnum.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+doughnum.BorderColor3 = Color3.fromRGB(53, 53, 53)
+doughnum.Position = UDim2.new(0.999999762, 0, 0.00103925273, 0)
+doughnum.Size = UDim2.new(0.133428499, 0, 0.992708921, 0)
+doughnum.Font = Enum.Font.SourceSansBold
+doughnum.Text = ""
+doughnum.TextColor3 = Color3.fromRGB(255, 255, 255)
+doughnum.TextSize = 14.000
+doughnum.TextWrapped = true
+
+UICorner_29.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_29.Parent = doughnum
+
+doughtp.Name = "doughtp"
+doughtp.Parent = doug
+doughtp.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+doughtp.Position = UDim2.new(1.14189696, 0, 0.00103925273, 0)
+doughtp.Size = UDim2.new(0.939315677, 0, 0.998960495, 0)
+doughtp.Font = Enum.Font.SourceSansBold
+doughtp.Text = "Teleport"
+doughtp.TextColor3 = Color3.fromRGB(255, 255, 255)
+doughtp.TextSize = 14.000
+
+UICorner_30.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_30.Parent = doughtp
+
+contro.Name = "contro"
+contro.Parent = Frame_2
+contro.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+contro.Position = UDim2.new(0.0250000581, 0, 0.710391939, 0)
+contro.Size = UDim2.new(0.444000006, 0, 0.120250084, 0)
+
+UICorner_31.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_31.Parent = contro
+
+control.Name = "control"
+control.Parent = contro
+control.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+control.BackgroundTransparency = 1.000
+control.Position = UDim2.new(0.065582253, 0, 0.0321101435, 0)
+control.Selectable = false
+control.Size = UDim2.new(0.934417427, 0, 0.967889607, 0)
+control.Font = Enum.Font.SourceSansBold
+control.Text = "Control"
+control.TextColor3 = Color3.fromRGB(255, 255, 255)
+control.TextSize = 14.000
+control.TextXAlignment = Enum.TextXAlignment.Left
+
+controlnum.Name = "controlnum"
+controlnum.Parent = contro
+controlnum.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+controlnum.BorderColor3 = Color3.fromRGB(53, 53, 53)
+controlnum.Position = UDim2.new(0.999999762, 0, 0.00103925273, 0)
+controlnum.Size = UDim2.new(0.133428499, 0, 0.992708921, 0)
+controlnum.Font = Enum.Font.SourceSansBold
+controlnum.Text = ""
+controlnum.TextColor3 = Color3.fromRGB(255, 255, 255)
+controlnum.TextSize = 14.000
+controlnum.TextWrapped = true
+
+UICorner_32.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_32.Parent = controlnum
+
+controltp.Name = "controltp"
+controltp.Parent = contro
+controltp.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+controltp.Position = UDim2.new(1.14189696, 0, 0.00103925273, 0)
+controltp.Size = UDim2.new(0.939315677, 0, 0.998960495, 0)
+controltp.Font = Enum.Font.SourceSansBold
+controltp.Text = "Teleport"
+controltp.TextColor3 = Color3.fromRGB(255, 255, 255)
+controltp.TextSize = 14.000
+
+UICorner_33.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_33.Parent = controltp
+
+drago.Name = "drago"
+drago.Parent = Frame_2
+drago.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+drago.Position = UDim2.new(0.0250000581, 0, 0.846523941, 0)
+drago.Size = UDim2.new(0.444000006, 0, 0.120250084, 0)
+
+UICorner_34.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_34.Parent = drago
+
+dragon.Name = "dragon"
+dragon.Parent = drago
+dragon.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+dragon.BackgroundTransparency = 1.000
+dragon.Position = UDim2.new(0.065582253, 0, 0.0321101435, 0)
+dragon.Selectable = false
+dragon.Size = UDim2.new(0.934417427, 0, 0.967889607, 0)
+dragon.Font = Enum.Font.SourceSansBold
+dragon.Text = "Dragon"
+dragon.TextColor3 = Color3.fromRGB(255, 255, 255)
+dragon.TextSize = 14.000
+dragon.TextXAlignment = Enum.TextXAlignment.Left
+
+dragonnum.Name = "dragonnum"
+dragonnum.Parent = drago
+dragonnum.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+dragonnum.BorderColor3 = Color3.fromRGB(53, 53, 53)
+dragonnum.Position = UDim2.new(0.999999762, 0, 0.00103952002, 0)
+dragonnum.Size = UDim2.new(0.133428499, 0, 0.998961031, 0)
+dragonnum.Font = Enum.Font.SourceSansBold
+dragonnum.Text = ""
+dragonnum.TextColor3 = Color3.fromRGB(255, 255, 255)
+dragonnum.TextSize = 14.000
+dragonnum.TextWrapped = true
+
+UICorner_35.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_35.Parent = dragonnum
+
+dragontp.Name = "dragontp"
+dragontp.Parent = drago
+dragontp.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+dragontp.Position = UDim2.new(1.14189696, 0, 0.00103925273, 0)
+dragontp.Size = UDim2.new(0.939315677, 0, 0.998960495, 0)
+dragontp.Font = Enum.Font.SourceSansBold
+dragontp.Text = "Teleport"
+dragontp.TextColor3 = Color3.fromRGB(255, 255, 255)
+dragontp.TextSize = 14.000
+
+UICorner_36.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_36.Parent = dragontp
+
+Frame_3.Parent = section3
+Frame_3.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Frame_3.BackgroundTransparency = 0.900
+Frame_3.Position = UDim2.new(0.180000007, 0, 0.339049131, 0)
+Frame_3.Size = UDim2.new(0.388329774, 0, 0.603761494, 0)
+Frame_3.ZIndex = 0
+
+UICorner_37.CornerRadius = UDim.new(0.0199999996, 0)
+UICorner_37.Parent = Frame_3
 
 section2.Name = "section2"
 section2.Parent = ScrollingFrame
@@ -458,8 +877,8 @@ fruitesp.Position = UDim2.new(0.227691978, 0, 0.281834334, 0)
 fruitesp.Size = UDim2.new(0.219170749, 0, 0.120973788, 0)
 fruitesp.ZIndex = 2
 
-UICorner_16.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_16.Parent = fruitesp
+UICorner_38.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_38.Parent = fruitesp
 
 fruitespbutton.Name = "fruitespbutton"
 fruitespbutton.Parent = fruitesp
@@ -475,8 +894,8 @@ fruitespbutton.TextStrokeTransparency = 0.500
 fruitespbutton.TextTransparency = 1.000
 fruitespbutton.TextWrapped = true
 
-UICorner_17.CornerRadius = UDim.new(1.5, 0)
-UICorner_17.Parent = fruitespbutton
+UICorner_39.CornerRadius = UDim.new(1.5, 0)
+UICorner_39.Parent = fruitespbutton
 
 fruitcircle.Name = "fruitcircle"
 fruitcircle.Parent = fruitespbutton
@@ -519,8 +938,8 @@ islandesp.Position = UDim2.new(0.73528415, 0, 0.281834334, 0)
 islandesp.Size = UDim2.new(0.219170749, 0, 0.120973788, 0)
 islandesp.ZIndex = 2
 
-UICorner_18.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_18.Parent = islandesp
+UICorner_40.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_40.Parent = islandesp
 
 islandespbutton.Name = "islandespbutton"
 islandespbutton.Parent = islandesp
@@ -536,8 +955,8 @@ islandespbutton.TextStrokeTransparency = 0.500
 islandespbutton.TextTransparency = 1.000
 islandespbutton.TextWrapped = true
 
-UICorner_19.CornerRadius = UDim.new(1.5, 0)
-UICorner_19.Parent = islandespbutton
+UICorner_41.CornerRadius = UDim.new(1.5, 0)
+UICorner_41.Parent = islandespbutton
 
 islandcircle.Name = "islandcircle"
 islandcircle.Parent = islandespbutton
@@ -580,8 +999,8 @@ personesp.Position = UDim2.new(0.480603516, 0, 0.281834334, 0)
 personesp.Size = UDim2.new(0.219170749, 0, 0.120973788, 0)
 personesp.ZIndex = 2
 
-UICorner_20.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_20.Parent = personesp
+UICorner_42.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_42.Parent = personesp
 
 personespbutton.Name = "personespbutton"
 personespbutton.Parent = personesp
@@ -597,8 +1016,8 @@ personespbutton.TextStrokeTransparency = 0.500
 personespbutton.TextTransparency = 1.000
 personespbutton.TextWrapped = true
 
-UICorner_21.CornerRadius = UDim.new(1.5, 0)
-UICorner_21.Parent = personespbutton
+UICorner_43.CornerRadius = UDim.new(1.5, 0)
+UICorner_43.Parent = personespbutton
 
 personcircle.Name = "personcircle"
 personcircle.Parent = personespbutton
@@ -635,11 +1054,11 @@ personesptext.TextWrapped = true
 background1.Name = "background1"
 background1.Parent = section2
 background1.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
-background1.Position = UDim2.new(0.229493797, 0, 0.763313591, 0)
+background1.Position = UDim2.new(0.227070063, 0, 0.739707172, 0)
 background1.Size = UDim2.new(0.49411419, 0, 0.198224857, 0)
 
-UICorner_22.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_22.Parent = background1
+UICorner_44.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_44.Parent = background1
 
 locate.Name = "locate"
 locate.Parent = background1
@@ -662,8 +1081,8 @@ locatebutton.Text = ""
 locatebutton.TextColor3 = Color3.fromRGB(255, 255, 255)
 locatebutton.TextSize = 14.000
 
-UICorner_23.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_23.Parent = locatebutton
+UICorner_45.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_45.Parent = locatebutton
 
 locateplayer.Name = "locateplayer"
 locateplayer.Parent = section2
@@ -674,8 +1093,8 @@ locateplayer.Position = UDim2.new(0.227691978, 0, 0.503727853, 0)
 locateplayer.Size = UDim2.new(0.219170749, 0, 0.120973788, 0)
 locateplayer.ZIndex = 2
 
-UICorner_24.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_24.Parent = locateplayer
+UICorner_46.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_46.Parent = locateplayer
 
 locateon.Name = "locateon"
 locateon.Parent = locateplayer
@@ -691,8 +1110,8 @@ locateon.TextStrokeTransparency = 0.500
 locateon.TextTransparency = 1.000
 locateon.TextWrapped = true
 
-UICorner_25.CornerRadius = UDim.new(1.5, 0)
-UICorner_25.Parent = locateon
+UICorner_47.CornerRadius = UDim.new(1.5, 0)
+UICorner_47.Parent = locateon
 
 locatecircle.Name = "locatecircle"
 locatecircle.Parent = locateon
@@ -730,12 +1149,73 @@ backgroundshadow1.Name = "backgroundshadow1"
 backgroundshadow1.Parent = section2
 backgroundshadow1.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 backgroundshadow1.BackgroundTransparency = 0.900
-backgroundshadow1.Position = UDim2.new(0.223000005, 0, 0.773000002, 0)
+backgroundshadow1.Position = UDim2.new(0.220576271, 0, 0.749393582, 0)
 backgroundshadow1.Size = UDim2.new(0.493924379, 0, 0.198224857, 0)
 backgroundshadow1.ZIndex = 0
 
-UICorner_26.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_26.Parent = backgroundshadow1
+UICorner_48.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_48.Parent = backgroundshadow1
+
+autodash.Name = "autodash"
+autodash.Parent = section2
+autodash.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+autodash.BackgroundTransparency = 1.000
+autodash.BorderSizePixel = 0
+autodash.Position = UDim2.new(0.481000006, 0, 0.504000008, 0)
+autodash.Size = UDim2.new(0.219170749, 0, 0.120973788, 0)
+autodash.ZIndex = 2
+
+UICorner_49.CornerRadius = UDim.new(0.100000001, 0)
+UICorner_49.Parent = autodash
+
+autodashbutton.Name = "autodashbutton"
+autodashbutton.Parent = autodash
+autodashbutton.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+autodashbutton.Position = UDim2.new(0.0499999449, 0, 0.367000043, 0)
+autodashbutton.Size = UDim2.new(0.875908852, 0, 0.985322297, 0)
+autodashbutton.ZIndex = 2
+autodashbutton.Font = Enum.Font.SourceSansBold
+autodashbutton.Text = ""
+autodashbutton.TextColor3 = Color3.fromRGB(255, 255, 255)
+autodashbutton.TextSize = 30.000
+autodashbutton.TextStrokeTransparency = 0.500
+autodashbutton.TextTransparency = 1.000
+autodashbutton.TextWrapped = true
+
+UICorner_50.CornerRadius = UDim.new(1.5, 0)
+UICorner_50.Parent = autodashbutton
+
+autodashcircle.Name = "autodashcircle"
+autodashcircle.Parent = autodashbutton
+autodashcircle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+autodashcircle.BackgroundTransparency = 1.000
+autodashcircle.Position = UDim2.new(0.0299997013, 0, 0.100000046, 0)
+autodashcircle.Size = UDim2.new(0.372882098, 0, 0.819082499, 0)
+autodashcircle.Image = "http://www.roblox.com/asset/?id=6401676565"
+
+X_5.Name = "X"
+X_5.Parent = autodashcircle
+X_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+X_5.BackgroundTransparency = 1.000
+X_5.Position = UDim2.new(0, 0, 0.0500000007, 0)
+X_5.Size = UDim2.new(1, 0, 0.787878811, 0)
+X_5.Font = Enum.Font.SourceSansBold
+X_5.Text = "x"
+X_5.TextColor3 = Color3.fromRGB(255, 0, 4)
+X_5.TextSize = 30.000
+
+autodashtext.Name = "autodashtext"
+autodashtext.Parent = autodash
+autodashtext.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+autodashtext.BackgroundTransparency = 1.000
+autodashtext.Position = UDim2.new(-0.0560000017, 0, -0.100000001, 0)
+autodashtext.Size = UDim2.new(1.04911327, 0, 0.342389196, 0)
+autodashtext.Font = Enum.Font.SourceSansBold
+autodashtext.Text = "Auto Dash"
+autodashtext.TextColor3 = Color3.fromRGB(255, 255, 255)
+autodashtext.TextSize = 20.000
+autodashtext.TextStrokeTransparency = 0.000
+autodashtext.TextWrapped = true
 
 thinline.Name = "thinline"
 thinline.Parent = Frame2
@@ -816,8 +1296,8 @@ line2.Position = UDim2.new(0.481000006, 0, 0.779999971, 0)
 line2.Size = UDim2.new(0, 0, 0.114, 0)
 line2.ZIndex = 0
 
-UICorner_27.CornerRadius = UDim.new(0.800000012, 0)
-UICorner_27.Parent = line2
+UICorner_51.CornerRadius = UDim.new(0.800000012, 0)
+UICorner_51.Parent = line2
 
 togglesbutton.Name = "togglesbutton"
 togglesbutton.Parent = toggles
@@ -838,8 +1318,8 @@ sidebar.Position = UDim2.new(-0.00109247526, 0, 0, 0)
 sidebar.Size = UDim2.new(0.167588755, 0, 1, 0)
 sidebar.ZIndex = 2
 
-UICorner_28.CornerRadius = UDim.new(0.0700000003, 0)
-UICorner_28.Parent = sidebar
+UICorner_52.CornerRadius = UDim.new(0.0700000003, 0)
+UICorner_52.Parent = sidebar
 
 homeshadow.Name = "homeshadow"
 homeshadow.Parent = sidebar
@@ -860,8 +1340,8 @@ selected.Position = UDim2.new(-0.00109258317, 0, 0, 0)
 selected.Size = UDim2.new(1.00109255, 0, 0.229986265, 0)
 selected.ZIndex = 2
 
-UICorner_29.CornerRadius = UDim.new(0.0700000003, 0)
-UICorner_29.Parent = selected
+UICorner_53.CornerRadius = UDim.new(0.0700000003, 0)
+UICorner_53.Parent = selected
 
 settingsshadow.Name = "settingsshadow"
 settingsshadow.Parent = sidebar
@@ -923,8 +1403,8 @@ line1.Position = UDim2.new(0.117488362, 0, 0.780140042, 0)
 line1.Size = UDim2.new(0.808080792, 0, 0.114285715, 0)
 line1.ZIndex = 0
 
-UICorner_30.CornerRadius = UDim.new(0.800000012, 0)
-UICorner_30.Parent = line1
+UICorner_54.CornerRadius = UDim.new(0.800000012, 0)
+UICorner_54.Parent = line1
 
 mainbutton.Name = "mainbutton"
 mainbutton.Parent = main
@@ -967,8 +1447,8 @@ line3.Position = UDim2.new(0.464646459, 0, 0.779999673, 0)
 line3.Size = UDim2.new(0, 0, 0.114000008, 0)
 line3.ZIndex = 0
 
-UICorner_31.CornerRadius = UDim.new(0.800000012, 0)
-UICorner_31.Parent = line3
+UICorner_55.CornerRadius = UDim.new(0.800000012, 0)
+UICorner_55.Parent = line3
 
 devilfruitbutton.Name = "devilfruitbutton"
 devilfruitbutton.Parent = devilfruits
@@ -996,6 +1476,9 @@ Frame2.Visible = false
 
 --dragging
 local UserInputService = game:GetService("UserInputService")
+local VirtualInputManager=game:GetService("VirtualInputManager")
+local TeleportService = game:GetService("TeleportService")
+local Mouse = game.Players.LocalPlayer:GetMouse()
 
 local gui = Frame2
 
@@ -1039,7 +1522,6 @@ UserInputService.InputChanged:Connect(function(input)
 end)
 --dragging
 
-
 local function billboard(text,parent,color)
 	if parent:FindFirstChild("BillboardGui") then return end
 	local BillboardGui = Instance.new("BillboardGui")
@@ -1065,8 +1547,7 @@ local function billboard(text,parent,color)
 	TextLabel.TextStrokeTransparency = 0
 end
 
---teleport
-teleportbutton.MouseButton1Click:Connect(function()
+local function teleportfunction(name)
 	local tweenInfo = TweenInfo.new(
 		4, -- Time
 		Enum.EasingStyle.Linear, -- EasingStyle
@@ -1076,10 +1557,9 @@ teleportbutton.MouseButton1Click:Connect(function()
 		0 -- DelayTime
 	)
 
-	local tween = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, tweenInfo, {CFrame = workspace:FindFirstChild(teleporttext.Text).Handle.CFrame})
+	local tween = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, tweenInfo, {CFrame = workspace:FindFirstChild(name).Handle.CFrame})
 	tween:Play()
-end)
---teleport
+end
 
 --Animate
 Frame:TweenSizeAndPosition(UDim2.new(0.216, 0,0.134, 0), UDim2.new(0.391, 0,0.412, 0))
@@ -1138,15 +1618,19 @@ shopbutton.MouseButton1Click:Connect(function()
 	game.Players.LocalPlayer.PlayerGui.Main.FruitShop.Visible = true
 end)
 
+rejoinbutton.MouseButton1Click:Connect(function()
+	TeleportService:Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+end)
+
 section1true = true
 section2true = false
 section3true = false
 waiting = false
 
 local canvaspos = TweenInfo.new(
-	.25, -- Time
+	.35, -- Time
 	Enum.EasingStyle.Linear, -- EasingStyle
-	Enum.EasingDirection.Out, -- EasingDirection
+	Enum.EasingDirection.InOut, -- EasingDirection
 	0, -- RepeatCount (when less than zero the tween will loop indefinitely)
 	false, -- Reverses (tween will reverse once reaching it's goal)
 	0 -- DelayTime
@@ -1215,17 +1699,17 @@ devilfruitbutton.MouseButton1Down:Connect(function()
 end)
 
 local function enable(button)
-		button:FindFirstChildOfClass("ImageLabel").X.TextColor3 = Color3.fromRGB(0, 255, 0)
-		button:FindFirstChildOfClass("ImageLabel").X.Text = "✓"
-		button.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-		button:FindFirstChildOfClass("ImageLabel"):TweenSizeAndPosition(UDim2.new(0.373, 0,0.819, 0), button:FindFirstChildOfClass("ImageLabel").Position + UDim2.new(.55, 0, 0, 0),Enum.EasingDirection.InOut,Enum.EasingStyle.Sine,.6)
+	button:FindFirstChildOfClass("ImageLabel").X.TextColor3 = Color3.fromRGB(0, 255, 0)
+	button:FindFirstChildOfClass("ImageLabel").X.Text = "✓"
+	button.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+	button:FindFirstChildOfClass("ImageLabel"):TweenSizeAndPosition(UDim2.new(0.373, 0,0.819, 0), button:FindFirstChildOfClass("ImageLabel").Position + UDim2.new(.55, 0, 0, 0),Enum.EasingDirection.InOut,Enum.EasingStyle.Sine,.6)
 end
 
 local function disable(button)
-		button:FindFirstChildOfClass("ImageLabel").X.TextColor3 = Color3.fromRGB(255, 0, 0)
-		button:FindFirstChildOfClass("ImageLabel").X.Text = "x"
-		button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-		button:FindFirstChildOfClass("ImageLabel"):TweenSizeAndPosition(UDim2.new(0.373, 0,0.819, 0), button:FindFirstChildOfClass("ImageLabel").Position - UDim2.new(.55, 0, 0, 0),Enum.EasingDirection.InOut,Enum.EasingStyle.Sine,.6)
+	button:FindFirstChildOfClass("ImageLabel").X.TextColor3 = Color3.fromRGB(255, 0, 0)
+	button:FindFirstChildOfClass("ImageLabel").X.Text = "x"
+	button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+	button:FindFirstChildOfClass("ImageLabel"):TweenSizeAndPosition(UDim2.new(0.373, 0,0.819, 0), button:FindFirstChildOfClass("ImageLabel").Position - UDim2.new(.55, 0, 0, 0),Enum.EasingDirection.InOut,Enum.EasingStyle.Sine,.6)
 end
 
 local locating = false
@@ -1245,8 +1729,8 @@ locateon.MouseButton1Click:Connect(function()
 		disable(locateon)
 		local findplayer = workspace.Characters:FindFirstChild(locatebutton.Text)
 		if findplayer then
-		if findplayer.Head:FindFirstChild("BillboardGui") then
-			findplayer.Head.BillboardGui:Destroy()
+			if findplayer.Head:FindFirstChild("BillboardGui") then
+				findplayer.Head.BillboardGui:Destroy()
 			end
 		end
 	end
@@ -1456,10 +1940,50 @@ personespbutton.MouseButton1Click:Connect(function()
 	playercd = false
 end)
 
+local autodashing = false
+local pressingq = false
+local closed = false
+
+autodashbutton.MouseButton1Click:Connect(function()
+	if playercd == true then return end
+	playercd = true
+	if autodashing == false then
+		autodashing = true
+		enable(autodashbutton)
+		coroutine.resume(coroutine.create(function()
+			repeat wait(.05)
+				if pressingq == true and closed == false then
+					VirtualInputManager:SendKeyEvent(true,"Q",false,game)
+				end
+			until autodashing == false
+		end))
+	elseif autodashing == true then
+		autodashing = false
+		disable(autodashbutton)
+	end
+	wait(.6)
+	playercd = false
+end)
+
+game:GetService("UserInputService").InputBegan:connect(function(input)
+	if input.KeyCode == Enum.KeyCode.Q then
+		pressingq = true
+	end
+end)
+
+game:GetService("UserInputService").InputEnded:connect(function(input)
+	if input.KeyCode == Enum.KeyCode.Q then
+		pressingq = false
+	end
+end)
+
 close.MouseButton1Click:Connect(function()
 	if playeresp == true then
+		closed = true
 		playeresp = false
 		locating = false
+		autodashing = false
+		pressingq = false
 		for i,v in pairs(workspace.Characters:GetChildren()) do
 			if v.Head:FindFirstChild("BillboardGui") then
 				v.Head.BillboardGui:Destroy()
@@ -1479,9 +2003,9 @@ close.MouseButton1Click:Connect(function()
 	end
 	if islandesp == true then
 		islandesp = false
-		folder:Destroy()
 	end
 	ScreenGui:Destroy()
+	folder:Destroy()
 end)
 
 workspace.ChildAdded:Connect(function(child)
