@@ -1857,45 +1857,54 @@ fruitespbutton.MouseButton1Click:Connect(function()
 				billboard(v.Name,v.Handle,Color3.fromRGB(255,0,0))
 			end
 			if v.Name == "Fruit " then
+				if v:FindFirstChild("Handle") and v:FindFirstChild("Union") and not v:FindFirstChild("Stem") and not v:FindFirstChild("Fruit") then
+					if v.Handle.BrickColor == BrickColor.new("New Yeller") and v.Union.BrickColor == BrickColor.new("Copper") then
+						billboard("Light Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					else
+						billboard("Unknown Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					end
+				end
+			end
+			if v.Name == "Fruit " then
 				if v:FindFirstChild("Spike") then
 					billboard("Spike Fruit",v.Handle,Color3.fromRGB(255,0,0))
 				elseif v:FindFirstChild("Coil") then
 					billboard("Spring Fruit",v.Handle,Color3.fromRGB(255,0,0))
 				elseif v:FindFirstChild("Leaves") then
 					billboard("Bomb Fruit",v.Handle,Color3.fromRGB(255,0,0))
-				elseif v.Fruit.BrickColor == BrickColor.new("Lavender") then
-					billboard("Chop Fruit",v.Handle,Color3.fromRGB(255,0,0))
-				elseif v.Fruit.BrickColor == BrickColor.new("Medium stone grey") then
-					billboard("Smoke Fruit",v.Handle,Color3.fromRGB(255,0,0))
-				elseif v.Fruit.BrickColor == BrickColor.new("Bright orange") and v.Stem.BrickColor == BrickColor.new("Bright bluish green") then
-					billboard("Flame Fruit",v.Handle,Color3.fromRGB(255,0,0))
-				elseif v.Fruit.BrickColor == BrickColor.new("Teal") and v.Stem.BrickColor == BrickColor.new("Pastel blue-green") then
-					billboard("Ice Fruit",v.Handle,Color3.fromRGB(255,0,0))
-				elseif v.Fruit.BrickColor == BrickColor.new("Royal purple") and v.Stem.BrickColor == BrickColor.new("Earth green") then
-					billboard("Dark Fruit",v.Handle,Color3.fromRGB(255,0,0))
-				elseif v.Handle.BrickColor == BrickColor.new("New Yeller") and v.Union.BrickColor == BrickColor.new("Copper") then
-					billboard("Light Fruit",v.Handle,Color3.fromRGB(255,0,0))
-				elseif v.Fruit.BrickColor == BrickColor.new("Burlap") and v.Stem.BrickColor == BrickColor.new("Bright bluish green") then
-					billboard("Sand Fruit",v.Handle,Color3.fromRGB(255,0,0))
-				elseif v.Fruit.BrickColor == BrickColor.new("Shamrock") then
-					billboard("Barrier Fruit",v.Handle,Color3.fromRGB(255,0,0))
-				elseif v.Fruit.BrickColor == BrickColor.new("Cocoa") and v.Stem.BrickColor == BrickColor.new("Earth green") then
-					billboard("Magma Fruit",v.Handle,Color3.fromRGB(255,0,0))
-				elseif v.Fruit.BrickColor == BrickColor.new("Institutional white") and v.Stem.BrickColor == BrickColor.new("Medium stone grey") then
-					billboard("Quake Fruit",v.Handle,Color3.fromRGB(255,0,0))
-				elseif v.Fruit.BrickColor == BrickColor.new("Institutional white") and v.Stem.BrickColor == BrickColor.new("Hot pink") then
-					billboard("String Fruit",v.Handle,Color3.fromRGB(255,0,0))
-				elseif v.Fruit.BrickColor == BrickColor.new("Buttermilk") and v.Stem.BrickColor == BrickColor.new("Brown") then
-					billboard("Dough Fruit",v.Handle,Color3.fromRGB(255,0,0))
-				elseif v.Fruit.BrickColor == BrickColor.new("Pink") and v.Stem.BrickColor == BrickColor.new("Brown") then
-					billboard("Rubber Fruit",v.Handle,Color3.fromRGB(255,0,0))
-				elseif v.Fruit.BrickColor == BrickColor.new("Toothpaste") and v.Stem.BrickColor == BrickColor.new("Brown") then
-					billboard("Rumble Fruit",v.Handle,Color3.fromRGB(255,0,0))
-				elseif v.Fruit.BrickColor == BrickColor.new("Cork") and v.Stem.BrickColor == BrickColor.new("Reddish brown") then
-					billboard("Buddha Fruit",v.Handle,Color3.fromRGB(255,0,0))
-
-				else
-					billboard(v.Name,v.Handle,Color3.fromRGB(255,0,0))
+				end
+				if v:FindFirstChild("Fruit") and v:FindFirstChild("Stem") then
+					if v.Fruit.BrickColor == BrickColor.new("Lavender") then
+						billboard("Chop Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Fruit.BrickColor == BrickColor.new("Medium stone grey") then
+						billboard("Smoke Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Fruit.BrickColor == BrickColor.new("Bright orange") and v.Stem.BrickColor == BrickColor.new("Bright bluish green") then
+						billboard("Flame Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Fruit.BrickColor == BrickColor.new("Teal") and v.Stem.BrickColor == BrickColor.new("Pastel blue-green") then
+						billboard("Ice Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Fruit.BrickColor == BrickColor.new("Royal purple") and v.Stem.BrickColor == BrickColor.new("Earth green") then
+						billboard("Dark Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Fruit.BrickColor == BrickColor.new("Burlap") and v.Stem.BrickColor == BrickColor.new("Bright bluish green") then
+						billboard("Sand Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Fruit.BrickColor == BrickColor.new("Shamrock") then
+						billboard("Barrier Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Fruit.BrickColor == BrickColor.new("Cocoa") and v.Stem.BrickColor == BrickColor.new("Earth green") then
+						billboard("Magma Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Fruit.BrickColor == BrickColor.new("Institutional white") and v.Stem.BrickColor == BrickColor.new("Medium stone grey") then
+						billboard("Quake Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Fruit.BrickColor == BrickColor.new("Institutional white") and v.Stem.BrickColor == BrickColor.new("Hot pink") then
+						billboard("String Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Fruit.BrickColor == BrickColor.new("Buttermilk") and v.Stem.BrickColor == BrickColor.new("Brown") then
+						billboard("Dough Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Fruit.BrickColor == BrickColor.new("Pink") and v.Stem.BrickColor == BrickColor.new("Brown") then
+						billboard("Rubber Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Fruit.BrickColor == BrickColor.new("Toothpaste") and v.Stem.BrickColor == BrickColor.new("Brown") then
+						billboard("Rumble Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Fruit.BrickColor == BrickColor.new("Cork") and v.Stem.BrickColor == BrickColor.new("Reddish brown") then
+						billboard("Buddha Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					else
+						billboard("Unknown Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					end
 				end
 			end
 		end
@@ -2008,60 +2017,70 @@ close.MouseButton1Click:Connect(function()
 	folder:Destroy()
 end)
 
-workspace.ChildAdded:Connect(function(child)
+workspace.ChildAdded:Connect(function(v)
 	if espfruit == true then
-		if child.ClassName == "Tool" then
-			billboard(child.Name,child.Handle,Color3.fromRGB(255,0,0))
+		if v.ClassName == "Tool" then
+			billboard(v.Name,v.Handle,Color3.fromRGB(255,0,0))
 		end
-		if child.Name == "Fruit " then
-			if child:FindFirstChild("Spike") then
-				billboard("Spike Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			elseif child:FindFirstChild("Coil") then
-				billboard("Spring Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			elseif child:FindFirstChild("Leaves") then
-				billboard("Bomb Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			elseif child.Fruit.BrickColor == BrickColor.new("Lavender") then
-				billboard("Chop Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			elseif child.Fruit.BrickColor == BrickColor.new("Medium stone grey") then
-				billboard("Smoke Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			elseif child.Fruit.BrickColor == BrickColor.new("Bright orange") and child.Stem.BrickColor == BrickColor.new("Bright bluish green") then
-				billboard("Flame Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			elseif child.Fruit.BrickColor == BrickColor.new("Teal") and child.Stem.BrickColor == BrickColor.new("Pastel blue-green") then
-				billboard("Ice Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			elseif child.Fruit.BrickColor == BrickColor.new("Royal purple") and child.Stem.BrickColor == BrickColor.new("Earth green") then
-				billboard("Dark Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			elseif child.Handle.BrickColor == BrickColor.new("New Yeller")  and child.Union.BrickColor == BrickColor.new("Copper") then
-				billboard("Light Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			elseif child.Fruit.BrickColor == BrickColor.new("Burlap") and child.Stem.BrickColor == BrickColor.new("Bright bluish green") then
-				billboard("Sand Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			elseif child.Fruit.BrickColor == BrickColor.new("Shamrock") then
-				billboard("Barrier Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			elseif child.Fruit.BrickColor == BrickColor.new("Cocoa") and child.Stem.BrickColor == BrickColor.new("Earth green") then
-				billboard("Magma Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			elseif child.Fruit.BrickColor == BrickColor.new("Institutional white") and child.Stem.BrickColor == BrickColor.new("Medium stone grey") then
-				billboard("Quake Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			elseif child.Fruit.BrickColor == BrickColor.new("Institutional white") and child.Stem.BrickColor == BrickColor.new("Hot pink") then
-				billboard("String Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			elseif child.Fruit.BrickColor == BrickColor.new("Buttermilk") and child.Stem.BrickColor == BrickColor.new("Brown") then
-				billboard("Dough Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			elseif child.Fruit.BrickColor == BrickColor.new("Pink") and child.Stem.BrickColor == BrickColor.new("Brown") then
-				billboard("Rubber Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			elseif child.Fruit.BrickColor == BrickColor.new("Toothpaste") and child.Stem.BrickColor == BrickColor.new("Brown") then
-				billboard("Rumble Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			elseif child.Fruit.BrickColor == BrickColor.new("Cork") and child.Stem.BrickColor == BrickColor.new("Reddish brown") then
-				billboard("Buddha Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			else
-				billboard(child.Name,child.Handle,Color3.fromRGB(255,0,0))
+		if v.Name == "Fruit " then
+			if v:FindFirstChild("Handle") and v:FindFirstChild("Union") and not v:FindFirstChild("Stem") and not v:FindFirstChild("Fruit") then
+				if v.Handle.BrickColor == BrickColor.new("New Yeller") and v.Union.BrickColor == BrickColor.new("Copper") then
+					billboard("Light Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				else
+					billboard("Unknown Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				end
+			end
+		end
+		if v.Name == "Fruit " then
+			if v:FindFirstChild("Spike") then
+				billboard("Spike Fruit",v.Handle,Color3.fromRGB(255,0,0))
+			elseif v:FindFirstChild("Coil") then
+				billboard("Spring Fruit",v.Handle,Color3.fromRGB(255,0,0))
+			elseif v:FindFirstChild("Leaves") then
+				billboard("Bomb Fruit",v.Handle,Color3.fromRGB(255,0,0))
+			end
+			if v:FindFirstChild("Fruit") and v:FindFirstChild("Stem") then
+				if v.Fruit.BrickColor == BrickColor.new("Lavender") then
+					billboard("Chop Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Fruit.BrickColor == BrickColor.new("Medium stone grey") then
+					billboard("Smoke Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Fruit.BrickColor == BrickColor.new("Bright orange") and v.Stem.BrickColor == BrickColor.new("Bright bluish green") then
+					billboard("Flame Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Fruit.BrickColor == BrickColor.new("Teal") and v.Stem.BrickColor == BrickColor.new("Pastel blue-green") then
+					billboard("Ice Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Fruit.BrickColor == BrickColor.new("Royal purple") and v.Stem.BrickColor == BrickColor.new("Earth green") then
+					billboard("Dark Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Fruit.BrickColor == BrickColor.new("Burlap") and v.Stem.BrickColor == BrickColor.new("Bright bluish green") then
+					billboard("Sand Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Fruit.BrickColor == BrickColor.new("Shamrock") then
+					billboard("Barrier Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Fruit.BrickColor == BrickColor.new("Cocoa") and v.Stem.BrickColor == BrickColor.new("Earth green") then
+					billboard("Magma Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Fruit.BrickColor == BrickColor.new("Institutional white") and v.Stem.BrickColor == BrickColor.new("Medium stone grey") then
+					billboard("Quake Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Fruit.BrickColor == BrickColor.new("Institutional white") and v.Stem.BrickColor == BrickColor.new("Hot pink") then
+					billboard("String Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Fruit.BrickColor == BrickColor.new("Buttermilk") and v.Stem.BrickColor == BrickColor.new("Brown") then
+					billboard("Dough Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Fruit.BrickColor == BrickColor.new("Pink") and v.Stem.BrickColor == BrickColor.new("Brown") then
+					billboard("Rubber Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Fruit.BrickColor == BrickColor.new("Toothpaste") and v.Stem.BrickColor == BrickColor.new("Brown") then
+					billboard("Rumble Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Fruit.BrickColor == BrickColor.new("Cork") and v.Stem.BrickColor == BrickColor.new("Reddish brown") then
+					billboard("Buddha Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				else
+					billboard(v.Name,v.Handle,Color3.fromRGB(255,0,0))
+				end
 			end
 		end
 	end
 end)
 
 repeat wait() until workspace:FindFirstChild("Characters")
-workspace.Characters.ChildAdded:Connect(function(child)
+workspace.Characters.ChildAdded:Connect(function(v)
 	if playeresp == true then
-		if child.Name ~= game.Players.LocalPlayer.Name then
-			billboard(child.Name,child.Head,Color3.fromRGB(74,86,255))
+		if v.Name ~= game.Players.LocalPlayer.Name then
+			billboard(v.Name,v.Head,Color3.fromRGB(74,86,255))
 		end
 	end
 	local findplayer = workspace.Characters:FindFirstChild(locatebutton.Text)
