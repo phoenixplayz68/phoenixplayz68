@@ -47,53 +47,53 @@ local Frame_2 = Instance.new("Frame")
 local UICorner_15 = Instance.new("UICorner")
 local phoen = Instance.new("Frame")
 local UICorner_16 = Instance.new("UICorner")
-local phoenix = Instance.new("TextBox")
 local phoenixnum = Instance.new("TextLabel")
 local UICorner_17 = Instance.new("UICorner")
 local phoenixtp = Instance.new("TextButton")
 local UICorner_18 = Instance.new("UICorner")
+local phoenix = Instance.new("TextLabel")
 local rumbl = Instance.new("Frame")
 local UICorner_19 = Instance.new("UICorner")
-local rumble = Instance.new("TextBox")
 local rumblenum = Instance.new("TextLabel")
 local UICorner_20 = Instance.new("UICorner")
 local rumbletp = Instance.new("TextButton")
 local UICorner_21 = Instance.new("UICorner")
+local rumble = Instance.new("TextLabel")
 local pa = Instance.new("Frame")
 local UICorner_22 = Instance.new("UICorner")
-local paw = Instance.new("TextBox")
 local pawnum = Instance.new("TextLabel")
 local UICorner_23 = Instance.new("UICorner")
 local pawtp = Instance.new("TextButton")
 local UICorner_24 = Instance.new("UICorner")
+local paw = Instance.new("TextLabel")
 local grav = Instance.new("Frame")
 local UICorner_25 = Instance.new("UICorner")
-local gravity = Instance.new("TextBox")
 local gravitynum = Instance.new("TextLabel")
 local UICorner_26 = Instance.new("UICorner")
 local gravitytp = Instance.new("TextButton")
 local UICorner_27 = Instance.new("UICorner")
+local gravity = Instance.new("TextLabel")
 local doug = Instance.new("Frame")
 local UICorner_28 = Instance.new("UICorner")
-local dough = Instance.new("TextBox")
 local doughnum = Instance.new("TextLabel")
 local UICorner_29 = Instance.new("UICorner")
 local doughtp = Instance.new("TextButton")
 local UICorner_30 = Instance.new("UICorner")
+local dough = Instance.new("TextLabel")
 local contro = Instance.new("Frame")
 local UICorner_31 = Instance.new("UICorner")
-local control = Instance.new("TextBox")
 local controlnum = Instance.new("TextLabel")
 local UICorner_32 = Instance.new("UICorner")
 local controltp = Instance.new("TextButton")
 local UICorner_33 = Instance.new("UICorner")
+local control = Instance.new("TextLabel")
 local drago = Instance.new("Frame")
 local UICorner_34 = Instance.new("UICorner")
-local dragon = Instance.new("TextBox")
 local dragonnum = Instance.new("TextLabel")
 local UICorner_35 = Instance.new("UICorner")
 local dragontp = Instance.new("TextButton")
 local UICorner_36 = Instance.new("UICorner")
+local dragon = Instance.new("TextLabel")
 local Frame_3 = Instance.new("Frame")
 local UICorner_37 = Instance.new("UICorner")
 local section2 = Instance.new("Frame")
@@ -132,13 +132,6 @@ local X_4 = Instance.new("TextLabel")
 local locatetext = Instance.new("TextLabel")
 local backgroundshadow1 = Instance.new("Frame")
 local UICorner_48 = Instance.new("UICorner")
-local autodash = Instance.new("Frame")
-local UICorner_49 = Instance.new("UICorner")
-local autodashbutton = Instance.new("TextButton")
-local UICorner_50 = Instance.new("UICorner")
-local autodashcircle = Instance.new("ImageLabel")
-local X_5 = Instance.new("TextLabel")
-local autodashtext = Instance.new("TextLabel")
 local thinline = Instance.new("ImageLabel")
 local shadow = Instance.new("ImageLabel")
 local minimize = Instance.new("TextButton")
@@ -146,25 +139,25 @@ local close = Instance.new("TextButton")
 local toggles = Instance.new("Frame")
 local togglestext = Instance.new("TextLabel")
 local line2 = Instance.new("Frame")
-local UICorner_51 = Instance.new("UICorner")
+local UICorner_49 = Instance.new("UICorner")
 local togglesbutton = Instance.new("TextButton")
 local sidebar = Instance.new("Frame")
-local UICorner_52 = Instance.new("UICorner")
+local UICorner_50 = Instance.new("UICorner")
 local homeshadow = Instance.new("ImageLabel")
 local selected = Instance.new("Frame")
-local UICorner_53 = Instance.new("UICorner")
+local UICorner_51 = Instance.new("UICorner")
 local settingsshadow = Instance.new("ImageLabel")
 local settings = Instance.new("ImageButton")
 local home = Instance.new("ImageButton")
 local main = Instance.new("Frame")
 local maintext = Instance.new("TextLabel")
 local line1 = Instance.new("Frame")
-local UICorner_54 = Instance.new("UICorner")
+local UICorner_52 = Instance.new("UICorner")
 local mainbutton = Instance.new("TextButton")
 local devilfruits = Instance.new("Frame")
 local devilfruittext = Instance.new("TextLabel")
 local line3 = Instance.new("Frame")
-local UICorner_55 = Instance.new("UICorner")
+local UICorner_53 = Instance.new("UICorner")
 local devilfruitbutton = Instance.new("TextButton")
 local ImageButton = Instance.new("ImageButton")
 
@@ -329,8 +322,8 @@ autostats.Name = "autostats"
 autostats.Parent = section1
 autostats.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
 autostats.BorderSizePixel = 0
-autostats.Position = UDim2.new(0.208169281, 0, 0.574329019, 0)
-autostats.Size = UDim2.new(0.757655084, 0, 0.387247324, 0)
+autostats.Position = UDim2.new(0.208169281, 0, 0.562525809, 0)
+autostats.Size = UDim2.new(0.757655084, 0, 0.399050504, 0)
 autostats.ZIndex = 2
 
 UICorner_9.CornerRadius = UDim.new(0.100000001, 0)
@@ -340,8 +333,8 @@ autostatstext.Name = "autostatstext"
 autostatstext.Parent = autostats
 autostatstext.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 autostatstext.BackgroundTransparency = 1.000
-autostatstext.Position = UDim2.new(0, 0, 0.0164155923, 0)
-autostatstext.Size = UDim2.new(1.07925749, 0, 0.182145298, 0)
+autostatstext.Position = UDim2.new(0, 0, 0.0164156146, 0)
+autostatstext.Size = UDim2.new(1.07925749, 0, 0.164156154, 0)
 autostatstext.ZIndex = 2
 autostatstext.Font = Enum.Font.SourceSansBold
 autostatstext.Text = "Auto Stats"
@@ -354,8 +347,8 @@ melee.Name = "melee"
 melee.Parent = autostats
 melee.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 melee.BackgroundTransparency = 1.000
-melee.Position = UDim2.new(0.0177928209, 0, 0.0690221786, 0)
-melee.Size = UDim2.new(0.16699113, 0, 0.121939532, 0)
+melee.Position = UDim2.new(0.0177928209, 0, 0.0746995211, 0)
+melee.Size = UDim2.new(0.166991144, 0, 0.123558827, 0)
 melee.ZIndex = 2
 melee.Font = Enum.Font.SourceSansBold
 melee.Text = "Melee"
@@ -368,8 +361,8 @@ melee.TextXAlignment = Enum.TextXAlignment.Left
 meleestats.Name = "meleestats"
 meleestats.Parent = autostats
 meleestats.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-meleestats.Position = UDim2.new(0.00347761321, 0, 0.190961629, 0)
-meleestats.Size = UDim2.new(0.56900686, 0, 0.160446763, 0)
+meleestats.Position = UDim2.new(0.00347761321, 0, 0.198258206, 0)
+meleestats.Size = UDim2.new(0.569006801, 0, 0.162577406, 0)
 meleestats.ZIndex = 2
 meleestats.Font = Enum.Font.SourceSansBold
 meleestats.Text = ""
@@ -384,8 +377,8 @@ defense.Name = "defense"
 defense.Parent = autostats
 defense.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 defense.BackgroundTransparency = 1.000
-defense.Position = UDim2.new(0.0177928209, 0, 0.351408154, 0)
-defense.Size = UDim2.new(0.210285112, 0, 0.121939532, 0)
+defense.Position = UDim2.new(0.0177928209, 0, 0.360835463, 0)
+defense.Size = UDim2.new(0.210285112, 0, 0.123558827, 0)
 defense.ZIndex = 2
 defense.Font = Enum.Font.SourceSansBold
 defense.Text = "Defense"
@@ -398,8 +391,8 @@ defense.TextXAlignment = Enum.TextXAlignment.Left
 defensestats.Name = "defensestats"
 defensestats.Parent = autostats
 defensestats.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-defensestats.Position = UDim2.new(0.00347761321, 0, 0.473347574, 0)
-defensestats.Size = UDim2.new(0.56900686, 0, 0.160446763, 0)
+defensestats.Position = UDim2.new(0.00347761321, 0, 0.48439461, 0)
+defensestats.Size = UDim2.new(0.569006801, 0, 0.162577406, 0)
 defensestats.ZIndex = 2
 defensestats.Font = Enum.Font.SourceSansBold
 defensestats.Text = ""
@@ -413,8 +406,8 @@ UICorner_11.Parent = defensestats
 fruitstats.Name = "fruitstats"
 fruitstats.Parent = autostats
 fruitstats.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-fruitstats.Position = UDim2.new(0.00347761321, 0, 0.755734086, 0)
-fruitstats.Size = UDim2.new(0.56900686, 0, 0.160446763, 0)
+fruitstats.Position = UDim2.new(0.00347761321, 0, 0.770530522, 0)
+fruitstats.Size = UDim2.new(0.569006801, 0, 0.162577406, 0)
 fruitstats.ZIndex = 2
 fruitstats.Font = Enum.Font.SourceSansBold
 fruitstats.Text = ""
@@ -429,8 +422,8 @@ blox.Name = "blox"
 blox.Parent = autostats
 blox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 blox.BackgroundTransparency = 1.000
-blox.Position = UDim2.new(0.0177928209, 0, 0.633794546, 0)
-blox.Size = UDim2.new(0.235024557, 0, 0.121939532, 0)
+blox.Position = UDim2.new(0.0177928209, 0, 0.646971822, 0)
+blox.Size = UDim2.new(0.235024557, 0, 0.123558827, 0)
 blox.ZIndex = 2
 blox.Font = Enum.Font.SourceSansBold
 blox.Text = "Blox Fruit"
@@ -510,19 +503,6 @@ phoen.Size = UDim2.new(0.444000006, 0, 0.120250084, 0)
 UICorner_16.CornerRadius = UDim.new(0.100000001, 0)
 UICorner_16.Parent = phoen
 
-phoenix.Name = "phoenix"
-phoenix.Parent = phoen
-phoenix.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-phoenix.BackgroundTransparency = 1.000
-phoenix.Position = UDim2.new(0.065582253, 0, 0.0321101435, 0)
-phoenix.Selectable = false
-phoenix.Size = UDim2.new(0.934417427, 0, 0.967889607, 0)
-phoenix.Font = Enum.Font.SourceSansBold
-phoenix.Text = "Phoenix"
-phoenix.TextColor3 = Color3.fromRGB(255, 255, 255)
-phoenix.TextSize = 14.000
-phoenix.TextXAlignment = Enum.TextXAlignment.Left
-
 phoenixnum.Name = "phoenixnum"
 phoenixnum.Parent = phoen
 phoenixnum.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
@@ -551,6 +531,18 @@ phoenixtp.TextSize = 14.000
 UICorner_18.CornerRadius = UDim.new(0.100000001, 0)
 UICorner_18.Parent = phoenixtp
 
+phoenix.Name = "phoenix"
+phoenix.Parent = phoen
+phoenix.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+phoenix.BackgroundTransparency = 1.000
+phoenix.Position = UDim2.new(0.0700000003, 0, 0, 0)
+phoenix.Size = UDim2.new(0, 65, 0, 24)
+phoenix.Font = Enum.Font.SourceSansBold
+phoenix.Text = "Phoenix"
+phoenix.TextColor3 = Color3.fromRGB(255, 255, 255)
+phoenix.TextSize = 14.000
+phoenix.TextXAlignment = Enum.TextXAlignment.Left
+
 rumbl.Name = "rumbl"
 rumbl.Parent = Frame_2
 rumbl.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
@@ -559,19 +551,6 @@ rumbl.Size = UDim2.new(0.444000006, 0, 0.120250084, 0)
 
 UICorner_19.CornerRadius = UDim.new(0.100000001, 0)
 UICorner_19.Parent = rumbl
-
-rumble.Name = "rumble"
-rumble.Parent = rumbl
-rumble.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-rumble.BackgroundTransparency = 1.000
-rumble.Position = UDim2.new(0.065582253, 0, 0.0321101435, 0)
-rumble.Selectable = false
-rumble.Size = UDim2.new(0.934417427, 0, 0.967889607, 0)
-rumble.Font = Enum.Font.SourceSansBold
-rumble.Text = "Rumble"
-rumble.TextColor3 = Color3.fromRGB(255, 255, 255)
-rumble.TextSize = 14.000
-rumble.TextXAlignment = Enum.TextXAlignment.Left
 
 rumblenum.Name = "rumblenum"
 rumblenum.Parent = rumbl
@@ -601,6 +580,18 @@ rumbletp.TextSize = 14.000
 UICorner_21.CornerRadius = UDim.new(0.100000001, 0)
 UICorner_21.Parent = rumbletp
 
+rumble.Name = "rumble"
+rumble.Parent = rumbl
+rumble.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+rumble.BackgroundTransparency = 1.000
+rumble.Position = UDim2.new(0.0700000003, 0, 0, 0)
+rumble.Size = UDim2.new(0, 65, 0, 24)
+rumble.Font = Enum.Font.SourceSansBold
+rumble.Text = "Rumble"
+rumble.TextColor3 = Color3.fromRGB(255, 255, 255)
+rumble.TextSize = 14.000
+rumble.TextXAlignment = Enum.TextXAlignment.Left
+
 pa.Name = "pa"
 pa.Parent = Frame_2
 pa.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
@@ -609,19 +600,6 @@ pa.Size = UDim2.new(0.444000006, 0, 0.120250084, 0)
 
 UICorner_22.CornerRadius = UDim.new(0.100000001, 0)
 UICorner_22.Parent = pa
-
-paw.Name = "paw"
-paw.Parent = pa
-paw.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-paw.BackgroundTransparency = 1.000
-paw.Position = UDim2.new(0.065582253, 0, 0.0321101435, 0)
-paw.Selectable = false
-paw.Size = UDim2.new(0.934417427, 0, 0.967889607, 0)
-paw.Font = Enum.Font.SourceSansBold
-paw.Text = "Paw"
-paw.TextColor3 = Color3.fromRGB(255, 255, 255)
-paw.TextSize = 14.000
-paw.TextXAlignment = Enum.TextXAlignment.Left
 
 pawnum.Name = "pawnum"
 pawnum.Parent = pa
@@ -651,6 +629,18 @@ pawtp.TextSize = 14.000
 UICorner_24.CornerRadius = UDim.new(0.100000001, 0)
 UICorner_24.Parent = pawtp
 
+paw.Name = "paw"
+paw.Parent = pa
+paw.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+paw.BackgroundTransparency = 1.000
+paw.Position = UDim2.new(0.0700000003, 0, 0, 0)
+paw.Size = UDim2.new(0, 65, 0, 24)
+paw.Font = Enum.Font.SourceSansBold
+paw.Text = "Paw"
+paw.TextColor3 = Color3.fromRGB(255, 255, 255)
+paw.TextSize = 14.000
+paw.TextXAlignment = Enum.TextXAlignment.Left
+
 grav.Name = "grav"
 grav.Parent = Frame_2
 grav.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
@@ -659,19 +649,6 @@ grav.Size = UDim2.new(0.444000006, 0, 0.120250084, 0)
 
 UICorner_25.CornerRadius = UDim.new(0.100000001, 0)
 UICorner_25.Parent = grav
-
-gravity.Name = "gravity"
-gravity.Parent = grav
-gravity.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-gravity.BackgroundTransparency = 1.000
-gravity.Position = UDim2.new(0.065582253, 0, 0.0321101435, 0)
-gravity.Selectable = false
-gravity.Size = UDim2.new(0.934417427, 0, 0.967889607, 0)
-gravity.Font = Enum.Font.SourceSansBold
-gravity.Text = "Gravity"
-gravity.TextColor3 = Color3.fromRGB(255, 255, 255)
-gravity.TextSize = 14.000
-gravity.TextXAlignment = Enum.TextXAlignment.Left
 
 gravitynum.Name = "gravitynum"
 gravitynum.Parent = grav
@@ -701,6 +678,18 @@ gravitytp.TextSize = 14.000
 UICorner_27.CornerRadius = UDim.new(0.100000001, 0)
 UICorner_27.Parent = gravitytp
 
+gravity.Name = "gravity"
+gravity.Parent = grav
+gravity.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+gravity.BackgroundTransparency = 1.000
+gravity.Position = UDim2.new(0.0700000003, 0, 0, 0)
+gravity.Size = UDim2.new(0, 65, 0, 24)
+gravity.Font = Enum.Font.SourceSansBold
+gravity.Text = "Gravity"
+gravity.TextColor3 = Color3.fromRGB(255, 255, 255)
+gravity.TextSize = 14.000
+gravity.TextXAlignment = Enum.TextXAlignment.Left
+
 doug.Name = "doug"
 doug.Parent = Frame_2
 doug.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
@@ -709,19 +698,6 @@ doug.Size = UDim2.new(0.444000006, 0, 0.120250084, 0)
 
 UICorner_28.CornerRadius = UDim.new(0.100000001, 0)
 UICorner_28.Parent = doug
-
-dough.Name = "dough"
-dough.Parent = doug
-dough.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-dough.BackgroundTransparency = 1.000
-dough.Position = UDim2.new(0.065582253, 0, 0.0321101435, 0)
-dough.Selectable = false
-dough.Size = UDim2.new(0.934417427, 0, 0.967889607, 0)
-dough.Font = Enum.Font.SourceSansBold
-dough.Text = "Dough"
-dough.TextColor3 = Color3.fromRGB(255, 255, 255)
-dough.TextSize = 14.000
-dough.TextXAlignment = Enum.TextXAlignment.Left
 
 doughnum.Name = "doughnum"
 doughnum.Parent = doug
@@ -751,6 +727,18 @@ doughtp.TextSize = 14.000
 UICorner_30.CornerRadius = UDim.new(0.100000001, 0)
 UICorner_30.Parent = doughtp
 
+dough.Name = "dough"
+dough.Parent = doug
+dough.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+dough.BackgroundTransparency = 1.000
+dough.Position = UDim2.new(0.0700000003, 0, 0, 0)
+dough.Size = UDim2.new(0, 65, 0, 24)
+dough.Font = Enum.Font.SourceSansBold
+dough.Text = "Dough"
+dough.TextColor3 = Color3.fromRGB(255, 255, 255)
+dough.TextSize = 14.000
+dough.TextXAlignment = Enum.TextXAlignment.Left
+
 contro.Name = "contro"
 contro.Parent = Frame_2
 contro.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
@@ -759,19 +747,6 @@ contro.Size = UDim2.new(0.444000006, 0, 0.120250084, 0)
 
 UICorner_31.CornerRadius = UDim.new(0.100000001, 0)
 UICorner_31.Parent = contro
-
-control.Name = "control"
-control.Parent = contro
-control.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-control.BackgroundTransparency = 1.000
-control.Position = UDim2.new(0.065582253, 0, 0.0321101435, 0)
-control.Selectable = false
-control.Size = UDim2.new(0.934417427, 0, 0.967889607, 0)
-control.Font = Enum.Font.SourceSansBold
-control.Text = "Control"
-control.TextColor3 = Color3.fromRGB(255, 255, 255)
-control.TextSize = 14.000
-control.TextXAlignment = Enum.TextXAlignment.Left
 
 controlnum.Name = "controlnum"
 controlnum.Parent = contro
@@ -801,6 +776,18 @@ controltp.TextSize = 14.000
 UICorner_33.CornerRadius = UDim.new(0.100000001, 0)
 UICorner_33.Parent = controltp
 
+control.Name = "control"
+control.Parent = contro
+control.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+control.BackgroundTransparency = 1.000
+control.Position = UDim2.new(0.0700000003, 0, 0, 0)
+control.Size = UDim2.new(0, 65, 0, 24)
+control.Font = Enum.Font.SourceSansBold
+control.Text = "Control"
+control.TextColor3 = Color3.fromRGB(255, 255, 255)
+control.TextSize = 14.000
+control.TextXAlignment = Enum.TextXAlignment.Left
+
 drago.Name = "drago"
 drago.Parent = Frame_2
 drago.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
@@ -809,19 +796,6 @@ drago.Size = UDim2.new(0.444000006, 0, 0.120250084, 0)
 
 UICorner_34.CornerRadius = UDim.new(0.100000001, 0)
 UICorner_34.Parent = drago
-
-dragon.Name = "dragon"
-dragon.Parent = drago
-dragon.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-dragon.BackgroundTransparency = 1.000
-dragon.Position = UDim2.new(0.065582253, 0, 0.0321101435, 0)
-dragon.Selectable = false
-dragon.Size = UDim2.new(0.934417427, 0, 0.967889607, 0)
-dragon.Font = Enum.Font.SourceSansBold
-dragon.Text = "Dragon"
-dragon.TextColor3 = Color3.fromRGB(255, 255, 255)
-dragon.TextSize = 14.000
-dragon.TextXAlignment = Enum.TextXAlignment.Left
 
 dragonnum.Name = "dragonnum"
 dragonnum.Parent = drago
@@ -850,6 +824,18 @@ dragontp.TextSize = 14.000
 
 UICorner_36.CornerRadius = UDim.new(0.100000001, 0)
 UICorner_36.Parent = dragontp
+
+dragon.Name = "dragon"
+dragon.Parent = drago
+dragon.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+dragon.BackgroundTransparency = 1.000
+dragon.Position = UDim2.new(0.0700000003, 0, 0, 0)
+dragon.Size = UDim2.new(0, 65, 0, 24)
+dragon.Font = Enum.Font.SourceSansBold
+dragon.Text = "Dragon"
+dragon.TextColor3 = Color3.fromRGB(255, 255, 255)
+dragon.TextSize = 14.000
+dragon.TextXAlignment = Enum.TextXAlignment.Left
 
 Frame_3.Parent = section3
 Frame_3.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -1156,67 +1142,6 @@ backgroundshadow1.ZIndex = 0
 UICorner_48.CornerRadius = UDim.new(0.100000001, 0)
 UICorner_48.Parent = backgroundshadow1
 
-autodash.Name = "autodash"
-autodash.Parent = section2
-autodash.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-autodash.BackgroundTransparency = 1.000
-autodash.BorderSizePixel = 0
-autodash.Position = UDim2.new(0.481000006, 0, 0.504000008, 0)
-autodash.Size = UDim2.new(0.219170749, 0, 0.120973788, 0)
-autodash.ZIndex = 2
-
-UICorner_49.CornerRadius = UDim.new(0.100000001, 0)
-UICorner_49.Parent = autodash
-
-autodashbutton.Name = "autodashbutton"
-autodashbutton.Parent = autodash
-autodashbutton.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
-autodashbutton.Position = UDim2.new(0.0499999449, 0, 0.367000043, 0)
-autodashbutton.Size = UDim2.new(0.875908852, 0, 0.985322297, 0)
-autodashbutton.ZIndex = 2
-autodashbutton.Font = Enum.Font.SourceSansBold
-autodashbutton.Text = ""
-autodashbutton.TextColor3 = Color3.fromRGB(255, 255, 255)
-autodashbutton.TextSize = 30.000
-autodashbutton.TextStrokeTransparency = 0.500
-autodashbutton.TextTransparency = 1.000
-autodashbutton.TextWrapped = true
-
-UICorner_50.CornerRadius = UDim.new(1.5, 0)
-UICorner_50.Parent = autodashbutton
-
-autodashcircle.Name = "autodashcircle"
-autodashcircle.Parent = autodashbutton
-autodashcircle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-autodashcircle.BackgroundTransparency = 1.000
-autodashcircle.Position = UDim2.new(0.0299997013, 0, 0.100000046, 0)
-autodashcircle.Size = UDim2.new(0.372882098, 0, 0.819082499, 0)
-autodashcircle.Image = "http://www.roblox.com/asset/?id=6401676565"
-
-X_5.Name = "X"
-X_5.Parent = autodashcircle
-X_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-X_5.BackgroundTransparency = 1.000
-X_5.Position = UDim2.new(0, 0, 0.0500000007, 0)
-X_5.Size = UDim2.new(1, 0, 0.787878811, 0)
-X_5.Font = Enum.Font.SourceSansBold
-X_5.Text = "x"
-X_5.TextColor3 = Color3.fromRGB(255, 0, 4)
-X_5.TextSize = 30.000
-
-autodashtext.Name = "autodashtext"
-autodashtext.Parent = autodash
-autodashtext.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-autodashtext.BackgroundTransparency = 1.000
-autodashtext.Position = UDim2.new(-0.0560000017, 0, -0.100000001, 0)
-autodashtext.Size = UDim2.new(1.04911327, 0, 0.342389196, 0)
-autodashtext.Font = Enum.Font.SourceSansBold
-autodashtext.Text = "Auto Dash"
-autodashtext.TextColor3 = Color3.fromRGB(255, 255, 255)
-autodashtext.TextSize = 20.000
-autodashtext.TextStrokeTransparency = 0.000
-autodashtext.TextWrapped = true
-
 thinline.Name = "thinline"
 thinline.Parent = Frame2
 thinline.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1296,8 +1221,8 @@ line2.Position = UDim2.new(0.481000006, 0, 0.779999971, 0)
 line2.Size = UDim2.new(0, 0, 0.114, 0)
 line2.ZIndex = 0
 
-UICorner_51.CornerRadius = UDim.new(0.800000012, 0)
-UICorner_51.Parent = line2
+UICorner_49.CornerRadius = UDim.new(0.800000012, 0)
+UICorner_49.Parent = line2
 
 togglesbutton.Name = "togglesbutton"
 togglesbutton.Parent = toggles
@@ -1318,8 +1243,8 @@ sidebar.Position = UDim2.new(-0.00109247526, 0, 0, 0)
 sidebar.Size = UDim2.new(0.167588755, 0, 1, 0)
 sidebar.ZIndex = 2
 
-UICorner_52.CornerRadius = UDim.new(0.0700000003, 0)
-UICorner_52.Parent = sidebar
+UICorner_50.CornerRadius = UDim.new(0.0700000003, 0)
+UICorner_50.Parent = sidebar
 
 homeshadow.Name = "homeshadow"
 homeshadow.Parent = sidebar
@@ -1340,8 +1265,8 @@ selected.Position = UDim2.new(-0.00109258317, 0, 0, 0)
 selected.Size = UDim2.new(1.00109255, 0, 0.229986265, 0)
 selected.ZIndex = 2
 
-UICorner_53.CornerRadius = UDim.new(0.0700000003, 0)
-UICorner_53.Parent = selected
+UICorner_51.CornerRadius = UDim.new(0.0700000003, 0)
+UICorner_51.Parent = selected
 
 settingsshadow.Name = "settingsshadow"
 settingsshadow.Parent = sidebar
@@ -1403,8 +1328,8 @@ line1.Position = UDim2.new(0.117488362, 0, 0.780140042, 0)
 line1.Size = UDim2.new(0.808080792, 0, 0.114285715, 0)
 line1.ZIndex = 0
 
-UICorner_54.CornerRadius = UDim.new(0.800000012, 0)
-UICorner_54.Parent = line1
+UICorner_52.CornerRadius = UDim.new(0.800000012, 0)
+UICorner_52.Parent = line1
 
 mainbutton.Name = "mainbutton"
 mainbutton.Parent = main
@@ -1447,8 +1372,8 @@ line3.Position = UDim2.new(0.464646459, 0, 0.779999673, 0)
 line3.Size = UDim2.new(0, 0, 0.114000008, 0)
 line3.ZIndex = 0
 
-UICorner_55.CornerRadius = UDim.new(0.800000012, 0)
-UICorner_55.Parent = line3
+UICorner_53.CornerRadius = UDim.new(0.800000012, 0)
+UICorner_53.Parent = line3
 
 devilfruitbutton.Name = "devilfruitbutton"
 devilfruitbutton.Parent = devilfruits
@@ -1860,6 +1785,16 @@ fruitespbutton.MouseButton1Click:Connect(function()
 				if v:FindFirstChild("Handle") and v:FindFirstChild("Union") and not v:FindFirstChild("Stem") and not v:FindFirstChild("Fruit") then
 					if v.Handle.BrickColor == BrickColor.new("New Yeller") and v.Union.BrickColor == BrickColor.new("Copper") then
 						billboard("Light Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Handle.BrickColor == BrickColor.new("Deep blue") and v.Union.BrickColor == BrickColor.new("Bright bluish green") then
+						billboard("Phoenix Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Handle.BrickColor == BrickColor.new("Deep orange") and v.Union.BrickColor == BrickColor.new("Parsley green") then
+						billboard("Dragon Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Handle.BrickColor == BrickColor.new("Institutional white") and v.Union.BrickColor == BrickColor.new("Brown") then
+						billboard("Paw Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Handle.BrickColor == BrickColor.new("Royal purple") and v.Union.BrickColor == BrickColor.new("Pink") then
+						billboard("Gravity Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Handle.BrickColor == BrickColor.new("Buttermilk") and v.Union.BrickColor == BrickColor.new("Brown") then
+						billboard("Dough Fruit",v.Handle,Color3.fromRGB(255,0,0))
 					else
 						billboard("Unknown Fruit",v.Handle,Color3.fromRGB(255,0,0))
 					end
@@ -1902,6 +1837,16 @@ fruitespbutton.MouseButton1Click:Connect(function()
 						billboard("Rumble Fruit",v.Handle,Color3.fromRGB(255,0,0))
 					elseif v.Fruit.BrickColor == BrickColor.new("Cork") and v.Stem.BrickColor == BrickColor.new("Reddish brown") then
 						billboard("Buddha Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Fruit.BrickColor == BrickColor.new("Deep blue") and v.Stem.BrickColor == BrickColor.new("Bright bluish green") then
+						billboard("Phoenix Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Fruit.BrickColor == BrickColor.new("Deep orange") and v.Stem.BrickColor == BrickColor.new("Parsley green") then
+						billboard("Dragon Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Fruit.BrickColor == BrickColor.new("Institutional white") and v.Stem.BrickColor == BrickColor.new("Brown") then
+						billboard("Paw Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Fruit.BrickColor == BrickColor.new("Royal purple") and v.Stem.BrickColor == BrickColor.new("Pink") then
+						billboard("Gravity Fruit",v.Handle,Color3.fromRGB(255,0,0))
+					elseif v.Fruit.BrickColor == BrickColor.new("Buttermilk") and v.Stem.BrickColor == BrickColor.new("Brown") then
+						billboard("Dough Fruit",v.Handle,Color3.fromRGB(255,0,0))
 					else
 						billboard("Unknown Fruit",v.Handle,Color3.fromRGB(255,0,0))
 					end
@@ -2026,6 +1971,16 @@ workspace.ChildAdded:Connect(function(v)
 			if v:FindFirstChild("Handle") and v:FindFirstChild("Union") and not v:FindFirstChild("Stem") and not v:FindFirstChild("Fruit") then
 				if v.Handle.BrickColor == BrickColor.new("New Yeller") and v.Union.BrickColor == BrickColor.new("Copper") then
 					billboard("Light Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Handle.BrickColor == BrickColor.new("Deep blue") and v.Union.BrickColor == BrickColor.new("Bright bluish green") then
+					billboard("Phoenix Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Handle.BrickColor == BrickColor.new("Deep orange") and v.Union.BrickColor == BrickColor.new("Parsley green") then
+					billboard("Dragon Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Handle.BrickColor == BrickColor.new("Institutional white") and v.Union.BrickColor == BrickColor.new("Brown") then
+					billboard("Paw Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Handle.BrickColor == BrickColor.new("Royal purple") and v.Union.BrickColor == BrickColor.new("Pink") then
+					billboard("Gravity Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Handle.BrickColor == BrickColor.new("Buttermilk") and v.Union.BrickColor == BrickColor.new("Brown") then
+					billboard("Dough Fruit",v.Handle,Color3.fromRGB(255,0,0))
 				else
 					billboard("Unknown Fruit",v.Handle,Color3.fromRGB(255,0,0))
 				end
@@ -2068,6 +2023,16 @@ workspace.ChildAdded:Connect(function(v)
 					billboard("Rumble Fruit",v.Handle,Color3.fromRGB(255,0,0))
 				elseif v.Fruit.BrickColor == BrickColor.new("Cork") and v.Stem.BrickColor == BrickColor.new("Reddish brown") then
 					billboard("Buddha Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Fruit.BrickColor == BrickColor.new("Deep blue") and v.Stem.BrickColor == BrickColor.new("Bright bluish green") then
+					billboard("Phoenix Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Fruit.BrickColor == BrickColor.new("Deep orange") and v.Stem.BrickColor == BrickColor.new("Parsley green") then
+					billboard("Dragon Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Fruit.BrickColor == BrickColor.new("Institutional white") and v.Stem.BrickColor == BrickColor.new("Brown") then
+					billboard("Paw Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Fruit.BrickColor == BrickColor.new("Royal purple") and v.Stem.BrickColor == BrickColor.new("Pink") then
+					billboard("Gravity Fruit",v.Handle,Color3.fromRGB(255,0,0))
+				elseif v.Fruit.BrickColor == BrickColor.new("Buttermilk") and v.Stem.BrickColor == BrickColor.new("Brown") then
+					billboard("Dough Fruit",v.Handle,Color3.fromRGB(255,0,0))
 				else
 					billboard(v.Name,v.Handle,Color3.fromRGB(255,0,0))
 				end
