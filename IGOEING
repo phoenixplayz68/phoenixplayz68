@@ -1873,7 +1873,7 @@ fruitespbutton.MouseButton1Click:Connect(function()
 					billboard("Ice Fruit",v.Handle,Color3.fromRGB(255,0,0))
 				elseif v.Fruit.BrickColor == BrickColor.new("Royal purple") and v.Stem.BrickColor == BrickColor.new("Earth green") then
 					billboard("Dark Fruit",v.Handle,Color3.fromRGB(255,0,0))
-				elseif v.Fruit.BrickColor == BrickColor.new("New Yeller") then
+				elseif v.Handle.BrickColor == BrickColor.new("New Yeller") and v.Union.BrickColor == BrickColor.new("Copper") then
 					billboard("Light Fruit",v.Handle,Color3.fromRGB(255,0,0))
 				elseif v.Fruit.BrickColor == BrickColor.new("Burlap") and v.Stem.BrickColor == BrickColor.new("Bright bluish green") then
 					billboard("Sand Fruit",v.Handle,Color3.fromRGB(255,0,0))
@@ -2030,7 +2030,7 @@ workspace.ChildAdded:Connect(function(child)
 				billboard("Ice Fruit",child.Handle,Color3.fromRGB(255,0,0))
 			elseif child.Fruit.BrickColor == BrickColor.new("Royal purple") and child.Stem.BrickColor == BrickColor.new("Earth green") then
 				billboard("Dark Fruit",child.Handle,Color3.fromRGB(255,0,0))
-			elseif child.Fruit.BrickColor == BrickColor.new("New Yeller") then
+			elseif child.Handle.BrickColor == BrickColor.new("New Yeller")  and child.Union.BrickColor == BrickColor.new("Copper") then
 				billboard("Light Fruit",child.Handle,Color3.fromRGB(255,0,0))
 			elseif child.Fruit.BrickColor == BrickColor.new("Burlap") and child.Stem.BrickColor == BrickColor.new("Bright bluish green") then
 				billboard("Sand Fruit",child.Handle,Color3.fromRGB(255,0,0))
