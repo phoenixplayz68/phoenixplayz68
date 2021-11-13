@@ -141,23 +141,32 @@ local knock = getremote("KnockAdvanced")
 local heal = getremote("Heal7")
 local lagremote = getremote("Anubis")
 
-create("Kill [Player]")
-create("Freeze [Player]")
-create("Banish [Player]")
+if spinunravel then
+	create("Kill [Player]")
+	create("Freeze [Player]")
+	create("Banish [Player]")
+end
 if deletestand then 
 	create("Deletestand [Player]")
 end
-
-create("Ragdoll [Player]")
+if not spinunravel then
+	create("Ragdoll [Player]")
+end
 create("Mute [Player]")
-create("Bring [Player]")
+if swap then
+	create("Bring [Player]")
+end
 create("Goto [Player]")
 create("Nostun")
 create("Antits")
 create("Damage")
 create("Nocooldown")
-create("Lag/Unlag")
-create("Serverlock")
+if lagremote then
+	create("Lag/Unlag")
+end
+if spinunravel then
+	create("Serverlock")
+end
 create("Tpmenu")
 create("Dex")
 
