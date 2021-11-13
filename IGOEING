@@ -172,7 +172,7 @@ IndexContents = function(str,bool,cmdbar,Ianim)
 			end
 		end
 	end
-	
+
 	if not Ianim then
 		if indexnum == 0 or string.find(str, " ") then
 			if not cmdbar then
@@ -190,8 +190,8 @@ end
 
 TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 	if TextBox:IsFocused() then
-	    spawn(function()
-		    IndexContents(TextBox.Text,true,true)
+		spawn(function()
+			IndexContents(TextBox.Text,true,true)
 		end)
 	end
 end)
@@ -336,14 +336,14 @@ local mute = function(plr,part)
 end
 
 local visible = function(val)
-	for _,f in pairs(game.Players.LocalPlayer.Character:GetChildren()) do if (f:IsA("Accessory")) then game:GetService("ReplicatedStorage").Transparency:FireServer(f.Handle,val) end end
-	game:GetService("ReplicatedStorage").Transparency:FireServer(plr.Character.Head,val)
-	game:GetService("ReplicatedStorage").Transparency:FireServer(plr.Character.Head.face,val)
-	game:GetService("ReplicatedStorage").Transparency:FireServer(plr.Character.Torso,val)
-	game:GetService("ReplicatedStorage").Transparency:FireServer(plr.Character["Left Leg"],val)
-	game:GetService("ReplicatedStorage").Transparency:FireServer(plr.Character["Right Leg"],val)
-	game:GetService("ReplicatedStorage").Transparency:FireServer(plr.Character["Right Arm"],val)
-	game:GetService("ReplicatedStorage").Transparency:FireServer(plr.Character["Left Arm"],val)
+	for _,f in pairs(game.Players.LocalPlayer.Character:GetChildren()) do if (f:IsA("Accessory")) then transparency:FireServer(f.Handle,val) end end
+	transparency:FireServer(plr.Character.Head,val)
+	transparency:FireServer(plr.Character.Head.face,val)
+	transparency:FireServer(plr.Character.Torso,val)
+	transparency:FireServer(plr.Character["Left Leg"],val)
+	transparency:FireServer(plr.Character["Right Leg"],val)
+	transparency:FireServer(plr.Character["Right Arm"],val)
+	transparency:FireServer(plr.Character["Left Arm"],val)
 end
 
 local cmds = function(msg)
@@ -383,7 +383,7 @@ local cmds = function(msg)
 			end
 		elseif cmd == Prefix.."Fling" or cmd == Prefix.."fling" then
 			if not game.Players:FindFirstChild(player.Name) then return end if not spinunravel then return end
-			
+
 			spinunravel:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,1000000,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector*0+Vector3.new(100000000,100000000,100000000),"rbxassetid://241837157",math.huge,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3)
 
 		elseif cmd == Prefix.."Deletestand" or cmd == Prefix.."deletestand" then
@@ -487,7 +487,7 @@ local cmds = function(msg)
 					mute(game.Players[player.Name],game.Players[player.Name].Stand)
 				end
 			end
-			
+
 		elseif cmd == Prefix.."Damage" or cmd == Prefix.."damage" or cmd == Prefix.."Dmg" or cmd == Prefix.."dmg" then
 
 			loadstring(game:HttpGet('https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGDMG'))()
@@ -615,14 +615,14 @@ local cmds = function(msg)
 			-------
 		elseif cmd == Prefix.."Visible" or cmd == Prefix.."visible" then
 			if not game.Players:FindFirstChild(player.Name) then return end if not transparency then return end
-			
+
 			visible(0)
-			
+
 		elseif cmd == Prefix.."Invisible" or cmd == Prefix.."invisible" then
 			if not game.Players:FindFirstChild(player.Name) then return end if not transparency then return end
-			
+
 			visible(1)
-			
+
 		elseif cmd == Prefix.."Tpmenu" or cmd == Prefix.."tpmenu" then
 			-------
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGDEX"))()
