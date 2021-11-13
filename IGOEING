@@ -371,7 +371,7 @@ local cmds = function(msg)
 		elseif cmd == Prefix.."Fling" or cmd == Prefix.."fling" then
 			if not game.Players:FindFirstChild(player.Name) then return end if not spinunravel then return end
 
-			spinunravel:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,1000000,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector*0+Vector3.new(100000000,100000000,100000000),"rbxassetid://241837157",math.huge,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3)
+			spinunravel:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,1000000,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector*0+Vector3.new(10000,10000,10000),"rbxassetid://241837157",math.huge,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3)
 
 		elseif cmd == Prefix.."Deletestand" or cmd == Prefix.."deletestand" then
 			if not game.Players:FindFirstChild(player.Name) then return end if not deletestand then return end
