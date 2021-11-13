@@ -9,6 +9,7 @@ local TextBox = Instance.new("TextBox")
 local TextLabel = Instance.new("TextLabel")
 local Commands = Instance.new("ScrollingFrame")
 local Template = Instance.new("TextLabel")
+local cmdListLayout = Instance.new("UIListLayout")
 
 --Properties:
 
@@ -76,6 +77,10 @@ Template.TextSize = 14.000
 Template.TextWrapped = true
 Template.TextXAlignment = Enum.TextXAlignment.Left
 
+cmdListLayout.Parent = Commands
+cmdListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+cmdListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
 local par = Instance.new("Part", game.ReplicatedStorage)
 par.Name = "gravyoldschool"
 
@@ -108,29 +113,110 @@ local GetPlayer = function(String) -- Credit to Timeless/xFunnieuss
 	return Found    
 end
 
+minimize = function()
+	local Down = game.TweenService:Create(Bar,TweenInfo.new(.4,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0),
+		{Position=UDim2.new(0.764, 0,0.963, 0)}):Play()
+end
+
+minimize()
+
+maximize = function()
+	local Up = game.TweenService:Create(Bar,TweenInfo.new(.4,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0),
+		{Position=UDim2.new(0.764, 0,0.638, 0)}):Play()
+end
+
+fix = function()
+	coroutine.resume(coroutine.create(function()
+	for i,v in pairs(game.Players.LocalPlayer.PlayerGui.CommandBar.Bar.Commands:GetChildren()) do
+		if v.Name ~= "god" then
+			v.Visible = false 
+		end
+		end
+		end))
+end
+
+local matchSearch = function(str1,str2) return str1 == string.sub(str2,1,#str1) end
+
+local topCommand = nil
+IndexContents = function(str,bool,cmdbar,Ianim)
+	local SizeY = 0
+	local indexnum = 0
+	local frame = Commands
+	topCommand = nil
+	local chunks = {}
+	if str:sub(#str,#str) == "\\" then str = "" end
+	for w in string.gmatch(str,"[^\\]+") do
+		table.insert(chunks,w)
+	end
+	if #chunks > 0 then str = chunks[#chunks] end
+	if str:sub(1,1) == "!" then str = str:sub(2) end
+	for i,v in next, frame:GetChildren() do
+		if v:IsA("TextLabel") then
+			if bool then
+				if matchSearch(str,v.Name) then
+					indexnum = indexnum + 1
+					v.Visible = true
+					if topCommand == nil then
+						topCommand = v.Name
+					end
+				else
+					v.Visible = false
+				end
+			else
+				v.Visible = true
+				if topCommand == nil then
+					topCommand = v.Name
+				end
+			end
+		end
+	end
+	
+	if not Ianim then
+		if indexnum == 0 or string.find(str, " ") then
+			if not cmdbar then
+				minimize()
+				fix()
+			elseif cmdbar then
+				minimize()
+				fix()
+			end
+		else
+			maximize()
+			fix()
+		end
+	else
+		minimize()
+		fix()
+	end
+end
+
+TextBox:GetPropertyChangedSignal("Text"):Connect(function()
+	if TextBox:IsFocused() then
+	    spawn(function()
+		    IndexContents(TextBox.Text,true,true)
+		end)
+	end
+end)
+
 local plr = game.Players.LocalPlayer
 
 local prefix = ";"
 local Prefix = ""..prefix
 
-local create = function(cmd)
-	repeat wait() until Commands:FindFirstChild("Template")
+local create = function(cmd,name)
 	local clone = Commands.Template:Clone()
+	local val = Instance.new("BoolValue")
+	val.Parent = clone
+	val.Name = "New"
 	clone.Parent = Commands
 	clone.Text = cmd
-	if Commands:FindFirstChild("Template").Text == "" then
-		clone.Position = Commands.Template.Position
-	else
-		clone.Position = Commands.Template.Position + UDim2.new(0,0,.019,0)		
-	end
-
-	Commands.Template.Name = "Command"
-	clone.Name = "Template"
+	clone.Name = name
+	wait()
 end
 
 local getremote = function(name)
 	for i,v in pairs(game.ReplicatedStorage:GetDescendants()) do
-		if v.Name == name and v:IsA("RemoteEvent") then
+		if v.Name == name and v:IsA("RemoteEvent") and v.Parent.Name ~= "Properties" then
 			return v
 		end
 	end
@@ -144,95 +230,129 @@ local swap = getremote("SwapClones")
 local knock = getremote("KnockAdvanced")
 local heal = getremote("Heal7")
 local lagremote = getremote("Anubis")
+local transparency = getremote("Transparency")
 
 if spinunravel then
-	create("God/Ungod [Player]")
-	create("Kill [Player]")
-	create("Freeze [Player]")
-	create("Banish [Player]")
+	create("God/Ungod [Player]","god")
+	create("Kill [Player]","kill")
+	create("Freeze [Player]","freeze")
+	create("Banish [Player]","banish")
+	create("Fling [Player]","fling")
 end
 if deletestand then 
-	create("Deletestand [Player]")
+	create("Deletestand [Player]","deletestand")
 end
 if spinunravel then
-	create("Ragdoll [Player]")
+	create("Ragdoll [Player]","ragdoll")
 end
-create("Mute [Player]")
+if transparency then
+	create("Invisible/Visible","visible invisible")
+end
+create("Mute [Player]","mute")
 if swap then
-	create("Bring [Player]")
+	create("Bring [Player]","bring")
 end
-create("Goto [Player]")
-create("Nostun")
-create("Antits")
-create("Damage")
-create("Nocooldown")
+create("Goto [Player]","goto")
+create("Nostun","nostun")
+create("Antits","antits")
+create("Damage","damage")
+create("Nocooldown","nocooldown")
 if lagremote then
-	create("Lag/Unlag")
+	create("Lag/Unlag","lag unlag")
 end
 if spinunravel then
-	create("Serverlock")
+	create("Serverlock","serverlock")
 end
-create("Tpmenu")
-create("Dex")
+create("Tpmenu","tpmenu")
+create("Dex","dex")
 
 local frameentered = false
 local commandsentered = false
 local textlabelentered = false
 
-local Down = game.TweenService:Create(Bar,TweenInfo.new(.4,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0),
-	{Position=UDim2.new(0.764, 0,0.963, 0)}):Play()
+fix()
 
 Bar.MouseEnter:Connect(function()
 	if frameentered == true or textlabelentered == true or commandsentered == true then return end
 	frameentered = true
-	local Up = game.TweenService:Create(Bar,TweenInfo.new(.4,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0),
-		{Position=UDim2.new(0.764, 0,0.638, 0)}):Play()
+	maximize()
+	fix()
 end)
 
 Bar.MouseLeave:Connect(function()
 	wait(.1)
 	frameentered = false
 	if commandsentered == false and textlabelentered == false then
-		local Down = game.TweenService:Create(Bar,TweenInfo.new(.4,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0),
-			{Position=UDim2.new(0.764, 0,0.963, 0)}):Play()
+		minimize()
+		fix()
 	end
 end)
 
 Commands.MouseEnter:Connect(function()
 	if frameentered == true or textlabelentered == true or commandsentered == true then return end
 	commandsentered = true
-	local Up = game.TweenService:Create(Bar,TweenInfo.new(.4,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0),
-		{Position=UDim2.new(0.764, 0,0.638, 0)}):Play()
+	maximize()
+	fix()
 end)
 
 Commands.MouseLeave:Connect(function()
 	wait(.1)
 	commandsentered = false
 	if frameentered == false and textlabelentered == false then
-		local Down = game.TweenService:Create(Bar,TweenInfo.new(.4,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0),
-			{Position=UDim2.new(0.764, 0,0.963, 0)}):Play()
+		minimize()
+		fix()
 	end
 end)
 
 TextBox.MouseEnter:Connect(function()
 	if frameentered == true or textlabelentered == true or commandsentered == true then return end
 	textlabelentered = true
-	local Up = game.TweenService:Create(Bar,TweenInfo.new(.4,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0),
-		{Position=UDim2.new(0.764, 0,0.638, 0)}):Play()
+	maximize()
+	fix()
 end)
 
 TextBox.MouseLeave:Connect(function()
 	wait(.1)
 	textlabelentered = false
 	if frameentered == false and commandsentered == false then
-		local Down = game.TweenService:Create(Bar,TweenInfo.new(.4,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0),
-			{Position=UDim2.new(0.764, 0,0.963, 0)}):Play()
+		minimize()
+		fix()
 	end
 end)
 
 local autogod = false
 local nocd = false
 local lag = false
+
+local mute = function(plr,part)
+	if plr then
+		if part.Name == "Stand" then
+			if plr.Character:FindFirstChild(part) then
+				for i,v in pairs(plr.Character[part].StandHumanoidRootPart:GetChildren()) do
+					if v:IsA("Sound") then if v.Playing == true then v.Playing = false end end
+				end
+			end
+		else
+			if plr.Character:FindFirstChild(part) then
+				for i,v in pairs(plr.Character:FindFirstChild(part):GetChildren()) do
+					if v:IsA("Sound") then if v.Playing == true then v.Playing = false end end
+				end
+			end
+
+		end
+	end
+end
+
+local visible = function(val)
+	for _,f in pairs(game.Players.LocalPlayer.Character:GetChildren()) do if (f:IsA("Accessory")) then game:GetService("ReplicatedStorage").Transparency:FireServer(f.Handle,val) end end
+	game:GetService("ReplicatedStorage").Transparency:FireServer(plr.Character.Head,val)
+	game:GetService("ReplicatedStorage").Transparency:FireServer(plr.Character.Head.face,val)
+	game:GetService("ReplicatedStorage").Transparency:FireServer(plr.Character.Torso,val)
+	game:GetService("ReplicatedStorage").Transparency:FireServer(plr.Character["Left Leg"],val)
+	game:GetService("ReplicatedStorage").Transparency:FireServer(plr.Character["Right Leg"],val)
+	game:GetService("ReplicatedStorage").Transparency:FireServer(plr.Character["Right Arm"],val)
+	game:GetService("ReplicatedStorage").Transparency:FireServer(plr.Character["Left Arm"],val)
+end
 
 local cmds = function(msg)
 	coroutine.resume(coroutine.create(function()
@@ -269,6 +389,10 @@ local cmds = function(msg)
 					end
 				end))
 			end
+		elseif cmd == Prefix.."Fling" or cmd == Prefix.."fling" then
+			if not game.Players:FindFirstChild(player.Name) then return end if not spinunravel then return end
+			
+			spinunravel:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,1000000,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector*0+Vector3.new(100000000,100000000,100000000),"rbxassetid://241837157",math.huge,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3)
 
 		elseif cmd == Prefix.."Deletestand" or cmd == Prefix.."deletestand" then
 			if not game.Players:FindFirstChild(player.Name) then return end if not deletestand then return end
@@ -365,32 +489,13 @@ local cmds = function(msg)
 			if not game.Players:FindFirstChild(player.Name) then return end
 
 			while wait() do
-				for i,v in pairs(game.Players[player.Name].Character:GetChildren()) do
-					if v:IsA("Sound") then
-						v.Playing = false
-					end
-				end
-
-				for i,v in pairs(game.Players[player.Name].Character.HumanoidRootPart:GetChildren()) do
-					if  v:IsA("Sound") then
-						v.Playing = false
-					end
-				end
-
-				for i,v in pairs(game.Players[player.Name].Character.Torso:GetChildren()) do
-					if  v:IsA("Sound") then
-						v.Playing = false
-					end
-				end
-
+				mute(game.Players[player.Name],game.Players[player.Name].HumanoidRootPart)
+				mute(game.Players[player.Name],game.Players[player.Name].Torso)
 				if game.Players[player.Name].Character:FindFirstChild("Stand") then
-					for i,v in pairs(game.Players[player.Name].Character:FindFirstChild("Stand").StandHumanoidRootPart:GetChildren()) do
-						if v:IsA("Sound") then
-							v.Playing = false
-						end
-					end	
+					mute(game.Players[player.Name],game.Players[player.Name].Stand)
 				end
 			end
+			
 		elseif cmd == Prefix.."Damage" or cmd == Prefix.."damage" or cmd == Prefix.."Dmg" or cmd == Prefix.."dmg" then
 
 			loadstring(game:HttpGet('https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGDMG'))()
@@ -411,6 +516,12 @@ local cmds = function(msg)
 				repeat wait() until plr.Character:FindFirstChildOfClass("Humanoid") and plr.Character:FindFirstChild("HumanoidRootPart")
 				if plr.Character.Humanoid.PlatformStand == true then
 					plr.Character.Humanoid.PlatformStand = false
+				end
+				if plr.Character.Humanoid.WalkSpeed == 0 then
+					plr.Character.Humanoid.WalkSpeed = 16
+				end
+				if plr.Character.Humanoid.JumpPower == 0 then
+					plr.Character.Humanoid.JumpPower = 16
 				end
 				if plr.Character.HumanoidRootPart:FindFirstChildOfClass("BodyVelocity") then
 					plr.Character.HumanoidRootPart:FindFirstChildOfClass("BodyVelocity"):Destroy()
@@ -510,6 +621,16 @@ local cmds = function(msg)
 			spinunravel:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), math.huge, 0, plr.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
 			knock:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"))
 			-------
+		elseif cmd == Prefix.."Visible" or cmd == Prefix.."visible" then
+			if not game.Players:FindFirstChild(player.Name) then return end if not transparency then return end
+			
+			visible(0)
+			
+		elseif cmd == Prefix.."Invisible" or cmd == Prefix.."invisible" then
+			if not game.Players:FindFirstChild(player.Name) then return end if not transparency then return end
+			
+			visible(1)
+			
 		elseif cmd == Prefix.."Tpmenu" or cmd == Prefix.."tpmenu" then
 			-------
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGDEX"))()
@@ -519,12 +640,13 @@ local cmds = function(msg)
 end
 
 game:GetService("UserInputService").InputBegan:connect(function(input, chat)
-	if chat and not TextBox.Focused then return end
 	if input.KeyCode == Enum.KeyCode.Semicolon then
+		if chat and not TextBox:IsFocused() then return end
 		TextBox:CaptureFocus()
 		Commands.CanvasPosition = Vector2.new(0, 0)
-		local Up = game.TweenService:Create(Bar,TweenInfo.new(.4,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0),
-			{Position=UDim2.new(0.764, 0,0.638, 0)}):Play()
+		maximize()
+		fix()
+		TextBox.Text = ""
 		repeat wait() until TextBox.Text == ";"
 		TextBox.Text = ""
 	elseif input.KeyCode == Enum.KeyCode.Return then
@@ -534,8 +656,9 @@ game:GetService("UserInputService").InputBegan:connect(function(input, chat)
 end)
 
 TextBox.FocusLost:Connect(function()
-	local Down = game.TweenService:Create(Bar,TweenInfo.new(.4,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0),
-		{Position=UDim2.new(0.764, 0,0.963, 0)}):Play()
+	minimize()
+	fix()
+	IndexContents('',true,false,true)
 end)
 
 plr.Chatted:Connect(function(msg)
