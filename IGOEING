@@ -113,9 +113,20 @@ local GetPlayer = function(String) -- Credit to Timeless/xFunnieuss
 	return Found    
 end
 
+fix = function()
+	coroutine.resume(coroutine.create(function()
+		for i,v in pairs(game.Players.LocalPlayer.PlayerGui.CommandBar.Bar.Commands:GetChildren()) do
+			if v.Name ~= "god" then
+				v.Visible = false 
+			end
+		end
+	end))
+end
+
 minimize = function()
 	local Down = game.TweenService:Create(Bar,TweenInfo.new(.4,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0),
 		{Position=UDim2.new(0.764, 0,0.963, 0)}):Play()
+	fix()
 end
 
 minimize()
@@ -123,16 +134,7 @@ minimize()
 maximize = function()
 	local Up = game.TweenService:Create(Bar,TweenInfo.new(.4,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0),
 		{Position=UDim2.new(0.764, 0,0.638, 0)}):Play()
-end
-
-fix = function()
-	coroutine.resume(coroutine.create(function()
-	for i,v in pairs(game.Players.LocalPlayer.PlayerGui.CommandBar.Bar.Commands:GetChildren()) do
-		if v.Name ~= "god" then
-			v.Visible = false 
-		end
-		end
-		end))
+	fix()
 end
 
 local matchSearch = function(str1,str2) return str1 == string.sub(str2,1,#str1) end
@@ -175,18 +177,14 @@ IndexContents = function(str,bool,cmdbar,Ianim)
 		if indexnum == 0 or string.find(str, " ") then
 			if not cmdbar then
 				minimize()
-				fix()
 			elseif cmdbar then
 				minimize()
-				fix()
 			end
 		else
 			maximize()
-			fix()
 		end
 	else
 		minimize()
-		fix()
 	end
 end
 
@@ -276,7 +274,6 @@ Bar.MouseEnter:Connect(function()
 	if frameentered == true or textlabelentered == true or commandsentered == true then return end
 	frameentered = true
 	maximize()
-	fix()
 end)
 
 Bar.MouseLeave:Connect(function()
@@ -284,7 +281,6 @@ Bar.MouseLeave:Connect(function()
 	frameentered = false
 	if commandsentered == false and textlabelentered == false then
 		minimize()
-		fix()
 	end
 end)
 
@@ -292,7 +288,6 @@ Commands.MouseEnter:Connect(function()
 	if frameentered == true or textlabelentered == true or commandsentered == true then return end
 	commandsentered = true
 	maximize()
-	fix()
 end)
 
 Commands.MouseLeave:Connect(function()
@@ -300,7 +295,6 @@ Commands.MouseLeave:Connect(function()
 	commandsentered = false
 	if frameentered == false and textlabelentered == false then
 		minimize()
-		fix()
 	end
 end)
 
@@ -308,7 +302,6 @@ TextBox.MouseEnter:Connect(function()
 	if frameentered == true or textlabelentered == true or commandsentered == true then return end
 	textlabelentered = true
 	maximize()
-	fix()
 end)
 
 TextBox.MouseLeave:Connect(function()
@@ -316,7 +309,6 @@ TextBox.MouseLeave:Connect(function()
 	textlabelentered = false
 	if frameentered == false and commandsentered == false then
 		minimize()
-		fix()
 	end
 end)
 
@@ -645,7 +637,6 @@ game:GetService("UserInputService").InputBegan:connect(function(input, chat)
 		TextBox:CaptureFocus()
 		Commands.CanvasPosition = Vector2.new(0, 0)
 		maximize()
-		fix()
 		TextBox.Text = ""
 		repeat wait() until TextBox.Text == ";"
 		TextBox.Text = ""
@@ -657,7 +648,6 @@ end)
 
 TextBox.FocusLost:Connect(function()
 	minimize()
-	fix()
 	IndexContents('',true,false,true)
 end)
 
