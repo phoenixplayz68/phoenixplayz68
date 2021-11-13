@@ -129,7 +129,7 @@ minimize = function()
 	fix()
 end
 
-minimize()
+local Down = game.TweenService:Create(Bar,TweenInfo.new(.4,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0),{Position=UDim2.new(0.764, 0,0.963, 0)}):Play()
 
 maximize = function()
 	local Up = game.TweenService:Create(Bar,TweenInfo.new(.4,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0),
@@ -178,7 +178,7 @@ IndexContents = function(str,bool,cmdbar,Ianim)
 			if not cmdbar then
 				minimize()
 			elseif cmdbar then
-				minimize()
+				
 			end
 		else
 			maximize()
@@ -201,17 +201,6 @@ local plr = game.Players.LocalPlayer
 local prefix = ";"
 local Prefix = ""..prefix
 
-local create = function(cmd,name)
-	local clone = Commands.Template:Clone()
-	local val = Instance.new("BoolValue")
-	val.Parent = clone
-	val.Name = "New"
-	clone.Parent = Commands
-	clone.Text = cmd
-	clone.Name = name
-	wait()
-end
-
 local getremote = function(name)
 	for i,v in pairs(game.ReplicatedStorage:GetDescendants()) do
 		if v.Name == name and v:IsA("RemoteEvent") and v.Parent.Name ~= "Properties" then
@@ -229,46 +218,44 @@ local knock = getremote("KnockAdvanced")
 local heal = getremote("Heal7")
 local lagremote = getremote("Anubis")
 local transparency = getremote("Transparency")
+local music = getremote("Taunt")
 
-if spinunravel then
-	create("God/Ungod [Player]","god")
-	create("Kill [Player]","kill")
-	create("Freeze [Player]","freeze")
-	create("Banish [Player]","banish")
-	create("Fling [Player]","fling")
+local create = function(cmd,name,remote)
+	if not remote then return end
+	local clone = Commands.Template:Clone()
+	local val = Instance.new("BoolValue")
+	val.Parent = clone
+	val.Name = "New"
+	clone.Parent = Commands
+	clone.Text = cmd
+	clone.Name = name
+	wait()
 end
-if deletestand then 
-	create("Deletestand [Player]","deletestand")
-end
-if spinunravel then
-	create("Ragdoll [Player]","ragdoll")
-end
-if transparency then
-	create("Invisible/Visible","visible invisible")
-end
+
+create("God/Ungod [Player]","god",spinunravel)
+create("Kill [Player]","kill",spinunravel)
+create("Freeze [Player]","freeze",spinunravel)
+create("Banish [Player]","banish",spinunravel)
+create("Fling [Player]","fling",spinunravel)
+create("Deletestand [Player]","deletestand",deletestand)
+create("Ragdoll [Player]","ragdoll",spinunravel)
+create("Invisible/Visible","visible invisible",transparency)
 create("Mute [Player]","mute")
-if swap then
-	create("Bring [Player]","bring")
-end
+create("Bring [Player]","bring",swap)
 create("Goto [Player]","goto")
+create("Music [ID]","music",music)
 create("Nostun","nostun")
 create("Antits","antits")
 create("Damage","damage")
 create("Nocooldown","nocooldown")
-if lagremote then
-	create("Lag/Unlag","lag unlag")
-end
-if spinunravel then
-	create("Serverlock","serverlock")
-end
+create("Lag/Unlag","lag unlag",lagremote)
+create("Serverlock","serverlock",spinunravel)
 create("Tpmenu","tpmenu")
 create("Dex","dex")
 
 local frameentered = false
 local commandsentered = false
 local textlabelentered = false
-
-fix()
 
 Bar.MouseEnter:Connect(function()
 	if frameentered == true or textlabelentered == true or commandsentered == true then return end
@@ -351,6 +338,7 @@ local cmds = function(msg)
 		local args = string.split(string.lower(msg)," ")
 
 		local cmd = args[1]
+		local cmd2 = args[2]
 
 		local player = nil
 
@@ -359,7 +347,6 @@ local cmds = function(msg)
 		end
 
 		if args[2] then
-			player = args[2]
 			for i,v in pairs(GetPlayer(args[2])) do
 				if game.Players:FindFirstChild(v.Name) then
 					player = game.Players[v.Name]
@@ -447,7 +434,12 @@ local cmds = function(msg)
 			if not game.Players:FindFirstChild(player.Name) then return end
 
 			plr.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame
-
+			
+		elseif cmd == Prefix.."Music" or cmd == Prefix.."music" then
+			if not cmd2 then return end if not music then return end
+			
+			game:GetService("ReplicatedStorage").Taunt:FireServer(game:GetService("Players").LocalPlayer.Character.Head, "rbxassetid://"..cmd2, 3,  0, 0)
+			
 		elseif cmd == Prefix.."God" or cmd == Prefix.."god" then
 			if not spinunravel then return end
 			autogod = true
@@ -555,6 +547,10 @@ local cmds = function(msg)
 				end
 			end
 			-------
+		elseif cmd == Prefix.."Rejoin" or cmd == Prefix.."rejoin" then
+			
+			game:GetService("TeleportService"):Teleport(game.PlaceId, plr)
+			
 		elseif cmd == Prefix.."Dex" or cmd == Prefix.."dex" then
 			-------
 			local find = game.CoreGui:FindFirstChild("Dex")
