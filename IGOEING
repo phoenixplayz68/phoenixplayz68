@@ -69,7 +69,7 @@ Template.BackgroundTransparency = 1.000
 Template.Position = UDim2.new(0.0495930985, 0, 0.00586192682, 0)
 Template.Size = UDim2.new(0.925999999, 0, 0.0199999996, 0)
 Template.Font = Enum.Font.SourceSansBold
-Template.Text = "God/Ungod [Player]"
+Template.Text = ""
 Template.TextColor3 = Color3.fromRGB(255, 255, 255)
 Template.TextScaled = true
 Template.TextSize = 14.000
@@ -118,7 +118,11 @@ local create = function(cmd)
 	local clone = Commands.Template:Clone()
 	clone.Parent = Commands
 	clone.Text = cmd
-	clone.Position = Commands.Template.Position + UDim2.new(0,0,.019,0)
+	if Commands:FindFirstChild("Template").Text == "" then
+		clone.Position = Commands.Template.Position
+	else
+		clone.Position = Commands.Template.Position + UDim2.new(0,0,.019,0)		
+	end
 
 	Commands.Template.Name = "Command"
 	clone.Name = "Template"
@@ -142,6 +146,7 @@ local heal = getremote("Heal7")
 local lagremote = getremote("Anubis")
 
 if spinunravel then
+	create("God/Ungod [Player]")
 	create("Kill [Player]")
 	create("Freeze [Player]")
 	create("Banish [Player]")
@@ -149,7 +154,7 @@ end
 if deletestand then 
 	create("Deletestand [Player]")
 end
-if not spinunravel then
+if spinunravel then
 	create("Ragdoll [Player]")
 end
 create("Mute [Player]")
