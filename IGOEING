@@ -625,7 +625,7 @@ local cmds = function(msg)
 			loadstring(game:HttpGet('https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGDMG'))()
 			
 		elseif cmd == Prefix.."Gojo" or cmd == Prefix.."gojo" then
-			if not game.GameId == 2792255539 then return end
+			if game.GameId ~= 2792255539 then return end
 			
 			loadstring(game:HttpGet('https://pastebin.com/raw/gWK9bF2i'))()
 			
