@@ -223,6 +223,7 @@ local transparency = getremote("Transparency")
 local music = getremote("Taunt")
 local damage = getremote("Damage")
 local xblaster = getremote("DamageXBlaster")
+local rtz = getremote("RTZEffect")
 
 
 local create = function(cmd,name,remote)
@@ -250,6 +251,7 @@ create("Mute [Player]","mute",true)
 create("Bring [Player]","bring",swap)
 create("Goto [Player]","goto",true)
 create("Music [ID]","music",music)
+create("Untimestop","untimestop",true)
 create("Nostun","nostun",true)
 create("Antits","antits",true)
 create("Damage","damage",true)
@@ -637,7 +639,12 @@ local cmds = function(msg)
 					end
 				end
 			end
-
+			
+		elseif cmd == Prefix.."Untimestop" or cmd == Prefix.."untimestop" or cmd == Prefix.."Unts" or cmd == Prefix.."unts" then
+			if not rtz then return end
+			
+			rtz:FireServer()
+			
 		elseif cmd == Prefix.."Nocooldown" or cmd == Prefix.."nocooldown" or cmd == Prefix.."Nocd" or cmd == Prefix.."nocd" or cmd == Prefix.."Ncd" or cmd == Prefix.."ncd" then
 			
 			if nocd == true then return end
