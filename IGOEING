@@ -232,7 +232,7 @@ local rtz = getremote("RTZEffect")
 local void = getremote("VOID")
 
 
-local create = function(cmd,name,remote)
+create = function(cmd,name,remote)
 	if remote == nil then return end
 	local clone = Commands.Template:Clone()
 	local val = Instance.new("BoolValue")
@@ -577,9 +577,13 @@ local cmds = function(msg)
 
 		elseif cmd == Prefix.."Music" or cmd == Prefix.."music" then
 			if not cmd2 then return end if not music then return end
-
-			music:FireServer(plr.Character.Head, "rbxassetid://"..cmd2, 3,  -math.huge, -math.huge)
-
+			
+			if game.GameId == 1735669539 then
+				game:GetService("ReplicatedStorage").Taunt:FireServer(game:GetService("Players").LocalPlayer.Character.Head,"ㅤ","rbxassetid://"..cmd2, 10,  -math.huge, -math.huge)
+			else
+				music:FireServer(plr.Character.Head, "rbxassetid://"..cmd2, 10,  -math.huge, -math.huge)
+			end
+			
 		elseif cmd == Prefix.."God" or cmd == Prefix.."god" then
 			if not spinunravel then return end
 			if player ~= nil then
