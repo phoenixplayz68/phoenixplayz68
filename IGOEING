@@ -178,7 +178,7 @@ IndexContents = function(str,bool,cmdbar,Ianim)
 			if not cmdbar then
 				minimize()
 			elseif cmdbar then
-				
+
 			end
 		else
 			maximize()
@@ -211,6 +211,7 @@ end
 
 local spinunravel = getremote("SpinUnravel")
 local samuraidmg = getremote("SamuraiDamage2")
+local hamon = getremote("HamonDamage")
 local anchor = getremote("Anchor")
 local deletestand = getremote("CreatorWSDamage11")
 local swap = getremote("SwapClones")
@@ -219,6 +220,8 @@ local heal = getremote("Heal7")
 local lagremote = getremote("Anubis")
 local transparency = getremote("Transparency")
 local music = getremote("Taunt")
+local damage = getremote("Damage")
+local xblaster = getremote("DamageXBlaster")
 
 local create = function(cmd,name,remote)
 	if not remote then return end
@@ -237,6 +240,7 @@ create("Kill [Player]","kill",spinunravel)
 create("Freeze [Player]","freeze",spinunravel)
 create("Banish [Player]","banish",spinunravel)
 create("Fling [Player]","fling",spinunravel)
+create("Noscope","noscope",spinunravel)
 create("Deletestand [Player]","deletestand",deletestand)
 create("Ragdoll [Player]","ragdoll",spinunravel)
 create("Invisible/Visible","visible invisible",transparency)
@@ -299,9 +303,12 @@ TextBox.MouseLeave:Connect(function()
 	end
 end)
 
+
+
 local autogod = false
 local nocd = false
 local lag = false
+local noscoping = false
 
 local mute = function(plr,part)
 	if plr then
@@ -332,6 +339,93 @@ local visible = function(val)
 	transparency:FireServer(plr.Character["Right Arm"],val)
 	transparency:FireServer(plr.Character["Left Arm"],val)
 end
+
+local RNG = Random.new()
+local randomcf = function(player,cframe)
+	cf1 = RNG:NextNumber(-2, 2)
+	cf2 = RNG:NextNumber(-2, 2)
+	cf3 = RNG:NextNumber(-2, 2)
+	decal = nil
+	audio = nil
+	num = math.random(1,13)
+	if num == 1 or num == 2 or num == 3 or num == 4 or num == 5 or num == 6 or num == 7 then
+		decal = "rbxassetid://644165701" -- hit marker
+		audio = "rbxassetid://160432334"
+	elseif num == 8 then
+		decal = "rbxassetid://346033385" -- mountain dew
+		audio = "rbxassetid://"
+	elseif num == 9 then
+		decal = "rbxassetid://528188618" -- Doritos
+		audio = "rbxassetid://"
+	elseif num == 10 then
+		decal = "rbxassetid://161722892" -- doge
+		audio = "rbxassetid://"
+	elseif num == 11 then
+		decal = "rbxassetid://7926546151" -- joseph
+		audio = "rbxassetid://"
+	elseif num == 12 then
+		decal = "rbxassetid://732508092" -- illuminati
+		audio = "rbxassetid://"
+	elseif num == 13 then
+		decal = "rbxassetid://1447924234" -- mlg glasses
+		audio = "rbxassetid://"
+	end
+	local args = {
+		[1] = player.Character.Humanoid,
+		[2] = player.Character.HumanoidRootPart.CFrame * CFrame.new(cf1,cf2,cf3),
+		[3] = 0,
+		[4] = 0,
+		[6] = decal,
+		[7] = 0.075,
+		[8] = Color3.new(255,255,255) --[[Color3]],
+		[9] = audio,
+		[10] = 1,
+		[11] = 10
+	}
+
+	hamon:FireServer(unpack(args))
+end
+
+local noscopefx = function(player)
+	noscoping = false
+	coroutine.resume(coroutine.create(function()
+		for i = 1, 20 do
+			wait()
+			randomcf(game.Players[player.Name])
+		end
+	end))
+	wait(.7)
+	if music then
+		music:FireServer(plr.Character.Head, "rbxassetid://362846090", 10,  -math.huge, 0)
+	end
+	if damage then
+		damage:FireServer(game.Players[player.Name].Character.Humanoid,game.Players[player.Name].Character.HumanoidRootPart.CFrame,0,0.25,game.Players[player.Name].Character.HumanoidRootPart.CFrame.LookVector * -200,0.075,"rbxassetid://137579113",1.1,.44)
+	end
+	if xblaster then
+		xblaster:FireServer(game.Players[player.Name].Character.Humanoid,game.Players[player.Name].Character.HumanoidRootPart.CFrame,0,0.25,game.Players[player.Name].Character.HumanoidRootPart.CFrame.LookVector * -200,0.075,"rbxassetid://137579113",1.1,.44)
+	end
+	if knock then
+		knock:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"))
+	end
+	wait(.1)
+	spinunravel:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), math.huge, 0, plr.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
+end
+
+local mouse = plr:GetMouse()
+
+mouse.Button1Down:Connect(function(clicked)
+	if noscoping == false then return end
+	if mouse.Target.Parent:FindFirstChild("Humanoid") then
+		local player = mouse.Target.Parent
+		noscopefx(player)
+	elseif mouse.Target.Parent.Parent:FindFirstChild("Humanoid") then
+		local player = mouse.Target.Parent.Parent
+		noscopefx(player)
+	elseif mouse.Target.Parent.Parent.Parent:FindFirstChild("Humanoid") then
+		local player = mouse.Target.Parent.Parent.Parent
+		noscopefx(player)
+	end
+end)
 
 local cmds = function(msg)
 	coroutine.resume(coroutine.create(function()
@@ -367,6 +461,300 @@ local cmds = function(msg)
 						end
 					end
 				end))
+			end
+		elseif cmd == Prefix.."Fling" or cmd == Prefix.."fling" then
+			if not game.Players:FindFirstChild(player.Name) then return end if not spinunravel then return end
+
+			spinunravel:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,1000000,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector*0+Vector3.new(10000,10000,10000),"rbxassetid://241837157",math.huge,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3)
+
+		elseif cmd == Prefix.."Deletestand" or cmd == Prefix.."deletestand" then
+			if not game.Players:FindFirstChild(player.Name) then return end if not deletestand then return end
+
+			deletestand:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"),CFrame.new(Vector3.new(-3779.5500488281, 1277.2583007813, 1871.30859375), Vector3.new(-0.41069880127907, 0.35992509126663, -0.83772355318069)),0)
+
+		elseif cmd == Prefix.."Serverlock" or cmd == Prefix.."serverlock" then
+
+			game.Players.PlayerAdded:Connect(function(plr)
+				while wait() do
+					coroutine.resume(coroutine.create(function()
+						local otherChar = plr.Character or plr.CharacterAdded:Wait()
+						if (plr.Character.HumanoidRootPart.Position - otherChar.HumanoidRootPart.Position).magnitude < 10000 then
+							game:GetService("ReplicatedStorage").SpinUnravel:FireServer(otherChar:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,1000000,Vector3.new(333333333333333330.6399237983, -2.29492244e-07, -4.95887899),"rbxassetid://241837157",.5,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3)
+							wait(.2)
+						end
+					end))
+				end
+			end)
+
+		elseif cmd == Prefix.."Kill" or cmd == Prefix.."kill" then
+			if not game.Players:FindFirstChild(player.Name) then return end if not spinunravel then return end
+
+			spinunravel:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), math.huge, 0, plr.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
+
+			wait(.2)
+
+			if game.Players[player.Name].Character.Humanoid.Health ~= 0 and samuraidmg then
+				samuraidmg:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"),math.huge,0,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 10)
+			end
+		elseif cmd == Prefix.."Bring" or cmd == Prefix.."bring" then
+			if not game.Players:FindFirstChild(player.Name) then return end if not swap then return end	
+
+			local location = plr.Character.HumanoidRootPart.CFrame
+
+			local part = Instance.new("Part")
+			part.Anchored = true
+			part.CanCollide = false
+			part.Transparency = 1
+			part.Parent = workspace
+			part.CFrame = location
+
+			local weld = Instance.new("Weld")
+			weld.Parent = part
+			weld.Part0 = part
+			weld.Part1 = plr.Character.HumanoidRootPart
+
+			plr.Character.HumanoidRootPart.Anchored = true
+			wait(.1)
+			plr.Character.HumanoidRootPart.CFrame = location
+			swap:FireServer(game.Players[player.Name].Character)
+			plr.Character.HumanoidRootPart.CFrame = location
+			wait(.15)
+			plr.Character.HumanoidRootPart.CFrame = location
+			part:Destroy()
+			plr.Character.HumanoidRootPart.Anchored = false
+			plr.Character.HumanoidRootPart.CFrame = location
+
+		elseif cmd == Prefix.."Goto" or cmd == Prefix.."goto" or cmd == Prefix.."To" or cmd == Prefix.."to" then
+			if not game.Players:FindFirstChild(player.Name) then return end
+
+			plr.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame
+
+		elseif cmd == Prefix.."Music" or cmd == Prefix.."music" then
+			if not cmd2 then return end if not music then return end
+
+			music:FireServer(plr.Character.Head, "rbxassetid://"..cmd2, 3,  -math.huge, -math.huge)
+
+		elseif cmd == Prefix.."God" or cmd == Prefix.."god" then
+			if not spinunravel then return end
+			autogod = true
+			if player ~= nil then
+				repeat wait()
+					repeat wait() until game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid") and game.Players[player.Name].Character:FindFirstChild("HumanoidRootPart") and not game.Players[player.Name].Character:FindFirstChild("ForceField")
+					if game.Players[player.Name].Character.Humanoid.Health < 100000000 and game.Players[player.Name].Character.Humanoid.Health ~= 0 then
+						spinunravel:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), -math.huge, 0, game.Players[player.Name].Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
+					end	
+				until autogod == false
+			elseif player == nil then
+				repeat wait()
+					repeat wait() until plr.Character:FindFirstChildOfClass("Humanoid") and not plr.Character:FindFirstChild("ForceField") and plr.Character:FindFirstChild("HumanoidRootPart")
+					if plr.Character.Humanoid.Health < 100000000 and plr.Character.Humanoid.Health ~= 0 then
+						spinunravel:FireServer(plr.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), -math.huge, 0, plr.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
+					end	
+				until autogod == false
+			end
+
+		elseif cmd == Prefix.."Ungod" or cmd == Prefix.."ungod" then
+			if not heal then return end
+
+			if player ~= nil then
+				heal:FireServer(game.Players[player.Name].Character.Humanoid,CFrame.new(100000000000, 1111.13892, -19.8408966, -0.192829564, -0.955851674, -0.221729204, 0.155828059, 0.193271622, -0.968691707, 0.968779564, -0.221344039, 0.111680053),1,.25,Vector3.new(39.2514496, 2.36321148e-06, -30.9729347),.25,"rbxassetid://1202656211",1.3333333333333,.9)
+			elseif player == nil then
+				autogod = false
+				heal:FireServer(plr.Character.Humanoid,CFrame.new(100000000000, 1111.13892, -19.8408966, -0.192829564, -0.955851674, -0.221729204, 0.155828059, 0.193271622, -0.968691707, 0.968779564, -0.221344039, 0.111680053),1,.25,Vector3.new(39.2514496, 2.36321148e-06, -30.9729347),.25,"rbxassetid://1202656211",1.3333333333333,.9)
+			end
+
+		elseif cmd == Prefix.."Mute" or cmd == Prefix.."mute" then
+			if not game.Players:FindFirstChild(player.Name) then return end
+
+			while wait() do
+				mute(game.Players[player.Name],game.Players[player.Name].HumanoidRootPart)
+				mute(game.Players[player.Name],game.Players[player.Name].Torso)
+				if game.Players[player.Name].Character:FindFirstChild("Stand") then
+					mute(game.Players[player.Name],game.Players[player.Name].Stand)
+				end
+			end
+
+		elseif cmd == Prefix.."Damage" or cmd == Prefix.."damage" or cmd == Prefix.."Dmg" or cmd == Prefix.."dmg" then
+
+			loadstring(game:HttpGet('https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGDMG'))()
+
+		elseif cmd == Prefix.."Freeze" or cmd == Prefix.."freeze" then
+			if not game.Players:FindFirstChild(player.Name) then return end if not spinunravel then return end	
+
+			spinunravel:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), 0, math.huge, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector*0+Vector3.new(0,0,0), 0.05, 0, 1, 2)
+
+			wait(.2)
+			if not game.Players[player.Name].Character.HumanoidRootPart:FindFirstChildOfClass("BodyVelocity") and samuraidmg then
+				samuraidmg:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"),0,math.huge,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 0)
+			end
+
+		elseif cmd == Prefix.."Nostun" or cmd == Prefix.."nostun" then
+
+			while wait() do
+				repeat wait() until plr.Character:FindFirstChildOfClass("Humanoid") and plr.Character:FindFirstChild("HumanoidRootPart")
+				if plr.Character.Humanoid.PlatformStand == true then
+					plr.Character.Humanoid.PlatformStand = false
+				end
+				if plr.Character.Humanoid.WalkSpeed == 0 then
+					plr.Character.Humanoid.WalkSpeed = 16
+				end
+				if plr.Character.Humanoid.JumpPower == 0 then
+					plr.Character.Humanoid.JumpPower = 16
+				end
+				if plr.Character.HumanoidRootPart:FindFirstChildOfClass("BodyVelocity") then
+					plr.Character.HumanoidRootPart:FindFirstChildOfClass("BodyVelocity"):Destroy()
+				end
+				for i,v in pairs(plr.Character.HumanoidRootPart:GetChildren()) do
+					if v:IsA("BodyVelocity") or v:IsA("BodyAngularVelocity") or v:IsA("BodyForce") or v:IsA("BodyGyro") or v:IsA("BodyThrust") then
+						v:Destroy()
+					end
+				end
+			end
+
+		elseif cmd == Prefix.."Nocooldown" or cmd == Prefix.."nocooldown" or cmd == Prefix.."Nocd" or cmd == Prefix.."nocd" or cmd == Prefix.."Ncd" or cmd == Prefix.."ncd" then
+			-------
+			if nocd == true then return end
+			nocd = true
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGNOCD"))()
+			-------
+		elseif cmd == Prefix.."Lag" or cmd == Prefix.."lag" then
+			-------
+			if not lagremote then return end
+			repeat wait()
+				lagremote:FireServer()
+			until lag == false
+			-------
+		elseif cmd == Prefix.."Noscope" or cmd == Prefix.."noscope" then
+
+			music:FireServer(plr.Character.Head, "rbxassetid://3475378657", 10,  -math.huge, 0)
+			noscoping = true
+
+		elseif cmd == Prefix.."Unlag" or cmd == Prefix.."unlag" then
+			lag = false
+			plr.Character.Humanoid.Health = 0
+		elseif cmd == Prefix.."Antits" or cmd == Prefix.."antits" then
+			-------
+			while wait() do
+				repeat wait() until plr.Character:FindFirstChildOfClass("Humanoid") and plr.Character:FindFirstChild("HumanoidRootPart")
+				if plr.Character.Torso.Anchored == true then
+					for i,v in pairs(plr.Character:GetDescendants()) do
+						if v:IsA("BasePart") then
+							if v.Anchored == true then
+								if not anchor then 
+									v.Anchored = false
+								else
+									anchor:FireServer(v,false)
+								end
+							end
+						end
+					end
+				end
+			end
+			-------
+		elseif cmd == Prefix.."Rejoin" or cmd == Prefix.."rejoin" then
+
+			game:GetService("TeleportService"):Teleport(game.PlaceId, plr)
+
+		elseif cmd == Prefix.."Dex" or cmd == Prefix.."dex" then
+			-------
+			local find = game.CoreGui:FindFirstChild("Dex")
+			if find then
+				find:Destroy()
+			else
+				local Dex = game:GetObjects("rbxassetid://3567096419")[1]
+				Dex.Parent = game.CoreGui
+				Dex.Name = "Dex"
+
+				local function Load(Obj, Url)
+					local function GiveOwnGlobals(Func, Script)
+						local Fenv = {}
+						local RealFenv = {script = Script}
+						local FenvMt = {}
+						FenvMt.__index = function(a,b)
+							if RealFenv[b] == nil then
+								return getfenv()[b]
+							else
+								return RealFenv[b]
+							end
+						end
+						FenvMt.__newindex = function(a, b, c)
+							if RealFenv[b] == nil then
+								getfenv()[b] = c
+							else
+								RealFenv[b] = c
+							end
+						end
+						setmetatable(Fenv, FenvMt)
+						setfenv(Func, Fenv)
+						return Func
+					end
+					local function LoadScripts(Script)
+						if Script.ClassName == "Script" or Script.ClassName == "LocalScript" then
+							spawn(function()
+								GiveOwnGlobals(loadstring(Script.Source, "=" .. Script:GetFullName()), Script)()
+							end)
+						end
+						for i,v in pairs(Script:GetChildren()) do
+							LoadScripts(v)
+						end
+					end
+					LoadScripts(Obj)
+				end
+
+				Load(Dex)
+			end
+			-------
+		elseif cmd == Prefix.."Ragdoll" or cmd == Prefix.."ragdoll" then
+			-------
+			if not game.Players:FindFirstChild(player.Name) then return end if not spinunravel and not knock then return end
+
+			spinunravel:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0),-math.huge, 0, plr.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
+			wait(.5)
+			spinunravel:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), math.huge, 0, plr.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
+			knock:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"))
+			-------
+		elseif cmd == Prefix.."Visible" or cmd == Prefix.."visible" then
+			if not game.Players:FindFirstChild(player.Name) then return end if not transparency then return end
+
+			visible(0)
+
+		elseif cmd == Prefix.."Invisible" or cmd == Prefix.."invisible" then
+			if not game.Players:FindFirstChild(player.Name) then return end if not transparency then return end
+
+			visible(1)
+
+		elseif cmd == Prefix.."Tpmenu" or cmd == Prefix.."tpmenu" then
+			-------
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGDEX"))()
+			-------	
+		end
+	end))
+end
+
+game:GetService("UserInputService").InputBegan:connect(function(input, chat)
+	if input.KeyCode == Enum.KeyCode.Semicolon then
+		if chat and not TextBox:IsFocused() then return end
+		TextBox:CaptureFocus()
+		Commands.CanvasPosition = Vector2.new(0, 0)
+		maximize()
+		TextBox.Text = ""
+		repeat wait() until TextBox.Text == ";"
+		TextBox.Text = ""
+	elseif input.KeyCode == Enum.KeyCode.Return then
+		cmds(TextBox.Text)
+		TextBox.Text = ""
+	end
+end)
+
+TextBox.FocusLost:Connect(function()
+	minimize()
+	IndexContents('',true,false,true)
+end)
+
+plr.Chatted:Connect(function(msg)
+	cmds(msg)
+end)
+		end))
 			end
 		elseif cmd == Prefix.."Fling" or cmd == Prefix.."fling" then
 			if not game.Players:FindFirstChild(player.Name) then return end if not spinunravel then return end
