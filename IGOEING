@@ -255,6 +255,9 @@ create("Untimestop","untimestop",true)
 create("Nostun","nostun",true)
 create("Antits","antits",true)
 create("Damage","damage",true)
+if game.GameId == 7186363515 then
+	create("Gojo","gojo",true)
+end
 create("Nocooldown","nocooldown",true)
 create("Lag/Unlag","lag unlag",lagremote)
 create("Serverlock","serverlock",spinunravel)
@@ -609,7 +612,12 @@ local cmds = function(msg)
 		elseif cmd == Prefix.."Damage" or cmd == Prefix.."damage" or cmd == Prefix.."Dmg" or cmd == Prefix.."dmg" then
 
 			loadstring(game:HttpGet('https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGDMG'))()
-
+			
+		elseif cmd == Prefix.."Gojo" or cmd == Prefix.."gojo" then
+			if not game.GameId == 7186363515 then return end
+			
+			loadstring(game:HttpGet('https://pastebin.com/raw/gWK9bF2i'))()
+			
 		elseif cmd == Prefix.."Freeze" or cmd == Prefix.."freeze" then
 			if not game.Players:FindFirstChild(player.Name) then return end if not spinunravel then return end	
 
