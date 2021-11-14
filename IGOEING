@@ -205,6 +205,8 @@ local getremote = function(name)
 	for i,v in pairs(game.ReplicatedStorage:GetDescendants()) do
 		if v.Name == name and v:IsA("RemoteEvent") and v.Parent.Name ~= "Properties" then
 			return v
+		else
+			return nil
 		end
 	end
 end
@@ -223,8 +225,9 @@ local music = getremote("Taunt")
 local damage = getremote("Damage")
 local xblaster = getremote("DamageXBlaster")
 
+
 local create = function(cmd,name,remote)
-	if not remote then return end
+	if remote == nil then return end
 	local clone = Commands.Template:Clone()
 	local val = Instance.new("BoolValue")
 	val.Parent = clone
@@ -244,18 +247,18 @@ create("Noscope","noscope",spinunravel)
 create("Deletestand [Player]","deletestand",deletestand)
 create("Ragdoll [Player]","ragdoll",spinunravel)
 create("Invisible/Visible","visible invisible",transparency)
-create("Mute [Player]","mute")
+create("Mute [Player]","mute",true)
 create("Bring [Player]","bring",swap)
-create("Goto [Player]","goto")
+create("Goto [Player]","goto",true)
 create("Music [ID]","music",music)
-create("Nostun","nostun")
-create("Antits","antits")
-create("Damage","damage")
-create("Nocooldown","nocooldown")
+create("Nostun","nostun",true)
+create("Antits","antits",true)
+create("Damage","damage",true)
+create("Nocooldown","nocooldown",true)
 create("Lag/Unlag","lag unlag",lagremote)
 create("Serverlock","serverlock",spinunravel)
-create("Tpmenu","tpmenu")
-create("Dex","dex")
+create("Tpmenu","tpmenu",true)
+create("Dex","dex",true)
 
 local frameentered = false
 local commandsentered = false
