@@ -156,7 +156,7 @@ IndexContents = function(str,bool,cmdbar,Ianim)
 	for i,v in next, frame:GetChildren() do
 		if v:IsA("TextLabel") then
 			if bool then
-				if matchSearch(str,v.Name) then
+				if matchSearch(str,v.Name) or matchSearch(str,v.Text) then
 					indexnum = indexnum + 1
 					v.Visible = true
 					if topCommand == nil then
@@ -210,7 +210,12 @@ local getremote = function(name)
 	end
 end
 
-local spinunravel = getremote("SpinUnravel")
+local spin = "SpinUnravel"
+if game.GameId == 1735669539 then
+	spin = "ShadowYellow"
+end
+
+local spinunravel = getremote(""..spin)
 local samuraidmg = getremote("SamuraiDamage2")
 local hamon = getremote("HamonDamage")
 local anchor = getremote("Anchor")
@@ -224,6 +229,7 @@ local music = getremote("Taunt")
 local damage = getremote("Damage")
 local xblaster = getremote("DamageXBlaster")
 local rtz = getremote("RTZEffect")
+local void = getremote("VOID")
 
 
 local create = function(cmd,name,remote)
@@ -262,6 +268,7 @@ create("Nocooldown","nocooldown",true)
 create("Lag/Unlag","lag unlag",lagremote)
 create("Serverlock","serverlock",spinunravel)
 create("Antiafk","antiafk",true)
+create("Rejoin","rejoin",true)
 create("Refresh","refresh",true)
 create("Tpmenu","tpmenu",true)
 create("Dex","dex",true)
