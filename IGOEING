@@ -127,6 +127,7 @@ minimize = function()
 	local Down = game.TweenService:Create(Bar,TweenInfo.new(.4,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0),
 		{Position=UDim2.new(0.764, 0,0.963, 0)}):Play()
 	fix()
+	coroutine.resume(coroutine.create(function() wait(.1) TextBox.Text = "" end))
 end
 
 local Down = game.TweenService:Create(Bar,TweenInfo.new(.4,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0),{Position=UDim2.new(0.764, 0,0.963, 0)}):Play()
@@ -225,7 +226,7 @@ local xblaster = getremote("DamageXBlaster")
 
 
 local create = function(cmd,name,remote)
-	if remote == nil or remote == false then return end
+	if remote == nil then return end
 	local clone = Commands.Template:Clone()
 	local val = Instance.new("BoolValue")
 	val.Parent = clone
@@ -255,6 +256,8 @@ create("Damage","damage",true)
 create("Nocooldown","nocooldown",true)
 create("Lag/Unlag","lag unlag",lagremote)
 create("Serverlock","serverlock",spinunravel)
+create("Antiafk","antiafk",true)
+create("Refresh","refresh",true)
 create("Tpmenu","tpmenu",true)
 create("Dex","dex",true)
 
@@ -372,7 +375,7 @@ local randomcf = function(player,cframe)
 		audio = "rbxassetid://"
 	end
 	local args = {
-		[1] = player.Character.Humanoid,
+		[1] = player.Character:FindFirstChildOfClass("Humanoid"),
 		[2] = player.Character.HumanoidRootPart.CFrame * CFrame.new(cf1,cf2,cf3),
 		[3] = 0,
 		[4] = 0,
@@ -400,10 +403,10 @@ local noscopefx = function(player)
 		music:FireServer(plr.Character.Head, "rbxassetid://362846090", 10,  -math.huge, 0)
 	end
 	if damage then
-		damage:FireServer(game.Players[player.Name].Character.Humanoid,CFrame.new(math.huge,0,0),0,0.25,game.Players[player.Name].Character.HumanoidRootPart.CFrame.LookVector * -200,0.075,"rbxassetid://137579113",1.1,.44)
+		damage:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"),CFrame.new(math.huge,0,0),0,0.25,game.Players[player.Name].Character.HumanoidRootPart.CFrame.LookVector * -200,0.075,"rbxassetid://137579113",1.1,.44)
 	end
 	if xblaster then
-		xblaster:FireServer(game.Players[player.Name].Character.Humanoid)
+		xblaster:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"))
 	end
 	if knock then
 		knock:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"))
@@ -474,19 +477,49 @@ local cmds = function(msg)
 			deletestand:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"),CFrame.new(Vector3.new(-3779.5500488281, 1277.2583007813, 1871.30859375), Vector3.new(-0.41069880127907, 0.35992509126663, -0.83772355318069)),0)
 
 		elseif cmd == Prefix.."Serverlock" or cmd == Prefix.."serverlock" then
-
+			if not spinunravel then return end
+			
 			game.Players.PlayerAdded:Connect(function(plr)
 				while wait() do
 					coroutine.resume(coroutine.create(function()
 						local otherChar = plr.Character or plr.CharacterAdded:Wait()
 						if (plr.Character.HumanoidRootPart.Position - otherChar.HumanoidRootPart.Position).magnitude < 10000 then
-							game:GetService("ReplicatedStorage").SpinUnravel:FireServer(otherChar:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,1000000,Vector3.new(333333333333333330.6399237983, -2.29492244e-07, -4.95887899),"rbxassetid://241837157",.5,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3)
+							spinunravel:FireServer(otherChar:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,1000000,Vector3.new(333333333333333330.6399237983, -2.29492244e-07, -4.95887899),"rbxassetid://241837157",.5,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3)
 							wait(.2)
 						end
 					end))
 				end
 			end)
-
+			
+		elseif cmd == Prefix.."Refresh" or cmd == Prefix.."refresh" then
+			
+			function respawn(plr)
+				local char = plr.Character
+				if char:FindFirstChildOfClass("Humanoid") then char:FindFirstChildOfClass("Humanoid"):ChangeState(15) end
+				char:ClearAllChildren()
+				local newChar = Instance.new("Model")
+				newChar.Parent = workspace
+				plr.Character = newChar
+				wait()
+				plr.Character = char
+				newChar:Destroy()
+			end
+				local Human = plr.Character and plr.Character:FindFirstChildOfClass("Humanoid", true)
+				local pos = Human and Human.RootPart and Human.RootPart.CFrame
+				local pos1 = workspace.CurrentCamera.CFrame
+				respawn(plr)
+				task.spawn(function()
+					plr.CharacterAdded:Wait():WaitForChild("Humanoid").RootPart.CFrame, workspace.CurrentCamera.CFrame = pos, wait() and pos1
+				end)
+			
+		elseif cmd == Prefix.."Antiafk" or cmd == Prefix.."antiafk" then
+			
+			local VirtualUser=game:service'VirtualUser'
+			game:service'Players'.LocalPlayer.Idled:connect(function()
+				VirtualUser:CaptureController()
+				VirtualUser:ClickButton2(Vector2.new())
+			end)
+			
 		elseif cmd == Prefix.."Kill" or cmd == Prefix.."kill" then
 			if not game.Players:FindFirstChild(player.Name) then return end if not spinunravel then return end
 
@@ -494,7 +527,7 @@ local cmds = function(msg)
 
 			wait(.2)
 
-			if game.Players[player.Name].Character.Humanoid.Health ~= 0 and samuraidmg then
+			if game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid").Health ~= 0 and samuraidmg then
 				samuraidmg:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"),math.huge,0,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 10)
 			end
 		elseif cmd == Prefix.."Bring" or cmd == Prefix.."bring" then
@@ -537,18 +570,14 @@ local cmds = function(msg)
 
 		elseif cmd == Prefix.."God" or cmd == Prefix.."god" then
 			if not spinunravel then return end
-			autogod = true
 			if player ~= nil then
-				repeat wait()
 					repeat wait() until game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid") and game.Players[player.Name].Character:FindFirstChild("HumanoidRootPart") and not game.Players[player.Name].Character:FindFirstChild("ForceField")
-					if game.Players[player.Name].Character.Humanoid.Health < 100000000 and game.Players[player.Name].Character.Humanoid.Health ~= 0 then
-						spinunravel:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), -math.huge, 0, game.Players[player.Name].Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
-					end	
-				until autogod == false
+					spinunravel:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), -math.huge, 0, game.Players[player.Name].Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
 			elseif player == nil then
+				autogod = true
 				repeat wait()
 					repeat wait() until plr.Character:FindFirstChildOfClass("Humanoid") and not plr.Character:FindFirstChild("ForceField") and plr.Character:FindFirstChild("HumanoidRootPart")
-					if plr.Character.Humanoid.Health < 100000000 and plr.Character.Humanoid.Health ~= 0 then
+					if plr.Character:FindFirstChildOfClass("Humanoid").Health < 100000000 and plr.Character:FindFirstChildOfClass("Humanoid").Health ~= 0 then
 						spinunravel:FireServer(plr.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), -math.huge, 0, plr.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
 					end	
 				until autogod == false
@@ -558,10 +587,10 @@ local cmds = function(msg)
 			if not heal then return end
 
 			if player ~= nil then
-				heal:FireServer(game.Players[player.Name].Character.Humanoid,CFrame.new(100000000000, 1111.13892, -19.8408966, -0.192829564, -0.955851674, -0.221729204, 0.155828059, 0.193271622, -0.968691707, 0.968779564, -0.221344039, 0.111680053),1,.25,Vector3.new(39.2514496, 2.36321148e-06, -30.9729347),.25,"rbxassetid://1202656211",1.3333333333333,.9)
+				heal:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"),CFrame.new(100000000000, 1111.13892, -19.8408966, -0.192829564, -0.955851674, -0.221729204, 0.155828059, 0.193271622, -0.968691707, 0.968779564, -0.221344039, 0.111680053),1,.25,Vector3.new(39.2514496, 2.36321148e-06, -30.9729347),.25,"rbxassetid://1202656211",1.3333333333333,.9)
 			elseif player == nil then
 				autogod = false
-				heal:FireServer(plr.Character.Humanoid,CFrame.new(100000000000, 1111.13892, -19.8408966, -0.192829564, -0.955851674, -0.221729204, 0.155828059, 0.193271622, -0.968691707, 0.968779564, -0.221344039, 0.111680053),1,.25,Vector3.new(39.2514496, 2.36321148e-06, -30.9729347),.25,"rbxassetid://1202656211",1.3333333333333,.9)
+				heal:FireServer(plr.Character:FindFirstChildOfClass("Humanoid"),CFrame.new(100000000000, 1111.13892, -19.8408966, -0.192829564, -0.955851674, -0.221729204, 0.155828059, 0.193271622, -0.968691707, 0.968779564, -0.221344039, 0.111680053),1,.25,Vector3.new(39.2514496, 2.36321148e-06, -30.9729347),.25,"rbxassetid://1202656211",1.3333333333333,.9)
 			end
 
 		elseif cmd == Prefix.."Mute" or cmd == Prefix.."mute" then
@@ -593,38 +622,35 @@ local cmds = function(msg)
 
 			while wait() do
 				repeat wait() until plr.Character:FindFirstChildOfClass("Humanoid") and plr.Character:FindFirstChild("HumanoidRootPart")
-				if plr.Character.Humanoid.PlatformStand == true then
-					plr.Character.Humanoid.PlatformStand = false
+				if plr.Character:FindFirstChildOfClass("Humanoid").PlatformStand == true then
+					plr.Character:FindFirstChildOfClass("Humanoid").PlatformStand = false
 				end
-				if plr.Character.Humanoid.WalkSpeed == 0 then
-					plr.Character.Humanoid.WalkSpeed = 16
+				if plr.Character:FindFirstChildOfClass("Humanoid").WalkSpeed == 0 then
+					plr.Character:FindFirstChildOfClass("Humanoid").WalkSpeed = 16
 				end
-				if plr.Character.Humanoid.JumpPower == 0 then
-					plr.Character.Humanoid.JumpPower = 16
-				end
-				if plr.Character.HumanoidRootPart:FindFirstChildOfClass("BodyVelocity") then
-					plr.Character.HumanoidRootPart:FindFirstChildOfClass("BodyVelocity"):Destroy()
+				if plr.Character:FindFirstChildOfClass("Humanoid").JumpPower == 0 then
+					plr.Character:FindFirstChildOfClass("Humanoid").JumpPower = 16
 				end
 				for i,v in pairs(plr.Character.HumanoidRootPart:GetChildren()) do
-					if v:IsA("BodyVelocity") or v:IsA("BodyAngularVelocity") or v:IsA("BodyForce") or v:IsA("BodyGyro") or v:IsA("BodyThrust") then
+					if v:IsA("BodyVelocity") or v:IsA("BodyGyro") or v:IsA("RocketPropulsion") or v:IsA("BodyThrust") or v:IsA("BodyAngularVelocity") or v:IsA("AngularVelocity") or v:IsA("BodyForce") or v:IsA("VectorForce") or v:IsA("LineForce") then
 						v:Destroy()
 					end
 				end
 			end
 
 		elseif cmd == Prefix.."Nocooldown" or cmd == Prefix.."nocooldown" or cmd == Prefix.."Nocd" or cmd == Prefix.."nocd" or cmd == Prefix.."Ncd" or cmd == Prefix.."ncd" then
-			-------
+			
 			if nocd == true then return end
 			nocd = true
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGNOCD"))()
-			-------
+			
 		elseif cmd == Prefix.."Lag" or cmd == Prefix.."lag" then
-			-------
+			
 			if not lagremote then return end
 			repeat wait()
 				lagremote:FireServer()
 			until lag == false
-			-------
+			
 		elseif cmd == Prefix.."Noscope" or cmd == Prefix.."noscope" then
 
 			music:FireServer(plr.Character.Head, "rbxassetid://3475378657", 10,  -math.huge, 0)
@@ -632,9 +658,9 @@ local cmds = function(msg)
 
 		elseif cmd == Prefix.."Unlag" or cmd == Prefix.."unlag" then
 			lag = false
-			plr.Character.Humanoid.Health = 0
+			plr.Character:FindFirstChildOfClass("Humanoid").Health = 0
 		elseif cmd == Prefix.."Antits" or cmd == Prefix.."antits" then
-			-------
+			
 			while wait() do
 				repeat wait() until plr.Character:FindFirstChildOfClass("Humanoid") and plr.Character:FindFirstChild("HumanoidRootPart")
 				if plr.Character.Torso.Anchored == true then
@@ -651,13 +677,13 @@ local cmds = function(msg)
 					end
 				end
 			end
-			-------
+			
 		elseif cmd == Prefix.."Rejoin" or cmd == Prefix.."rejoin" then
 
 			game:GetService("TeleportService"):Teleport(game.PlaceId, plr)
 
 		elseif cmd == Prefix.."Dex" or cmd == Prefix.."dex" then
-			-------
+			
 			local find = game.CoreGui:FindFirstChild("Dex")
 			if find then
 				find:Destroy()
@@ -704,16 +730,16 @@ local cmds = function(msg)
 
 				Load(Dex)
 			end
-			-------
+			
 		elseif cmd == Prefix.."Ragdoll" or cmd == Prefix.."ragdoll" then
-			-------
+			
 			if not game.Players:FindFirstChild(player.Name) then return end if not spinunravel and not knock then return end
 
 			spinunravel:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0),-math.huge, 0, plr.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
 			wait(.5)
 			spinunravel:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), math.huge, 0, plr.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
 			knock:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"))
-			-------
+			
 		elseif cmd == Prefix.."Visible" or cmd == Prefix.."visible" then
 			if not game.Players:FindFirstChild(player.Name) then return end if not transparency then return end
 
@@ -725,16 +751,15 @@ local cmds = function(msg)
 			visible(1)
 
 		elseif cmd == Prefix.."Tpmenu" or cmd == Prefix.."tpmenu" then
-			-------
+			
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGDEX"))()
-			-------	
+				
 		end
 	end))
 end
 
-game:GetService("UserInputService").InputBegan:connect(function(input, chat)
-	if input.KeyCode == Enum.KeyCode.Semicolon then
-		if chat and not TextBox:IsFocused() then return end
+game:GetService("UserInputService").InputBegan:connect(function(input)
+	if input.KeyCode == Enum.KeyCode.Semicolon and not TextBox:IsFocused() then
 		TextBox:CaptureFocus()
 		Commands.CanvasPosition = Vector2.new(0, 0)
 		maximize()
