@@ -399,10 +399,10 @@ local noscopefx = function(player)
 		music:FireServer(plr.Character.Head, "rbxassetid://362846090", 10,  -math.huge, 0)
 	end
 	if damage then
-		damage:FireServer(game.Players[player.Name].Character.Humanoid,game.Players[player.Name].Character.HumanoidRootPart.CFrame,0,0.25,game.Players[player.Name].Character.HumanoidRootPart.CFrame.LookVector * -200,0.075,"rbxassetid://137579113",1.1,.44)
+		damage:FireServer(game.Players[player.Name].Character.Humanoid,CFrame.new(math.huge,0,0),0,0.25,game.Players[player.Name].Character.HumanoidRootPart.CFrame.LookVector * -200,0.075,"rbxassetid://137579113",1.1,.44)
 	end
 	if xblaster then
-		xblaster:FireServer(game.Players[player.Name].Character.Humanoid,game.Players[player.Name].Character.HumanoidRootPart.CFrame,0,0.25,game.Players[player.Name].Character.HumanoidRootPart.CFrame.LookVector * -200,0.075,"rbxassetid://137579113",1.1,.44)
+		xblaster:FireServer(game.Players[player.Name].Character.Humanoid)
 	end
 	if knock then
 		knock:FireServer(game.Players[player.Name].Character:FindFirstChildOfClass("Humanoid"))
