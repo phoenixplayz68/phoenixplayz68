@@ -205,8 +205,6 @@ local getremote = function(name)
 	for i,v in pairs(game.ReplicatedStorage:GetDescendants()) do
 		if v.Name == name and v:IsA("RemoteEvent") and v.Parent.Name ~= "Properties" then
 			return v
-		else
-			return nil
 		end
 	end
 end
@@ -227,7 +225,7 @@ local xblaster = getremote("DamageXBlaster")
 
 
 local create = function(cmd,name,remote)
-	if remote == nil then return end
+	if remote == nil or remote == false then return end
 	local clone = Commands.Template:Clone()
 	local val = Instance.new("BoolValue")
 	val.Parent = clone
