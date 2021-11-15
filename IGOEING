@@ -256,6 +256,9 @@ create("Invisible/Visible","visible invisible",transparency)
 create("Mute [Player]","mute",true)
 create("Bring [Player]","bring",swap)
 create("Goto [Player]","goto",true)
+if game.GameId == 1735669539 then
+	create("Kick [Player]","kick",true)
+end
 create("Music [ID]","music",music)
 create("Untimestop","untimestop",true)
 create("Nostun","nostun",true)
@@ -608,7 +611,24 @@ local cmds = function(msg)
 				autogod = false
 				heal:FireServer(plr.Character:FindFirstChildOfClass("Humanoid"),CFrame.new(100000000000, 1111.13892, -19.8408966, -0.192829564, -0.955851674, -0.221729204, 0.155828059, 0.193271622, -0.968691707, 0.968779564, -0.221344039, 0.111680053),1,.25,Vector3.new(39.2514496, 2.36321148e-06, -30.9729347),.25,"rbxassetid://1202656211",1.3333333333333,.9)
 			end
-
+			
+		elseif cmd == Prefix.."Kick" or cmd == Prefix.."kick" then
+			if game.GameId ~= 1735669539 then return end
+			
+			local tool = workspace.SpawnedItems:FindFirstChildOfClass("Tool")
+			if tool:FindFirstChildOfClass("LocalScript") then
+				tool:FindFirstChildOfClass("LocalScript"):Destroy()
+			end
+			
+			for i,v in pairs(tool:GetDescendants()) do
+				if v:IsA("BasePart") then
+					v.Anchored = false
+					v.CFrame = plr.Character.HumanoidRootPart.CFrame
+				end
+			end
+			
+			setclipboard("!giveitem "..player.Name)
+			
 		elseif cmd == Prefix.."Mute" or cmd == Prefix.."mute" then
 			if not game.Players:FindFirstChild(player.Name) then return end
 
