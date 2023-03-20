@@ -320,6 +320,8 @@ task.spawn(function()
 		if nocd then
 			b=nil 
 			return a(b)
+		else
+			return b
 		end
 	end)
 end)
