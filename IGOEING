@@ -287,6 +287,7 @@ local unautogod = {}
 local loopkill = {}
 
 local muted = {}
+local clientmuted = {}
 local lockServer = false
 local FLYING = false
 
@@ -414,29 +415,30 @@ local commands = {
 	
 	[23]={name="In/Visible", find = "invisible visible appear vanish", details = "where am I?", existence = transparency},
 	[24]={name="Un/Mute", find = "mute unmute", details = "BRO SHUTUP GODDDD", existence = true},
-	[25]={name="Goto/Bring [Player]", find = "goto bring", details = "Goes to/Brings the player", existence = swap},
-	[26]={name="fBring [Player]", find = "fbring", details = "Brings and freezes the player", existence = swap},
-	[27]={name="Swap [Player]", find = "swap", details = "Swaps your positions", existence = swap},
-	[28]={name="Walkspeed [Player]", find = "walkspeed speed ws", details = "Changes players speed", existence = true},
-	[29]={name="Un/Fly", find = "fly unfly", details = "TO INFINITY, AND BEYOND!!", existence = true},
-	[30]={name="Flyspeed [Num]", find = "flyspeed", details = "Changes your flying speed", existence = true},
-	[31]={name="Music [ID]", find = "music", details = "Plays Music of choice", existence = music},
-	[32]={name="Pose", find = "pose", details = "Plays pose Music", existence = music},
+	[25]={name="Un/ClientMute", find = "clientmute cmute unclientmute uncmute", details = "BRO SHUTUP GODDDD", existence = true},
+	[26]={name="Goto/Bring [Player]", find = "goto bring", details = "Goes to/Brings the player", existence = swap},
+	[27]={name="fBring [Player]", find = "fbring", details = "Brings and freezes the player", existence = swap},
+	[28]={name="Swap [Player]", find = "swap", details = "Swaps your positions", existence = swap},
+	[29]={name="Walkspeed [Player]", find = "walkspeed speed ws", details = "Changes players speed", existence = true},
+	[30]={name="Un/Fly", find = "fly unfly", details = "TO INFINITY, AND BEYOND!!", existence = true},
+	[31]={name="Flyspeed [Num]", find = "flyspeed", details = "Changes your flying speed", existence = true},
+	[32]={name="Music [ID]", find = "music", details = "Plays Music of choice", existence = music},
+	[33]={name="Pose", find = "pose", details = "Plays pose Music", existence = music},
 	
-	[33]={name="Un/Lag", find = "lag", details = "Lags the game", existence = lagremote or lagremote2},
-	[34]={name="Crash", find = "crash", details = "Crashes the game", existence = lagremote or lagremote2},
-	[35]={name="Un/Serverlock", find = "serverlock unserverlock", details = "Locks the server", existence = spinunravel},
+	[34]={name="Un/Lag", find = "lag", details = "Lags the game", existence = lagremote or lagremote2},
+	[35]={name="Crash", find = "crash", details = "Crashes the game", existence = lagremote or lagremote2},
+	[36]={name="Un/Serverlock", find = "serverlock unserverlock", details = "Locks the server", existence = spinunravel},
 	
-	[36]={name="DamageMult", find = "damagemult dmgmult", details = "Damage Multiplier", existence = true},
-	[37]={name="HealMult", find = "healmult hlmult", details = "Healing Multiplier", existence = true},
+	[37]={name="DamageMult", find = "damagemult dmgmult", details = "Damage Multiplier", existence = true},
+	[38]={name="HealMult", find = "healmult hlmult", details = "Healing Multiplier", existence = true},
 	
-	[38]={name="AntiAFK", find = "antiafk", details = "Doesn't kick you when AFK", existence = true},
-	[39]={name="Rejoin", find = "rejoin", details = "Rejoins current server", existence = true},
-	[40]={name="Refresh", find = "refresh", details = "Refreshes your Character", existence = true},
-	[41]={name="Panic", find = "panic", details = "Disables every enabled CMD", existence = true},
-	[42]={name="TPMenu", find = "tpmenu", details = "Item teleport Menu", existence = true},
-	[43]={name="Arrow", find = "arrow", details = "Uses Arrow", existence = true},
-	[44]={name="Roka", find = "Roka", details = "Uses Roka", existence = true},
+	[39]={name="AntiAFK", find = "antiafk", details = "Doesn't kick you when AFK", existence = true},
+	[40]={name="Rejoin", find = "rejoin", details = "Rejoins current server", existence = true},
+	[41]={name="Refresh", find = "refresh", details = "Refreshes your Character", existence = true},
+	[42]={name="Panic", find = "panic", details = "Disables every enabled CMD", existence = true},
+	[43]={name="TPMenu", find = "tpmenu", details = "Item teleport Menu", existence = true},
+	[44]={name="Arrow", find = "arrow", details = "Uses Arrow", existence = true},
+	[45]={name="Roka", find = "Roka", details = "Uses Roka", existence = true},
 }
 
 for i = 1,#commands do
@@ -561,6 +563,7 @@ local panic = function()
 	loopkill = {}
 
 	muted = {}
+	clientmuted = {}
 	lockServer = false
 	FLYING = false
 
@@ -603,11 +606,11 @@ local refresh = function()
 	end)
 end
 
-local mute = function(player,part)
+local mute = function(player,part,client)
 	if player then
 		for i,v in pairs(player:GetDescendants()) do
 			if v:IsA("Sound") then
-				v:Stop()
+				if client then v.Volume=0 else v:Stop() end
 			end
 		end
 	end
@@ -863,6 +866,17 @@ local functions = {
 			end
 		end
 	end,
+	["ClientMute"] = function(Type,player)
+		if Type==true then
+			if not table.find(clientmuted,player.Name) then
+				table.insert(clientmuted,player.Name)
+			end
+		else
+			if table.find(clientmuted,player.Name) then
+				table.remove(clientmuted,table.find(clientmuted,player.Name))
+			end
+		end
+	end,
 	["Teleport"] = function(Type,player)
 		if Type==Prefix.."goto" then
 			plr.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame
@@ -1086,6 +1100,8 @@ local cmds = function(cmd,cmd2,cmd3,player)
 			functions.Visible(cmd==Prefix.."invisible" or cmd==Prefix.."vanish")
 		elseif (cmd==Prefix.."mute" or cmd==Prefix.."unmute") and not wasnil then
 			functions.Mute(cmd==Prefix.."mute",player)
+		elseif (cmd==Prefix.."clientmute" or cmd==Prefix.."cmute" or cmd==Prefix.."unclientmute" or cmd==Prefix.."uncmute") and not wasnil then
+			functions.ClientMute(cmd==Prefix.."clientmute" or cmd==Prefix.."cmute",player)
 		elseif (cmd==Prefix.."goto" or cmd==Prefix.."bring" or cmd==Prefix.."fbring") and not wasnil then
 			functions.Teleport(cmd,player)
 		elseif cmd==Prefix.."swap" and not wasnil then
@@ -1251,7 +1267,14 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 			local player=game.Players:FindFirstChild(v)
 			if player then
 				local otherChar = player.Character or player.CharacterAdded:Wait()
-				mute(otherChar)
+				mute(otherChar,false)
+			end
+		end)
+		doLoop(clientmuted,function(i,v)
+			local player=game.Players:FindFirstChild(v)
+			if player then
+				local otherChar = player.Character or player.CharacterAdded:Wait()
+				mute(otherChar,true)
 			end
 		end)
 	end
