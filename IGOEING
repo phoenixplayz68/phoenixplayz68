@@ -297,10 +297,8 @@ local lag = false
 local crash = false
 local noscoping = false
 
-local damaging = false
-local dmgmult = 10
-local healthbuff = false
-local hlthmult = 10
+local dmgmult = 0
+local hlthmult = 0
 
 local killaura = false
 local flingaura = false
@@ -322,12 +320,12 @@ task.spawn(function()
 	meta.__namecall = newcclosure(function(self,...)
 		local method = getnamecallmethod()
 		local args = {...}
-		if method == "FireServer" and (self.Name == "Damage" or self.Name == "Damage2"or self.Name == "Damage3" or self.Name == "Damage4"  or self.Name == "Damage5"  or self.Name == "Damage6"or self.Name == "Damage7"or self.Name == "Damage8" or self.Name == "Damage9"or self.Name == "Damage10"or self.Name == "Damage11" or self.Name == "Damage12" or self.Name == "Damage13" or self.Name == "Damage14" or self.Name == "Damage15" or self.Name == "Damage16" or self.Name == "Damage17" or self.Name == "Damage18" or self.Name == "Damage19" or self.Name == "Damage20" or self.Name == "Damage21" or self.Name == "Damage22" or self.Name == "Damage23" or self.Name == "Damage24" or self.Name == "Damage25" or self.Name == "Damage26" or self.Name == "Damage27" or self.Name == "Damage28" or self.Name == "Damage29" or self.Name == "Damage30" or self.Name == "Damage31" or self.Name == "MIHKnife" or self.Name == "MIHDamage" or self.Name == "AnubisDamage" or self.Name == "AnubisDamage2" or self.Name == "AnubisPin" or self.Name == "D4CBomb" or self.Name == "OHBlast" or self.Name == "Iggy" or self.Name == "SamuraiDamage2" or self.Name == "SamuraiDamage3" or self.Name == "Slash") and damaging then
+		if method == "FireServer" and (string.find(string.lower(self.Name),"damage") or self.Name == "MIHKnife" or self.Name == "AnubisPin" or self.Name == "D4CBomb" or self.Name == "OHBlast" or self.Name == "Iggy" or self.Name == "Slash") then
 			for i = -dmgmult, -1 do
 				old(self,...)
 			end
 			return old(self,...)
-		elseif method == "FireServer" and (self.Name == "Heal" or self.Name == "Heal2"or self.Name == "Heal3" or self.Name == "Heal4"  or self.Name == "Heal5"  or self.Name == "Heal6"or self.Name == "Heal7") and healthbuff then
+		elseif method == "FireServer" and string.find(string.lower(self.Name),"heal") and not string.find(string.lower(self.Name),"health") then
 			for i = -hlthmult, -1 do
 				old(self,...)
 			end
@@ -417,8 +415,8 @@ local commands = {
 	[23]={name="Invisible/Visible", find = "invisible visible appear vanish", details = "where am I?", existence = transparency},
 	[24]={name="Mute/Unmute", find = "mute unmute", details = "BRO SHUTUP GODDDD", existence = true},
 	[25]={name="Goto/Bring [Player]", find = "goto bring", details = "Goes to/Brings the player", existence = swap},
-	[26]={name="fBring [Player]", find = "fbring", details = "Brings and freezes the player", existence = swap}, --TODO
-	[27]={name="Swap [Player]", find = "swap", details = "Swaps your positions", existence = swap}, --TODO
+	[26]={name="fBring [Player]", find = "fbring", details = "Brings and freezes the player", existence = swap},
+	[27]={name="Swap [Player]", find = "swap", details = "Swaps your positions", existence = swap},
 	[28]={name="Walkspeed [Player]", find = "walkspeed speed ws", details = "Changes players speed", existence = true},
 	[29]={name="Fly/UnFly", find = "fly unfly", details = "TO INFINITY, AND BEYOND!!", existence = true},
 	[30]={name="Flyspeed [Num]", find = "flyspeed", details = "Changes your flying speed", existence = true},
@@ -429,18 +427,16 @@ local commands = {
 	[34]={name="Crash", find = "crash", details = "Crashes the game", existence = lagremote or lagremote2},
 	[35]={name="Serverlock/UnServerlock", find = "serverlock unserverlock", details = "Locks the server", existence = spinunravel},
 	
-	[36]={name="Damage/UnDamage", find = "damage dmg undamage undmg", details = "Buffs Damage", existence = true},
-	[37]={name="DamageMult", find = "damagemult dmgmult", details = "Damage buff Multiplier - DFLT:10", existence = true}, --TODO
-	[38]={name="HealthBuff/UnHealthBuff", find = "healthbuff unhealthbuff hlthbuff unhlthbuff", details = "Buffs Healing attacks", existence = true}, --TODO
-	[39]={name="HealthMult", find = "healthmult hlthmult", details = "Health buff Multiplier - DFLT:10", existence = true}, --TODO
+	[36]={name="DamageMult", find = "damagemult dmgmult", details = "Damage Multiplier", existence = true},
+	[37]={name="HealMult", find = "healmult hlmult", details = "Healing Multiplier", existence = true},
 	
-	[40]={name="AntiAFK", find = "antiafk", details = "Doesn't kick you when AFK", existence = true},
-	[41]={name="Rejoin", find = "rejoin", details = "Rejoins current server", existence = true},
-	[42]={name="Refresh", find = "refresh", details = "Refreshes your Character", existence = true},
-	[43]={name="Panic", find = "panic", details = "Disables every enabled CMD", existence = true},
-	[44]={name="TPMenu", find = "tpmenu", details = "Item teleport Menu", existence = true},
-	[45]={name="Arrow", find = "arrow", details = "Uses Arrow", existence = true},
-	[46]={name="Roka", find = "Roka", details = "Uses Roka", existence = true},
+	[38]={name="AntiAFK", find = "antiafk", details = "Doesn't kick you when AFK", existence = true},
+	[39]={name="Rejoin", find = "rejoin", details = "Rejoins current server", existence = true},
+	[40]={name="Refresh", find = "refresh", details = "Refreshes your Character", existence = true},
+	[41]={name="Panic", find = "panic", details = "Disables every enabled CMD", existence = true},
+	[42]={name="TPMenu", find = "tpmenu", details = "Item teleport Menu", existence = true},
+	[43]={name="Arrow", find = "arrow", details = "Uses Arrow", existence = true},
+	[44]={name="Roka", find = "Roka", details = "Uses Roka", existence = true},
 }
 
 for i = 1,#commands do
@@ -575,9 +571,7 @@ local panic = function()
 	crash = false
 	noscoping = false
 
-	damaging = false
 	dmgmult = 10
-	healthbuff = false
 	hlthmult = 10
 
 	killaura = false
@@ -609,21 +603,12 @@ local refresh = function()
 	end)
 end
 
-local mute = function(plr,part)
-	if plr then
-		if part.Name == "Stand" then
-			if plr.Character:FindFirstChild(part) then
-				for i,v in pairs(plr.Character[part].StandHumanoidRootPart:GetChildren()) do
-					if v:IsA("Sound") then if v.Playing == true then v.Playing = false end end
-				end
+local mute = function(player,part)
+	if player then
+		for i,v in pairs(player:GetDescendants()) do
+			if v:IsA("Sound") then
+				v:Stop()
 			end
-		else
-			if plr.Character:FindFirstChild(part) then
-				for i,v in pairs(plr.Character:FindFirstChild(part):GetChildren()) do
-					if v:IsA("Sound") then if v.Playing == true then v.Playing = false end end
-				end
-			end
-
 		end
 	end
 end
@@ -981,14 +966,8 @@ local functions = {
 		lockServer=Type
 		if Type==false then banished={} end
 	end,
-	["Damage"] = function(Type)
-		damaging=Type
-	end,
 	["DmgMult"] = function(Val)
 		dmgmult=tonumber(Val) or 10
-	end,
-	["HealthBuff"] = function(Type)
-		healthbuff=Type
 	end,
 	["HlthMult"] = function(Val)
 		hlthmult=tonumber(Val) or 10
@@ -1125,13 +1104,9 @@ local cmds = function(cmd,cmd2,cmd3,player)
 			functions.Crash()
 		elseif cmd==Prefix.."serverlock" or cmd==Prefix.."unserverlock" then
 			functions.ServerLock(cmd==Prefix.."serverlock")
-		elseif cmd==Prefix.."damage" or cmd==Prefix.."dmg" or cmd==Prefix.."undamage" or cmd==Prefix.."undmg" then
-			functions.Damage(cmd==Prefix.."damage" or cmd==Prefix.."dmg")
 		elseif (cmd==Prefix.."damagemult" or cmd==Prefix.."dmgmult") and cmd2 then
 			functions.DmgMult(cmd2)
-		elseif cmd==Prefix.."healthbuff" or cmd==Prefix.."hlthbuff" or cmd==Prefix.."unhealthbuff" or cmd==Prefix.."unhlthbuff" then
-			functions.HealthBuff(cmd==Prefix.."healthbuff" or cmd==Prefix.."hlthbuff")
-		elseif (cmd==Prefix.."healthmult" or cmd==Prefix.."hlthbuff") and cmd2 then
+		elseif (cmd==Prefix.."healmult" or cmd==Prefix.."hlbuff") and cmd2 then
 			functions.HlthMult(cmd2)
 		elseif cmd==Prefix.."antiafk" then
 			functions.AntiAFK()
@@ -1273,11 +1248,7 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 		doLoop(muted,function(i,v)
 			if not game.Players:FindFirstChild(v) then table.remove(muted,table.find(muted,v)) return end
 			local player=game.Players:FindFirstChild(v)
-			mute(player,player.HumanoidRootPart)
-			mute(player,player.Torso)
-			if player.Character:FindFirstChild("Stand") then
-				mute(player,player.Stand)
-			end
+			mute(player)
 		end)
 	end
 	
