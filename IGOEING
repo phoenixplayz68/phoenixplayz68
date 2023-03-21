@@ -1106,7 +1106,7 @@ local cmds = function(cmd,cmd2,cmd3,player)
 			functions.ServerLock(cmd==Prefix.."serverlock")
 		elseif (cmd==Prefix.."damagemult" or cmd==Prefix.."dmgmult") and cmd2 then
 			functions.DmgMult(cmd2)
-		elseif (cmd==Prefix.."healmult" or cmd==Prefix.."hlbuff") and cmd2 then
+		elseif (cmd==Prefix.."healmult" or cmd==Prefix.."hlmult") and cmd2 then
 			functions.HlthMult(cmd2)
 		elseif cmd==Prefix.."antiafk" then
 			functions.AntiAFK()
