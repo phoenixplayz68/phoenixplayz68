@@ -412,14 +412,14 @@ local commands = {
 	[19]={name="Antits/UnAntits", find = "antits unantits", details = "Timestop doesn't effect you", existence = true},
 	[20]={name="AntiDisable/UnAntiDisable", find = "antidisable unantidisable", details = "Can't be disabled", existence = true},
 	[21]={name="Untimestop", find = "untimestop", details = "RTZ Timestop", existence = rtz},
-	[22]={name="Nocooldown/UnNocooldown", find = "nocooldown unnocooldown ncd unncd nocd unnocd", details = "No attack cooldowns", existence = true},
+	[22]={name="Nocooldown", find = "nocooldown unnocooldown ncd unncd nocd unnocd", details = "No attack cooldowns", existence = true},
 	
 	[23]={name="Invisible/Visible", find = "invisible visible appear vanish", details = "where am I?", existence = transparency},
 	[24]={name="Mute/Unmute", find = "mute unmute", details = "BRO SHUTUP GODDDD", existence = true},
 	[25]={name="Goto/Bring [Player]", find = "goto bring", details = "Goes to/Brings the player", existence = swap},
 	[26]={name="fBring [Player]", find = "fbring", details = "Brings and freezes the player", existence = swap}, --TODO
 	[27]={name="Swap [Player]", find = "swap", details = "Swaps your positions", existence = swap}, --TODO
-	[28]={name="Walkspeed [Player]", find = "walkspeed speed ws", details = "Goes to/Brings the player", existence = true},
+	[28]={name="Walkspeed [Player]", find = "walkspeed speed ws", details = "Changes players speed", existence = true},
 	[29]={name="Fly/UnFly", find = "fly unfly", details = "TO INFINITY, AND BEYOND!!", existence = true},
 	[30]={name="Flyspeed [Num]", find = "flyspeed", details = "Changes your flying speed", existence = true},
 	[31]={name="Music [ID]", find = "music", details = "Plays Music of choice", existence = music},
@@ -861,8 +861,8 @@ local functions = {
 	["Nocooldown"] = function(Type)
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGNOCD"))()
 	end,
-	["Visible"] = function(Num,Thing)
-		local vis=Num==nil and (Thing==true and 1 or Thing==false and 0) or Num
+	["Visible"] = function(thing)
+		local vis=thing==true and 1 or 0
 		visible(vis)
 	end,
 	["Mute"] = function(Type,player)
