@@ -1248,9 +1248,11 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 		end)
 		
 		doLoop(muted,function(i,v)
-			if not game.Players:FindFirstChild(v) then table.remove(muted,table.find(muted,v)) return end
 			local player=game.Players:FindFirstChild(v)
-			mute(player)
+			if player then
+				local otherChar = player.Character or player.CharacterAdded:Wait()
+				mute(otherChar)
+			end
 		end)
 	end
 	
