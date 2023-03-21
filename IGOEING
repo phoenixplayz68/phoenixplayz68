@@ -762,7 +762,7 @@ local functions = {
 		if not heal2 and not heal then return end
 		local thing=player.Character.Humanoid
 		if spinunravel then
-			spinunravel:FireServer(thing, CFrame.new(0,0,0), thing.MaxHealth-thing.Health, 0, plr.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
+			spinunravel:FireServer(thing, CFrame.new(0,0,0), thing.Health-thing.MaxHealth, 0, plr.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
 		elseif heal2 then
 			for i = 1,5 do 
 				heal2:FireServer(thing,CFrame.new(math.huge,0,0),60,0,"rbxassetid://245751634",0.075,Color3.new(255, 255, 0),"rbxassetid://2914074987",2.2,0.4)
