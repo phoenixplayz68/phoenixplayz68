@@ -293,7 +293,6 @@ local FLYING = false
 local antits = false
 local antidisable = false
 
-local nocd = false
 local lag = false
 local crash = false
 local noscoping = false
@@ -314,17 +313,7 @@ local QEfly = true
 local iyflyspeed = 1
 local vehicleflyspeed = 1
 
-task.spawn(function()
-	local a 
-	a=hookfunc(wait,function(b)
-		if nocd then
-			b=nil 
-			return a(b)
-		else
-			return b
-		end
-	end)
-end)
+local a=nil
 
 task.spawn(function()
 	local meta = getrawmetatable(game)
@@ -582,7 +571,6 @@ local panic = function()
 	antits = false
 	antidisable = false
 
-	nocd = false
 	lag = false
 	crash = false
 	noscoping = false
@@ -871,7 +859,7 @@ local functions = {
 		rtz:FireServer()
 	end,
 	["Nocooldown"] = function(Type)
-		nocd=Type
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGNOCD"))()
 	end,
 	["Visible"] = function(Num,Thing)
 		local vis=Num==nil and (Thing==true and 1 or Thing==false and 0) or Num
