@@ -392,7 +392,7 @@ local commands = {
 	[1]={name="Un/God [Player]", find = "god ungod", details = "Gives the player God mode", existence = spinunravel},
 	[2]={name="Un/AutoGod [Player]", find = "autogod unautogod", details = "Gives the player Auto God mode", existence = spinunravel},
 	[3]={name="Kill [Player]", find = "kill", details = "Kills the player", existence = spinunravel},
-	[4]={name="Un/LoopKill [Player]", find = "kill", details = "Kills the player", existence = spinunravel},
+	[4]={name="Un/LoopKill [Player]", find = "kill", details = "Loop kills the player", existence = spinunravel},
 	[5]={name="Un/KillAura", find = "killaura unkillaura", details = "Kills any nearby player", existence = spinunravel},
 	[6]={name="Fling [Player]", find = "fling", details = "cya bro", existence = spinunravel},
 	[7]={name="Un/FlingAura", find = "flingaura flingaura", details = "Flings any nearby player", existence = spinunravel},
