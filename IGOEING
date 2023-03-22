@@ -963,11 +963,19 @@ local functions = {
 		local stand=player.Character:FindFirstChild("Stand")
 		if stand then
 			local standhmr=stand:FindFirstChild("StandHumanoidRootPart")
+			local standvest=stand:FindFirstChild("Vest")
 			if standhmr then
 				if standhmr:FindFirstChild("Theme") then
 					if Type==true then standhmr.Theme:Play() else standhmr.Theme:Stop() end
 				elseif standhmr:FindFirstChild("PoseMusic") then
 					if Type==true then standhmr.PoseMusic:Play() else standhmr.PoseMusic:Stop() end
+				elseif standhmr:FindFirstChild("Music") then
+					if Type==true then standhmr.Music:Play() else standhmr.Music:Stop() end
+				end
+			end
+			if standvest then
+				if standvest:FindFirstChild("Music") then
+					if Type==true then standvest.Music:Play() else standvest.Music:Stop() end
 				end
 			end
 		end
