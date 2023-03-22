@@ -834,11 +834,9 @@ local functions = {
 		end
 	end,
 	["Kick"] = function(player)
-		if not player then return end if not spinunravel then return end
+		if not player then return end if not spinunravel or not samuraidmg then return end
 		spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), -math.huge, 0, player.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
-		spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), math.huge, 0, player.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
-		repeat task.wait() until tostring(player.Character.Humanoid.Health)=="nan"
-		spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), math.huge, 0, player.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
+		samuraidmg:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),math.huge,0,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 10)
 	end,
 	["Noscope"] = function()
 		noscoping=not noscoping
@@ -1304,6 +1302,7 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 			local player=game.Players:FindFirstChild(v)
 			if player then
 				local otherChar = player.Character or player.CharacterAdded:Wait()
+				if otherChar:FindFirstChild("ForceField") then repeat task.wait() until not otherChar:FindFirstChild("ForceField") end
 				if (plr.Character.HumanoidRootPart.Position - player.Character.HumanoidRootPart.Position).magnitude < 9999999 then
 					spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,1000000,Vector3.new(333333333333333330.6399237983, -2.29492244e-07, -4.95887899),"rbxassetid://241837157",.5,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3)
 				end
@@ -1315,10 +1314,9 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 			if player then
 				local otherChar = player.Character or player.CharacterAdded:Wait()
 				otherChar:WaitForChild("Humanoid")
+				if otherChar:FindFirstChild("ForceField") then repeat task.wait() until not otherChar:FindFirstChild("ForceField") end
 				spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), -math.huge, 0, player.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
-				spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), math.huge, 0, player.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
-				repeat task.wait() until tostring(player.Character.Humanoid.Health)=="nan"
-				spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), math.huge, 0, player.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
+				samuraidmg:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),math.huge,0,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 10)
 			end	
 		end)
 		
