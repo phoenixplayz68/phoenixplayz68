@@ -835,7 +835,6 @@ local functions = {
 	end,
 	["Kick"] = function(player)
 		if not player then return end if not spinunravel or not samuraidmg then return end
-		spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), -math.huge, 0, player.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
 		samuraidmg:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),math.huge,0,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 10)
 	end,
 	["Noscope"] = function()
@@ -1314,8 +1313,6 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 			if player then
 				local otherChar = player.Character or player.CharacterAdded:Wait()
 				otherChar:WaitForChild("Humanoid")
-				if otherChar:FindFirstChild("ForceField") then repeat task.wait() until not otherChar:FindFirstChild("ForceField") end
-				spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), -math.huge, 0, player.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
 				samuraidmg:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),math.huge,0,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 10)
 			end	
 		end)
