@@ -285,6 +285,7 @@ local banished = {}
 local autogod = {}
 local unautogod = {}
 local loopkill = {}
+local serverbanned = {}
 
 local muted = {}
 local clientmuted = {}
@@ -388,57 +389,59 @@ create = function(cmd,name,details,remote)
 	wait()
 end
 
-local commands = {
-	[1]={name="Un/God [Player]", find = "god ungod", details = "Gives the player God mode", existence = spinunravel},
-	[2]={name="Un/AutoGod [Player]", find = "autogod unautogod", details = "Gives the player Auto God mode", existence = spinunravel},
-	[3]={name="Kill [Player]", find = "kill", details = "Kills the player", existence = spinunravel},
-	[4]={name="Un/LoopKill [Player]", find = "kill", details = "Loop kills the player", existence = spinunravel},
-	[5]={name="Un/KillAura", find = "killaura unkillaura", details = "Kills any nearby player", existence = spinunravel},
-	[6]={name="Fling [Player]", find = "fling", details = "cya bro", existence = spinunravel},
-	[7]={name="Un/FlingAura", find = "flingaura flingaura", details = "Flings any nearby player", existence = spinunravel},
-	[8]={name="Heal [Player]", find = "heal", details = "Gives health to the player", existence = heal or heal2},
-	[9]={name="Un/AutoHeal", find = "autoheal", details = "Auto heals yourself", existence = heal or heal2},
-	[10]={name="Freeze [Player]", find = "freeze", details = "Freezes the player", existence = spinunravel},
-	[11]={name="Un/Banish [Player]", find = "banish unbanish", details = "BANISHES THEM FROM EXISTENCE", existence = spinunravel},
-	[12]={name="Void [Player]", find = "void", details = "Thanos", existence = spinunravel},
-	[13]={name="Noscope [Player]", find = "noscope", details = "GET NOSCOPED", existence = spinunravel},
-	[14]={name="Un/Deflect", find = "deflect undeflect", details = "Deflects NON OH DMG", existence = deflect or rtz2},
-	[15]={name="Disable [Player]", find = "disable", details = "Disables the player", existence = disable},
-	[16]={name="Deletestand [Player]", find = "deletestand", details = "Deletes players Stand", existence = deletestand},
-	[17]={name="Ragdoll [Player]", find = "ragdoll", details = "TOOK UR SPINE XD", existence = spinunravel and knock},
-	[18]={name="Un/Nostun", find = "nostun unnostun", details = "You can't be stunned", existence = true},
-	[19]={name="Un/Antits", find = "antits unantits", details = "Timestop doesn't effect you", existence = true},
-	[20]={name="Un/AntiDisable", find = "antidisable unantidisable", details = "Can't be disabled", existence = true},
-	[21]={name="Untimestop", find = "untimestop", details = "RTZ Timestop", existence = rtz},
-	[22]={name="Nocooldown", find = "nocooldown unnocooldown ncd unncd nocd unnocd", details = "No attack cooldowns", existence = true},
-	
-	[23]={name="In/Visible", find = "invisible visible appear vanish", details = "where am I?", existence = transparency},
-	[24]={name="Un/Mute", find = "mute unmute", details = "BRO SHUTUP GODDDD", existence = true},
-	[25]={name="Un/ClientMute", find = "clientmute cmute unclientmute uncmute", details = "BRO SHUTUP GODDDD", existence = true},
-	[26]={name="Goto/Bring [Player]", find = "goto bring", details = "Goes to/Brings the player", existence = swap},
-	[27]={name="fBring [Player]", find = "fbring", details = "Brings and freezes the player", existence = swap},
-	[28]={name="Swap [Player]", find = "swap", details = "Swaps your positions", existence = swap},
-	[29]={name="Walkspeed [Player]", find = "walkspeed speed ws", details = "Changes players speed", existence = true},
-	[30]={name="Un/Fly", find = "fly unfly", details = "TO INFINITY, AND BEYOND!!", existence = true},
-	[31]={name="Flyspeed [Num]", find = "flyspeed", details = "Changes your flying speed", existence = true},
-	[32]={name="Music [ID]", find = "music", details = "Plays Music of choice", existence = music},
-	[33]={name="Pose", find = "pose", details = "Plays pose Music", existence = true},
-	
-	[34]={name="Un/Lag", find = "lag", details = "Lags the game", existence = lagremote or lagremote2},
-	[35]={name="Crash", find = "crash", details = "Crashes the game", existence = lagremote or lagremote2},
-	[36]={name="Un/Serverlock", find = "serverlock unserverlock", details = "Locks the server", existence = spinunravel},
-	
-	[37]={name="DamageMult", find = "damagemult dmgmult", details = "Damage Multiplier", existence = true},
-	[38]={name="HealMult", find = "healmult hlmult", details = "Healing Multiplier", existence = true},
-	
-	[39]={name="AntiAFK", find = "antiafk", details = "Doesn't kick you when AFK", existence = true},
-	[40]={name="Rejoin", find = "rejoin", details = "Rejoins current server", existence = true},
-	[41]={name="Refresh", find = "refresh", details = "Refreshes your Character", existence = true},
-	[42]={name="Panic", find = "panic", details = "Disables every enabled CMD", existence = true},
-	[43]={name="TPMenu", find = "tpmenu", details = "Item teleport Menu", existence = true},
-	[44]={name="Arrow", find = "arrow", details = "Uses Arrow", existence = true},
-	[45]={name="Roka", find = "Roka", details = "Uses Roka", existence = true},
-}
+local commands = {}
+commands[#commands+1]={name="Un/God [Player]", find = "god ungod", details = "Gives the player God mode", existence = spinunravel}
+commands[#commands+1]={name="Un/AutoGod [Player]", find = "autogod unautogod", details = "Gives the player Auto God mode", existence = spinunravel}
+commands[#commands+1]={name="InfGod [Player]", find = "infgod", details = "Gives the player NAN Health", existence = spinunravel}
+commands[#commands+1]={name="Kill [Player]", find = "kill", details = "Kills the player", existence = spinunravel}
+commands[#commands+1]={name="Un/LoopKill [Player]", find = "kill", details = "Loop kills the player", existence = spinunravel}
+commands[#commands+1]={name="Un/KillAura", find = "killaura unkillaura", details = "Kills any nearby player", existence = spinunravel}
+commands[#commands+1]={name="Fling [Player]", find = "fling", details = "cya bro", existence = spinunravel}
+commands[#commands+1]={name="Un/FlingAura", find = "flingaura flingaura", details = "Flings any nearby player", existence = spinunravel}
+commands[#commands+1]={name="Heal [Player]", find = "heal", details = "Gives health to the player", existence = heal or heal2}
+commands[#commands+1]={name="Un/AutoHeal", find = "autoheal", details = "Auto heals yourself", existence = heal or heal2}
+commands[#commands+1]={name="Freeze [Player]", find = "freeze", details = "Freezes the player", existence = spinunravel}
+commands[#commands+1]={name="Un/Banish [Player]", find = "banish unbanish", details = "BANISHES THEM FROM EXISTENCE", existence = spinunravel}
+commands[#commands+1]={name="Void [Player]", find = "void", details = "Thanos", existence = spinunravel}
+commands[#commands+1]={name="Kick [Player]", find = "kick", details = "Kicks the player", existence = spinunravel}
+commands[#commands+1]={name="ServerBan [Player]", find = "serverban sban", details = "Bans the player from the server", existence = spinunravel}
+commands[#commands+1]={name="Noscope [Player]", find = "noscope", details = "GET NOSCOPED", existence = spinunravel}
+commands[#commands+1]={name="Un/Deflect", find = "deflect undeflect", details = "Deflects NON OH DMG", existence = deflect or rtz2}
+commands[#commands+1]={name="Disable [Player]", find = "disable", details = "Disables the player", existence = disable}
+commands[#commands+1]={name="Deletestand [Player]", find = "deletestand", details = "Deletes players Stand", existence = deletestand}
+commands[#commands+1]={name="Ragdoll [Player]", find = "ragdoll", details = "TOOK UR SPINE XD", existence = spinunravel and knock}
+commands[#commands+1]={name="Un/Nostun", find = "nostun unnostun", details = "You can't be stunned", existence = true}
+commands[#commands+1]={name="Un/Antits", find = "antits unantits", details = "Timestop doesn't effect you", existence = true}
+commands[#commands+1]={name="Un/AntiDisable", find = "antidisable unantidisable", details = "Can't be disabled", existence = true}
+commands[#commands+1]={name="Untimestop", find = "untimestop", details = "RTZ Timestop", existence = rtz}
+commands[#commands+1]={name="Nocooldown", find = "nocooldown unnocooldown ncd unncd nocd unnocd", details = "No attack cooldowns", existence = true}
+
+commands[#commands+1]={name="In/Visible", find = "invisible visible appear vanish", details = "where am I?", existence = transparency}
+commands[#commands+1]={name="Un/Mute", find = "mute unmute", details = "BRO SHUTUP GODDDD", existence = true}
+commands[#commands+1]={name="Un/ClientMute", find = "clientmute cmute unclientmute uncmute", details = "Mutes them only for you", existence = true}
+commands[#commands+1]={name="Goto/Bring [Player]", find = "goto bring", details = "Goes to/Brings the player", existence = swap}
+commands[#commands+1]={name="fBring [Player]", find = "fbring", details = "Brings and freezes the player", existence = swap}
+commands[#commands+1]={name="Swap [Player]", find = "swap", details = "Swaps your positions", existence = swap}
+commands[#commands+1]={name="Walkspeed [Player]", find = "walkspeed speed ws", details = "Changes players speed", existence = true}
+commands[#commands+1]={name="Un/Fly", find = "fly unfly", details = "TO INFINITY, AND BEYOND!!", existence = true}
+commands[#commands+1]={name="Flyspeed [Num]", find = "flyspeed", details = "Changes your flying speed", existence = true}
+commands[#commands+1]={name="Music [ID]", find = "music", details = "Plays Music of choice", existence = music}
+commands[#commands+1]={name="Pose", find = "pose", details = "Plays pose Music", existence = true}
+
+commands[#commands+1]={name="Un/Lag", find = "lag", details = "Lags the game", existence = lagremote or lagremote2}
+commands[#commands+1]={name="Crash", find = "crash", details = "Crashes the game", existence = lagremote or lagremote2}
+commands[#commands+1]={name="Un/Serverlock", find = "serverlock unserverlock", details = "Locks the server", existence = spinunravel}
+
+commands[#commands+1]={name="DamageMult", find = "damagemult dmgmult", details = "Damage Multiplier", existence = true}
+commands[#commands+1]={name="HealMult", find = "healmult hlmult", details = "Healing Multiplier", existence = true}
+
+commands[#commands+1]={name="AntiAFK", find = "antiafk", details = "Doesn't kick you when AFK", existence = true}
+commands[#commands+1]={name="Rejoin", find = "rejoin", details = "Rejoins current server", existence = true}
+commands[#commands+1]={name="Refresh", find = "refresh", details = "Refreshes your Character", existence = true}
+commands[#commands+1]={name="Panic", find = "panic", details = "Disables every enabled CMD", existence = true}
+commands[#commands+1]={name="TPMenu", find = "tpmenu", details = "Item teleport Menu", existence = true}
+commands[#commands+1]={name="Arrow", find = "arrow", details = "Uses Arrow", existence = true}
+commands[#commands+1]={name="Roka", find = "Roka", details = "Uses Roka", existence = true}
 
 for i = 1,#commands do
 	local thing=commands[i]
@@ -735,6 +738,13 @@ local functions = {
 			table.insert(unautogod,player.Name)
 		end
 	end,
+	["InfGod"] = function(player)
+		if not spinunravel then return end
+		repeat wait() if player==nil then return end until player.Character:FindFirstChildOfClass("Humanoid") and player.Character:FindFirstChild("HumanoidRootPart") and not player.Character:FindFirstChild("ForceField")
+		if player==nil then return end
+		spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), -math.huge, 0, player.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
+		spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), math.huge, 0, player.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
+	end,
 	["Kill"] = function(player)
 		if not spinunravel then return end
 
@@ -802,6 +812,33 @@ local functions = {
 	["Void"] = function(player)
 		if not spinunravel then return end
 		spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,1000000,Vector3.new(333333333333333330.6399237983, -2.29492244e-07, -4.95887899),"rbxassetid://241837157",.5,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3)
+	end,
+	["ServerBan"] = function(Type,player,cmd2)
+		if not player and not cmd2 or player==plr then return end if not spinunravel then return end
+		if Type==true then
+			if not table.find(serverbanned,player.Name) then
+				table.insert(serverbanned,player.Name)
+			end
+		else
+			
+			for i,v in pairs(serverbanned) do
+				if v:lower():sub(1, #cmd2) == cmd2:lower() then
+					player={Name=v}
+					break
+				end
+			end			
+			
+			if table.find(serverbanned,player.Name) then
+				table.remove(serverbanned,table.find(serverbanned,player.Name))
+			end
+		end
+	end,
+	["Kick"] = function(player)
+		if not player then return end if not spinunravel then return end
+		spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), -math.huge, 0, player.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
+		spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), math.huge, 0, player.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
+		repeat task.wait() until tostring(player.Character.Humanoid.Health)=="nan"
+		spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), math.huge, 0, player.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
 	end,
 	["Noscope"] = function()
 		noscoping=not noscoping
@@ -1064,6 +1101,8 @@ local cmds = function(cmd,cmd2,cmd3,player)
 			functions.God(cmd==Prefix.."god",player)
 		elseif cmd==Prefix.."autogod" or cmd==Prefix.."unautogod" then
 			functions.AutoGod(cmd==Prefix.."autogod",player)
+		elseif cmd==Prefix.."infgod" then
+			functions.InfGod(player)
 		elseif cmd==Prefix.."kill" then
 			functions.Kill(player)
 		elseif (cmd==Prefix.."loopkill" or cmd==Prefix.."unloopkill") and not wasnil then
@@ -1084,6 +1123,10 @@ local cmds = function(cmd,cmd2,cmd3,player)
 			functions.Banish(cmd==Prefix.."banish",player)
 		elseif cmd==Prefix.."void" and not wasnil then
 			functions.Void(player)
+		elseif cmd==Prefix.."kick" and not wasnil then
+			functions.Kick(player)
+		elseif (cmd==Prefix.."serverban" or cmd==Prefix.."sban" or cmd==Prefix.."unserverban" or cmd==Prefix.."unsban") then
+			functions.ServerBan(cmd==Prefix.."serverban" or cmd==Prefix.."sban",player,cmd2)
 		elseif cmd==Prefix.."noscope" then
 			functions.Noscope()
 		elseif cmd==Prefix.."deflect" or cmd==Prefix.."undeflect" then
@@ -1194,10 +1237,6 @@ TextBox.FocusLost:Connect(function()
 	IndexContents('',true,false,true)
 end)
 
-plr.Chatted:Connect(function(msg)
-	checkCMD(msg)
-end)
-
 game.Players.PlayerAdded:Connect(function(plr)
 	if lockServer then
 		if not table.find(banished,plr.Name) then
@@ -1269,6 +1308,18 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 					spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,1000000,Vector3.new(333333333333333330.6399237983, -2.29492244e-07, -4.95887899),"rbxassetid://241837157",.5,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3)
 				end
 			end
+		end)
+		
+		doLoop(serverbanned,function(i,v)
+			local player=game.Players:FindFirstChild(v)
+			if player then
+				local otherChar = player.Character or player.CharacterAdded:Wait()
+				otherChar:WaitForChild("Humanoid")
+				spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), -math.huge, 0, player.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
+				spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), math.huge, 0, player.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
+				repeat task.wait() until tostring(player.Character.Humanoid.Health)=="nan"
+				spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), math.huge, 0, player.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
+			end	
 		end)
 		
 		doLoop(muted,function(i,v)
