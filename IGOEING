@@ -606,7 +606,7 @@ local refresh = function()
 	end)
 end
 
-local mute = function(player,part,client)
+local mute = function(player,client)
 	if player then
 		for i,v in pairs(player:GetDescendants()) do
 			if v:IsA("Sound") then
