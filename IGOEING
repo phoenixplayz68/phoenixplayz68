@@ -342,7 +342,6 @@ function checkTT()
 	local guisAtPosition = game.Players.LocalPlayer.PlayerGui:GetGuiObjectsAtPosition(mouse.X, mouse.Y)
 
 	for _, gui in pairs(guisAtPosition) do
-		print(gui)
 		if gui.Parent == Commands then
 			t = gui
 		end
@@ -423,7 +422,7 @@ local commands = {
 	[30]={name="Un/Fly", find = "fly unfly", details = "TO INFINITY, AND BEYOND!!", existence = true},
 	[31]={name="Flyspeed [Num]", find = "flyspeed", details = "Changes your flying speed", existence = true},
 	[32]={name="Music [ID]", find = "music", details = "Plays Music of choice", existence = music},
-	[33]={name="Pose", find = "pose", details = "Plays pose Music", existence = music},
+	[33]={name="Pose", find = "pose", details = "Plays pose Music", existence = true},
 	
 	[34]={name="Un/Lag", find = "lag", details = "Lags the game", existence = lagremote or lagremote2},
 	[35]={name="Crash", find = "crash", details = "Crashes the game", existence = lagremote or lagremote2},
@@ -957,10 +956,11 @@ local functions = {
 			music:FireServer(plr.Character.Head, "rbxassetid://"..ID, 10,  -math.huge, -math.huge)
 		end
 	end,
-	["Pose"] = function(player,Type)
-		if string.lower(Type)~="true" and string.lower(Type)~="false" then Type=true end
-		if string.lower(Type)=="true" then Type=true elseif string.lower(Type)=="false" then Type=false end
-		local stand=player.Character:FindFirstChild("Stand")
+	["Pose"] = function(Type)
+		if Type==nil then Type="play" end
+		if string.lower(Type)~="play" and string.lower(Type)~="stop" then Type=true end
+		if string.lower(Type)=="play" then Type=true elseif string.lower(Type)=="stop" then Type=false end
+		local stand=plr.Character:FindFirstChild("Stand")
 		if stand then
 			local standhmr=stand:FindFirstChild("StandHumanoidRootPart")
 			local standvest=stand:FindFirstChild("Vest")
@@ -1123,7 +1123,7 @@ local cmds = function(cmd,cmd2,cmd3,player)
 		elseif cmd==Prefix.."music" and cmd2 then
 			functions.Music(cmd2)
 		elseif cmd==Prefix.."pose" then
-			functions.Pose(player,cmd2)
+			functions.Pose(cmd2)
 		elseif cmd==Prefix.."lag" or cmd==Prefix.."unlag" then
 			functions.Lag(cmd==Prefix.."lag")
 		elseif cmd==Prefix.."crash" then
