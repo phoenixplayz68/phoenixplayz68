@@ -299,8 +299,10 @@ local lag = false
 local crash = false
 local noscoping = false
 
-local dmgmult = 0
-local hlthmult = 0
+local dmgmult = 1
+local hlthmult = 1
+
+local nocd = false
 
 local killaura = false
 local flingaura = false
@@ -316,6 +318,8 @@ local vehicleflyspeed = 1
 local a=nil
 
 task.spawn(function()
+	local a a=hookfunc(wait,function(b)if nocd then b=nil end return a(b)end)
+	
 	local meta = getrawmetatable(game)
 	local old = meta.__namecall
 	setreadonly(meta,false)
@@ -323,15 +327,23 @@ task.spawn(function()
 		local method = getnamecallmethod()
 		local args = {...}
 		if method == "FireServer" and (string.find(string.lower(self.Name),"damage") or self.Name == "MIHKnife" or self.Name == "AnubisPin" or self.Name == "D4CBomb" or self.Name == "OHBlast" or self.Name == "Iggy" or self.Name == "Slash") then
-			for i = -dmgmult, -1 do
-				old(self,...)
+			if dmgmult==0 then
+				return old(self,{})
+			else
+				for i = -dmgmult+1, -1 do
+					old(self,...)
+				end
+				return old(self,...)
 			end
-			return old(self,...)
 		elseif method == "FireServer" and string.find(string.lower(self.Name),"heal") and not string.find(string.lower(self.Name),"health") then
-			for i = -hlthmult, -1 do
-				old(self,...)
+			if hlthmult==0 then
+				return old(self,{})
+			else
+				for i = -hlthmult+1, -1 do
+					old(self,...)
+				end
+				return old(self,...)
 			end
-			return old(self,...)
 		else
 			return old(self,...)
 		end
@@ -398,6 +410,7 @@ commands[#commands+1]={name="Un/LoopKill [Player]", find = "kill", details = "Lo
 commands[#commands+1]={name="Un/KillAura", find = "killaura unkillaura", details = "Kills any nearby player", existence = spinunravel}
 commands[#commands+1]={name="Fling [Player]", find = "fling", details = "cya bro", existence = spinunravel}
 commands[#commands+1]={name="Un/FlingAura", find = "flingaura flingaura", details = "Flings any nearby player", existence = spinunravel}
+commands[#commands+1]={name="Damage [Player] [Val]", find = "damage dmg", details = "Damages the player", existence = spinunravel}
 commands[#commands+1]={name="Heal [Player]", find = "heal", details = "Gives health to the player", existence = heal or heal2}
 commands[#commands+1]={name="Un/AutoHeal", find = "autoheal", details = "Auto heals yourself", existence = heal or heal2}
 commands[#commands+1]={name="Freeze [Player]", find = "freeze", details = "Freezes the player", existence = spinunravel}
@@ -414,7 +427,7 @@ commands[#commands+1]={name="Un/Nostun", find = "nostun unnostun", details = "Yo
 commands[#commands+1]={name="Un/Antits", find = "antits unantits", details = "Timestop doesn't effect you", existence = true}
 commands[#commands+1]={name="Un/AntiDisable", find = "antidisable unantidisable", details = "Can't be disabled", existence = true}
 commands[#commands+1]={name="Untimestop", find = "untimestop", details = "RTZ Timestop", existence = rtz}
-commands[#commands+1]={name="Nocooldown", find = "nocooldown unnocooldown ncd unncd nocd unnocd", details = "No attack cooldowns", existence = true}
+commands[#commands+1]={name="Un/Nocooldown", find = "nocooldown unnocooldown ncd unncd nocd unnocd", details = "No attack cooldowns", existence = true}
 
 commands[#commands+1]={name="In/Visible", find = "invisible visible appear vanish", details = "where am I?", existence = transparency}
 commands[#commands+1]={name="Un/Mute", find = "mute unmute", details = "BRO SHUTUP GODDDD", existence = true}
@@ -770,6 +783,10 @@ local functions = {
 		if not spinunravel then return end
 		flingaura=Type
 	end,
+	["Damage"] = function(player,val)
+		if not spinunravel or not tonumber(val) or not player then return end
+		spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), val, 0, plr.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
+	end,
 	["Heal"] = function(player)
 		if not heal2 and not heal then return end
 		local thing=player.Character.Humanoid
@@ -882,7 +899,7 @@ local functions = {
 		rtz:FireServer()
 	end,
 	["Nocooldown"] = function(Type)
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGNOCD"))()
+		nocd=Type
 	end,
 	["Visible"] = function(thing)
 		local vis=thing==true and 1 or 0
@@ -940,7 +957,6 @@ local functions = {
 			plr.Character.HumanoidRootPart.Anchored = false
 			plr.Character.HumanoidRootPart.CFrame = location
 			if Type=="fbring" and spinunravel then
-				repeat task.wait() until plr:DistanceFromCharacter(player.Character.HumanoidRootPart.Position) < 15
 				spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), 0, math.huge, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector*0+Vector3.new(0,0,0), 0.05, 0, 1, 2)
 				wait(.2)
 				if not player.Character.HumanoidRootPart:FindFirstChildOfClass("BodyVelocity") and samuraidmg then
@@ -1025,10 +1041,14 @@ local functions = {
 		if Type==false then banished={} end
 	end,
 	["DmgMult"] = function(Val)
-		dmgmult=tonumber(Val) or 10
+		if not tonumber(Val) then Val=1 end
+		if tonumber(Val)<0 then Val=0 end
+		dmgmult=tonumber(Val) or 1
 	end,
 	["HlthMult"] = function(Val)
-		hlthmult=tonumber(Val) or 10
+		if not tonumber(Val) then Val=1 end
+		if tonumber(Val)<0 then Val=0 end
+		hlthmult=tonumber(Val) or 1
 	end,
 	["AntiAFK"] = function()
 		game:service'Players'.LocalPlayer.Idled:connect(function()
@@ -1110,6 +1130,9 @@ local cmds = function(cmd,cmd2,cmd3,player)
 			functions.Fling(player)
 		elseif cmd==Prefix.."flingaura" or cmd==Prefix.."unflingaura" then
 			functions.FlingAura(cmd==Prefix.."flingaura")
+		elseif (cmd==Prefix.."damage" or cmd==Prefix.."dmg") then
+			if not tonumber(cmd2) and tonumber(cmd3) then cmd2=cmd3 end
+			functions.Damage(player,cmd2)
 		elseif cmd==Prefix.."heal" then
 			functions.Heal(player)
 		elseif cmd==Prefix.."autoheal" or cmd==Prefix.."unautoheal" then
