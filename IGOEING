@@ -315,8 +315,6 @@ local QEfly = true
 local iyflyspeed = 1
 local vehicleflyspeed = 1
 
-local a=nil
-
 task.spawn(function()
 	local a a=hookfunc(wait,function(b)if nocd then b=nil end return a(b)end)
 	
@@ -416,7 +414,7 @@ commands[#commands+1]={name="Un/AutoHeal", find = "autoheal", details = "Auto he
 commands[#commands+1]={name="Freeze [Player]", find = "freeze", details = "Freezes the player", existence = spinunravel}
 commands[#commands+1]={name="Un/Banish [Player]", find = "banish unbanish", details = "BANISHES THEM FROM EXISTENCE", existence = spinunravel}
 commands[#commands+1]={name="Void [Player]", find = "void", details = "Thanos", existence = spinunravel}
-commands[#commands+1]={name="Kick [Player]", find = "kick", details = "Kicks the player", existence = spinunravel}
+commands[#commands+1]={name="Kick [Player]", find = "kick", details = "Kicks the player", existence = samuraidmg and game.GameId==6099256669}
 commands[#commands+1]={name="ServerBan [Player]", find = "serverban sban", details = "Bans the player from the server", existence = spinunravel}
 commands[#commands+1]={name="Noscope [Player]", find = "noscope", details = "GET NOSCOPED", existence = spinunravel}
 commands[#commands+1]={name="Un/Deflect", find = "deflect undeflect", details = "Deflects NON OH DMG", existence = deflect or rtz2}
@@ -576,9 +574,9 @@ local panic = function()
 	autogod = {}
 	unautogod = {}
 	loopkill = {}
+	serverbanned = {}
 
 	muted = {}
-	clientmuted = {}
 	lockServer = false
 	FLYING = false
 
@@ -589,8 +587,10 @@ local panic = function()
 	crash = false
 	noscoping = false
 
-	dmgmult = 10
-	hlthmult = 10
+	dmgmult = 1
+	hlthmult = 1
+
+	nocd = false
 
 	killaura = false
 	flingaura = false
@@ -1259,8 +1259,14 @@ end)
 
 game.Players.PlayerAdded:Connect(function(plr)
 	if lockServer then
-		if not table.find(banished,plr.Name) then
-			table.insert(banished,plr.Name)
+		if game.GameId==6099256669 then
+			if not table.find(serverbanned,plr.Name) then
+				table.insert(serverbanned,plr.Name)
+			end
+		else
+			if not table.find(banished,plr.Name) then
+				table.insert(banished,plr.Name)
+			end
 		end
 	end
 end)
