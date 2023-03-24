@@ -51,7 +51,7 @@ TextLabel.BackgroundTransparency = 1.000
 TextLabel.Position = UDim2.new(0.0500000007, 0, -0.000961108599, 0)
 TextLabel.Size = UDim2.new(0.897222221, 0, 0.104859337, 0)
 TextLabel.Font = Enum.Font.SourceSansBold
-TextLabel.Text = "Gravy's Bizarre Admin V.3"
+TextLabel.Text = "Gravy's Bizarre Admin V3.2"
 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.TextScaled = true
 TextLabel.TextSize = 14.000
@@ -286,6 +286,7 @@ local autogod = {}
 local unautogod = {}
 local loopkill = {}
 local serverbanned = {}
+local autofreeze = {}
 
 local muted = {}
 local clientmuted = {}
@@ -308,6 +309,11 @@ local killaura = false
 local flingaura = false
 
 local autoheal = false
+
+local holdingW = false
+local holdingS = false
+
+local controlTarget = nil
 
 local flyKeyUp
 local flyKeyDown
@@ -412,6 +418,7 @@ commands[#commands+1]={name="Damage [Player] [Val]", find = "damage dmg", detail
 commands[#commands+1]={name="Heal [Player]", find = "heal", details = "Gives health to the player", existence = heal or heal2}
 commands[#commands+1]={name="Un/AutoHeal", find = "autoheal", details = "Auto heals yourself", existence = heal or heal2}
 commands[#commands+1]={name="Freeze [Player]", find = "freeze", details = "Freezes the player", existence = spinunravel}
+commands[#commands+1]={name="AutoFreeze [Player]", find = "autofreeze unautofreeze afreeze unafreeze", details = "Auto Freezes the player forever", existence = spinunravel}
 commands[#commands+1]={name="Un/Banish [Player]", find = "banish unbanish", details = "BANISHES THEM FROM EXISTENCE", existence = spinunravel}
 commands[#commands+1]={name="Void [Player]", find = "void", details = "Thanos", existence = spinunravel}
 commands[#commands+1]={name="Kick [Player]", find = "kick", details = "Kicks the player", existence = samuraidmg and game.GameId==6099256669}
@@ -433,6 +440,7 @@ commands[#commands+1]={name="Un/ClientMute", find = "clientmute cmute unclientmu
 commands[#commands+1]={name="Goto/Bring [Player]", find = "goto bring", details = "Goes to/Brings the player", existence = swap}
 commands[#commands+1]={name="fBring [Player]", find = "fbring", details = "Brings and freezes the player", existence = swap}
 commands[#commands+1]={name="Swap [Player]", find = "swap", details = "Swaps your positions", existence = swap}
+commands[#commands+1]={name="Un/Control [Player]", find = "control, uncontrol", details = "Controls a player", existence = spinunravel}
 commands[#commands+1]={name="Walkspeed [Player]", find = "walkspeed speed ws", details = "Changes players speed", existence = true}
 commands[#commands+1]={name="Un/Fly", find = "fly unfly", details = "TO INFINITY, AND BEYOND!!", existence = true}
 commands[#commands+1]={name="Flyspeed [Num]", find = "flyspeed", details = "Changes your flying speed", existence = true}
@@ -575,6 +583,7 @@ local panic = function()
 	unautogod = {}
 	loopkill = {}
 	serverbanned = {}
+	autofreeze = {}
 
 	muted = {}
 	lockServer = false
@@ -814,6 +823,18 @@ local functions = {
 			samuraidmg:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),0,math.huge,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 0)
 		end
 	end,
+	["AutoFreeze"] = function(Type,player)
+		if not player then return end if not spinunravel then return end
+		if Type==true then
+			if not table.find(autofreeze,player.Name) then
+				table.insert(autofreeze,player.Name)
+			end
+		else
+			if table.find(autofreeze,player.Name) then
+				table.remove(autofreeze,table.find(autofreeze,player.Name))
+			end
+		end
+	end,
 	["Banish"] = function(Type,player)
 		if not player then return end if not spinunravel then return end
 		if Type==true then
@@ -944,19 +965,25 @@ local functions = {
 			weld.Parent = part
 			weld.Part0 = part
 			weld.Part1 = plr.Character.HumanoidRootPart
-
+			
+			local reset=false
+			task.spawn(function()
+				task.wait(3)
+				reset=true
+			end)
+			
 			plr.Character.HumanoidRootPart.Anchored = true
 			wait(.1)
 			plr.Character.HumanoidRootPart.CFrame = location
 			swap:FireServer(player.Character)
-			repeat task.wait() until plr.Character.HumanoidRootPart.CFrame~=location
+			repeat task.wait() until plr.Character.HumanoidRootPart.CFrame~=location or reset
 			plr.Character.HumanoidRootPart.CFrame = location
 			wait(.05)
 			plr.Character.HumanoidRootPart.CFrame = location
 			part:Destroy()
 			plr.Character.HumanoidRootPart.Anchored = false
 			plr.Character.HumanoidRootPart.CFrame = location
-			if Type=="fbring" and spinunravel then
+			if Type==Prefix.."fbring" and spinunravel then
 				spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), 0, math.huge, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector*0+Vector3.new(0,0,0), 0.05, 0, 1, 2)
 				wait(.2)
 				if not player.Character.HumanoidRootPart:FindFirstChildOfClass("BodyVelocity") and samuraidmg then
@@ -968,6 +995,11 @@ local functions = {
 	["Swap"] = function(player)
 		if not swap then return end
 		swap:FireServer(player.Character)
+	end,
+	["Control"] = function(Type,player)
+		if not spinunravel or not player then return end
+		controlTarget=Type==true and player or nil
+		if not Type then plr.Character.Humanoid.Health=0 else antits=false workspace.CurrentCamera.CameraSubject=player.Character plr.Character.HumanoidRootPart.Anchored=true visible(1) end
 	end,
 	["Walkspeed"] = function(player,thing,cmd)
 		local old=thing
@@ -1139,6 +1171,8 @@ local cmds = function(cmd,cmd2,cmd3,player)
 			functions.AutoHeal(cmd==Prefix.."autoheal")
 		elseif cmd==Prefix.."freeze" and not wasnil then
 			functions.Freeze(player)
+		elseif (cmd==Prefix.."autofreeze" or cmd==Prefix.."afreeze" or cmd==Prefix.."unautofreeze" or cmd==Prefix.."unafreeze") and not wasnil then
+			functions.AutoFreeze(cmd==Prefix.."autofreeze" or cmd==Prefix.."afreeze",player)
 		elseif (cmd==Prefix.."banish" or cmd==Prefix.."unbanish") and not wasnil then
 			functions.Banish(cmd==Prefix.."banish",player)
 		elseif cmd==Prefix.."void" and not wasnil then
@@ -1177,6 +1211,8 @@ local cmds = function(cmd,cmd2,cmd3,player)
 			functions.Teleport(cmd,player)
 		elseif cmd==Prefix.."swap" and not wasnil then
 			functions.Swap(player)
+		elseif cmd==Prefix.."control" and not wasnil or cmd==Prefix.."uncontrol" then
+			functions.Control(cmd==Prefix.."control",player)
 		elseif (cmd==Prefix.."walkspeed" or cmd==Prefix.."speed" or cmd==Prefix.."ws") and cmd2 then
 			functions.Walkspeed(player,cmd2,cmd3)
 		elseif cmd==Prefix.."fly" or cmd==Prefix.."unfly" then
@@ -1250,6 +1286,20 @@ game:GetService("UserInputService").InputBegan:connect(function(input,chat)
 		checkCMD(TextBox.Text)
 		TextBox.Text = ""
 	end
+	
+	if input.KeyCode.Name=="W" then
+		holdingW=true
+	elseif input.KeyCode.Name=="S" then
+		holdingS=true
+	end
+end)
+
+game:GetService("UserInputService").InputEnded:connect(function(input,chat)
+	if input.KeyCode.Name=="W" then
+		holdingW=false
+	elseif input.KeyCode.Name=="S" then
+		holdingS=false
+	end
 end)
 
 TextBox.FocusLost:Connect(function()
@@ -1283,7 +1333,18 @@ local doLoop = function(tab,func)
 end
 
 game:GetService("RunService").RenderStepped:Connect(function(elapsed)
-
+	
+	if controlTarget~=nil then
+		local player=controlTarget
+		workspace.CurrentCamera.CameraSubject=controlTarget
+		if holdingW then
+			spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,.1,Vector3.new(50,50,50)*workspace.CurrentCamera.CFrame.LookVector,"rbxassetid://241837157",math.huge,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3)
+		end
+		if holdingS then
+			spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,.1,Vector3.new(-50,-50,-50)*workspace.CurrentCamera.CFrame.LookVector,"rbxassetid://241837157",math.huge,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3) 
+		end
+	end	
+	
 	if nostun then
 		task.spawn(function()
 			if not plr.Character:FindFirstChildOfClass("Humanoid") and not plr.Character:FindFirstChildOfClass("HumanoidRootPart") then
@@ -1328,7 +1389,7 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 		
 		doLoop(banished,function(i,v)
 			local player=game.Players:FindFirstChild(v)
-			if player then
+			if player and spinunravel then
 				local otherChar = player.Character or player.CharacterAdded:Wait()
 				if otherChar:FindFirstChild("ForceField") then repeat task.wait() until not otherChar:FindFirstChild("ForceField") end
 				if (plr.Character.HumanoidRootPart.Position - player.Character.HumanoidRootPart.Position).magnitude < 9999999 then
@@ -1339,7 +1400,7 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 		
 		doLoop(serverbanned,function(i,v)
 			local player=game.Players:FindFirstChild(v)
-			if player then
+			if player and samuraidmg then
 				local otherChar = player.Character or player.CharacterAdded:Wait()
 				otherChar:WaitForChild("Humanoid")
 				samuraidmg:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),math.huge,0,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 10)
@@ -1358,6 +1419,20 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 			if player then
 				local otherChar = player.Character or player.CharacterAdded:Wait()
 				mute(otherChar,true)
+			end
+		end)
+		doLoop(autofreeze,function(i,v)
+			local player=game.Players:FindFirstChild(v)
+			if player and spinunravel then
+				local otherChar = player.Character or player.CharacterAdded:Wait()
+				if otherChar.HumanoidRootPart:FindFirstChildOfClass("BodyVelocity") then return end
+				spinunravel:FireServer(otherChar:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), 0, math.huge, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector*0+Vector3.new(0,0,0), 0.05, 0, 1, 2)
+				wait(.2)
+				if not otherChar.HumanoidRootPart:FindFirstChildOfClass("BodyVelocity") and samuraidmg then
+					samuraidmg:FireServer(otherChar:FindFirstChildOfClass("Humanoid"),0,math.huge,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 0)
+				end
+			else
+				table.remove(autofreeze,table.find(autofreeze,v))
 			end
 		end)
 	end
