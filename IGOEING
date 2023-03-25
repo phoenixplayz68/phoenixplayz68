@@ -51,7 +51,7 @@ TextLabel.BackgroundTransparency = 1.000
 TextLabel.Position = UDim2.new(0.0500000007, 0, -0.000961108599, 0)
 TextLabel.Size = UDim2.new(0.897222221, 0, 0.104859337, 0)
 TextLabel.Font = Enum.Font.SourceSansBold
-TextLabel.Text = "Gravy's Bizarre Admin V3.2"
+TextLabel.Text = "Gravy's Bizarre Admin V3.4"
 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.TextScaled = true
 TextLabel.TextSize = 14.000
@@ -130,36 +130,6 @@ cmdListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
 local par = Instance.new("Part", game.ReplicatedStorage)
 par.Name = "gravyoldschool"
-
-local GetPlayer = function(String) -- Credit to Timeless/xFunnieuss
-	local Found = {}
-	local strl = String:lower()
-	if strl == "all" then
-		for i,v in pairs(game.Players:GetPlayers()) do
-			table.insert(Found,v)
-		end
-	elseif strl == "others" then
-		for i,v in pairs(game.Players:GetPlayers()) do
-			if v.DisplayName ~= game.Players.LocalPlayer.DisplayName or v.Name:lower():sub(1, #String) == String:lower() then
-				table.insert(Found,v)
-			end
-		end  
-	elseif strl == "me" then
-		for i,v in pairs(game.Players:GetPlayers()) do
-			if v.DisplayName == game.Players.LocalPlayer.DisplayName or v.Name:lower():sub(1, #String) == String:lower() then
-				table.insert(Found,v)
-			end
-		end
-	else
-		for i,v in pairs(game.Players:GetPlayers()) do
-			if v.DisplayName:lower():sub(1, #String) == String:lower() or v.Name:lower():sub(1, #String) == String:lower() then
-				table.insert(Found,v)
-				break
-			end
-		end    
-	end
-	return Found    
-end
 
 minimize = function()
 	local Down = game.TweenService:Create(Bar,TweenInfo.new(.4,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0),
@@ -272,8 +242,10 @@ local deflect = getremote("Deflect")
 local void = getremote("VOID")
 local disable = getremote("Damage2WS")
 local speedremote = getremote("Damage15")
+local clean = getremote("CommandClean")
 local arrow = getremote("Arrow")
 local roka = getremote("Roka")
+local smite = getremote("Damage4")
 
 local mouse = plr:GetMouse()
 
@@ -287,6 +259,8 @@ local unautogod = {}
 local loopkill = {}
 local serverbanned = {}
 local autofreeze = {}
+
+local whitelist = {}
 
 local muted = {}
 local clientmuted = {}
@@ -314,6 +288,8 @@ local holdingW = false
 local holdingS = false
 
 local controlTarget = nil
+
+local controlspeed = 5
 
 local flyKeyUp
 local flyKeyDown
@@ -390,6 +366,51 @@ end
 
 mouse.Move:Connect(checkTT)
 
+local GetPlayer = function(String) -- Credit to Timeless/xFunnieuss
+	local Found = {}
+	local strl = String:lower()
+	if strl == "all" then
+		for i,v in pairs(game.Players:GetPlayers()) do
+			if table.find(whitelist,v.Name) then continue end
+			table.insert(Found,v)
+		end
+	elseif strl == "others" then
+		for i,v in pairs(game.Players:GetPlayers()) do
+			if (v.DisplayName ~= game.Players.LocalPlayer.DisplayName or v.Name:lower():sub(1, #String) == String:lower()) and not table.find(whitelist,v.Name) then
+				table.insert(Found,v)
+			end
+		end  
+	elseif strl == "me" then
+		table.insert(Found,game.Players.LocalPlayer)
+	else
+		for i,v in pairs(game.Players:GetPlayers()) do
+			if v.DisplayName:lower():sub(1, #String) == String:lower() or v.Name:lower():sub(1, #String) == String:lower() then
+				table.insert(Found,v)
+				break
+			end
+		end    
+	end
+	return Found    
+end
+
+local playSound = function(sound,cf)
+	local args = {
+		[1] = game.Players.LocalPlayer.Character.Humanoid,
+		[2] = cf or game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame,
+		[3] = 0,
+		[4] = 0,
+		[5] = nil --[[Vector3]],
+		[6] = "rbxassetid://1391727615",
+		[7] = 0,
+		[8] = Color3.new(255, 255, 255),
+		[9] = "rbxassetid://"..sound,
+		[10] = 1,
+		[11] = 1
+	}
+
+	game:GetService("ReplicatedStorage").Damage21:FireServer(unpack(args))
+end
+
 create = function(cmd,name,details,remote)
 	if remote==nil or remote==false then return end
 	local clone = Template:Clone()
@@ -419,6 +440,8 @@ commands[#commands+1]={name="Heal [Player]", find = "heal", details = "Gives hea
 commands[#commands+1]={name="Un/AutoHeal", find = "autoheal", details = "Auto heals yourself", existence = heal or heal2}
 commands[#commands+1]={name="Freeze [Player]", find = "freeze", details = "Freezes the player", existence = spinunravel}
 commands[#commands+1]={name="AutoFreeze [Player]", find = "autofreeze unautofreeze afreeze unafreeze", details = "Auto Freezes the player forever", existence = spinunravel}
+commands[#commands+1]={name="Un/Smite [Player]", find = "smite unsmite", details = "Smites the player", existence = smite}
+commands[#commands+1]={name="Seizure [Player]", find = "seizure", details = "Seizures the player", existence = spinunravel}
 commands[#commands+1]={name="Un/Banish [Player]", find = "banish unbanish", details = "BANISHES THEM FROM EXISTENCE", existence = spinunravel}
 commands[#commands+1]={name="Void [Player]", find = "void", details = "Thanos", existence = spinunravel}
 commands[#commands+1]={name="Kick [Player]", find = "kick", details = "Kicks the player", existence = samuraidmg and game.GameId==6099256669}
@@ -435,14 +458,16 @@ commands[#commands+1]={name="Untimestop", find = "untimestop", details = "RTZ Ti
 commands[#commands+1]={name="Un/Nocooldown", find = "nocooldown unnocooldown ncd unncd nocd unnocd", details = "No attack cooldowns", existence = true}
 
 commands[#commands+1]={name="In/Visible", find = "invisible visible appear vanish", details = "where am I?", existence = transparency}
+commands[#commands+1]={name="Transparency", find = "transparency", details = "Changes player transparency", existence = transparency}
 commands[#commands+1]={name="Un/Mute", find = "mute unmute", details = "BRO SHUTUP GODDDD", existence = true}
 commands[#commands+1]={name="Un/ClientMute", find = "clientmute cmute unclientmute uncmute", details = "Mutes them only for you", existence = true}
 commands[#commands+1]={name="Goto/Bring [Player]", find = "goto bring", details = "Goes to/Brings the player", existence = swap}
 commands[#commands+1]={name="fBring [Player]", find = "fbring", details = "Brings and freezes the player", existence = swap}
 commands[#commands+1]={name="Swap [Player]", find = "swap", details = "Swaps your positions", existence = swap}
-commands[#commands+1]={name="Un/Control [Player]", find = "control, uncontrol", details = "Controls a player", existence = spinunravel}
 commands[#commands+1]={name="Walkspeed [Player]", find = "walkspeed speed ws", details = "Changes players speed", existence = true}
 commands[#commands+1]={name="Un/Fly", find = "fly unfly", details = "TO INFINITY, AND BEYOND!!", existence = true}
+commands[#commands+1]={name="Un/Control [Player]", find = "control, uncontrol", details = "Controls a player", existence = spinunravel}
+commands[#commands+1]={name="ControlSpeed [Num]", find = "controlspeed cspeed", details = "Changes control fly speed", existence = spinunravel}
 commands[#commands+1]={name="Flyspeed [Num]", find = "flyspeed", details = "Changes your flying speed", existence = true}
 commands[#commands+1]={name="Music [ID]", find = "music", details = "Plays Music of choice", existence = music}
 commands[#commands+1]={name="Pose", find = "pose", details = "Plays pose Music", existence = true}
@@ -454,13 +479,17 @@ commands[#commands+1]={name="Un/Serverlock", find = "serverlock unserverlock", d
 commands[#commands+1]={name="DamageMult", find = "damagemult dmgmult", details = "Damage Multiplier", existence = true}
 commands[#commands+1]={name="HealMult", find = "healmult hlmult", details = "Healing Multiplier", existence = true}
 
+commands[#commands+1]={name="Whitelist [Player]", find = "whitelist", details = "Blocks commands from player", existence = true}
+commands[#commands+1]={name="Blacklist [Player]", find = "blacklist", details = "Removes player Whitelist", existence = true}
 commands[#commands+1]={name="AntiAFK", find = "antiafk", details = "Doesn't kick you when AFK", existence = true}
 commands[#commands+1]={name="Rejoin", find = "rejoin", details = "Rejoins current server", existence = true}
 commands[#commands+1]={name="Refresh", find = "refresh", details = "Refreshes your Character", existence = true}
 commands[#commands+1]={name="Panic", find = "panic", details = "Disables every enabled CMD", existence = true}
 commands[#commands+1]={name="TPMenu", find = "tpmenu", details = "Item teleport Menu", existence = true}
+commands[#commands+1]={name="Clean", find = "clean", details = "Cleans any effects", existence = true}
 commands[#commands+1]={name="Arrow", find = "arrow", details = "Uses Arrow", existence = true}
 commands[#commands+1]={name="Roka", find = "Roka", details = "Uses Roka", existence = true}
+
 
 for i = 1,#commands do
 	local thing=commands[i]
@@ -480,6 +509,7 @@ local checkTable = function(Type,tab,text)
 end
 
 local visible = function(val)
+	if not tonumber(val) then val=0 end
 	for _,f in pairs(game.Players.LocalPlayer.Character:GetChildren()) do if (f:IsA("Accessory")) then transparency:FireServer(f.Handle,val) end end
 	transparency:FireServer(plr.Character.Head,val)
 	transparency:FireServer(plr.Character.Head.face,val)
@@ -786,7 +816,7 @@ local functions = {
 	end,
 	["Fling"] = function(player)
 		if not player then return end if not spinunravel then return end
-		spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,1000000,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector*0+Vector3.new(10000,10000,10000),"rbxassetid://241837157",math.huge,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3)
+		spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346),0,1000000,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector*0+Vector3.new(10000,10000,10000),"rbxassetid://241837157",math.huge,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3)
 	end,
 	["FlingAura"] = function(Type)
 		if not spinunravel then return end
@@ -835,6 +865,20 @@ local functions = {
 			end
 		end
 	end,
+	["Smite"] = function(player)
+		if not player then return end if not smite then return end
+		playSound("1079408535",player.Character.HumanoidRootPart.CFrame)	
+		smite:FireServer(player.Character.Humanoid,player.Character.HumanoidRootPart.CFrame,0,0,0,Vector3.new(0,0,0),.25,Color3.new(255, 255, 255),"rbxassetid://1391727615",1,1)
+	end,
+	["UnSmite"] = function()
+		if not plr.Character:FindFirstChild("Humanoid") then
+			Instance.new("Humanoid",plr.Character)
+		end
+	end,
+	["Seizure"] = function(player)
+		if not player then return end if not spinunravel then return end
+		spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346),0,5,Vector3.new(0,-100,0),"rbxassetid://241837157",math.huge,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3)
+	end,
 	["Banish"] = function(Type,player)
 		if not player then return end if not spinunravel then return end
 		if Type==true then
@@ -849,7 +893,7 @@ local functions = {
 	end,
 	["Void"] = function(player)
 		if not spinunravel then return end
-		spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,1000000,Vector3.new(333333333333333330.6399237983, -2.29492244e-07, -4.95887899),"rbxassetid://241837157",.5,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3)
+		spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,math.huge,Vector3.new(500000000.6399237983, -2.29492244e-07, -4.95887899),"rbxassetid://241837157",.5,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3)
 	end,
 	["ServerBan"] = function(Type,player,cmd2)
 		if not player and not cmd2 or player==plr then return end if not spinunravel then return end
@@ -884,16 +928,16 @@ local functions = {
 	end,
 	["Disable"] = function(player)
 		if not disable then return end
-		game:GetService("ReplicatedStorage").Damage2WS:FireServer(
-		player.Character:FindFirstChild("Humanoid"),
-		CFrame.new(.31226, .17798, .230347, 0.0934139043, 0.306006283, -0.947435498, -0.837582409, -0.490307391, -0.240944147, -0.538264751, 0.816062868, 0.210503906),
-		 0,
-		0.25,
-		Vector3.new(-9.28081417, 1.96221265e-07, -3.72377372),
-		0.075,
-		"rbxassetid://220834000",
-		0.9,
-		0.44)
+		disable:FireServer(
+			player.Character:FindFirstChild("Humanoid"),
+			CFrame.new(.31226, .17798, .230347, 0.0934139043, 0.306006283, -0.947435498, -0.837582409, -0.490307391, -0.240944147, -0.538264751, 0.816062868, 0.210503906),
+			0,
+			0.25,
+			Vector3.new(-9.28081417, 1.96221265e-07, -3.72377372),
+			0.075,
+			"rbxassetid://220834000",
+			0.9,
+			0.44)
 	end,
 	["DeleteStand"] = function(player)
 		if not deletestand then return end
@@ -1082,6 +1126,17 @@ local functions = {
 		if tonumber(Val)<0 then Val=0 end
 		hlthmult=tonumber(Val) or 1
 	end,
+	["Whitelist"] = function(Type,player)
+		if Type==true then
+			if not table.find(whitelist,player.Name) then
+				table.insert(whitelist,player.Name)
+			end
+		else
+			if table.find(whitelist,player.Name) then
+				table.remove(whitelist,table.find(whitelist,player.Name))
+			end
+		end
+	end,
 	["AntiAFK"] = function()
 		game:service'Players'.LocalPlayer.Idled:connect(function()
 			VirtualUser:CaptureController()
@@ -1173,6 +1228,12 @@ local cmds = function(cmd,cmd2,cmd3,player)
 			functions.Freeze(player)
 		elseif (cmd==Prefix.."autofreeze" or cmd==Prefix.."afreeze" or cmd==Prefix.."unautofreeze" or cmd==Prefix.."unafreeze") and not wasnil then
 			functions.AutoFreeze(cmd==Prefix.."autofreeze" or cmd==Prefix.."afreeze",player)
+		elseif cmd==Prefix.."smite" then
+			functions.Smite(player)
+		elseif cmd==Prefix.."unsmite" then
+			functions.UnSmite()
+		elseif cmd==Prefix.."seizure" then
+			functions.Seizure(player)
 		elseif (cmd==Prefix.."banish" or cmd==Prefix.."unbanish") and not wasnil then
 			functions.Banish(cmd==Prefix.."banish",player)
 		elseif cmd==Prefix.."void" and not wasnil then
@@ -1203,6 +1264,8 @@ local cmds = function(cmd,cmd2,cmd3,player)
 			functions.Nocooldown(cmd==Prefix.."nocooldown" or cmd==Prefix.."nocd" or cmd==Prefix.."ncd")
 		elseif cmd==Prefix.."invisible" or cmd==Prefix.."vanish" or cmd==Prefix.."visible" or cmd==Prefix.."appear" then
 			functions.Visible(cmd==Prefix.."invisible" or cmd==Prefix.."vanish")
+		elseif cmd==Prefix.."transparency" and cmd2 then
+			visible(cmd2)
 		elseif (cmd==Prefix.."mute" or cmd==Prefix.."unmute") and not wasnil then
 			functions.Mute(cmd==Prefix.."mute",player)
 		elseif (cmd==Prefix.."clientmute" or cmd==Prefix.."cmute" or cmd==Prefix.."unclientmute" or cmd==Prefix.."uncmute") and not wasnil then
@@ -1213,6 +1276,9 @@ local cmds = function(cmd,cmd2,cmd3,player)
 			functions.Swap(player)
 		elseif cmd==Prefix.."control" and not wasnil or cmd==Prefix.."uncontrol" then
 			functions.Control(cmd==Prefix.."control",player)
+		elseif (cmd==Prefix.."controlspeed" or cmd==Prefix.."cspeed") and cmd2 then
+			if not tonumber(cmd2) then return end
+			controlspeed=cmd2
 		elseif (cmd==Prefix.."walkspeed" or cmd==Prefix.."speed" or cmd==Prefix.."ws") and cmd2 then
 			functions.Walkspeed(player,cmd2,cmd3)
 		elseif cmd==Prefix.."fly" or cmd==Prefix.."unfly" then
@@ -1233,6 +1299,8 @@ local cmds = function(cmd,cmd2,cmd3,player)
 			functions.DmgMult(cmd2)
 		elseif (cmd==Prefix.."healmult" or cmd==Prefix.."hlmult") and cmd2 then
 			functions.HlthMult(cmd2)
+		elseif cmd==Prefix.."whitelist" or cmd==Prefix.."blacklist" then
+			functions.Whitelist(cmd==Prefix.."whitelist", player)
 		elseif cmd==Prefix.."antiafk" then
 			functions.AntiAFK()
 		elseif cmd==Prefix.."rejoin" then
@@ -1243,6 +1311,8 @@ local cmds = function(cmd,cmd2,cmd3,player)
 			functions.Panic()
 		elseif cmd==Prefix.."tpmenu" then
 			functions.TPMenu()
+		elseif cmd==Prefix.."clean" and clean then
+			clean:FireServer()
 		elseif cmd==Prefix.."arrow" and arrow then
 			arrow:FireServer()
 		elseif cmd==Prefix.."roka" and roka then
@@ -1336,12 +1406,12 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 	
 	if controlTarget~=nil then
 		local player=controlTarget
-		workspace.CurrentCamera.CameraSubject=controlTarget
+		workspace.CurrentCamera.CameraSubject=controlTarget.Character
 		if holdingW then
-			spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,.1,Vector3.new(50,50,50)*workspace.CurrentCamera.CFrame.LookVector,"rbxassetid://241837157",math.huge,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3)
+			spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,.1,Vector3.new(controlspeed*10,controlspeed*10,controlspeed*10)*workspace.CurrentCamera.CFrame.LookVector,"rbxassetid://241837157",math.huge,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3)
 		end
 		if holdingS then
-			spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,.1,Vector3.new(-50,-50,-50)*workspace.CurrentCamera.CFrame.LookVector,"rbxassetid://241837157",math.huge,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3) 
+			spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,.1,Vector3.new(-controlspeed*10,-controlspeed*10,-controlspeed*10)*workspace.CurrentCamera.CFrame.LookVector,"rbxassetid://241837157",math.huge,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3) 
 		end
 	end	
 	
@@ -1391,9 +1461,8 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 			local player=game.Players:FindFirstChild(v)
 			if player and spinunravel then
 				local otherChar = player.Character or player.CharacterAdded:Wait()
-				if otherChar:FindFirstChild("ForceField") then repeat task.wait() until not otherChar:FindFirstChild("ForceField") end
 				if (plr.Character.HumanoidRootPart.Position - player.Character.HumanoidRootPart.Position).magnitude < 9999999 then
-					spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,1000000,Vector3.new(333333333333333330.6399237983, -2.29492244e-07, -4.95887899),"rbxassetid://241837157",.5,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3)
+					spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,math.huge,Vector3.new(500000000.6399237983, -2.29492244e-07, -4.95887899),"rbxassetid://241837157",.5,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3)
 				end
 			end
 		end)
