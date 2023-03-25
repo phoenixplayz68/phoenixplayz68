@@ -1472,6 +1472,7 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 			if player and samuraidmg then
 				local otherChar = player.Character or player.CharacterAdded:Wait()
 				otherChar:WaitForChild("Humanoid")
+				if not otherChar:FindFirstChild("Stand") then return end
 				samuraidmg:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),math.huge,0,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 10)
 			end	
 		end)
