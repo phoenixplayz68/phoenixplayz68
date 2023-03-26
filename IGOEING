@@ -4,6 +4,7 @@
 -- Instances:
 
 local VirtualUser=game:GetService("VirtualUser")
+local UIS=game:GetService("UserInputService")
 
 local CommandBar = Instance.new("ScreenGui")
 local Bar = Instance.new("Frame")
@@ -51,7 +52,7 @@ TextLabel.BackgroundTransparency = 1.000
 TextLabel.Position = UDim2.new(0.0500000007, 0, -0.000961108599, 0)
 TextLabel.Size = UDim2.new(0.897222221, 0, 0.104859337, 0)
 TextLabel.Font = Enum.Font.SourceSansBold
-TextLabel.Text = "Gravy's Bizarre Admin V3.4"
+TextLabel.Text = "Gravy's Bizarre Admin V3.5"
 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.TextScaled = true
 TextLabel.TextSize = 14.000
@@ -66,16 +67,17 @@ Commands.BorderSizePixel = 0
 Commands.Position = UDim2.new(0, 0, 0.202046037, 0)
 Commands.Size = UDim2.new(1, 0, 0.800511479, 0)
 Commands.BottomImage = ""
-Commands.CanvasSize = UDim2.new(0, 0, 5, 0)
+Commands.CanvasSize = UDim2.new(0, 0, 6, 0)
 Commands.MidImage = ""
 Commands.TopImage = ""
+Commands.AutomaticCanvasSize = Enum.AutomaticSize.XY
 
 Template.Name = "Template"
 Template.Parent = CommandBar
 Template.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Template.BackgroundTransparency = 1.000
 Template.Position = UDim2.new(0.0495930985, 0, 0.00586192682, 0)
-Template.Size = UDim2.new(0.925999999, 0, 0.0199999996, 0)
+Template.Size = UDim2.new(0.925999999, 0, 0.12, 0)
 Template.Font = Enum.Font.SourceSansBold
 Template.Text = ""
 Template.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -128,10 +130,196 @@ cmdListLayout.Parent = Commands
 cmdListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 cmdListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
+
+
+
+
+--LOGS LOGS LOGS LOGS
+
+
+
+local Logs = Instance.new("CanvasGroup")
+local label = Instance.new("TextLabel")
+local logTitle = Instance.new("TextLabel")
+local Line = Instance.new("Frame")
+local Line2 = Instance.new("Frame")
+local UIScale = Instance.new("UIScale")
+local Close = Instance.new("TextButton")
+local UIStrokeClose = Instance.new("UIStroke",Close)
+
+local LogScroll = Instance.new("ScrollingFrame")
+local logTemplate = Instance.new("Frame")
+local daLine = Instance.new("Frame")
+local plar = Instance.new("TextLabel")
+local coman = Instance.new("TextLabel")
+local Value = Instance.new("TextLabel")
+local UIListLayout = Instance.new("UIListLayout")
+
+Close.MouseButton1Down:Connect(function()
+	local tween = game:GetService("TweenService"):Create(UIScale,TweenInfo.new(.5,Enum.EasingStyle.Circular,Enum.EasingDirection.In),{Scale=.2})
+	tween.Completed:Connect(function()
+		Logs.Visible=false
+	end)
+	tween:Play()
+end)
+
+--Properties:
+
+Logs.Name = "Logs"
+Logs.Parent = CommandBar
+Logs.AnchorPoint = Vector2.new(0.5, 0.5)
+Logs.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+Logs.BorderSizePixel = 0
+Logs.Position = UDim2.new(0.5, 0, 0.5, 0)
+Logs.Size = UDim2.new(0.314226151, 0, 0.361111104, 0)
+Logs.Visible=false
+
+UIStrokeClose.Color=Color3.fromRGB(255,255,255)
+UIStrokeClose.Thickness=1
+UIStrokeClose.LineJoinMode=Enum.LineJoinMode.Miter
+
+label.Name = "label"
+label.Parent = Logs
+label.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+label.BorderSizePixel = 0
+label.Position = UDim2.new(0, 0, 0.071794875, 0)
+label.Size = UDim2.new(1, 0, 0.0666666701, 0)
+label.Font = Enum.Font.SourceSansBold
+label.LineHeight = 1.100
+label.Text = "                Player                                  Command                                    Value"
+label.TextColor3 = Color3.fromRGB(255, 255, 255)
+label.TextScaled = true
+label.TextSize = 14.000
+label.TextWrapped = true
+label.TextXAlignment = Enum.TextXAlignment.Left
+
+logTitle.Name = "logTitle"
+logTitle.Parent = Logs
+logTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+logTitle.BackgroundTransparency = 1.000
+logTitle.Position = UDim2.new(0, 0, 0.00999999978, 0)
+logTitle.Size = UDim2.new(1, 0, 0.0538461544, 0)
+logTitle.Font = Enum.Font.SourceSansBold
+logTitle.Text = "Logs"
+logTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+logTitle.TextScaled = true
+logTitle.TextSize = 14.000
+logTitle.TextWrapped = true
+
+Line.Name = "Line"
+Line.Parent = Logs
+Line.AnchorPoint = Vector2.new(0.5, 0.5)
+Line.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+Line.BorderSizePixel = 0
+Line.Position = UDim2.new(0.300000012, 0, 0.569000006, 0)
+Line.Size = UDim2.new(0.00700000022, 0, 0.861000001, 0)
+
+Line2.Name = "Line2"
+Line2.Parent = Logs
+Line2.AnchorPoint = Vector2.new(0.5, 0.5)
+Line2.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+Line2.BorderSizePixel = 0
+Line2.Position = UDim2.new(0.699999988, 0, 0.569000006, 0)
+Line2.Size = UDim2.new(0.00700000022, 0, 0.861000001, 0)
+
+UIScale.Parent = Logs
+UIScale.Scale = .03
+
+Close.Name = "Close"
+Close.Parent = Logs
+Close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Close.BackgroundTransparency = 1.000
+Close.BorderSizePixel = 0
+Close.Position = UDim2.new(0.935937405, 0, 0, 0)
+Close.Size = UDim2.new(0.06301824, 0, 0.0615384616, 0)
+Close.Font = Enum.Font.SourceSansBold
+Close.LineHeight = 1.390
+Close.Text = "_"
+Close.TextColor3 = Color3.fromRGB(255, 255, 255)
+Close.TextScaled = true
+Close.TextSize = 14.000
+Close.TextWrapped = true
+
+LogScroll.Name = "LogScroll"
+LogScroll.Parent = Logs
+LogScroll.Active = true
+LogScroll.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+LogScroll.BackgroundTransparency = 1.000
+LogScroll.Position = UDim2.new(0, 0, 0.138499931, 0)
+LogScroll.Size = UDim2.new(1, 0, 0.861499906, 0)
+LogScroll.ScrollBarThickness = 0
+LogScroll.AutomaticCanvasSize = Enum.AutomaticSize.XY
+
+logTemplate.Name = "logTemplate"
+logTemplate.Parent = Logs
+logTemplate.Visible=false
+logTemplate.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+logTemplate.BackgroundTransparency = 1.000
+logTemplate.Size = UDim2.new(1, 0, 0.0659544766, 0)
+
+daLine.Parent = logTemplate
+daLine.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+daLine.BorderSizePixel = 0
+daLine.Position = UDim2.new(0, 0, 1, 0)
+daLine.Size = UDim2.new(1, 0, 0.150000006, 0)
+
+plar.Name = "plar"
+plar.Parent = logTemplate
+plar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+plar.BackgroundTransparency = 1.000
+plar.Size = UDim2.new(0.295249462, 0, 0.993098199, 0)
+plar.Font = Enum.Font.SourceSansBold
+plar.TextColor3 = Color3.fromRGB(255, 255, 255)
+plar.TextScaled = true
+plar.TextSize = 14.000
+plar.TextWrapped = true
+
+coman.Name = "coman"
+coman.Parent = logTemplate
+coman.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+coman.BackgroundTransparency = 1.000
+coman.Position = UDim2.new(0.303499967, 0, 0, 0)
+coman.Size = UDim2.new(0.391454339, 0, 0.993098199, 0)
+coman.Font = Enum.Font.SourceSansBold
+coman.TextColor3 = Color3.fromRGB(255, 255, 255)
+coman.TextScaled = true
+coman.TextSize = 14.000
+coman.TextWrapped = true
+
+Value.Name = "Value"
+Value.Parent = logTemplate
+Value.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Value.BackgroundTransparency = 1.000
+Value.Position = UDim2.new(0.703499913, 0, 0, 0)
+Value.Size = UDim2.new(0.295249462, 0, 0.993098199, 0)
+Value.Font = Enum.Font.SourceSansBold
+Value.TextColor3 = Color3.fromRGB(255, 255, 255)
+Value.TextScaled = true
+Value.TextSize = 14.000
+Value.TextWrapped = true
+
+UIListLayout.Parent = LogScroll
+UIListLayout.SortOrder = Enum.SortOrder.Name
+UIListLayout.Padding = UDim.new(0, 5)
+
+
+
+--LOGS LOGS LOGS LOGS
+
+
+
+
+
+
+
+
 local par = Instance.new("Part", game.ReplicatedStorage)
 par.Name = "gravyoldschool"
 
+local moving=false
+
 minimize = function()
+	moving=false
 	local Down = game.TweenService:Create(Bar,TweenInfo.new(.4,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0),
 		{Position=UDim2.new(0.764, 0,0.963, 0)}):Play()
 	task.spawn(function() wait(.1) TextBox.Text = "" end)
@@ -140,6 +328,8 @@ end
 local Down = game.TweenService:Create(Bar,TweenInfo.new(.4,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0),{Position=UDim2.new(0.764, 0,0.963, 0)}):Play()
 
 maximize = function()
+	if moving then return end
+	moving=true
 	local Up = game.TweenService:Create(Bar,TweenInfo.new(.4,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0),
 		{Position=UDim2.new(0.764, 0,0.638, 0)}):Play()
 end
@@ -198,7 +388,8 @@ end
 TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 	if TextBox:IsFocused() then
 		spawn(function()
-			IndexContents(TextBox.Text,true,true)
+			local cmnd, other=string.gsub(string.split(TextBox.Text, " ")[1],";","")
+			IndexContents(cmnd,true,true)
 		end)
 	end
 end)
@@ -261,6 +452,7 @@ local serverbanned = {}
 local autofreeze = {}
 
 local whitelist = {}
+local admins = {}
 
 local muted = {}
 local clientmuted = {}
@@ -366,22 +558,22 @@ end
 
 mouse.Move:Connect(checkTT)
 
-local GetPlayer = function(String) -- Credit to Timeless/xFunnieuss
+local GetPlayer = function(String,player) -- Credit to Timeless/xFunnieuss
 	local Found = {}
 	local strl = String:lower()
 	if strl == "all" then
 		for i,v in pairs(game.Players:GetPlayers()) do
-			if table.find(whitelist,v.Name) then continue end
+			if table.find(whitelist,v.Name) or (player~=plr and v==plr) then continue end
 			table.insert(Found,v)
 		end
 	elseif strl == "others" then
 		for i,v in pairs(game.Players:GetPlayers()) do
-			if (v.DisplayName ~= game.Players.LocalPlayer.DisplayName or v.Name:lower():sub(1, #String) == String:lower()) and not table.find(whitelist,v.Name) then
+			if (v ~= plr and v ~= player or v.Name:lower():sub(1, #String) == String:lower()) and not table.find(whitelist,v.Name) then
 				table.insert(Found,v)
 			end
 		end  
 	elseif strl == "me" then
-		table.insert(Found,game.Players.LocalPlayer)
+		table.insert(Found,player)
 	else
 		for i,v in pairs(game.Players:GetPlayers()) do
 			if v.DisplayName:lower():sub(1, #String) == String:lower() or v.Name:lower():sub(1, #String) == String:lower() then
@@ -431,10 +623,10 @@ commands[#commands+1]={name="Un/God [Player]", find = "god ungod", details = "Gi
 commands[#commands+1]={name="Un/AutoGod [Player]", find = "autogod unautogod", details = "Gives the player Auto God mode", existence = spinunravel}
 commands[#commands+1]={name="InfGod [Player]", find = "infgod", details = "Gives the player NAN Health", existence = spinunravel}
 commands[#commands+1]={name="Kill [Player]", find = "kill", details = "Kills the player", existence = spinunravel}
-commands[#commands+1]={name="Un/LoopKill [Player]", find = "kill", details = "Loop kills the player", existence = spinunravel}
+commands[#commands+1]={name="Un/LoopKill [Player]", find = "loopkill unloopkill", details = "Loop kills the player", existence = spinunravel}
 commands[#commands+1]={name="Un/KillAura", find = "killaura unkillaura", details = "Kills any nearby player", existence = spinunravel}
 commands[#commands+1]={name="Fling [Player]", find = "fling", details = "cya bro", existence = spinunravel}
-commands[#commands+1]={name="Un/FlingAura", find = "flingaura flingaura", details = "Flings any nearby player", existence = spinunravel}
+commands[#commands+1]={name="Un/FlingAura", find = "flingaura unflingaura", details = "Flings any nearby player", existence = spinunravel}
 commands[#commands+1]={name="Damage [Player] [Val]", find = "damage dmg", details = "Damages the player", existence = spinunravel}
 commands[#commands+1]={name="Heal [Player]", find = "heal", details = "Gives health to the player", existence = heal or heal2}
 commands[#commands+1]={name="Un/AutoHeal", find = "autoheal", details = "Auto heals yourself", existence = heal or heal2}
@@ -445,7 +637,7 @@ commands[#commands+1]={name="Seizure [Player]", find = "seizure", details = "Sei
 commands[#commands+1]={name="Un/Banish [Player]", find = "banish unbanish", details = "BANISHES THEM FROM EXISTENCE", existence = spinunravel}
 commands[#commands+1]={name="Void [Player]", find = "void", details = "Thanos", existence = spinunravel}
 commands[#commands+1]={name="Kick [Player]", find = "kick", details = "Kicks the player", existence = samuraidmg and game.GameId==6099256669}
-commands[#commands+1]={name="ServerBan [Player]", find = "serverban sban", details = "Bans the player from the server", existence = spinunravel}
+commands[#commands+1]={name="Un/ServerBan [Player]", find = "serverban sban unserverban unsban", details = "Bans the player from the server", existence = spinunravel}
 commands[#commands+1]={name="Noscope [Player]", find = "noscope", details = "GET NOSCOPED", existence = spinunravel}
 commands[#commands+1]={name="Un/Deflect", find = "deflect undeflect", details = "Deflects NON OH DMG", existence = deflect or rtz2}
 commands[#commands+1]={name="Disable [Player]", find = "disable", details = "Disables the player", existence = disable}
@@ -481,6 +673,8 @@ commands[#commands+1]={name="HealMult", find = "healmult hlmult", details = "Hea
 
 commands[#commands+1]={name="Whitelist [Player]", find = "whitelist", details = "Blocks commands from player", existence = true}
 commands[#commands+1]={name="Blacklist [Player]", find = "blacklist", details = "Removes player Whitelist", existence = true}
+commands[#commands+1]={name="Admin [Player]", find = "admin", details = "Gives admin to player", existence = true}
+commands[#commands+1]={name="Logs [Player]", find = "logs", details = "Shows command logs", existence = true}
 commands[#commands+1]={name="AntiAFK", find = "antiafk", details = "Doesn't kick you when AFK", existence = true}
 commands[#commands+1]={name="Rejoin", find = "rejoin", details = "Rejoins current server", existence = true}
 commands[#commands+1]={name="Refresh", find = "refresh", details = "Refreshes your Character", existence = true}
@@ -767,6 +961,8 @@ function NOFLY()
 	end
 	pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Custom end)
 end
+
+local checkCMD
 
 local functions = {
 	["God"] = function(Type,player)
@@ -1137,6 +1333,16 @@ local functions = {
 			end
 		end
 	end,
+	["Admin"] = function(Type,player)
+		if Type==true and admins[player.Name]==nil then
+			admins[player.Name]=player.Chatted:Connect(function(text)
+				checkCMD(player,text)
+			end)
+		elseif Type==false and admins[player.Name]~=nil then
+			admins[player.Name]:Disconnect()
+			admins[player.Name]=nil
+		end
+	end,
 	["AntiAFK"] = function()
 		game:service'Players'.LocalPlayer.Idled:connect(function()
 			VirtualUser:CaptureController()
@@ -1195,11 +1401,16 @@ TextBox.MouseLeave:Connect(function()
 	end
 end)
 
-local cmds = function(cmd,cmd2,cmd3,player)
+local logged = {}
+
+local cmds = function(Self,cmd,cmd2,cmd3,player)
 	task.spawn(function()
 		
+		local Return = false
+		
 		local wasnil = player==nil
-		if player==nil then player=plr end
+		local isMe = Self==plr
+		if player==nil then player=Self end
 		
 		if cmd==Prefix.."god" or cmd==Prefix.."ungod" then
 			functions.God(cmd==Prefix.."god",player)
@@ -1242,9 +1453,9 @@ local cmds = function(cmd,cmd2,cmd3,player)
 			functions.Kick(player)
 		elseif (cmd==Prefix.."serverban" or cmd==Prefix.."sban" or cmd==Prefix.."unserverban" or cmd==Prefix.."unsban") then
 			functions.ServerBan(cmd==Prefix.."serverban" or cmd==Prefix.."sban",player,cmd2)
-		elseif cmd==Prefix.."noscope" then
+		elseif cmd==Prefix.."noscope" and isMe then
 			functions.Noscope()
-		elseif cmd==Prefix.."deflect" or cmd==Prefix.."undeflect" then
+		elseif (cmd==Prefix.."deflect" or cmd==Prefix.."undeflect") and isMe then
 			functions.Deflect(cmd==Prefix.."deflect")
 		elseif cmd==Prefix.."disable" then
 			functions.Disable(player)
@@ -1252,76 +1463,102 @@ local cmds = function(cmd,cmd2,cmd3,player)
 			functions.DeleteStand(player)
 		elseif cmd==Prefix.."ragdoll" then
 			functions.Ragdoll(player)
-		elseif cmd==Prefix.."nostun" or cmd==Prefix.."unnostun" then
+		elseif (cmd==Prefix.."nostun" or cmd==Prefix.."unnostun") and isMe then
 			functions.Nostun(cmd==Prefix.."nostun")
-		elseif cmd==Prefix.."antits" or cmd==Prefix.."unantits" then
+		elseif (cmd==Prefix.."antits" or cmd==Prefix.."unantits") and isMe then
 			functions.Antits(cmd==Prefix.."antits")
-		elseif cmd==Prefix.."antidisable" or cmd==Prefix.."antid" or cmd==Prefix.."unantidisable" or cmd==Prefix.."unantid" then
+		elseif (cmd==Prefix.."antidisable" or cmd==Prefix.."antid" or cmd==Prefix.."unantidisable" or cmd==Prefix.."unantid") and isMe then
 			functions.AntiDisable(cmd==Prefix.."antidisable" or cmd==Prefix.."antid")
 		elseif cmd==Prefix.."untimestop" then
 			functions.Untimestop()
-		elseif cmd==Prefix.."nocooldown" or cmd==Prefix.."nocd" or cmd==Prefix.."ncd" or cmd==Prefix.."unnocooldown" or cmd==Prefix.."unnocd" or cmd==Prefix.."unncd" then
+		elseif (cmd==Prefix.."nocooldown" or cmd==Prefix.."nocd" or cmd==Prefix.."ncd" or cmd==Prefix.."unnocooldown" or cmd==Prefix.."unnocd" or cmd==Prefix.."unncd") and isMe then
 			functions.Nocooldown(cmd==Prefix.."nocooldown" or cmd==Prefix.."nocd" or cmd==Prefix.."ncd")
-		elseif cmd==Prefix.."invisible" or cmd==Prefix.."vanish" or cmd==Prefix.."visible" or cmd==Prefix.."appear" then
+		elseif (cmd==Prefix.."invisible" or cmd==Prefix.."vanish" or cmd==Prefix.."visible" or cmd==Prefix.."appear") and isMe then
 			functions.Visible(cmd==Prefix.."invisible" or cmd==Prefix.."vanish")
-		elseif cmd==Prefix.."transparency" and cmd2 then
+		elseif (cmd==Prefix.."transparency" and cmd2) and isMe then
 			visible(cmd2)
 		elseif (cmd==Prefix.."mute" or cmd==Prefix.."unmute") and not wasnil then
 			functions.Mute(cmd==Prefix.."mute",player)
-		elseif (cmd==Prefix.."clientmute" or cmd==Prefix.."cmute" or cmd==Prefix.."unclientmute" or cmd==Prefix.."uncmute") and not wasnil then
+		elseif ((cmd==Prefix.."clientmute" or cmd==Prefix.."cmute" or cmd==Prefix.."unclientmute" or cmd==Prefix.."uncmute") and not wasnil) and isMe then
 			functions.ClientMute(cmd==Prefix.."clientmute" or cmd==Prefix.."cmute",player)
-		elseif (cmd==Prefix.."goto" or cmd==Prefix.."bring" or cmd==Prefix.."fbring") and not wasnil then
+		elseif ((cmd==Prefix.."goto" or cmd==Prefix.."bring" or cmd==Prefix.."fbring") and not wasnil) and isMe then
 			functions.Teleport(cmd,player)
-		elseif cmd==Prefix.."swap" and not wasnil then
+		elseif (cmd==Prefix.."swap" and not wasnil) and isMe then
 			functions.Swap(player)
-		elseif cmd==Prefix.."control" and not wasnil or cmd==Prefix.."uncontrol" then
+		elseif (cmd==Prefix.."control" and not wasnil or cmd==Prefix.."uncontrol") and isMe then
 			functions.Control(cmd==Prefix.."control",player)
-		elseif (cmd==Prefix.."controlspeed" or cmd==Prefix.."cspeed") and cmd2 then
+		elseif (cmd==Prefix.."controlspeed" or cmd==Prefix.."cspeed") and cmd2 and isMe then
 			if not tonumber(cmd2) then return end
 			controlspeed=cmd2
 		elseif (cmd==Prefix.."walkspeed" or cmd==Prefix.."speed" or cmd==Prefix.."ws") and cmd2 then
 			functions.Walkspeed(player,cmd2,cmd3)
-		elseif cmd==Prefix.."fly" or cmd==Prefix.."unfly" then
+		elseif (cmd==Prefix.."fly" or cmd==Prefix.."unfly") and isMe then
 			functions.Fly(cmd==Prefix.."fly")
-		elseif (cmd==Prefix.."flyspeed" or cmd==Prefix.."flys") and cmd2 then
+		elseif (cmd==Prefix.."flyspeed" or cmd==Prefix.."flys") and cmd2 and isMe then
 			functions.FlySpeed(cmd2)
-		elseif cmd==Prefix.."music" and cmd2 then
+		elseif (cmd==Prefix.."music" and cmd2) and isMe then
 			functions.Music(cmd2)
-		elseif cmd==Prefix.."pose" then
+		elseif cmd==Prefix.."pose" and isMe then
 			functions.Pose(cmd2)
-		elseif cmd==Prefix.."lag" or cmd==Prefix.."unlag" then
+		elseif (cmd==Prefix.."lag" or cmd==Prefix.."unlag") and isMe then
 			functions.Lag(cmd==Prefix.."lag")
-		elseif cmd==Prefix.."crash" then
+		elseif cmd==Prefix.."crash" and isMe then
 			functions.Crash()
-		elseif cmd==Prefix.."serverlock" or cmd==Prefix.."unserverlock" then
+		elseif (cmd==Prefix.."serverlock" or cmd==Prefix.."unserverlock") and isMe then
 			functions.ServerLock(cmd==Prefix.."serverlock")
-		elseif (cmd==Prefix.."damagemult" or cmd==Prefix.."dmgmult") and cmd2 then
+		elseif (cmd==Prefix.."damagemult" or cmd==Prefix.."dmgmult") and cmd2 and isMe then
 			functions.DmgMult(cmd2)
-		elseif (cmd==Prefix.."healmult" or cmd==Prefix.."hlmult") and cmd2 then
+		elseif (cmd==Prefix.."healmult" or cmd==Prefix.."hlmult") and cmd2 and isMe then
 			functions.HlthMult(cmd2)
-		elseif cmd==Prefix.."whitelist" or cmd==Prefix.."blacklist" then
+		elseif (cmd==Prefix.."whitelist" or cmd==Prefix.."blacklist") and isMe then
 			functions.Whitelist(cmd==Prefix.."whitelist", player)
-		elseif cmd==Prefix.."antiafk" then
+		elseif cmd==Prefix.."admin" or cmd==Prefix.."unadmin" then
+			functions.Admin(cmd==Prefix.."admin",player)
+		elseif cmd==Prefix.."logs" and isMe then
+			UIScale.Scale = .03
+			Logs.Visible=true
+			game:GetService("TweenService"):Create(UIScale,TweenInfo.new(.75,Enum.EasingStyle.Circular,Enum.EasingDirection.InOut),{Scale=1}):Play()
+		elseif cmd==Prefix.."antiafk" and isMe then
 			functions.AntiAFK()
-		elseif cmd==Prefix.."rejoin" then
+		elseif cmd==Prefix.."rejoin" and isMe then
 			functions.Rejoin()
-		elseif cmd==Prefix.."refresh" then
+		elseif cmd==Prefix.."refresh" and isMe then
 			functions.Refresh()
-		elseif cmd==Prefix.."panic" then
+		elseif cmd==Prefix.."panic" and isMe then
 			functions.Panic()
-		elseif cmd==Prefix.."tpmenu" then
+		elseif cmd==Prefix.."tpmenu" and isMe then
 			functions.TPMenu()
 		elseif cmd==Prefix.."clean" and clean then
 			clean:FireServer()
-		elseif cmd==Prefix.."arrow" and arrow then
+		elseif cmd==Prefix.."arrow" and arrow and isMe then
 			arrow:FireServer()
-		elseif cmd==Prefix.."roka" and roka then
+		elseif cmd==Prefix.."roka" and roka and isMe then
 			roka:FireServer()
+		else
+			Return=true
+		end
+		if Return then return end		
+		
+		local cmnd, other=string.gsub(cmd,";","")		
+		
+		local logTemp=logTemplate:Clone()
+		logTemp.Parent=LogScroll
+		logTemp.Visible=true
+		
+		logTemp.plar.Text=Self.Name
+		logTemp.coman.Text=cmnd..((player~=plr or cmd3~=nil and not tonumber(cmd2)) and " "..player.Name or "")
+		logTemp.Value.Text=(tonumber(cmd2) and cmd2 or not tonumber(cmd2) and cmd2~=nil and cmd3==nil and player.Name or "")..(tonumber(cmd3) and " "..cmd3 or "")
+		
+		table.insert(logged,logTemp)
+		logTemp.Name=40-#logged
+		if #logged>40 then
+			logged[1]:Destroy()
+			table.remove(logged,1)
 		end
 	end)
 end
 
-local checkCMD = function(msg)
+checkCMD = function(player,msg)
 	local args = string.split(string.lower(msg)," ")
 
 	local cmd = string.lower(args[1])
@@ -1333,18 +1570,18 @@ local checkCMD = function(msg)
 	end
 
 	if args[2] and not tonumber(args[2]) then
-		local plrs = GetPlayer(args[2])
+		local plrs = GetPlayer(args[2],player)
 		for i,v in pairs(plrs) do
 			if game.Players:FindFirstChild(v.Name) then
-				cmds(cmd,cmd2,cmd3,game.Players[v.Name])
+				cmds(player,cmd,cmd2,cmd3,game.Players[v.Name])
 			end
 		end
 	else
-		cmds(cmd,cmd2,cmd3,nil)
+		cmds(player,cmd,cmd2,cmd3,nil)
 	end
 end
 
-game:GetService("UserInputService").InputBegan:connect(function(input,chat)
+UIS.InputBegan:connect(function(input,chat)
 	if input.KeyCode == Enum.KeyCode.Semicolon and not TextBox:IsFocused() and not chat then
 		TextBox:CaptureFocus()
 		Commands.CanvasPosition = Vector2.new(0, 0)
@@ -1353,7 +1590,7 @@ game:GetService("UserInputService").InputBegan:connect(function(input,chat)
 		repeat wait() until TextBox.Text == ";"
 		TextBox.Text = ""
 	elseif input.KeyCode == Enum.KeyCode.Return then
-		checkCMD(TextBox.Text)
+		checkCMD(plr,TextBox.Text)
 		TextBox.Text = ""
 	end
 	
@@ -1364,7 +1601,7 @@ game:GetService("UserInputService").InputBegan:connect(function(input,chat)
 	end
 end)
 
-game:GetService("UserInputService").InputEnded:connect(function(input,chat)
+UIS.InputEnded:connect(function(input,chat)
 	if input.KeyCode.Name=="W" then
 		holdingW=false
 	elseif input.KeyCode.Name=="S" then
@@ -1402,7 +1639,61 @@ local doLoop = function(tab,func)
 	end
 end
 
+
+local dragging
+local dragInput
+local dragStart
+local startPos
+
+function Lerp(a, b, m)
+	return a + (b - a) * m
+end;
+
+local lastMousePos
+local lastGoalPos
+local DRAG_SPEED = (8); -- // The speed of the UI darg.
+function Update(dt)
+	if not (startPos) then return end;
+	if not (dragging) and (lastGoalPos) then
+		Logs.Position = UDim2.new(startPos.X.Scale, Lerp(Logs.Position.X.Offset, lastGoalPos.X.Offset, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(Logs.Position.Y.Offset, lastGoalPos.Y.Offset, dt * DRAG_SPEED))
+		return 
+	end;
+
+	local delta = (lastMousePos - UIS:GetMouseLocation())
+	local xGoal = (startPos.X.Offset - delta.X);
+	local yGoal = (startPos.Y.Offset - delta.Y);
+	lastGoalPos = UDim2.new(startPos.X.Scale, xGoal, startPos.Y.Scale, yGoal)
+	Logs.Position = UDim2.new(startPos.X.Scale, Lerp(Logs.Position.X.Offset, xGoal, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(Logs.Position.Y.Offset, yGoal, dt * DRAG_SPEED))
+end;
+
+Logs.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		dragging = true
+		dragStart = input.Position
+		startPos = Logs.Position
+		lastMousePos = UIS:GetMouseLocation()
+
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragging = false
+			end
+		end)
+	end
+end)
+
+Logs.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		dragInput = input
+	end
+end)
+
+
 game:GetService("RunService").RenderStepped:Connect(function(elapsed)
+	
+	Update(elapsed)
+	
+	LogScroll.CanvasSize = UDim2.new(0, 0, 0, UIListLayout.AbsoluteContentSize.Y)
+	Commands.CanvasSize = UDim2.new(0, 0, 0, cmdListLayout.AbsoluteContentSize.Y)
 	
 	if controlTarget~=nil then
 		local player=controlTarget
@@ -1554,6 +1845,12 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 		wait(.2)
 		if player.Character:FindFirstChildOfClass("Humanoid").Health ~= 0 and samuraidmg then
 			samuraidmg:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),math.huge,0,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 10)
+		end
+	end)
+	
+	doLoop(admins,function(i,v)
+		if not game.Players:FindFirstChild(i) then
+			v:Disconnect()v=nil admins[i]=nil
 		end
 	end)
 	
