@@ -1,0 +1,443 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local TPMenu = Instance.new("ScreenGui")
+local Items = Instance.new("Frame")
+local Title = Instance.new("TextLabel")
+local BG = Instance.new("Frame")
+local ScrollingFrame = Instance.new("ScrollingFrame")
+local UIListLayout = Instance.new("UIListLayout")
+local Settings = Instance.new("Frame")
+local Title_2 = Instance.new("TextLabel")
+local ScrollingFrame_2 = Instance.new("ScrollingFrame")
+local UIListLayout_2 = Instance.new("UIListLayout")
+local Bring = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local TextButton = Instance.new("TextButton")
+local UIStroke = Instance.new("UIStroke",TextButton)
+local UIStroke2 = Instance.new("UIStroke",TextButton)
+local Location = Instance.new("Frame")
+local TextBox = Instance.new("TextBox")
+local UIStroke3 = Instance.new("UIStroke",TextBox)
+local Location_2 = Instance.new("TextLabel")
+local NPCs = Instance.new("Frame")
+local Title_3 = Instance.new("TextLabel")
+local BG_2 = Instance.new("Frame")
+local ScrollingFrame_3 = Instance.new("ScrollingFrame")
+local UIListLayout_3 = Instance.new("UIListLayout")
+local Template = Instance.new("TextButton")
+local TextLabel_2 = Instance.new("TextLabel")
+
+ScrollingFrame.AutomaticCanvasSize=Enum.AutomaticSize.XY
+ScrollingFrame_2.AutomaticCanvasSize=Enum.AutomaticSize.XY
+ScrollingFrame_3.AutomaticCanvasSize=Enum.AutomaticSize.XY
+
+--Properties:
+
+UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+UIStroke.Color = Color3.fromRGB(0, 255, 0)
+UIStroke.Thickness = 3
+
+UIStroke2.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
+UIStroke2.Color = Color3.fromRGB(0, 255, 0)
+UIStroke2.Thickness = 1
+
+UIStroke3.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+UIStroke3.Color = Color3.fromRGB(255, 0, 0)
+UIStroke3.Thickness = 3
+
+TPMenu.Name = "TPMenu"
+TPMenu.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+TPMenu.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Items.Name = "Items"
+Items.Parent = TPMenu
+Items.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+Items.BorderSizePixel = 0
+Items.Position = UDim2.new(0.00499999989, 0, 0.275, 0)
+Items.Size = UDim2.new(0.106826469, 0, 0.025925925, 0)
+
+Title.Name = "Title"
+Title.Parent = Items
+Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 1.000
+Title.Size = UDim2.new(1, 0, 1, 0)
+Title.Font = Enum.Font.SourceSansBold
+Title.Text = "Items"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextScaled = true
+Title.TextSize = 14.000
+Title.TextWrapped = true
+
+BG.Name = "BG"
+BG.Parent = Items
+BG.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+BG.BorderSizePixel = 0
+BG.Position = UDim2.new(0, 0, 0.967000008, 0)
+BG.Size = UDim2.new(1, 0, 1, 0)
+
+ScrollingFrame.Parent = Items
+ScrollingFrame.Active = true
+ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollingFrame.BackgroundTransparency = 1.000
+ScrollingFrame.BorderSizePixel = 0
+ScrollingFrame.Position = UDim2.new(0, 0, 0.967000008, 0)
+ScrollingFrame.Size = UDim2.new(1, 0, 14.25, 0)
+ScrollingFrame.ZIndex = 2
+ScrollingFrame.ScrollBarThickness = 0
+
+UIListLayout.Parent = ScrollingFrame
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+Settings.Name = "Settings"
+Settings.Parent = TPMenu
+Settings.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+Settings.BorderSizePixel = 0
+Settings.Position = UDim2.new(0.119999997, 0, 0.275, 0)
+Settings.Size = UDim2.new(0.106826469, 0, 0.025925925, 0)
+
+Title_2.Name = "Title"
+Title_2.Parent = Settings
+Title_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title_2.BackgroundTransparency = 1.000
+Title_2.Size = UDim2.new(1, 0, 1, 0)
+Title_2.Font = Enum.Font.SourceSansBold
+Title_2.Text = "Settings"
+Title_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title_2.TextScaled = true
+Title_2.TextSize = 14.000
+Title_2.TextWrapped = true
+
+ScrollingFrame_2.Parent = Settings
+ScrollingFrame_2.Active = true
+ScrollingFrame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollingFrame_2.BackgroundTransparency = 1.000
+ScrollingFrame_2.BorderSizePixel = 0
+ScrollingFrame_2.Position = UDim2.new(0, 0, 0.967000008, 0)
+ScrollingFrame_2.Size = UDim2.new(1, 0, 14.25, 0)
+ScrollingFrame_2.ZIndex = 2
+ScrollingFrame_2.ScrollBarThickness = 0
+
+UIListLayout_2.Parent = ScrollingFrame_2
+UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
+
+Bring.Name = "Bring"
+Bring.Parent = ScrollingFrame_2
+Bring.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+Bring.BorderSizePixel = 0
+Bring.Size = UDim2.new(1, 0, 0.0710596889, 0)
+
+TextLabel.Parent = Bring
+TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
+TextLabel.Size = UDim2.new(0.94, 0, 0.930000007, 0)
+TextLabel.Font = Enum.Font.SourceSansBold
+TextLabel.Text = "Bring Items"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+TextButton.Parent = Bring
+TextButton.AnchorPoint = Vector2.new(0.5, 0.5)
+TextButton.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.920000017, 0, 0.5, 0)
+TextButton.Size = UDim2.new(0.0878048763, 0, 0.634857655, 0)
+TextButton.Font = Enum.Font.SourceSansBold
+TextButton.Text = "✓"
+TextButton.TextColor3 = Color3.fromRGB(0, 255, 0)
+TextButton.TextScaled = true
+TextButton.TextSize = 14.000
+TextButton.TextWrapped = true
+
+Location.Name = "Location"
+Location.Parent = ScrollingFrame_2
+Location.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+Location.BorderSizePixel = 0
+Location.Size = UDim2.new(1, 0, 0.0710596889, 0)
+
+TextBox.Parent = Location
+TextBox.AnchorPoint = Vector2.new(0.5, 0.5)
+TextBox.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
+TextBox.Position = UDim2.new(0.74, 0, 0.5, 0)
+TextBox.Size = UDim2.new(0.45, 0, 0.6, 0)
+TextBox.Font = Enum.Font.SourceSansBold
+TextBox.PlaceholderColor3 = Color3.fromRGB(0, 255, 0)
+TextBox.Text = ""
+TextBox.TextColor3 = Color3.fromRGB(0, 255, 0)
+TextBox.TextScaled = true
+TextBox.TextSize = 14.000
+TextBox.TextWrapped = true
+
+Location_2.Name = "Location"
+Location_2.Parent = Location
+Location_2.AnchorPoint = Vector2.new(0.5, 0.5)
+Location_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Location_2.BackgroundTransparency = 1.000
+Location_2.Position = UDim2.new(0.5, 0, 0.5, 0)
+Location_2.Size = UDim2.new(0.94, 0, 0.930000007, 0)
+Location_2.Font = Enum.Font.SourceSansBold
+Location_2.Text = "Location:"
+Location_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+Location_2.TextScaled = true
+Location_2.TextSize = 14.000
+Location_2.TextWrapped = true
+Location_2.TextXAlignment = Enum.TextXAlignment.Left
+
+NPCs.Name = "NPC's"
+NPCs.Parent = TPMenu
+NPCs.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+NPCs.BorderSizePixel = 0
+NPCs.Position = UDim2.new(0.119999997, 0, 0.36, 0)
+NPCs.Size = UDim2.new(0.106826469, 0, 0.025925925, 0)
+
+Title_3.Name = "Title"
+Title_3.Parent = NPCs
+Title_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title_3.BackgroundTransparency = 1.000
+Title_3.Size = UDim2.new(1, 0, 1, 0)
+Title_3.Font = Enum.Font.SourceSansBold
+Title_3.Text = "NPC's"
+Title_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title_3.TextScaled = true
+Title_3.TextSize = 14.000
+Title_3.TextWrapped = true
+
+BG_2.Name = "BG"
+BG_2.Parent = NPCs
+BG_2.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+BG_2.BorderSizePixel = 0
+BG_2.Position = UDim2.new(0, 0, 0.967000008, 0)
+BG_2.Size = UDim2.new(1, 0, 1, 0)
+
+ScrollingFrame_3.Parent = NPCs
+ScrollingFrame_3.Active = true
+ScrollingFrame_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollingFrame_3.BackgroundTransparency = 1.000
+ScrollingFrame_3.BorderSizePixel = 0
+ScrollingFrame_3.Position = UDim2.new(0, 0, 0.967000008, 0)
+ScrollingFrame_3.Size = UDim2.new(1, 0, 14.25, 0)
+ScrollingFrame_3.ZIndex = 2
+ScrollingFrame_3.ScrollBarThickness = 0
+
+UIListLayout_3.Parent = ScrollingFrame_3
+UIListLayout_3.SortOrder = Enum.SortOrder.LayoutOrder
+
+Template.Name = "Template"
+Template.Parent = TPMenu
+Template.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+Template.BorderSizePixel = 0
+Template.Size = UDim2.new(1, 0, 0.0710596889, 0)
+Template.Visible = false
+Template.Text=""
+
+TextLabel_2.Parent = Template
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1
+TextLabel_2.Size = UDim2.new(0.65, 0, 0.987556279, 0)
+TextLabel_2.Font = Enum.Font.SourceSansBold
+TextLabel_2.Text = "Arrow"
+TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.TextScaled = true
+TextLabel_2.TextSize = 14.000
+TextLabel_2.TextWrapped = true
+TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
+TextLabel_2.Position = UDim2.new(.05,0,0,0)
+
+local TextLabel_3 = Instance.new("TextLabel")
+TextLabel_3.Parent = Template
+TextLabel_3.Font = Enum.Font.SourceSansBold
+TextLabel_3.AnchorPoint = Vector2.new(1,.5)
+TextLabel_3.Position = UDim2.new(.99,0,.5,0)
+TextLabel_3.Text = "AMT: 0"
+TextLabel_3.Name = "amt"
+TextLabel_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.TextScaled = true
+TextLabel_3.Size = UDim2.new(.3,0,.7,0)
+TextLabel_3.BackgroundTransparency = 1
+
+local bring = false
+
+local updateBring = function()
+	UIStroke.Color=bring and Color3.new(0,255,0) or Color3.fromRGB(255,0,0)
+	UIStroke2.Color=bring and Color3.new(0,255,0) or Color3.fromRGB(255,0,0)
+	TextButton.Text=bring and "✓" or "X"
+	TextButton.TextColor3=bring and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
+end
+updateBring()
+
+local folder = nil
+local npcFolder = (game.GameId==6099256669 or game.GameId==2217006564) and workspace.Other or nil
+local addCon = nil
+local rmCon = nil
+
+for i,v in pairs(workspace:GetChildren()) do
+	local name=string.lower(v.Name)
+	if (name=="npcs" or name=="npc" or name=="npc's") and v:IsA("Folder") then
+		npcFolder=v break
+	end
+end
+
+local val=0
+
+local getNum=function(frame,parent)
+	for i,v in pairs(frame:GetChildren()) do
+		if v:IsA("TextButton") then
+			local num = 0
+			local num2 = 0
+			local Return = false
+			for e,g in pairs(parent:GetChildren()) do
+				for f,j in pairs(v:GetChildren()) do
+					if j.ClassName=="Script" and j.Name=="Properties" then
+						Return = false break
+					elseif j.ClassName=="LocalScript" and j.Name=="Properties" then
+						num2+=1
+					end
+				end
+				if num2>=2 or Return then continue end
+				if g.Name==v.Name then num+=1 end
+			end
+			v.amt.Text = "AMT: "..num
+		end
+	end
+end
+
+local createItem = function(obj,parent,noDupes)
+	if noDupes and parent:FindFirstChild(obj.Name) then return end
+	local clone=Template:Clone()
+	clone.Name=obj.Name
+	clone.Parent=parent
+	clone.TextLabel.Text=obj.Name
+	clone.Visible=true
+	parent.CanvasSize=UDim2.new(0,0,0,parent.UIListLayout.AbsoluteContentSize.Y)
+	return clone
+end
+
+local buttonFunc = function(button,child)
+	task.spawn(function()
+		if button==nil then return end
+		local con
+		local par = child.Parent
+		local name = child.Name
+		con = button.MouseButton1Click:Connect(function()
+			if child==nil or child.Parent~=par then con:Disconnect() con=nil return end
+			if child:FindFirstChild("HumanoidRootPart") then
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame=child.HumanoidRootPart.CFrame
+				return
+			end
+			if bring then
+				if child.PrimaryPart~=nil then
+					child:SetPrimaryPartCFrame(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
+				elseif child:FindFirstChild("Handle") then
+					child.Handle.CFrame=game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+				end
+			else
+				if child.PrimaryPart~=nil then
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame=child.PrimaryPart.CFrame
+				elseif child:FindFirstChild("Handle") then
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame=child.Handle.CFrame
+				end
+			end
+		end)
+	end)
+end
+
+local getFolder
+getFolder = function(num,text)
+	if num~=val then return end
+	local found=false
+	local oldFolder=folder
+	if workspace:FindFirstChildOfClass("Tool") then folder=workspace found=true end
+	if not found then
+		for i,v in pairs(workspace:GetDescendants()) do
+			if text==nil and v:IsA("Folder") and v:FindFirstChildOfClass("Tool") or text~=nil and v:IsA("Folder") and v.Name==text then
+				folder=v break
+			end
+		end
+	end
+	if text~=nil and folder==oldFolder then return end
+	if folder==oldFolder then wait(5) getFolder(num)
+	else
+		if addCon~=nil then addCon:Disconnect() addCon=nil end
+		if rmCon~=nil then rmCon:Disconnect() rmCon=nil end
+
+		for i,v in pairs(folder:GetChildren()) do
+			if v:IsA("Tool") then
+				local Return = true
+				if (game.GameId==6099256669 or game.GameId==2217006564) then
+					local num = 0
+					for e,g in pairs(v:GetChildren()) do
+						if g.ClassName=="Script" and g.Name=="Properties" then
+							Return = false break
+						elseif g.ClassName=="LocalScript" and g.Name=="Properties" then
+							num+=1
+						end
+					end
+					if num>=2 then Return=true end
+				else
+					Return=false
+				end
+				if Return then continue end
+				local button=createItem(v,ScrollingFrame,true)
+				buttonFunc(button,v)
+				getNum(ScrollingFrame,folder)
+			end
+		end
+
+		addCon=folder.ChildAdded:Connect(function(child)
+			local Return = true
+			if (game.GameId==6099256669 or game.GameId==2217006564) then
+				for i,v in pairs(child:GetChildren()) do
+					if v.ClassName=="Script" and v.Name=="Properties" then
+						Return = false break
+					elseif g.ClassName=="LocalScript" and g.Name=="Properties" then
+						num+=1
+					end
+				end
+				if num>=2 then Return=true end
+			else
+				Return=false
+			end
+			if Return or not child:IsA("Tool") then return end
+			local button=createItem(child,ScrollingFrame,true)
+			buttonFunc(button,child)
+			getNum(ScrollingFrame,folder)
+		end)
+		rmCon=folder.ChildRemoved:Connect(function(child)
+			getNum(ScrollingFrame,folder)
+		end)
+	end
+end
+getFolder(val)
+
+TextBox.FocusLost:Connect(function(enter)
+	if enter then
+		val=val+1
+		getFolder(val,TextBox.Text)
+	end
+end)
+
+TextButton.MouseButton1Click:Connect(function()
+	bring=not bring
+	updateBring()
+end)
+
+if npcFolder~=nil then
+	for i,v in pairs(npcFolder:GetChildren()) do
+		if v:IsA("Model") and v:FindFirstChild("HumanoidRootPart") then
+			local button=createItem(v,ScrollingFrame_3,false)
+			button.amt:Destroy()
+			button.TextLabel.TextXAlignment = Enum.TextXAlignment.Center
+			button.TextLabel.AnchorPoint = Vector2.new(.5,0)
+			button.TextLabel.Position = UDim2.new(0.5,0,0,0)
+			button.TextLabel.Size = UDim2.new(.95,0,1,0)
+			buttonFunc(button,v)
+		end
+	end
+end
