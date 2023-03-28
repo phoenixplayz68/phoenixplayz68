@@ -349,22 +349,28 @@ local buttonFunc = function(button,obj,skip)
 		local name = obj.Name
 		con = button.MouseButton1Click:Connect(function()
 			
-			local child
+			local child=skip and obj or nil
 			
-			for e,g in pairs(par:GetChildren()) do
-				local num=0
-				local Return=true
-				if g.Name~=name then continue end
-				for f,j in pairs(g:GetChildren()) do
-					if j.ClassName=="Script" and j.Name=="Properties" then
-						Return = false
+			if child==nil then
+				for e,g in pairs(par:GetChildren()) do
+					local num=0
+					local Return=true
+					if g.Name~=name then continue end
+					if (game.GameId==6099256669 or game.GameId==2217006564) and g:FindFirstChild("Properties") then
+						for f,j in pairs(g:GetChildren()) do
+							if j.ClassName=="Script" and j.Name=="Properties" then
+								Return = false
+							end
+							if j.ClassName=="LocalScript" and j.Name=="Properties" then
+								num+=1
+							end
+						end
+					else
+						Return=false
 					end
-					if j.ClassName=="LocalScript" and j.Name=="Properties" then
-						num+=1
-					end
+					if num>=2 or Return then continue end
+					child=g break
 				end
-				if num>=2 or Return then continue end
-				child=g break
 			end
 			
 			if child==nil then return end
