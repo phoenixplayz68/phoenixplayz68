@@ -305,18 +305,20 @@ local getNum=function(frame,parent)
 	for i,v in pairs(frame:GetChildren()) do
 		if v:IsA("TextButton") then
 			local num = 0
-			local num2 = 0
-			local Return = false
 			for e,g in pairs(parent:GetChildren()) do
-				for f,j in pairs(v:GetChildren()) do
-					if j.ClassName=="Script" and j.Name=="Properties" then
-						Return = false break
-					elseif j.ClassName=="LocalScript" and j.Name=="Properties" then
-						num2+=1
+				local retNum = 0
+				local Return = false
+				if g.Name~=v.Name then continue end
+				if (game.GameId==6099256669 or game.GameId==2217006564) and g:FindFirstChild("Properties") then
+					for f,j in pairs(g:GetChildren()) do
+						if j.ClassName=="Script" and j.Name=="Properties" then Return = false end
+						if j.ClassName=="LocalScript" and j.Name=="Properties" then retNum+=1 end
 					end
+				else
+					Return=false
 				end
-				if num2>=2 or Return then continue end
-				if g.Name==v.Name then num+=1 end
+				if retNum>=2 or Return then continue end
+				num+=1
 			end
 			v.amt.Text = "AMT: "..num
 		end
@@ -346,7 +348,25 @@ local buttonFunc = function(button,obj,skip)
 		local par = obj.Parent
 		local name = obj.Name
 		con = button.MouseButton1Click:Connect(function()
-			local child=items[name][1]
+			
+			local child
+			
+			for e,g in pairs(par:GetChildren()) do
+				local num=0
+				local Return=true
+				if g.Name~=name then continue end
+				for f,j in pairs(g:GetChildren()) do
+					if j.ClassName=="Script" and j.Name=="Properties" then
+						Return = false
+					end
+					if j.ClassName=="LocalScript" and j.Name=="Properties" then
+						num+=1
+					end
+				end
+				if num>=2 or Return then continue end
+				child=g break
+			end
+			
 			if child==nil then return end
 			if child:FindFirstChild("HumanoidRootPart") then
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame=child.HumanoidRootPart.CFrame
@@ -415,22 +435,17 @@ getFolder = function(num,text)
 		for i,v in pairs(folder:GetChildren()) do
 			if v:IsA("Tool") then
 				local Return = true
-				if (game.GameId==6099256669 or game.GameId==2217006564) then
-					local num = 0
+				if (game.GameId==6099256669 or game.GameId==2217006564) and v:FindFirstChild("Properties") then
+					local retNum = 0
 					for e,g in pairs(v:GetChildren()) do
-						if g.ClassName=="Script" and g.Name=="Properties" then
-							Return = false break
-						elseif g.ClassName=="LocalScript" and g.Name=="Properties" then
-							num+=1
-						end
+						if g.ClassName=="Script" and g.Name=="Properties" then Return = false end
+						if g.ClassName=="LocalScript" and g.Name=="Properties" then retNum+=1 end
 					end
-					if num>=2 then Return=true end
+					if retNum>=2 then Return=true end
 				else
 					Return=false
 				end
 				if Return then continue end
-				items[v.Name]=items[v.Name]==nil and {} or items[v.Name]
-				if not table.find(items[v.Name],v) then table.insert(items[v.Name],v) end
 				local button=createItem(v,ScrollingFrame,true)
 				buttonFunc(button,v)
 				getNum(ScrollingFrame,folder)
@@ -439,29 +454,22 @@ getFolder = function(num,text)
 
 		addCon=folder.ChildAdded:Connect(function(child)
 			local Return = true
-			if (game.GameId==6099256669 or game.GameId==2217006564) then
-				for i,v in pairs(child:GetChildren()) do
-					if v.ClassName=="Script" and v.Name=="Properties" then
-						Return = false break
-					elseif v.ClassName=="LocalScript" and v.Name=="Properties" then
-						num+=1
-					end
+			if (game.GameId==6099256669 or game.GameId==2217006564) and child:FindFirstChild("Properties") then
+				local retNum = 0
+				for e,g in pairs(child:GetChildren()) do
+					if g.ClassName=="Script" and g.Name=="Properties" then Return = false end
+					if g.ClassName=="LocalScript" and g.Name=="Properties" then retNum+=1 end
 				end
-				if num>=2 then Return=true end
+				if retNum>=2 then Return=true end
 			else
 				Return=false
 			end
 			if Return or not child:IsA("Tool") then return end
-			items[child.Name]=items[child.Name]==nil and {} or items[child.Name]
-			if not table.find(items[child.Name],child) then table.insert(items[child.Name],child) end
 			local button=createItem(child,ScrollingFrame,true)
 			buttonFunc(button,child)
 			getNum(ScrollingFrame,folder)
 		end)
 		rmCon=folder.ChildRemoved:Connect(function(child)
-			if table.find(items[child.Name],child) then
-				table.remove(items[child.Name],table.find(items[child.Name],child))
-			end
 			getNum(ScrollingFrame,folder)
 		end)
 	end
