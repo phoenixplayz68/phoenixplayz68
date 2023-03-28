@@ -1,7 +1,11 @@
--- Gui to Lua
--- Version: 3.2
+_G.VS=3.5
 
--- Instances:
+if game.ReplicatedStorage:FindFirstChild("gravyoldschool") then return end
+
+local par = Instance.new("Part", game.ReplicatedStorage)
+par.Name = "gravyoldschool"
+
+local VS = _G.VS
 
 local VirtualUser=game:GetService("VirtualUser")
 local UIS=game:GetService("UserInputService")
@@ -52,7 +56,7 @@ TextLabel.BackgroundTransparency = 1.000
 TextLabel.Position = UDim2.new(0.0500000007, 0, -0.000961108599, 0)
 TextLabel.Size = UDim2.new(0.897222221, 0, 0.104859337, 0)
 TextLabel.Font = Enum.Font.SourceSansBold
-TextLabel.Text = "Gravy's Bizarre Admin V3.5"
+TextLabel.Text = "Gravy's Bizarre Admin V"..VS
 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.TextScaled = true
 TextLabel.TextSize = 14.000
@@ -311,11 +315,6 @@ UIListLayout.Padding = UDim.new(0, 5)
 
 
 
-
-
-local par = Instance.new("Part", game.ReplicatedStorage)
-par.Name = "gravyoldschool"
-
 local moving=false
 
 minimize = function()
@@ -437,6 +436,7 @@ local clean = getremote("CommandClean")
 local arrow = getremote("Arrow")
 local roka = getremote("Roka")
 local smite = getremote("Damage4")
+local death = getremote("Death")
 
 local mouse = plr:GetMouse()
 
@@ -677,9 +677,10 @@ commands[#commands+1]={name="Admin [Player]", find = "admin", details = "Gives a
 commands[#commands+1]={name="Logs [Player]", find = "logs", details = "Shows command logs", existence = true}
 commands[#commands+1]={name="AntiAFK", find = "antiafk", details = "Doesn't kick you when AFK", existence = true}
 commands[#commands+1]={name="Rejoin", find = "rejoin", details = "Rejoins current server", existence = true}
+commands[#commands+1]={name="Respawn", find = "respawn", details = "Respawns your Character", existence = death}
 commands[#commands+1]={name="Refresh", find = "refresh", details = "Refreshes your Character", existence = true}
 commands[#commands+1]={name="Panic", find = "panic", details = "Disables every enabled CMD", existence = true}
-commands[#commands+1]={name="TPMenu", find = "tpmenu", details = "Item teleport Menu", existence = true}
+commands[#commands+1]={name="Old/TPMenu", find = "tpmenu oldtpmenu", details = "Item teleport Menu", existence = true}
 commands[#commands+1]={name="Clean", find = "clean", details = "Cleans any effects", existence = true}
 commands[#commands+1]={name="Arrow", find = "arrow", details = "Uses Arrow", existence = true}
 commands[#commands+1]={name="Roka", find = "Roka", details = "Uses Roka", existence = true}
@@ -1354,8 +1355,12 @@ local functions = {
 	end,
 	["Refresh"] = refresh,
 	["Panic"] = panic,
-	["TPMenu"] = function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGDEX"))()
+	["TPMenu"] = function(Type)
+		if Type then
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGTPMENU"))()
+		else
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGDEX"))()
+		end
 	end,
 }
 
@@ -1522,12 +1527,14 @@ local cmds = function(Self,cmd,cmd2,cmd3,player)
 			functions.AntiAFK()
 		elseif cmd==Prefix.."rejoin" and isMe then
 			functions.Rejoin()
+		elseif cmd==Prefix.."respawn" and death and isMe then
+			death:FireServer()
 		elseif cmd==Prefix.."refresh" and isMe then
 			functions.Refresh()
 		elseif cmd==Prefix.."panic" and isMe then
 			functions.Panic()
-		elseif cmd==Prefix.."tpmenu" and isMe then
-			functions.TPMenu()
+		elseif (cmd==Prefix.."tpmenu" or cmd==Prefix.."oldtpmenu") and isMe then
+			functions.TPMenu(cmd==Prefix.."tpmenu")
 		elseif cmd==Prefix.."clean" and clean then
 			clean:FireServer()
 		elseif cmd==Prefix.."arrow" and arrow and isMe then
@@ -1687,8 +1694,26 @@ Logs.InputChanged:Connect(function(input)
 	end
 end)
 
+local Notify = function()
+	local NotificationBindable = Instance.new("BindableFunction")
+	NotificationBindable.OnInvoke = callback	
+	game.StarterGui:SetCore("SendNotification",  {
+		Title = "NEW UPDATE";
+		Text = "ADMIN HAS UPDATED PLEASE REJOIN!";
+		Icon = "";
+		Duration = 10;
+		Button1 = "Okay";
+		Callback = NotificationBindable;
+	})
+end
 
 game:GetService("RunService").RenderStepped:Connect(function(elapsed)
+	
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEING"))()
+	if _G.VS~=VS then
+		VS=_G.VS
+		Notify()
+	end
 	
 	Update(elapsed)
 	
