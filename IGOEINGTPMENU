@@ -3,6 +3,20 @@
 
 -- Instances:
 
+local note = function(title,text)
+	local NotificationBindable = Instance.new("BindableFunction")
+	NotificationBindable.OnInvoke = callback
+	game.StarterGui:SetCore("SendNotification",  {
+		Title = title;
+		Text = text;
+		Icon = "";
+		Duration = 10;
+		Button1 = "Okay";
+		Callback = NotificationBindable;
+	})
+end
+note("Keypad 5 hides TPMenu","Right click Item/NPC Button to remove it")
+
 local TPMenu = Instance.new("ScreenGui")
 local Items = Instance.new("Frame")
 local Title = Instance.new("TextLabel")
@@ -51,12 +65,13 @@ UIStroke3.Thickness = 3
 TPMenu.Name = "TPMenu"
 TPMenu.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 TPMenu.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+TPMenu.ResetOnSpawn = false
 
 Items.Name = "Items"
 Items.Parent = TPMenu
 Items.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
 Items.BorderSizePixel = 0
-Items.Position = UDim2.new(0.00499999989, 0, 0.275, 0)
+Items.Position = UDim2.new(0.003, 0, 0.285, 0)
 Items.Size = UDim2.new(0.106826469, 0, 0.025925925, 0)
 
 Title.Name = "Title"
@@ -95,7 +110,7 @@ Settings.Name = "Settings"
 Settings.Parent = TPMenu
 Settings.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
 Settings.BorderSizePixel = 0
-Settings.Position = UDim2.new(0.119999997, 0, 0.275, 0)
+Settings.Position = UDim2.new(0.115, 0, 0.285, 0)
 Settings.Size = UDim2.new(0.106826469, 0, 0.025925925, 0)
 
 Title_2.Name = "Title"
@@ -168,7 +183,7 @@ TextBox.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
 TextBox.Position = UDim2.new(0.74, 0, 0.5, 0)
 TextBox.Size = UDim2.new(0.45, 0, 0.6, 0)
 TextBox.Font = Enum.Font.SourceSansBold
-TextBox.PlaceholderColor3 = Color3.fromRGB(0, 255, 0)
+TextBox.PlaceholderColor3 = Color3.fromRGB(255, 0, 0)
 TextBox.Text = ""
 TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextBox.TextScaled = true
@@ -194,7 +209,7 @@ NPCs.Name = "NPC's"
 NPCs.Parent = TPMenu
 NPCs.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
 NPCs.BorderSizePixel = 0
-NPCs.Position = UDim2.new(0.119999997, 0, 0.36, 0)
+NPCs.Position = UDim2.new(0.115, 0, 0.37, 0)
 NPCs.Size = UDim2.new(0.106826469, 0, 0.025925925, 0)
 
 Title_3.Name = "Title"
@@ -319,14 +334,18 @@ local createItem = function(obj,parent,noDupes)
 	return clone
 end
 
-local buttonFunc = function(button,child)
+local buttonCons = {}
+
+local buttonFunc = function(button,obj,skip)
 	task.spawn(function()
 		if button==nil then return end
 		local con
-		local par = child.Parent
-		local name = child.Name
+		local con2
+		local par = obj.Parent
+		local name = obj.Name
 		con = button.MouseButton1Click:Connect(function()
-			if child==nil or child.Parent~=par then con:Disconnect() con=nil return end
+			local child=par:FindFirstChild(name)
+			if child==nil then return end
 			if child:FindFirstChild("HumanoidRootPart") then
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame=child.HumanoidRootPart.CFrame
 				return
@@ -345,12 +364,36 @@ local buttonFunc = function(button,child)
 				end
 			end
 		end)
+		con2 = button.MouseButton2Click:Connect(function()
+			local parent=button.Parent
+			if skip~=true then
+				table.remove(buttonCons,table.find(buttonCons,con))
+				table.remove(buttonCons,table.find(buttonCons,con2))
+			end
+			button:Destroy()
+			con:Disconnect() con=nil
+			con2:Disconnect() con2=nil
+			parent.CanvasSize=UDim2.new(0,0,0,parent.UIListLayout.AbsoluteContentSize.Y)
+		end)
+		if skip~=true then
+			table.insert(buttonCons,con)
+			table.insert(buttonCons,con2)
+		end
 	end)
 end
 
 local getFolder
 getFolder = function(num,text)
 	if num~=val then return end
+	
+	for i,v in pairs(buttonCons) do
+		task.spawn(function()
+			table.remove(buttonCons,v)
+			v:Disconnect()
+			v=nil
+		end)
+	end
+	
 	local found=false
 	local oldFolder=folder
 	if workspace:FindFirstChildOfClass("Tool") then folder=workspace found=true end
@@ -428,6 +471,12 @@ TextButton.MouseButton1Click:Connect(function()
 	updateBring()
 end)
 
+game:GetService("UserInputService").InputBegan:Connect(function(key)
+	if key.KeyCode.Name=="KeypadFive" then
+		TPMenu.Enabled=not TPMenu.Enabled
+	end
+end)
+
 if npcFolder~=nil then
 	for i,v in pairs(npcFolder:GetChildren()) do
 		if v:IsA("Model") and v:FindFirstChild("HumanoidRootPart") then
@@ -437,7 +486,7 @@ if npcFolder~=nil then
 			button.TextLabel.AnchorPoint = Vector2.new(.5,0)
 			button.TextLabel.Position = UDim2.new(0.5,0,0,0)
 			button.TextLabel.Size = UDim2.new(.95,0,1,0)
-			buttonFunc(button,v)
+			buttonFunc(button,v,true)
 		end
 	end
 end
