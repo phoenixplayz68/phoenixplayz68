@@ -1707,12 +1707,17 @@ local Notify = function()
 	})
 end
 
+local Del=0
+
 game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 	
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGVS"))()
-	if _G.VS~=VS then
-		VS=_G.VS
-		Notify()
+	Del=Del+elapsed
+	if Del>=5 then
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGVS"))()
+		if _G.VS~=VS then
+			VS=_G.VS
+			Notify()
+		end
 	end
 	
 	Update(elapsed)
