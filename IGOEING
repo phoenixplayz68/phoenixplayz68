@@ -1,4 +1,4 @@
-_G.VS=3.5
+loadstring(game:HttpGet("https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGVS"))()
 
 if game.ReplicatedStorage:FindFirstChild("gravyoldschool") then return end
 
@@ -1709,7 +1709,7 @@ end
 
 game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 	
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEING"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGVS"))()
 	if _G.VS~=VS then
 		VS=_G.VS
 		Notify()
