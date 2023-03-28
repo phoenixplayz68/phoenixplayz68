@@ -368,7 +368,7 @@ local buttonFunc = function(button,obj,skip)
 					else
 						Return=false
 					end
-					if num>=2 or Return then continue end
+					if num>=2 or Return then if g:FindFirstChild("Handle") then g.Handle:Destroy() end continue end
 					child=g break
 				end
 			end
@@ -451,7 +451,7 @@ getFolder = function(num,text)
 				else
 					Return=false
 				end
-				if Return then continue end
+				if Return then if v:FindFirstChild("Handle") then v.Handle:Destroy() end continue end
 				local button=createItem(v,ScrollingFrame,true)
 				buttonFunc(button,v)
 				getNum(ScrollingFrame,folder)
@@ -470,7 +470,7 @@ getFolder = function(num,text)
 			else
 				Return=false
 			end
-			if Return or not child:IsA("Tool") then return end
+			if Return or not child:IsA("Tool") then if child:FindFirstChild("Handle") then child.Handle:Destroy() end return end
 			local button=createItem(child,ScrollingFrame,true)
 			buttonFunc(button,child)
 			getNum(ScrollingFrame,folder)
