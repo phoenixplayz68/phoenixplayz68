@@ -336,6 +336,8 @@ end
 
 local buttonCons = {}
 
+local items={}
+
 local buttonFunc = function(button,obj,skip)
 	task.spawn(function()
 		if button==nil then return end
@@ -344,7 +346,7 @@ local buttonFunc = function(button,obj,skip)
 		local par = obj.Parent
 		local name = obj.Name
 		con = button.MouseButton1Click:Connect(function()
-			local child=par:FindFirstChild(name)
+			local child=items[name][1]
 			if child==nil then return end
 			if child:FindFirstChild("HumanoidRootPart") then
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame=child.HumanoidRootPart.CFrame
@@ -427,6 +429,8 @@ getFolder = function(num,text)
 					Return=false
 				end
 				if Return then continue end
+				items[v.Name]=items[v.Name]==nil and {} or items[v.Name]
+				if not table.find(items[v.Name],v) then table.insert(items[v.Name],v) end
 				local button=createItem(v,ScrollingFrame,true)
 				buttonFunc(button,v)
 				getNum(ScrollingFrame,folder)
@@ -448,11 +452,16 @@ getFolder = function(num,text)
 				Return=false
 			end
 			if Return or not child:IsA("Tool") then return end
+			items[child.Name]=items[child.Name]==nil and {} or items[child.Name]
+			if not table.find(items[child.Name],child) then table.insert(items[child.Name],child) end
 			local button=createItem(child,ScrollingFrame,true)
 			buttonFunc(button,child)
 			getNum(ScrollingFrame,folder)
 		end)
 		rmCon=folder.ChildRemoved:Connect(function(child)
+			if table.find(items[child.Name],child) then
+				table.remove(items[child.Name],table.find(items[child.Name],child))
+			end
 			getNum(ScrollingFrame,folder)
 		end)
 	end
