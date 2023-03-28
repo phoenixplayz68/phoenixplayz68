@@ -439,7 +439,7 @@ getFolder = function(num,text)
 				for i,v in pairs(child:GetChildren()) do
 					if v.ClassName=="Script" and v.Name=="Properties" then
 						Return = false break
-					elseif g.ClassName=="LocalScript" and g.Name=="Properties" then
+					elseif v.ClassName=="LocalScript" and v.Name=="Properties" then
 						num+=1
 					end
 				end
