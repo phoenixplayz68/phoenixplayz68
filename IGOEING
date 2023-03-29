@@ -659,7 +659,7 @@ commands[#commands+1]={name="Un/Smite [Player]", find = "smite unsmite", details
 commands[#commands+1]={name="Seizure [Player]", find = "seizure", details = "Seizures the player", existence = spinunravel}
 commands[#commands+1]={name="Un/Banish [Player]", find = "banish unbanish", details = "BANISHES THEM FROM EXISTENCE", existence = spinunravel}
 commands[#commands+1]={name="Void [Player]", find = "void", details = "Thanos", existence = spinunravel}
-commands[#commands+1]={name="Kick [Player]", find = "kick", details = "Kicks the player", existence = samuraidmg and game.GameId==6099256669}
+commands[#commands+1]={name="Kick [Player]", find = "kick", details = "Kicks the player", existence = samuraidmg and (game.GameId==6099256669 or game.GameId==2217006564)}
 commands[#commands+1]={name="Un/ServerBan [Player]", find = "serverban sban unserverban unsban", details = "Bans the player from the server", existence = spinunravel}
 commands[#commands+1]={name="Noscope [Player]", find = "noscope", details = "GET NOSCOPED", existence = spinunravel}
 commands[#commands+1]={name="Un/Deflect", find = "deflect undeflect", details = "Deflects NON OH DMG", existence = deflect or rtz2}
@@ -685,11 +685,13 @@ commands[#commands+1]={name="Un/Control [Player]", find = "control, uncontrol", 
 commands[#commands+1]={name="ControlSpeed [Num]", find = "controlspeed cspeed", details = "Changes control fly speed", existence = spinunravel}
 commands[#commands+1]={name="Flyspeed [Num]", find = "flyspeed", details = "Changes your flying speed", existence = true}
 commands[#commands+1]={name="Music [ID]", find = "music", details = "Plays Music of choice", existence = music}
-commands[#commands+1]={name="Pose", find = "pose", details = "Plays pose Music", existence = true}
+commands[#commands+1]={name="Un/Pose", find = "pose unpose", details = "Plays pose Music", existence = true}
 
 commands[#commands+1]={name="Un/Lag", find = "lag", details = "Lags the game", existence = lagremote or lagremote2}
 commands[#commands+1]={name="Crash", find = "crash", details = "Crashes the game", existence = lagremote or lagremote2}
 commands[#commands+1]={name="Un/Serverlock", find = "serverlock unserverlock", details = "Locks the server", existence = spinunravel}
+
+commands[#commands+1]={name="Infection", find = "infection", details = "Infects the map", existence = (game.GameId==6099256669 or game.GameId==2217006564)}
 
 commands[#commands+1]={name="DamageMult", find = "damagemult dmgmult", details = "Damage Multiplier", existence = true}
 commands[#commands+1]={name="HealMult", find = "healmult hlmult", details = "Healing Multiplier", existence = true}
@@ -1302,26 +1304,31 @@ local functions = {
 			music:FireServer(plr.Character.Head, "rbxassetid://"..ID, 10,  -math.huge, -math.huge)
 		end
 	end,
-	["Pose"] = function(Type)
-		if Type==nil then Type="play" end
-		if string.lower(Type)~="play" and string.lower(Type)~="stop" then Type=true end
-		if string.lower(Type)=="play" then Type=true elseif string.lower(Type)=="stop" then Type=false end
+	["Pose"] = function(Type,thing)
 		local stand=plr.Character:FindFirstChild("Stand")
 		if stand then
 			local standhmr=stand:FindFirstChild("StandHumanoidRootPart")
 			local standvest=stand:FindFirstChild("Vest")
 			if standhmr then
-				if standhmr:FindFirstChild("Theme") then
-					if Type==true then standhmr.Theme:Play() else standhmr.Theme:Stop() end
-				elseif standhmr:FindFirstChild("PoseMusic") then
-					if Type==true then standhmr.PoseMusic:Play() else standhmr.PoseMusic:Stop() end
-				elseif standhmr:FindFirstChild("Music") then
-					if Type==true then standhmr.Music:Play() else standhmr.Music:Stop() end
+				if thing==nil and not standhmr:FindFirstChild(thing) then
+					if standhmr:FindFirstChild("Theme") then
+						if Type==true then standhmr.Theme:Play() else standhmr.Theme:Stop() end
+					elseif standhmr:FindFirstChild("PoseMusic") then
+						if Type==true then standhmr.PoseMusic:Play() else standhmr.PoseMusic:Stop() end
+					elseif standhmr:FindFirstChild("Music") then
+						if Type==true then standhmr.Music:Play() else standhmr.Music:Stop() end
+					end
+				else
+					if Type==true then standhmr[thing]:Play() else standhmr[thing]:Stop() end
 				end
 			end
 			if standvest then
-				if standvest:FindFirstChild("Music") then
-					if Type==true then standvest.Music:Play() else standvest.Music:Stop() end
+				if thing==nil and not standvest:FindFirstChild(thing) then
+					if standvest:FindFirstChild("Music") then
+						if Type==true then standvest.Music:Play() else standvest.Music:Stop() end
+					end
+				else
+					if Type==true then standvest[thing]:Play() else standvest[thing]:Stop() end
 				end
 			end
 		end
@@ -1335,6 +1342,13 @@ local functions = {
 	["ServerLock"] = function(Type)
 		lockServer=Type
 		if Type==false then banished={} end
+	end,
+	["Infection"] = function()
+		for i,v in pairs(workspace:GetDescendants()) do
+			if v:IsA("BasePart") then
+				game:GetService("ReplicatedStorage").Damage2GE:FireServer(game.Players.LocalPlayer.Character.Humanoid,v.CFrame,0,0,"rbxassetid://",-100,Color3.new(0, 255, 0),"rbxassetid://5083223890",1,1)
+			end
+		end
 	end,
 	["DmgMult"] = function(Val)
 		if not tonumber(Val) then Val=1 end
@@ -1526,14 +1540,16 @@ local cmds = function(Self,cmd,cmd2,cmd3,player)
 			functions.FlySpeed(cmd2)
 		elseif (cmd==Prefix.."music" and cmd2) and isMe then
 			functions.Music(cmd2)
-		elseif cmd==Prefix.."pose" and isMe then
-			functions.Pose(cmd2)
+		elseif (cmd==Prefix.."pose" or cmd==Prefix.."unpose") and isMe then
+			functions.Pose(cmd==Prefix.."pose",cmd2)
 		elseif (cmd==Prefix.."lag" or cmd==Prefix.."unlag") and isMe then
 			functions.Lag(cmd==Prefix.."lag")
 		elseif cmd==Prefix.."crash" and isMe then
 			functions.Crash()
 		elseif (cmd==Prefix.."serverlock" or cmd==Prefix.."unserverlock") and isMe then
 			functions.ServerLock(cmd==Prefix.."serverlock")
+		elseif cmd==Prefix.."infection" then
+			functions.Infection()
 		elseif (cmd==Prefix.."damagemult" or cmd==Prefix.."dmgmult") and cmd2 and isMe then
 			functions.DmgMult(cmd2)
 		elseif (cmd==Prefix.."healmult" or cmd==Prefix.."hlmult") and cmd2 and isMe then
@@ -1646,7 +1662,7 @@ end)
 
 game.Players.PlayerAdded:Connect(function(plr)
 	if lockServer then
-		if game.GameId==6099256669 then
+		if (game.GameId==6099256669 or game.GameId==2217006564) then
 			if not table.find(serverbanned,plr.Name) then
 				table.insert(serverbanned,plr.Name)
 			end
