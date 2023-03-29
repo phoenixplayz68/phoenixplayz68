@@ -314,6 +314,7 @@ local getNum=function(frame,parent)
 		if v:IsA("TextButton") then
 			local num = 0
 			for e,g in pairs(parent:GetChildren()) do
+				if not g:FindFirstChild("Handle") then continue end
 				local retNum = 0
 				local Return = false
 				if g.Name~=v.Name then continue end
@@ -325,7 +326,6 @@ local getNum=function(frame,parent)
 				else
 					Return=false
 				end
-				if not g:FindFirstChild("Handle") then continue end
 				if retNum>=2 or Return then continue end
 				num+=1
 			end
@@ -338,17 +338,18 @@ local tpItem = function(child)
 	if bring then
 		for i,v in pairs(child:GetDescendants()) do
 			if v:IsA("BasePart") then v.Anchored=false end
-		end
-		if child.PrimaryPart~=nil then
-			child:SetPrimaryPartCFrame(plr.Character.HumanoidRootPart.CFrame)
-		elseif child:FindFirstChild("Handle") then
-			child.Handle.CFrame=plr.Character.HumanoidRootPart.CFrame
+
+			if child:FindFirstChild("Handle") then
+				child.Handle.CFrame=plr.Character.HumanoidRootPart.CFrame
+			elseif child.PrimaryPart~=nil then
+				child:SetPrimaryPartCFrame(plr.Character.HumanoidRootPart.CFrame)
+			end
 		end
 	else
-		if child.PrimaryPart~=nil then
-			plr.Character.HumanoidRootPart.CFrame=child.PrimaryPart.CFrame
-		elseif child:FindFirstChild("Handle") then
+		if child:FindFirstChild("Handle") then
 			plr.Character.HumanoidRootPart.CFrame=child.Handle.CFrame
+		elseif child.PrimaryPart~=nil then
+			plr.Character.HumanoidRootPart.CFrame=child.PrimaryPart.CFrame
 		end
 	end
 end
@@ -388,6 +389,7 @@ local buttonFunc = function(button,obj,skip)
 			
 			if child==nil then
 				for e,g in pairs(par:GetChildren()) do
+					if not g:FindFirstChild("Handle") then continue end
 					local num=0
 					local Return=true
 					if g.Name~=name then continue end
@@ -403,7 +405,6 @@ local buttonFunc = function(button,obj,skip)
 					else
 						Return=false
 					end
-					if not g:FindFirstChild("Handle") then continue end
 					if num>=2 or Return then if g:FindFirstChild("Handle") then g.Handle:Destroy() end continue end
 					child=g break
 				end
@@ -443,6 +444,7 @@ local buttonFunc2 = function(button,obj)
 	local name = obj.Name
 	
 	local isTrue = false
+	updateColor(button,isTrue)
 	button.MouseButton1Click:Connect(function()
 		isTrue=not isTrue
 
@@ -450,17 +452,10 @@ local buttonFunc2 = function(button,obj)
 
 		if isTrue then
 			repeat wait()
-				if button.Parent.Name=="Banknote" then
-					if plr.Backpack:FindFirstChild("Banknote") and not plr.Character:FindFirstChild("Banknote") then
-						local banknote = plr.Backpack:FindFirstChild("Banknote")
-						if banknote then banknote:EquipTool() banknote:Activate() end
-					elseif plr.Character:FindFirstChild("Banknote") and plr.Character.Banknote:IsA("Tool") then
-						plr.Character.Banknote:Activate()
-					end
-				end
 				task.spawn(function()
 					local child=nil
 					for e,g in pairs(folder:GetChildren()) do
+						if not g:FindFirstChild("Handle") then continue end
 						local num=0
 						local Return=true
 						if g.Name~=name then continue end
@@ -476,12 +471,19 @@ local buttonFunc2 = function(button,obj)
 						else
 							Return=false
 						end
-						if not g:FindFirstChild("Handle") then continue end
 						if num>=2 or Return then if g:FindFirstChild("Handle") then g.Handle:Destroy() end continue end
 						child=g break
 					end
 					if child==nil then return end
 					tpItem(child)
+					if button.Parent.Name=="Banknote" then
+						if plr.Backpack:FindFirstChild("Banknote") and not plr.Character:FindFirstChild("Banknote") then
+							local banknote = plr.Backpack:FindFirstChild("Banknote")
+							if banknote then banknote:EquipTool() banknote:Activate() end
+						elseif plr.Character:FindFirstChild("Banknote") and plr.Character.Banknote:IsA("Tool") then
+							plr.Character.Banknote:Activate()
+						end
+					end
 				end)
 			until not isTrue
 		end
@@ -520,6 +522,7 @@ getFolder = function(num)
 
 		for i,v in pairs(folder:GetChildren()) do
 			if v:IsA("Tool") then
+				if not v:FindFirstChild("Handle") then continue end
 				local Return = true
 				if (game.GameId==6099256669 or game.GameId==2217006564) and v:FindFirstChild("Properties") then
 					local retNum = 0
@@ -540,6 +543,7 @@ getFolder = function(num)
 		end
 
 		addCon=folder.ChildAdded:Connect(function(child)
+			if not child:FindFirstChild("Handle") then return end
 			local Return = true
 			if (game.GameId==6099256669 or game.GameId==2217006564) and child:FindFirstChild("Properties") then
 				local retNum = 0
@@ -554,7 +558,7 @@ getFolder = function(num)
 			if Return or not child:IsA("Tool") then if child:FindFirstChild("Handle") then child.Handle:Destroy() end return end
 			local button=createItem(child,ScrollingFrame,true)
 			buttonFunc(button,child)
-			buttonFunc2(button)
+			buttonFunc2(button,child)
 			getNum(ScrollingFrame,folder)
 		end)
 		rmCon=folder.ChildRemoved:Connect(function(child)
