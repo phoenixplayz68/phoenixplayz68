@@ -3,6 +3,8 @@
 
 -- Instances:
 
+local plr = game.Players.LocalPlayer
+
 local note = function(title,text)
 	local NotificationBindable = Instance.new("BindableFunction")
 	NotificationBindable.OnInvoke = callback
@@ -57,13 +59,14 @@ UIStroke.Thickness = 3
 UIStroke2.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
 UIStroke2.Color = Color3.fromRGB(0, 255, 0)
 UIStroke2.Thickness = 1
+UIStroke2.Name = "UIStroke2"
 
 UIStroke3.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 UIStroke3.Color = Color3.fromRGB(255, 0, 0)
 UIStroke3.Thickness = 3
 
 TPMenu.Name = "TPMenu"
-TPMenu.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+TPMenu.Parent = plr:WaitForChild("PlayerGui")
 TPMenu.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 TPMenu.ResetOnSpawn = false
 
@@ -277,15 +280,25 @@ TextLabel_3.TextScaled = true
 TextLabel_3.Size = UDim2.new(.3,0,.7,0)
 TextLabel_3.BackgroundTransparency = 1
 
+local Refresh = Instance.new("ImageButton")
+Refresh.Parent = TPMenu
+Refresh.AnchorPoint = Vector2.new(0.5, 0.5)
+Refresh.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Refresh.BackgroundTransparency = 1.000
+Refresh.Position = UDim2.new(0.899999976, 0, 0.5, 0)
+Refresh.Size = UDim2.new(0.107, 0, 0.813, 0)
+Refresh.Image = "http://www.roblox.com/asset/?id=12938502230"
+Refresh.Visible = false
+
 local bring = false
 
-local updateBring = function()
-	UIStroke.Color=bring and Color3.new(0,255,0) or Color3.fromRGB(255,0,0)
-	UIStroke2.Color=bring and Color3.new(0,255,0) or Color3.fromRGB(255,0,0)
-	TextButton.Text=bring and "✓" or "X"
-	TextButton.TextColor3=bring and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
+local updateColor = function(button,val)
+	button.UIStroke.Color=val and Color3.new(0,255,0) or Color3.fromRGB(255,0,0)
+	button.UIStroke2.Color=val and Color3.new(0,255,0) or Color3.fromRGB(255,0,0)
+	button.Text=val and "✓" or "X"
+	button.TextColor3=val and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
 end
-updateBring()
+updateColor(TextButton,bring)
 
 local folder = nil
 local npcFolder = (game.GameId==6099256669 or game.GameId==2217006564) and workspace.Other or nil
@@ -325,6 +338,25 @@ local getNum=function(frame,parent)
 	end
 end
 
+local tpItem = function(child)
+	if bring then
+		for i,v in pairs(child:GetDescendants()) do
+			if v:IsA("BasePart") then v.Anchored=false end
+		end
+		if child.PrimaryPart~=nil then
+			child:SetPrimaryPartCFrame(plr.Character.HumanoidRootPart.CFrame)
+		elseif child:FindFirstChild("Handle") then
+			child.Handle.CFrame=plr.Character.HumanoidRootPart.CFrame
+		end
+	else
+		if child.PrimaryPart~=nil then
+			plr.Character.HumanoidRootPart.CFrame=child.PrimaryPart.CFrame
+		elseif child:FindFirstChild("Handle") then
+			plr.Character.HumanoidRootPart.CFrame=child.Handle.CFrame
+		end
+	end
+end
+
 local createItem = function(obj,parent,noDupes)
 	if noDupes and parent:FindFirstChild(obj.Name) then return end
 	local clone=Template:Clone()
@@ -333,12 +365,19 @@ local createItem = function(obj,parent,noDupes)
 	clone.TextLabel.Text=obj.Name
 	clone.Visible=true
 	parent.CanvasSize=UDim2.new(0,0,0,parent.UIListLayout.AbsoluteContentSize.Y)
+	if noDupes then
+		clone.TextLabel.AnchorPoint = Vector2.new(1,.5)
+		clone.TextLabel.Position = UDim2.new(.71,0,.5,0)
+		clone.TextLabel.Size = UDim2.new(.54,0,.85,0)
+		
+		local button = TextButton:Clone()
+		button.Parent=clone
+		button.Position=UDim2.new(.09,0,.5,0)
+	end
 	return clone
 end
 
 local buttonCons = {}
-
-local items={}
 
 local buttonFunc = function(button,obj,skip)
 	task.spawn(function()
@@ -375,22 +414,10 @@ local buttonFunc = function(button,obj,skip)
 			
 			if child==nil then return end
 			if child:FindFirstChild("HumanoidRootPart") then
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame=child.HumanoidRootPart.CFrame
+				plr.Character.HumanoidRootPart.CFrame=child.HumanoidRootPart.CFrame
 				return
 			end
-			if bring then
-				if child.PrimaryPart~=nil then
-					child:SetPrimaryPartCFrame(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
-				elseif child:FindFirstChild("Handle") then
-					child.Handle.CFrame=game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-				end
-			else
-				if child.PrimaryPart~=nil then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame=child.PrimaryPart.CFrame
-				elseif child:FindFirstChild("Handle") then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame=child.Handle.CFrame
-				end
-			end
+			tpItem(child)
 		end)
 		con2 = button.MouseButton2Click:Connect(function()
 			local parent=button.Parent
@@ -410,13 +437,68 @@ local buttonFunc = function(button,obj,skip)
 	end)
 end
 
+local buttonFunc2 = function(button,obj)
+	if button==nil then return end
+	button=button.TextButton
+	local con
+	local con2
+	local par = obj.Parent
+	local name = obj.Name
+	
+	local isTrue = false
+	button.MouseButton1Click:Connect(function()
+		isTrue=not isTrue
+
+		updateColor(button,isTrue)
+
+		if isTrue then
+			repeat wait()
+				if button.Parent.Name=="Banknote" then
+					if plr.Backpack:FindFirstChild("Banknote") and not plr.Character:FindFirstChild("Banknote") then
+						local banknote = plr.Backpack:FindFirstChild("Banknote")
+						if banknote then banknote:EquipTool() banknote:Activate() end
+					elseif plr.Character:FindFirstChild("Banknote") and plr.Character.Banknote:IsA("Tool") then
+						plr.Character.Banknote:Activate()
+					end
+				end
+				task.spawn(function()
+					local child=nil
+					for e,g in pairs(folder:GetChildren()) do
+						local num=0
+						local Return=true
+						if g.Name~=name then continue end
+						if (game.GameId==6099256669 or game.GameId==2217006564) and g:FindFirstChild("Properties") then
+							for f,j in pairs(g:GetChildren()) do
+								if j.ClassName=="Script" and j.Name=="Properties" then
+									Return = false
+								end
+								if j.ClassName=="LocalScript" and j.Name=="Properties" then
+									num+=1
+								end
+							end
+						else
+							Return=false
+						end
+						if num>=2 or Return then if g:FindFirstChild("Handle") then g.Handle:Destroy() end continue end
+						child=g break
+					end
+					if child==nil then return end
+					tpItem(child)
+				end)
+			until not isTrue
+		end
+	end)
+end
+
+local text = nil
+
 local getFolder
-getFolder = function(num,text)
+getFolder = function(num)
 	if num~=val then return end
 	
 	for i,v in pairs(buttonCons) do
 		task.spawn(function()
-			table.remove(buttonCons,v)
+			table.remove(buttonCons,table.find(buttonCons,v))
 			v:Disconnect()
 			v=nil
 		end)
@@ -454,6 +536,7 @@ getFolder = function(num,text)
 				if Return then if v:FindFirstChild("Handle") then v.Handle:Destroy() end continue end
 				local button=createItem(v,ScrollingFrame,true)
 				buttonFunc(button,v)
+				buttonFunc2(button,v)
 				getNum(ScrollingFrame,folder)
 			end
 		end
@@ -473,6 +556,7 @@ getFolder = function(num,text)
 			if Return or not child:IsA("Tool") then if child:FindFirstChild("Handle") then child.Handle:Destroy() end return end
 			local button=createItem(child,ScrollingFrame,true)
 			buttonFunc(button,child)
+			buttonFunc2(button)
 			getNum(ScrollingFrame,folder)
 		end)
 		rmCon=folder.ChildRemoved:Connect(function(child)
@@ -485,13 +569,14 @@ getFolder(val)
 TextBox.FocusLost:Connect(function(enter)
 	if enter then
 		val=val+1
-		getFolder(val,TextBox.Text)
+		text=TextBox.Text
+		getFolder(val)
 	end
 end)
 
 TextButton.MouseButton1Click:Connect(function()
 	bring=not bring
-	updateBring()
+	updateColor(TextButton,bring)
 end)
 
 game:GetService("UserInputService").InputBegan:Connect(function(key)
@@ -500,16 +585,47 @@ game:GetService("UserInputService").InputBegan:Connect(function(key)
 	end
 end)
 
-if npcFolder~=nil then
-	for i,v in pairs(npcFolder:GetChildren()) do
-		if v:IsA("Model") and v:FindFirstChild("HumanoidRootPart") then
-			local button=createItem(v,ScrollingFrame_3,false)
-			button.amt:Destroy()
-			button.TextLabel.TextXAlignment = Enum.TextXAlignment.Center
-			button.TextLabel.AnchorPoint = Vector2.new(.5,0)
-			button.TextLabel.Position = UDim2.new(0.5,0,0,0)
-			button.TextLabel.Size = UDim2.new(.95,0,1,0)
-			buttonFunc(button,v,true)
+local getNPCs = function()
+	if npcFolder~=nil then
+		for i,v in pairs(npcFolder:GetChildren()) do
+			if v:IsA("Model") and v:FindFirstChild("HumanoidRootPart") then
+				local button=createItem(v,ScrollingFrame_3,false)
+				button.amt:Destroy()
+				button.TextLabel.TextXAlignment = Enum.TextXAlignment.Center
+				button.TextLabel.AnchorPoint = Vector2.new(.5,0)
+				button.TextLabel.Position = UDim2.new(0.5,0,0,0)
+				button.TextLabel.Size = UDim2.new(.95,0,1,0)
+				buttonFunc(button,v,true)
+			end
 		end
 	end
 end
+getNPCs()
+
+local ref = function(parent)
+	local button = Refresh:Clone()
+	button.Parent=parent
+	button.Visible=true
+	button.MouseButton1Click:Connect(function()
+		for i,v in pairs(parent.ScrollingFrame:GetChildren()) do
+			if v:IsA("TextButton") then
+				v:Destroy()
+			end
+		end
+		if parent==Items then
+			for i,v in pairs(buttonCons) do
+				task.spawn(function()
+					table.remove(buttonCons,table.find(buttonCons,v))
+					v:Disconnect()
+					v=nil
+				end)
+			end
+			folder=nil
+			getFolder(val)
+		else
+			getNPCs()
+		end
+	end)
+end
+ref(Items)
+ref(NPCs)
