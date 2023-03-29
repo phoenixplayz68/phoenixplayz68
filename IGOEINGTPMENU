@@ -280,7 +280,7 @@ Refresh.Parent = TPMenu
 Refresh.AnchorPoint = Vector2.new(0.5, 0.5)
 Refresh.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Refresh.BackgroundTransparency = 1.000
-Refresh.Position = UDim2.new(0.899999976, 0, 0.5, 0)
+Refresh.Position = UDim2.new(0.93, 0, 0.5, 0)
 Refresh.Size = UDim2.new(0.107, 0, 0.813, 0)
 Refresh.Image = "http://www.roblox.com/asset/?id=12938502230"
 Refresh.Visible = false
