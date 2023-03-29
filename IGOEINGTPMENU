@@ -337,12 +337,9 @@ end
 local tpItem = function(child)
 	if bring then
 		for i,v in pairs(child:GetDescendants()) do
-			if v:IsA("BasePart") then v.Anchored=false end
-
-			if child:FindFirstChild("Handle") then
-				child.Handle.CFrame=plr.Character.HumanoidRootPart.CFrame
-			elseif child.PrimaryPart~=nil then
-				child:SetPrimaryPartCFrame(plr.Character.HumanoidRootPart.CFrame)
+			if v:IsA("BasePart") then
+				v.Anchored=false
+				v.CFrame=plr.Character.HumanoidRootPart.CFrame
 			end
 		end
 	else
