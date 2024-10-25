@@ -3,6 +3,7 @@ if _G.ABACons~=nil then
 		v:Disconnect()
 	end
 	table.clear(_G.ABACons)
+	return
 else
 	_G.ABACons = {}
 	_G.WSFuncs = {}
