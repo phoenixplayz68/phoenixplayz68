@@ -26,6 +26,9 @@ end
 local plr = game.Players.LocalPlayer
 local char = plr.Character
 
+local hmr = char:WaitForChild("HumanoidRootPart")
+local reset = false
+
 table.insert(_G.ABACons,workspace.DescendantAdded:Connect(function(thing)
 	loopStuff("WSFuncs",thing)
 end))
@@ -48,5 +51,8 @@ table.insert(_G.ABACons,workspace.Effects.ChildAdded:Connect(function(thing)
 	loopStuff("FXFuncs",thing)
 end))
 table.insert(_G.ABACons,game:GetService("RunService").RenderStepped:Connect(function(elapsed)
+	if reset then return end
+	char = game.Players.LocalPlayer.Character
+	if char:WaitForChild("HumanoidRootPart")~=hmr then loadstring(game:HttpGet('https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/refs/heads/master/Base%20Character'))() reset=true return end
 	loopStuff("UPDFuncs",elapsed)
 end))
