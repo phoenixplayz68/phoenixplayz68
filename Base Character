@@ -29,9 +29,9 @@ local char = plr.Character
 local hmr = char:WaitForChild("HumanoidRootPart")
 local reset = false
 
-table.insert(_G.ABACons,workspace.DescendantAdded:Connect(function(thing)
+--[[table.insert(_G.ABACons,workspace.DescendantAdded:Connect(function(thing)
 	loopStuff("WSFuncs",thing)
-end))
+end))]]
 table.insert(_G.ABACons,char.ChildAdded:Connect(function(thing)
 	loopStuff("CHRFuncs",thing)
 end))
