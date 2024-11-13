@@ -1,6 +1,6 @@
-if _G.Setting then return end
-print("Creating ABA Stuff")
-_G.Setting = true
+if _G.CD==nil then _G.CD=0 end
+if _G.CD>0 then return end
+_G.CD = .5
 if _G.ABACons~=nil then
 	for i,v in pairs(_G.ABACons) do
 		v:Disconnect()
@@ -57,6 +57,7 @@ table.insert(_G.ABACons,workspace.Effects.ChildAdded:Connect(function(thing)
 	loopStuff("FXFuncs",thing)
 end))
 table.insert(_G.ABACons,game:GetService("RunService").RenderStepped:Connect(function(elapsed)
+	_G.CD-=elapsed
 	if reset then return end
 	char = game.Players.LocalPlayer.Character
 	if char:WaitForChild("HumanoidRootPart")~=hmr then if reset then return end reset=true loadstring(game:HttpGet('https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/refs/heads/master/Base%20Character'))() return end
