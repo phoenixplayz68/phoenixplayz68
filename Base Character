@@ -59,7 +59,7 @@ end))
 table.insert(_G.ABACons,game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 	if reset then return end
 	char = game.Players.LocalPlayer.Character
-	if char:WaitForChild("HumanoidRootPart")~=hmr then loadstring(game:HttpGet('https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/refs/heads/master/Base%20Character'))() reset=true return end
+	if char:WaitForChild("HumanoidRootPart")~=hmr then if reset then return end reset=true loadstring(game:HttpGet('https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/refs/heads/master/Base%20Character'))() return end
 	loopStuff("UPDFuncs",elapsed)
 end))
 _G.Setting = false
