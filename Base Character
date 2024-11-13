@@ -31,8 +31,10 @@ local char = plr.Character
 
 if char:FindFirstChild("Humanoid") then
 	local humanoid=char.Humanoid
-	if humanoid.Health==0 then repeat task.wait() until not char:FindFirstChild("Humanoid") or char.Humanoid~=humanoid end 
+	if humanoid.Health==0 then repeat task.wait() until not plr.Character~=char end 
 end
+
+char = plr.Character
 
 local hmr = char:WaitForChild("HumanoidRootPart")
 local reset = false
