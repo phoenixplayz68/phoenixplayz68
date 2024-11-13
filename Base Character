@@ -29,14 +29,10 @@ end
 local plr = game.Players.LocalPlayer
 local char = plr.Character
 
-if char:FindFirstChild("Humanoid") then
-	local humanoid=char.Humanoid
-	if humanoid.Health==0 then repeat task.wait() until plr.Character~=char end 
-end
-
-char = plr.Character
-
 local hmr = char:WaitForChild("HumanoidRootPart")
+if hmr==nil then repeat task.wait() until char:FindFirstChild("HumanoidRootPart") end
+char = plr.Character
+hmr = char:WaitForChild("HumanoidRootPart")
 local reset = false
 
 --[[table.insert(_G.ABACons,workspace.DescendantAdded:Connect(function(thing)
