@@ -1,4 +1,6 @@
-print("yes")
+if _G.Setting then return end
+print("Creating ABA Stuff")
+_G.Setting = true
 if _G.ABACons~=nil then
 	for i,v in pairs(_G.ABACons) do
 		v:Disconnect()
@@ -26,6 +28,11 @@ end
 
 local plr = game.Players.LocalPlayer
 local char = plr.Character
+
+if char:FindFirstChild("Humanoid") then
+	local humanoid=char.Humanoid
+	if humanoid.Health==0 then repeat task.wait() until not char:FindFirstChild("Humanoid") or char.Humanoid~=humanoid end 
+end
 
 local hmr = char:WaitForChild("HumanoidRootPart")
 local reset = false
@@ -57,3 +64,4 @@ table.insert(_G.ABACons,game:GetService("RunService").RenderStepped:Connect(func
 	if char:WaitForChild("HumanoidRootPart")~=hmr then loadstring(game:HttpGet('https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/refs/heads/master/Base%20Character'))() reset=true return end
 	loopStuff("UPDFuncs",elapsed)
 end))
+_G.Setting = false
