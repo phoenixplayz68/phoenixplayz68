@@ -1,3 +1,4 @@
+print("yes")
 if _G.ABACons~=nil then
 	for i,v in pairs(_G.ABACons) do
 		v:Disconnect()
