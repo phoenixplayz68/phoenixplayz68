@@ -4,57 +4,64 @@ local h = {}
 
 local x, y
 
-setthreadidentity(2)
+local LVL7 = false
 
-for i, v in getgc(true) do
-    if typeof(v) == "table" then
-        local a = rawget(v, "Detected")
-        local b = rawget(v, "Kill")
-    
-        if typeof(a) == "function" and not x then
-            x = a
-            
-            local o; o = hookfunction(x, function(c, f, n)
-                if c ~= "_" then
-                    if d then
-                        warn(`Adonis AntiCheat flagged\nMethod: {c}\nInfo: {f}`)
-                    end
-                end
-                
-                return true
-            end)
+task.spawn(function()
+	local succ,err = pcall(function()
+		setthreadidentity(2)
 
-            table.insert(h, x)
-        end
+		for i, v in getgc(true) do
+			if typeof(v) == "table" then
+				local a = rawget(v, "Detected")
+				local b = rawget(v, "Kill")
 
-        if rawget(v, "Variables") and rawget(v, "Process") and typeof(b) == "function" and not y then
-            y = b
-            local o; o = hookfunction(y, function(f)
-                if d then
-                    warn(`Adonis AntiCheat tried to kill (fallback): {f}`)
-                end
-            end)
+				if typeof(a) == "function" and not x then
+					x = a
 
-            table.insert(h, y)
-        end
-    end
-end
+					local o; o = hookfunction(x, function(c, f, n)
+						if c ~= "_" then
+							if d then
+								warn(`Adonis AntiCheat flagged\nMethod: {c}\nInfo: {f}`)
+							end
+						end
 
-local o; o = hookfunction(getrenv().debug.info, newcclosure(function(...)
-    local a, f = ...
+						return true
+					end)
 
-    if x and a == x then
-        if d then
-            warn(`zins | adonis bypassed`)
-        end
+					table.insert(h, x)
+				end
 
-        return coroutine.yield(coroutine.running())
-    end
-    
-    return o(...)
-end))
+				if rawget(v, "Variables") and rawget(v, "Process") and typeof(b) == "function" and not y then
+					y = b
+					local o; o = hookfunction(y, function(f)
+						if d then
+							warn(`Adonis AntiCheat tried to kill (fallback): {f}`)
+						end
+					end)
 
-setthreadidentity(7)
+					table.insert(h, y)
+				end
+			end
+		end
+
+		local o; o = hookfunction(getrenv().debug.info, newcclosure(function(...)
+			local a, f = ...
+
+			if x and a == x then
+				if d then
+					warn(`zins | adonis bypassed`)
+				end
+
+				return coroutine.yield(coroutine.running())
+			end
+
+			return o(...)
+		end))
+
+		setthreadidentity(7)
+	end)
+	LVL7=succ
+end)
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/phoenixplayz68/phoenixplayz68/master/IGOEINGVS"))()
 
@@ -426,7 +433,7 @@ IndexContents = function(str,bool,cmdbar,Ianim)
 			end
 		end
 	end
-	
+
 	if not Ianim then
 		if indexnum == 0 or string.find(str, " ") then
 			if not cmdbar then
@@ -569,10 +576,10 @@ task.spawn(function()
 
 		return oldNamecall(self,...)
 	end))
-	
-	
+
+
 	local a a=hookfunction(wait,function(b)if nocd then b=nil end return a(b)end)
-	
+
 	local meta = getrawmetatable(game)
 	local old = meta.__namecall
 	setreadonly(meta,false)
@@ -695,7 +702,7 @@ create = function(cmd,name,details,remote)
 	clone.Name = name
 	clone:SetAttribute("Desc",details)
 	clone:SetAttribute("Title",cmd)
-	
+
 	wait()
 end
 
@@ -764,6 +771,8 @@ commands[#commands+1]={name="Respawn", find = "respawn", details = "Respawns you
 commands[#commands+1]={name="Refresh", find = "refresh", details = "Refreshes your Character", existence = true}
 commands[#commands+1]={name="Panic", find = "panic", details = "Disables every enabled CMD", existence = true}
 commands[#commands+1]={name="Old/TPMenu", find = "tpmenu oldtpmenu", details = "Item teleport Menu", existence = true}
+commands[#commands+1]={name="Remote Spy", find = "remote spy remotespy", details = "Shows fired remotes", existence = true}
+commands[#commands+1]={name="Dark Dex", find = "dark dex darkdex", details = "Opens explorer & properties", existence = true}
 commands[#commands+1]={name="Clean", find = "clean", details = "Cleans any effects", existence = true}
 commands[#commands+1]={name="Arrow", find = "arrow", details = "Uses Arrow", existence = true}
 commands[#commands+1]={name="Roka", find = "Roka", details = "Uses Roka", existence = true}
@@ -913,7 +922,7 @@ local panic = function()
 	flingaura = false
 
 	autoheal = false
-	
+
 	NOFLY()
 end
 
@@ -1182,14 +1191,14 @@ local functions = {
 				table.insert(serverbanned,player.Name)
 			end
 		else
-			
+
 			for i,v in pairs(serverbanned) do
 				if v:lower():sub(1, #cmd2) == cmd2:lower() then
 					player={Name=v}
 					break
 				end
 			end			
-			
+
 			if table.find(serverbanned,player.Name) then
 				table.remove(serverbanned,table.find(serverbanned,player.Name))
 			end
@@ -1289,13 +1298,13 @@ local functions = {
 			weld.Parent = part
 			weld.Part0 = part
 			weld.Part1 = plr.Character.HumanoidRootPart
-			
+
 			local reset=false
 			task.spawn(function()
 				task.wait(3)
 				reset=true
 			end)
-			
+
 			plr.Character.HumanoidRootPart.Anchored = true
 			wait(.1)
 			plr.Character.HumanoidRootPart.CFrame = location
@@ -1505,13 +1514,13 @@ local logged = {}
 
 local cmds = function(Self,cmd,cmd2,cmd3,player)
 	task.spawn(function()
-		
+
 		local Return = false
-		
+
 		local wasnil = player==nil
 		local isMe = Self==plr
 		if player==nil then player=Self end
-		
+
 		if cmd==Prefix.."god" or cmd==Prefix.."ungod" then
 			functions.God(cmd==Prefix.."god",player)
 		elseif cmd==Prefix.."autogod" or cmd==Prefix.."unautogod" then
@@ -1632,6 +1641,10 @@ local cmds = function(Self,cmd,cmd2,cmd3,player)
 			functions.Panic()
 		elseif (cmd==Prefix.."tpmenu" or cmd==Prefix.."oldtpmenu") and isMe then
 			functions.TPMenu(cmd==Prefix.."tpmenu")
+		elseif (cmd==Prefix.."remote" or cmd==Prefix.."spy" or cmd==Prefix.."remotespy" or cmd==Prefix.."remote spy") and isMe then
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/SimpleSpyV3/main.lua"))()
+		elseif (cmd==Prefix.."dex" or cmd==Prefix.."darkdex" or cmd==Prefix.."dark dex") and isMe then
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
 		elseif cmd==Prefix.."clean" and clean then
 			clean:FireServer()
 		elseif cmd==Prefix.."arrow" and arrow and isMe then
@@ -1642,17 +1655,17 @@ local cmds = function(Self,cmd,cmd2,cmd3,player)
 			Return=true
 		end
 		if Return then return end		
-		
+
 		local cmnd, other=string.gsub(cmd,";","")		
-		
+
 		local logTemp=logTemplate:Clone()
 		logTemp.Parent=LogScroll
 		logTemp.Visible=true
-		
+
 		logTemp.plar.Text=Self.Name
 		logTemp.coman.Text=cmnd..((player~=plr or cmd3~=nil and not tonumber(cmd2)) and " "..player.Name or "")
 		logTemp.Value.Text=(tonumber(cmd2) and cmd2 or not tonumber(cmd2) and cmd2~=nil and cmd3==nil and player.Name or "")..(tonumber(cmd3) and " "..cmd3 or "")
-		
+
 		table.insert(logged,logTemp)
 		logTemp.Name=40-#logged
 		if #logged>40 then
@@ -1697,7 +1710,7 @@ UIS.InputBegan:connect(function(input,chat)
 		checkCMD(plr,TextBox.Text)
 		TextBox.Text = ""
 	end
-	
+
 	if input.KeyCode.Name=="W" then
 		holdingW=true
 	elseif input.KeyCode.Name=="S" then
@@ -1807,7 +1820,7 @@ end
 local vsDel=0
 
 game:GetService("RunService").RenderStepped:Connect(function(elapsed)
-	
+
 	vsDel=vsDel+elapsed
 	if vsDel>=5 then
 		vsDel=0
@@ -1817,12 +1830,12 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 			Notify()
 		end
 	end
-	
+
 	Update(elapsed)
-	
+
 	LogScroll.CanvasSize = UDim2.new(0, 0, 0, UIListLayout.AbsoluteContentSize.Y)
 	Commands.CanvasSize = UDim2.new(0, 0, 0, cmdListLayout.AbsoluteContentSize.Y)
-	
+
 	if controlTarget~=nil then
 		local player=controlTarget
 		workspace.CurrentCamera.CameraSubject=controlTarget.Character
@@ -1833,7 +1846,7 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 			spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),CFrame.new(28333333333333332.183014, 1110.88806, 110.134346, 0.903371155, 0.423925817, 0.0648609251, -0.0689647198, 0.29287222, -0.953661203, -0.423277557, 0.857037008, 0.293808222),0,.1,Vector3.new(-controlspeed*10,-controlspeed*10,-controlspeed*10)*workspace.CurrentCamera.CFrame.LookVector,"rbxassetid://241837157",math.huge,Color3.new(0.694118, 0.333333, 1),1,"rbxassetid://542443306",0.3) 
 		end
 	end	
-	
+
 	if nostun then
 		task.spawn(function()
 			if not plr.Character:FindFirstChildOfClass("Humanoid") and not plr.Character:FindFirstChildOfClass("HumanoidRootPart") then
@@ -1855,7 +1868,7 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 			end
 		end)
 	end
-	
+
 	if lag and (lagremote or lagremote2) then
 		if lagremote then
 			lagremote:FireServer()
@@ -1872,10 +1885,10 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 			lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()lagremote2:FireServer()
 		end
 	end
-	
+
 	if not Del then
 		Del=true
-		
+
 		doLoop(banished,function(i,v)
 			local player=game.Players:FindFirstChild(v)
 			if player and spinunravel then
@@ -1885,7 +1898,7 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 				end
 			end
 		end)
-		
+
 		doLoop(serverbanned,function(i,v)
 			local player=game.Players:FindFirstChild(v)
 			if player and samuraidmg then
@@ -1895,7 +1908,7 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 				samuraidmg:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),math.huge,0,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 10)
 			end	
 		end)
-		
+
 		doLoop(muted,function(i,v)
 			local player=game.Players:FindFirstChild(v)
 			if player then
@@ -1925,7 +1938,7 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 			end
 		end)
 	end
-	
+
 	if autoheal and plr.Character:FindFirstChild("Humanoid") then
 		local hum=plr.Character:FindFirstChild("Humanoid")
 		if hum.Health>0 and hum.health<hum.MaxHealth then
@@ -1936,7 +1949,7 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 			end
 		end
 	end
-	
+
 	doLoop(autogod,function(i,v)
 		if not game.Players:FindFirstChild(v) then table.remove(autogod,table.find(autogod,v)) return end
 		local player=game.Players[v]
@@ -1960,7 +1973,7 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 		end
 		table.remove(unautogod,table.find(unautogod,v))
 	end)
-	
+
 	doLoop(loopkill,function(i,v)
 		if not spinunravel then return end
 		if not game.Players:FindFirstChild(v) then table.remove(autogod,table.find(autogod,v)) return end
@@ -1968,20 +1981,20 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 		if not player.Character:FindFirstChildOfClass("Humanoid") or player.Character:FindFirstChild("ForceField") or not player.Character:FindFirstChild("HumanoidRootPart") then
 			repeat wait() until player.Character:FindFirstChildOfClass("Humanoid") and not player.Character:FindFirstChild("ForceField") and player.Character:FindFirstChild("HumanoidRootPart")
 		end
-		
+
 		spinunravel:FireServer(player.Character:FindFirstChildOfClass("Humanoid"), CFrame.new(0,0,0), math.huge, 0, plr.Character.HumanoidRootPart.CFrame.LookVector*-1+Vector3.new(0,0,0), 0.05, 0, 1, 2)
 		wait(.2)
 		if player.Character:FindFirstChildOfClass("Humanoid").Health ~= 0 and samuraidmg then
 			samuraidmg:FireServer(player.Character:FindFirstChildOfClass("Humanoid"),math.huge,0,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 10)
 		end
 	end)
-	
+
 	doLoop(admins,function(i,v)
 		if not game.Players:FindFirstChild(i) then
 			v:Disconnect()v=nil admins[i]=nil
 		end
 	end)
-	
+
 	if killaura or flingaura then
 		for i,v in pairs(game.Players.LocalPlayer.Character.Parent:GetChildren()) do
 			task.spawn(function()
@@ -2002,7 +2015,7 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 			end)
 		end
 	end
-	
+
 	if antits then
 		if plr.Character:FindFirstChild("Humanoid") and plr.Character:FindFirstChild("Torso") and plr.Character:FindFirstChild("HumanoidRootPart") then
 			if plr.Character.Torso.Anchored == true then
@@ -2018,11 +2031,11 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 			end
 		end
 	end
-	
+
 	if plr.Character:FindFirstChild("Disable") and antidisable then
 		plr.Character.Disable.Value = false
 	end
-	
+
 	DelTime=DelTime+elapsed
 
 	if DelTime>=.5 then
