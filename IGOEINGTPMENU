@@ -326,6 +326,7 @@ local getNum=function(frame,parent)
 				else
 					Return=false
 				end
+				if g.Handle.CFrame.X>45000 or g.Handle.CFrame.Y>45000 or g.Handle.CFrame.Z>45000 then continue end
 				if retNum>=2 or Return then continue end
 				num+=1
 			end
@@ -553,9 +554,12 @@ getFolder = function(num)
 				Return=false
 			end
 			if Return or not child:IsA("Tool") then if child:FindFirstChild("Handle") then child.Handle:Destroy() end return end
-			local button=createItem(child,ScrollingFrame,true)
-			buttonFunc(button,child)
-			buttonFunc2(button,child)
+			if child.Handle.CFrame.X>45000 or child.Handle.CFrame.Y>45000 or child.Handle.CFrame.Z>45000 then return end
+			if not ScrollingFrame:FindFirstChild(child.Name) then
+				local button=createItem(child,ScrollingFrame,true)
+				buttonFunc(button,child)
+				buttonFunc2(button,child)
+			end
 			getNum(ScrollingFrame,folder)
 		end)
 		rmCon=folder.ChildRemoved:Connect(function(child)
@@ -600,31 +604,3 @@ local getNPCs = function()
 	end
 end
 getNPCs()
-
-local ref = function(parent)
-	local button = Refresh:Clone()
-	button.Parent=parent
-	button.Visible=true
-	button.MouseButton1Click:Connect(function()
-		for i,v in pairs(parent.ScrollingFrame:GetChildren()) do
-			if v:IsA("TextButton") then
-				v:Destroy()
-			end
-		end
-		if parent==Items then
-			for i,v in pairs(buttonCons) do
-				task.spawn(function()
-					table.remove(buttonCons,table.find(buttonCons,v))
-					v:Disconnect()
-					v=nil
-				end)
-			end
-			folder=nil
-			getFolder(val)
-		else
-			getNPCs()
-		end
-	end)
-end
-ref(Items)
-ref(NPCs)
