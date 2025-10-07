@@ -386,7 +386,7 @@ local buttonFunc = function(button,obj,skip)
 
 			if child==nil then
 				for e,g in pairs(par:GetChildren()) do
-					if not g:FindFirstChild("Handle") or g.Name~=name or (g.Handle.CFrame.X>12000 or g.Handle.CFrame.Y>12000 or g.Handle.CFrame.Z>12000) then continue end
+					if not g:FindFirstChild("Handle") or g.Name~=name or (math.abs(g.Handle.CFrame.X)>12000 or math.abs(g.Handle.CFrame.Y)>12000 or math.abs(g.Handle.CFrame.Z)>12000) then continue end
 					child=g break
 				end
 			end
@@ -436,7 +436,7 @@ local buttonFunc2 = function(button,obj)
 				task.spawn(function()
 					local child=nil
 					for e,g in pairs(folder:GetChildren()) do
-						if not g:FindFirstChild("Handle") or g.Name~=name or (g.Handle.CFrame.X>12000 or g.Handle.CFrame.Y>12000 or g.Handle.CFrame.Z>12000) then continue end
+						if not g:FindFirstChild("Handle") or g.Name~=name or (math.abs(g.Handle.CFrame.X)>12000 or math.abs(g.Handle.CFrame.Y)>12000 or math.abs(g.Handle.CFrame.Z)>12000) then continue end
 						child=g break
 					end
 					if child==nil then return end
@@ -457,7 +457,7 @@ end
 
 local function refreshItem(tool)
 	if not tool:FindFirstChild("Handle") then return end
-	if tool.Handle.CFrame.X>12000 or tool.Handle.CFrame.Y>12000 or tool.Handle.CFrame.Z>12000 then
+	if math.abs(tool.Handle.CFrame.X)>12000 or math.abs(tool.Handle.CFrame.Y)>12000 or math.abs(tool.Handle.CFrame.Z)>12000 then
 		tool:Destroy() return
 	end
 	if not ScrollingFrame:FindFirstChild(tool.Name) then
