@@ -326,7 +326,6 @@ local getNum=function(frame,parent)
 				else
 					Return=false
 				end
-				if g.Handle.CFrame.X>45000 or g.Handle.CFrame.Y>45000 or g.Handle.CFrame.Z>45000 then g:Destroy() continue end
 				if retNum>=2 or Return then continue end
 				num+=1
 			end
@@ -364,7 +363,7 @@ local createItem = function(obj,parent,noDupes)
 		clone.TextLabel.AnchorPoint = Vector2.new(1,.5)
 		clone.TextLabel.Position = UDim2.new(.71,0,.5,0)
 		clone.TextLabel.Size = UDim2.new(.54,0,.85,0)
-		
+
 		local button = TextButton:Clone()
 		button.Parent=clone
 		button.Position=UDim2.new(.09,0,.5,0)
@@ -382,33 +381,16 @@ local buttonFunc = function(button,obj,skip)
 		local par = obj.Parent
 		local name = obj.Name
 		con = button.MouseButton1Click:Connect(function()
-			
+
 			local child=skip and obj or nil
-			
+
 			if child==nil then
 				for e,g in pairs(par:GetChildren()) do
-					if not g:FindFirstChild("Handle") then continue end
-					local num=0
-					local Return=true
-					if g.Name~=name then continue end
-					if (game.GameId==6099256669 or game.GameId==2217006564) and g:FindFirstChild("Properties") then
-						for f,j in pairs(g:GetChildren()) do
-							if j.ClassName=="Script" and j.Name=="Properties" then
-								Return = false
-							end
-							if j.ClassName=="LocalScript" and j.Name=="Properties" then
-								num+=1
-							end
-						end
-					else
-						Return=false
-					end
-					if num>=2 or Return then if g:FindFirstChild("Handle") then g.Handle:Destroy() end continue end
-					if g.Handle.CFrame.X>45000 or g.Handle.CFrame.Y>45000 or g.Handle.CFrame.Z>45000 then g:Destroy() continue end
+					if not g:FindFirstChild("Handle") or g.Name~=name or (g.Handle.CFrame.X>12000 or g.Handle.CFrame.Y>12000 or g.Handle.CFrame.Z>12000) then continue end
 					child=g break
 				end
 			end
-			
+
 			if child==nil then return end
 			if child:FindFirstChild("HumanoidRootPart") then
 				plr.Character.HumanoidRootPart.CFrame=child.HumanoidRootPart.CFrame
@@ -441,7 +423,7 @@ local buttonFunc2 = function(button,obj)
 	local con2
 	local par = obj.Parent
 	local name = obj.Name
-	
+
 	local isTrue = false
 	updateColor(button,isTrue)
 	button.MouseButton1Click:Connect(function()
@@ -454,23 +436,7 @@ local buttonFunc2 = function(button,obj)
 				task.spawn(function()
 					local child=nil
 					for e,g in pairs(folder:GetChildren()) do
-						if not g:FindFirstChild("Handle") then continue end
-						local num=0
-						local Return=true
-						if g.Name~=name then continue end
-						if (game.GameId==6099256669 or game.GameId==2217006564) and g:FindFirstChild("Properties") then
-							for f,j in pairs(g:GetChildren()) do
-								if j.ClassName=="Script" and j.Name=="Properties" then
-									Return = false
-								end
-								if j.ClassName=="LocalScript" and j.Name=="Properties" then
-									num+=1
-								end
-							end
-						else
-							Return=false
-						end
-						if num>=2 or Return then if g:FindFirstChild("Handle") then g.Handle:Destroy() end continue end
+						if not g:FindFirstChild("Handle") or g.Name~=name or (g.Handle.CFrame.X>12000 or g.Handle.CFrame.Y>12000 or g.Handle.CFrame.Z>12000) then continue end
 						child=g break
 					end
 					if child==nil then return end
@@ -489,12 +455,25 @@ local buttonFunc2 = function(button,obj)
 	end)
 end
 
+local function refreshItem(tool)
+	if not tool:FindFirstChild("Handle") then return end
+	if tool.Handle.CFrame.X>12000 or tool.Handle.CFrame.Y>12000 or tool.Handle.CFrame.Z>12000 then
+		tool:Destroy() return
+	end
+	if not ScrollingFrame:FindFirstChild(tool.Name) then
+		local button=createItem(tool,ScrollingFrame,true)
+		buttonFunc(button,tool)
+		buttonFunc2(button,tool)
+	end
+	getNum(ScrollingFrame,folder)
+end
+
 local text = nil
 
 local getFolder
 getFolder = function(num)
 	if num~=val then return end
-	
+
 	for i,v in pairs(buttonCons) do
 		task.spawn(function()
 			table.remove(buttonCons,table.find(buttonCons,v))
@@ -502,7 +481,7 @@ getFolder = function(num)
 			v=nil
 		end)
 	end
-	
+
 	local found=false
 	local oldFolder=folder
 	if workspace:FindFirstChildOfClass("Tool") then folder=workspace found=true end
@@ -514,54 +493,22 @@ getFolder = function(num)
 		end
 	end
 	if text~=nil and folder==oldFolder then return end
-	if folder==oldFolder then wait(5) getFolder(num)
+	if folder==nil then 
+		wait(1) 
+		getFolder(num)
 	else
 		if addCon~=nil then addCon:Disconnect() addCon=nil end
 		if rmCon~=nil then rmCon:Disconnect() rmCon=nil end
 
 		for i,v in pairs(folder:GetChildren()) do
 			if v:IsA("Tool") then
-				if not v:FindFirstChild("Handle") then continue end
-				local Return = true
-				if (game.GameId==6099256669 or game.GameId==2217006564) and v:FindFirstChild("Properties") then
-					local retNum = 0
-					for e,g in pairs(v:GetChildren()) do
-						if g.ClassName=="Script" and g.Name=="Properties" then Return = false end
-						if g.ClassName=="LocalScript" and g.Name=="Properties" then retNum+=1 end
-					end
-					if retNum>=2 then Return=true end
-				else
-					Return=false
-				end
-				if Return then if v:FindFirstChild("Handle") then v.Handle:Destroy() end continue end
-				local button=createItem(v,ScrollingFrame,true)
-				buttonFunc(button,v)
-				buttonFunc2(button,v)
-				getNum(ScrollingFrame,folder)
+				refreshItem(v)
 			end
 		end
 
 		addCon=folder.ChildAdded:Connect(function(child)
-			if not child:FindFirstChild("Handle") then return end
-			local Return = true
-			if (game.GameId==6099256669 or game.GameId==2217006564) and child:FindFirstChild("Properties") then
-				local retNum = 0
-				for e,g in pairs(child:GetChildren()) do
-					if g.ClassName=="Script" and g.Name=="Properties" then Return = false end
-					if g.ClassName=="LocalScript" and g.Name=="Properties" then retNum+=1 end
-				end
-				if retNum>=2 then Return=true end
-			else
-				Return=false
-			end
-			if Return or not child:IsA("Tool") then if child:FindFirstChild("Handle") then child.Handle:Destroy() end return end
-			if child.Handle.CFrame.X>45000 or child.Handle.CFrame.Y>45000 or child.Handle.CFrame.Z>45000 then child:Destroy() return end
-			if not ScrollingFrame:FindFirstChild(child.Name) then
-				local button=createItem(child,ScrollingFrame,true)
-				buttonFunc(button,child)
-				buttonFunc2(button,child)
-			end
-			getNum(ScrollingFrame,folder)
+			wait(.1)
+			refreshItem(child)
 		end)
 		rmCon=folder.ChildRemoved:Connect(function(child)
 			getNum(ScrollingFrame,folder)
@@ -569,14 +516,6 @@ getFolder = function(num)
 	end
 end
 getFolder(val)
-
-TextBox.FocusLost:Connect(function(enter)
-	if enter then
-		val=val+1
-		text=TextBox.Text
-		getFolder(val)
-	end
-end)
 
 TextButton.MouseButton1Click:Connect(function()
 	bring=not bring
@@ -605,3 +544,13 @@ local getNPCs = function()
 	end
 end
 getNPCs()
+
+local ref = function(parent)
+	local button = Refresh:Clone()
+	button.Parent=parent
+	button.Visible=true
+	button.MouseButton1Click:Connect(function()
+		getNPCs()
+	end)
+end
+ref(NPCs)
