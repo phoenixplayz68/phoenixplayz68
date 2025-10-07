@@ -326,7 +326,7 @@ local getNum=function(frame,parent)
 				else
 					Return=false
 				end
-				if g.Handle.CFrame.X>45000 or g.Handle.CFrame.Y>45000 or g.Handle.CFrame.Z>45000 then continue end
+				if g.Handle.CFrame.X>45000 or g.Handle.CFrame.Y>45000 or g.Handle.CFrame.Z>45000 then g:Destroy() continue end
 				if retNum>=2 or Return then continue end
 				num+=1
 			end
@@ -404,6 +404,7 @@ local buttonFunc = function(button,obj,skip)
 						Return=false
 					end
 					if num>=2 or Return then if g:FindFirstChild("Handle") then g.Handle:Destroy() end continue end
+					if g.Handle.CFrame.X>45000 or g.Handle.CFrame.Y>45000 or g.Handle.CFrame.Z>45000 then g:Destroy() continue end
 					child=g break
 				end
 			end
@@ -554,7 +555,7 @@ getFolder = function(num)
 				Return=false
 			end
 			if Return or not child:IsA("Tool") then if child:FindFirstChild("Handle") then child.Handle:Destroy() end return end
-			if child.Handle.CFrame.X>45000 or child.Handle.CFrame.Y>45000 or child.Handle.CFrame.Z>45000 then return end
+			if child.Handle.CFrame.X>45000 or child.Handle.CFrame.Y>45000 or child.Handle.CFrame.Z>45000 then child:Destroy() return end
 			if not ScrollingFrame:FindFirstChild(child.Name) then
 				local button=createItem(child,ScrollingFrame,true)
 				buttonFunc(button,child)
