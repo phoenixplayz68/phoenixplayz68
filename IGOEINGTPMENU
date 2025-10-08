@@ -93,13 +93,13 @@ BG.Size = UDim2.new(1, 0, 1, 0)
 
 ScrollingFrame.Parent = Items
 ScrollingFrame.Active = true
-ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ScrollingFrame.BackgroundTransparency = 1.000
+ScrollingFrame.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+ScrollingFrame.BackgroundTransparency = 0
 ScrollingFrame.BorderSizePixel = 0
 ScrollingFrame.Position = UDim2.new(0, 0, 0.967000008, 0)
 ScrollingFrame.Size = UDim2.new(1, 0, 14.25, 0)
 ScrollingFrame.ZIndex = 2
-ScrollingFrame.ScrollBarThickness = 0
+ScrollingFrame.ScrollBarThickness = 3
 
 UIListLayout.Parent = ScrollingFrame
 UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
@@ -296,7 +296,7 @@ end
 updateColor(TextButton,bring)
 
 local folder = nil
-local npcFolder = (game.GameId==6099256669 or game.GameId==2217006564) and workspace.Other or nil
+local npcFolder = nil
 local addCon = nil
 local rmCon = nil
 
@@ -307,34 +307,32 @@ for i,v in pairs(workspace:GetChildren()) do
 	end
 end
 
+local newFolder = Instance.new("Folder",workspace)
+newFolder.Name = "TPMenu Items"
+
 local val=0
 
+local items = {}
+
 local getNum=function(frame,parent)
-	for i,v in pairs(frame:GetChildren()) do
-		if v:IsA("TextButton") then
-			local num = 0
-			for e,g in pairs(parent:GetChildren()) do
-				if not g:FindFirstChild("Handle") then continue end
-				local retNum = 0
-				local Return = false
-				if g.Name~=v.Name then continue end
-				if (game.GameId==6099256669 or game.GameId==2217006564) and g:FindFirstChild("Properties") then
-					for f,j in pairs(g:GetChildren()) do
-						if j.ClassName=="Script" and j.Name=="Properties" then Return = false end
-						if j.ClassName=="LocalScript" and j.Name=="Properties" then retNum+=1 end
-					end
-				else
-					Return=false
-				end
-				if retNum>=2 or Return then continue end
-				num+=1
-			end
-			v.amt.Text = "AMT: "..num
+	for e,g in pairs(parent:GetChildren()) do
+		if g.Name~=frame.Name then continue end
+		local found = false
+		for b,p in pairs(g:GetChildren()) do
+			if p:FindFirstChildOfClass("TouchTransmitter") then found=true break end
 		end
+		if not found then continue end
+		g.Parent = newFolder[g.Name]
+		table.insert(items[frame.Name],g)
 	end
+	frame.amt.Text = "AMT: "..#items[frame.Name]
 end
 
 local tpItem = function(child)
+	local part = nil
+	for i,v in pairs(child:GetChildren()) do
+		if v:FindFirstChildOfClass("TouchTransmitter") then part=v break end
+	end
 	if bring then
 		for i,v in pairs(child:GetDescendants()) do
 			if v:IsA("BasePart") then
@@ -343,8 +341,8 @@ local tpItem = function(child)
 			end
 		end
 	else
-		if child:FindFirstChild("Handle") then
-			plr.Character.HumanoidRootPart.CFrame=child.Handle.CFrame
+		if child:FindFirstChild("Handle") or part~=nil then
+			plr.Character.HumanoidRootPart.CFrame=part.CFrame
 		elseif child.PrimaryPart~=nil then
 			plr.Character.HumanoidRootPart.CFrame=child.PrimaryPart.CFrame
 		end
@@ -353,10 +351,13 @@ end
 
 local createItem = function(obj,parent,noDupes)
 	if noDupes and parent:FindFirstChild(obj.Name) then return end
+	if items[obj.Name]==nil then
+		items[obj.Name]={}
+	end
 	local clone=Template:Clone()
 	clone.Name=obj.Name
 	clone.Parent=parent
-	clone.TextLabel.Text=obj.Name
+	clone.TextLabel.Text=string.split(obj.Name,"_SpawnModel")[1]
 	clone.Visible=true
 	parent.CanvasSize=UDim2.new(0,0,0,parent.UIListLayout.AbsoluteContentSize.Y)
 	if noDupes then
@@ -373,7 +374,7 @@ end
 
 local buttonCons = {}
 
-local buttonFunc = function(button,obj,skip)
+local buttonFunc = function(button,obj,isNPC)
 	task.spawn(function()
 		if button==nil then return end
 		local con
@@ -382,14 +383,7 @@ local buttonFunc = function(button,obj,skip)
 		local name = obj.Name
 		con = button.MouseButton1Click:Connect(function()
 
-			local child=skip and obj or nil
-
-			if child==nil then
-				for e,g in pairs(par:GetChildren()) do
-					if not g:FindFirstChild("Handle") or g.Name~=name or (math.abs(g.Handle.CFrame.X)>12000 or math.abs(g.Handle.CFrame.Y)>12000 or math.abs(g.Handle.CFrame.Z)>12000) then continue end
-					child=g break
-				end
-			end
+			local child=isNPC and obj or items[name][1]
 
 			if child==nil then return end
 			if child:FindFirstChild("HumanoidRootPart") then
@@ -400,7 +394,7 @@ local buttonFunc = function(button,obj,skip)
 		end)
 		con2 = button.MouseButton2Click:Connect(function()
 			local parent=button.Parent
-			if skip~=true then
+			if isNPC~=true then
 				table.remove(buttonCons,table.find(buttonCons,con))
 				table.remove(buttonCons,table.find(buttonCons,con2))
 			end
@@ -409,7 +403,7 @@ local buttonFunc = function(button,obj,skip)
 			con2:Disconnect() con2=nil
 			parent.CanvasSize=UDim2.new(0,0,0,parent.UIListLayout.AbsoluteContentSize.Y)
 		end)
-		if skip~=true then
+		if isNPC~=true then
 			table.insert(buttonCons,con)
 			table.insert(buttonCons,con2)
 		end
@@ -434,11 +428,8 @@ local buttonFunc2 = function(button,obj)
 		if isTrue then
 			repeat wait()
 				task.spawn(function()
-					local child=nil
-					for e,g in pairs(folder:GetChildren()) do
-						if not g:FindFirstChild("Handle") or g.Name~=name or (math.abs(g.Handle.CFrame.X)>12000 or math.abs(g.Handle.CFrame.Y)>12000 or math.abs(g.Handle.CFrame.Z)>12000) then continue end
-						child=g break
-					end
+					local child=items[name][1]
+					
 					if child==nil then return end
 					tpItem(child)
 					if button.Parent.Name=="Banknote" then
@@ -456,16 +447,28 @@ local buttonFunc2 = function(button,obj)
 end
 
 local function refreshItem(tool)
-	if not tool:FindFirstChild("Handle") then return end
-	if math.abs(tool.Handle.CFrame.X)>12000 or math.abs(tool.Handle.CFrame.Y)>12000 or math.abs(tool.Handle.CFrame.Z)>12000 then
+	local found = false
+	for i,v in pairs(tool:GetChildren()) do
+		if v:FindFirstChildOfClass("TouchTransmitter") then found=v break end
+	end
+	if not found then return end
+	if math.abs(found.CFrame.X)>12000 or math.abs(found.CFrame.Y)>12000 or math.abs(found.CFrame.Z)>12000 then
 		tool:Destroy() return
 	end
 	if not ScrollingFrame:FindFirstChild(tool.Name) then
+		local fold = Instance.new("Folder",newFolder)
+		fold.Name = tool.Name
 		local button=createItem(tool,ScrollingFrame,true)
 		buttonFunc(button,tool)
 		buttonFunc2(button,tool)
+		rmCon=fold.ChildRemoved:Connect(function(child)
+			for i,v in pairs(items[fold.Name]) do
+				if v==child then table.remove(items[fold.Name],i) break end
+			end
+			button.amt.Text = "AMT: "..#items[fold.Name]
+		end)
 	end
-	getNum(ScrollingFrame,folder)
+	getNum(ScrollingFrame[tool.Name],folder)
 end
 
 local text = nil
@@ -492,6 +495,9 @@ getFolder = function(num)
 			end
 		end
 	end
+	if game.GameId==3902524649 then
+		folder = workspace["Spawned Items"]
+	end
 	if text~=nil and folder==oldFolder then return end
 	if folder==nil then 
 		wait(1) 
@@ -501,17 +507,16 @@ getFolder = function(num)
 		if rmCon~=nil then rmCon:Disconnect() rmCon=nil end
 
 		for i,v in pairs(folder:GetChildren()) do
-			if v:IsA("Tool") then
+			if v:IsA("Tool") or game.GameId==3902524649 then
+				if v.Name=="Arrow_SpawnModel" or v.Name=="Rokakaka Fruit_SpawnModel" then v:Destroy() continue end
 				refreshItem(v)
 			end
 		end
 
 		addCon=folder.ChildAdded:Connect(function(child)
 			wait(.1)
+			if child.Name=="Arrow_SpawnModel" or child.Name=="Rokakaka Fruit_SpawnModel" then child:Destroy() return end
 			refreshItem(child)
-		end)
-		rmCon=folder.ChildRemoved:Connect(function(child)
-			getNum(ScrollingFrame,folder)
 		end)
 	end
 end
