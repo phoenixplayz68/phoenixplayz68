@@ -357,10 +357,12 @@ local tpItem = function(child,parent,name)
 		end
 		task.spawn(function()
 			repeat task.wait()
-				if plr.Character:FindFirstChild("HumanoidRootPart") and child~=nil and child.PrimaryPart~=nil then
-					child.PrimaryPart.CFrame=plr.Character.HumanoidRootPart.CFrame
-					child.PrimaryPart.AssemblyLinearVelocity = Vector3.new(0,0,0)
-				end
+				task.spawn(function()
+					if plr.Character:FindFirstChild("HumanoidRootPart") and child~=nil and child.PrimaryPart~=nil then
+						child.PrimaryPart.CFrame=plr.Character.HumanoidRootPart.CFrame
+						child.PrimaryPart.AssemblyLinearVelocity = Vector3.new(0,0,0)
+					end
+				end)
 			until child.Parent~=parent or child==nil or not child.PrimaryPart
 		end)
 	else
