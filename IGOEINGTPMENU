@@ -94,7 +94,7 @@ BG.Size = UDim2.new(1, 0, 1, 0)
 ScrollingFrame.Parent = Items
 ScrollingFrame.Active = true
 ScrollingFrame.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
-ScrollingFrame.BackgroundTransparency = 0
+ScrollingFrame.BackgroundTransparency = 1
 ScrollingFrame.BorderSizePixel = 0
 ScrollingFrame.Position = UDim2.new(0, 0, 0.967000008, 0)
 ScrollingFrame.Size = UDim2.new(1, 0, 14.25, 0)
@@ -125,7 +125,7 @@ Title_2.TextWrapped = true
 
 ScrollingFrame_2.Parent = Settings
 ScrollingFrame_2.Active = true
-ScrollingFrame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollingFrame_2.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
 ScrollingFrame_2.BackgroundTransparency = 1.000
 ScrollingFrame_2.BorderSizePixel = 0
 ScrollingFrame_2.Position = UDim2.new(0, 0, 0.967000008, 0)
@@ -231,13 +231,13 @@ BG_2.Size = UDim2.new(1, 0, 1, 0)
 
 ScrollingFrame_3.Parent = NPCs
 ScrollingFrame_3.Active = true
-ScrollingFrame_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollingFrame_3.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
 ScrollingFrame_3.BackgroundTransparency = 1.000
 ScrollingFrame_3.BorderSizePixel = 0
 ScrollingFrame_3.Position = UDim2.new(0, 0, 0.967000008, 0)
 ScrollingFrame_3.Size = UDim2.new(1, 0, 14.25, 0)
 ScrollingFrame_3.ZIndex = 2
-ScrollingFrame_3.ScrollBarThickness = 0
+ScrollingFrame_3.ScrollBarThickness = 1
 
 UIListLayout_3.Parent = ScrollingFrame_3
 UIListLayout_3.SortOrder = Enum.SortOrder.LayoutOrder
@@ -319,7 +319,7 @@ local getNum=function(frame,parent)
 		if g.Name~=frame.Name then continue end
 		local found = false
 		for b,p in pairs(g:GetChildren()) do
-			if p:FindFirstChildOfClass("TouchTransmitter") then found=true break end
+			if p:FindFirstChildOfClass("TouchTransmitter") then g.PrimaryPart=p found=true break end
 		end
 		if not found then continue end
 		g.Parent = newFolder[g.Name]
@@ -328,7 +328,7 @@ local getNum=function(frame,parent)
 	frame.amt.Text = "AMT: "..#items[frame.Name]
 end
 
-local tpItem = function(child)
+local tpItem = function(child,parent,name)
 	local part = nil
 	for i,v in pairs(child:GetChildren()) do
 		if v:FindFirstChildOfClass("TouchTransmitter") then part=v break end
@@ -337,9 +337,18 @@ local tpItem = function(child)
 		for i,v in pairs(child:GetDescendants()) do
 			if v:IsA("BasePart") then
 				v.Anchored=false
+				v.CanCollide=false
 				v.CFrame=plr.Character.HumanoidRootPart.CFrame
 			end
 		end
+		task.spawn(function()
+			repeat task.wait()
+				if plr.Character:FindFirstChild("HumanoidRootPart") and child~=nil and child.PrimaryPart~=nil then
+					child.PrimaryPart.CFrame=plr.Character.HumanoidRootPart.CFrame
+					child.PrimaryPart.AssemblyLinearVelocity = Vector3.new(0,0,0)
+				end
+			until child.Parent~=parent or child==nil or not child.PrimaryPart
+		end)
 	else
 		if child:FindFirstChild("Handle") or part~=nil then
 			plr.Character.HumanoidRootPart.CFrame=part.CFrame
@@ -369,6 +378,10 @@ local createItem = function(obj,parent,noDupes)
 		button.Parent=clone
 		button.Position=UDim2.new(.09,0,.5,0)
 	end
+	wait()
+	if parent.CanvasSize.Y.Offset > parent.AbsoluteSize.Y then
+		parent.BackgroundTransparency=0
+	end
 	return clone
 end
 
@@ -383,14 +396,29 @@ local buttonFunc = function(button,obj,isNPC)
 		local name = obj.Name
 		con = button.MouseButton1Click:Connect(function()
 
-			local child=isNPC and obj or items[name][1]
-
+			local child=isNPC and obj or nil
+			local num = 0
+			
+			repeat task.wait()
+				if items[name][num]~=nil then
+					if items[name][num]:GetAttribute("Teleporting") then 
+						num+=1 continue 
+					else
+						child=items[name][num]
+						child:SetAttribute("Teleporting",true) break
+					end
+				else
+					num+=1
+				end
+			until num>#items[name]
+			
+			
 			if child==nil then return end
 			if child:FindFirstChild("HumanoidRootPart") then
 				plr.Character.HumanoidRootPart.CFrame=child.HumanoidRootPart.CFrame
 				return
 			end
-			tpItem(child)
+			tpItem(child,child.Parent,name)
 		end)
 		con2 = button.MouseButton2Click:Connect(function()
 			local parent=button.Parent
@@ -428,10 +456,24 @@ local buttonFunc2 = function(button,obj)
 		if isTrue then
 			repeat wait()
 				task.spawn(function()
-					local child=items[name][1]
+					local child=nil
+					local num = 0
+					
+					repeat task.wait()
+						if items[name][num]~=nil then
+							if items[name][num]:GetAttribute("Teleporting") then 
+								num+=1 continue 
+							else
+								child=items[name][num]
+								child:SetAttribute("Teleporting",true) break
+							end
+						else
+							num+=1
+						end
+					until num>#items[name]
 					
 					if child==nil then return end
-					tpItem(child)
+					tpItem(child,child.Parent,name)
 					if button.Parent.Name=="Banknote" then
 						if plr.Backpack:FindFirstChild("Banknote") and not plr.Character:FindFirstChild("Banknote") then
 							local banknote = plr.Backpack:FindFirstChild("Banknote")
@@ -462,6 +504,7 @@ local function refreshItem(tool)
 		buttonFunc(button,tool)
 		buttonFunc2(button,tool)
 		rmCon=fold.ChildRemoved:Connect(function(child)
+			table.remove(items[fold.Name],table.find(items[fold.Name],child))
 			for i,v in pairs(items[fold.Name]) do
 				if v==child then table.remove(items[fold.Name],i) break end
 			end
@@ -514,7 +557,20 @@ getFolder = function(num)
 		end
 
 		addCon=folder.ChildAdded:Connect(function(child)
-			wait(.1)
+			local shouldReturn = false
+			local elapsed = 0
+			local found = false
+			repeat 
+				elapsed+=task.wait() 
+				if elapsed>=1 then 
+					shouldReturn=true break 
+				end
+				for i,v in pairs(child:GetDescendants()) do
+					if v:IsA("TouchTransmitter") then shouldReturn=false found=true break end
+				end
+				if found then break end
+			until false
+			if shouldReturn then return end
 			if child.Name=="Arrow_SpawnModel" or child.Name=="Rokakaka Fruit_SpawnModel" then child:Destroy() return end
 			refreshItem(child)
 		end)
