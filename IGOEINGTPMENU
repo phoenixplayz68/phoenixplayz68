@@ -571,12 +571,10 @@ getFolder = function(num)
 		if rmCon~=nil then rmCon:Disconnect() rmCon=nil end
 
 		for i,v in pairs(folder:GetChildren()) do
-			task.spawn(function()
-				if v:IsA("Tool") or game.GameId==3902524649 then
-					if table.find(blacklist,v.Name) then v:Destroy() return end
-					refreshItem(v)
-				end
-			end)
+			if v:IsA("Tool") or game.GameId==3902524649 then
+				if table.find(blacklist,v.Name) then v:Destroy() return end
+				refreshItem(v)
+			end
 		end
 
 		addCon=folder.ChildAdded:Connect(function(child)
