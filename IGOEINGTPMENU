@@ -607,7 +607,11 @@ getFolder = function(num)
 	else
 		if addCon~=nil then addCon:Disconnect() addCon=nil end
 		if rmCon~=nil then rmCon:Disconnect() rmCon=nil end
-
+		
+		for i = 1,#data[tostring(game.GameId)] do
+			addButtonStuff(data[tostring(game.GameId)][i])
+		end
+		
 		for i,v in pairs(folder:GetChildren()) do
 			if v:IsA("Tool") or game.GameId==3902524649 then
 				if table.find(blacklist,v.Name) then v:Destroy() return end
@@ -633,9 +637,6 @@ getFolder = function(num)
 			if table.find(blacklist,child.Name) then child:Destroy() return end
 			refreshItem(child)
 		end)
-	end
-	for i = 1,#data[tostring(game.GameId)] do
-		addButtonStuff(data[tostring(game.GameId)][i])
 	end
 end
 getFolder(val)
