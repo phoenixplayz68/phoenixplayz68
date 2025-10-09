@@ -401,9 +401,23 @@ end
 
 local buttonCons = {}
 
+local blacklist = {}
+local order = 0
+
+local ogOrder = -1
+local ogNPCOrder = -1
+
 local buttonFunc = function(button,obj,name,isNPC)
 	task.spawn(function()
 		if button==nil then return end
+		if isNPC then
+			ogNPCOrder+=1
+		else
+			ogOrder+=1
+		end
+		local curOrder = isNPC and ogNPCOrder or ogOrder
+		button.LayoutOrder = curOrder
+		
 		local con
 		local con2
 		if not data[tostring(game.GameId)][name] and not isNPC then
@@ -436,16 +450,33 @@ local buttonFunc = function(button,obj,name,isNPC)
 			end
 			tpItem(child,child.Parent,name)
 		end)
+		local DT = false
+		local tapOnce = false
 		con2 = button.MouseButton2Click:Connect(function()
-			local parent=button.Parent
-			if isNPC~=true then
-				table.remove(buttonCons,table.find(buttonCons,con))
-				table.remove(buttonCons,table.find(buttonCons,con2))
+			if tapOnce then DT=true end
+			tapOnce=true
+			task.wait(.25)
+			if not DT then
+				if button.LayoutOrder==curOrder then
+					order-=1
+					button.LayoutOrder=order
+				else
+					button.LayoutOrder=curOrder
+				end
+			else
+				table.insert(blacklist,name)
+				local parent=button.Parent
+				if isNPC~=true then
+					table.remove(buttonCons,table.find(buttonCons,con))
+					table.remove(buttonCons,table.find(buttonCons,con2))
+				end
+				button:Destroy()
+				con:Disconnect() con=nil
+				con2:Disconnect() con2=nil
+				parent.CanvasSize=UDim2.new(0,0,0,parent.UIListLayout.AbsoluteContentSize.Y)
 			end
-			button:Destroy()
-			con:Disconnect() con=nil
-			con2:Disconnect() con2=nil
-			parent.CanvasSize=UDim2.new(0,0,0,parent.UIListLayout.AbsoluteContentSize.Y)
+			tapOnce=false
+			DT=false
 		end)
 		if isNPC~=true then
 			table.insert(buttonCons,con)
@@ -510,6 +541,12 @@ local function addButtonStuff(name,tool)
 		local button=createItem(name,ScrollingFrame,true)
 		buttonFunc(button,tool,name)
 		buttonFunc2(button,name)
+
+		local sound = Instance.new("Sound",workspace)
+		sound.SoundId = "rbxassetid://124994471462443"
+		sound:Play()
+		game:GetService("Debris"):AddItem(sound,3)
+		
 		rmCon=fold.ChildRemoved:Connect(function(child)
 			table.remove(items[fold.Name],table.find(items[fold.Name],child))
 			for i,v in pairs(items[fold.Name]) do
@@ -533,8 +570,6 @@ local function refreshItem(tool)
 	getNum(ScrollingFrame[tool.Name],folder)
 end
 
-local blacklist = {"Arrow_SpawnModel","Rokakaka Fruit_SpawnModel","Toxic Chemicals_SpawnModel"}
-
 local text = nil
 
 local getFolder
@@ -551,7 +586,8 @@ getFolder = function(num)
 
 	local found=false
 	local oldFolder=folder
-	if workspace:FindFirstChildOfClass("Tool") then folder=workspace found=true end
+	local randomTool = workspace:FindFirstChildOfClass("Tool")
+	if randomTool and randomTool:FindFirstChildOfClass("BasePart") then folder=workspace found=true end
 	if not found then
 		for i,v in pairs(workspace:GetDescendants()) do
 			if text==nil and v:IsA("Folder") and v:FindFirstChildOfClass("Tool") or text~=nil and v:IsA("Folder") and v.Name==text then
