@@ -339,7 +339,7 @@ local getNum=function(frame,parent)
 		g.Parent = newFolder[g.Name]
 		table.insert(items[frame.Name],g)
 	end
-	frame.amt.Text = "AMT: "..#items[frame.Name]
+	frame.amt.Text = "AMT: "..#newFolder[g.Name]:GetChildren()
 end
 
 local tpItem = function(child,parent,name)
@@ -515,7 +515,7 @@ local function addButtonStuff(name,tool)
 			for i,v in pairs(items[fold.Name]) do
 				if v==child then table.remove(items[fold.Name],i) break end
 			end
-			button.amt.Text = "AMT: "..#items[fold.Name]
+			button.amt.Text = "AMT: "..#fold:GetChildren()
 		end)
 	end
 end
