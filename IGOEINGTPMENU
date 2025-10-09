@@ -339,7 +339,7 @@ local getNum=function(frame,parent)
 		g.Parent = newFolder[g.Name]
 		table.insert(items[frame.Name],g)
 	end
-	frame.amt.Text = "AMT: "..#newFolder[g.Name]:GetChildren()
+	frame.amt.Text = "AMT: "..#newFolder[frame.Name]:GetChildren()
 end
 
 local tpItem = function(child,parent,name)
