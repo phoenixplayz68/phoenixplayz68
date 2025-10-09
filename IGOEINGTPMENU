@@ -533,6 +533,8 @@ local function refreshItem(tool)
 	getNum(ScrollingFrame[tool.Name],folder)
 end
 
+local blacklist = {"Arrow_SpawnModel","Rokakaka Fruit_SpawnModel","Toxic Chemicals_SpawnModel"}
+
 local text = nil
 
 local getFolder
@@ -571,7 +573,7 @@ getFolder = function(num)
 		for i,v in pairs(folder:GetChildren()) do
 			task.spawn(function()
 				if v:IsA("Tool") or game.GameId==3902524649 then
-					if v.Name=="Arrow_SpawnModel" or v.Name=="Rokakaka Fruit_SpawnModel" then v:Destroy() return end
+					if table.find(blacklist,v.Name) then v:Destroy() return end
 					refreshItem(v)
 				end
 			end)
@@ -592,7 +594,7 @@ getFolder = function(num)
 				if found then break end
 			until false
 			if shouldReturn then return end
-			if child.Name=="Arrow_SpawnModel" or child.Name=="Rokakaka Fruit_SpawnModel" then child:Destroy() return end
+			if table.find(blacklist,child.Name) then child:Destroy() return end
 			refreshItem(child)
 		end)
 	end
