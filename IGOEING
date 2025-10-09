@@ -502,6 +502,8 @@ local arrow = getremote("Arrow")
 local roka = getremote("Roka")
 local smite = getremote("Damage4")
 local death = getremote("Death")
+local getup = getremote("GetUp")
+local block = getremote("Block")
 
 local mouse = plr:GetMouse()
 
@@ -540,6 +542,7 @@ local killaura = false
 local flingaura = false
 
 local autoheal = false
+local autoblock = false
 
 local holdingW = false
 local holdingS = false
@@ -1548,6 +1551,8 @@ local cmds = function(Self,cmd,cmd2,cmd3,player)
 			functions.Freeze(player)
 		elseif (cmd==Prefix.."autofreeze" or cmd==Prefix.."afreeze" or cmd==Prefix.."unautofreeze" or cmd==Prefix.."unafreeze") and not wasnil then
 			functions.AutoFreeze(cmd==Prefix.."autofreeze" or cmd==Prefix.."afreeze",player)
+		elseif (cmd==Prefix.."autoblock" or cmd==Prefix.."auto block" or cmd==Prefix.."autob"  or  cmd==Prefix.."unautoblock" or cmd==Prefix.."unauto block" or cmd==Prefix.."unautob") and isMe then
+			autoblock=not string.find(cmd,"un")
 		elseif cmd==Prefix.."smite" then
 			functions.Smite(player)
 		elseif cmd==Prefix.."unsmite" then
@@ -1855,6 +1860,10 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 			if plr.Character:FindFirstChildOfClass("Humanoid").PlatformStand == true then
 				plr.Character:FindFirstChildOfClass("Humanoid").PlatformStand = false
 			end
+			if plr.Character:FindFirstChild("Ragdoll") and getup then
+				plr.Character.Ragdoll.Value = false
+				getup:FireServer()
+			end
 			if plr.Character:FindFirstChildOfClass("Humanoid").WalkSpeed == 0 then
 				plr.Character:FindFirstChildOfClass("Humanoid").WalkSpeed = 16
 			end
@@ -2034,6 +2043,12 @@ game:GetService("RunService").RenderStepped:Connect(function(elapsed)
 
 	if plr.Character:FindFirstChild("Disable") and antidisable then
 		plr.Character.Disable.Value = false
+	end
+	if plr.Character:FindFirstChild("Disabled") and antidisable then
+		plr.Character.Disabled.Value = false
+	end
+	if plr.Character:FindFirstChild("Block") and autoblock then
+		block:FireServer(true)
 	end
 
 	DelTime=DelTime+elapsed
