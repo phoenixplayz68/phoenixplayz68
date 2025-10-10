@@ -539,12 +539,10 @@ local function addButtonStuff(name,tool)
 		sound.Volume = 1.5
 		sound:Play()
 		game:GetService("Debris"):AddItem(sound,3)
-		
-		if not table.find(data[tostring(game.GameId)],name) then
-			local button=createItem(name,ScrollingFrame,true)
-			buttonFunc(button,tool,name)
-			buttonFunc2(button,name)
-		end
+
+		local button=createItem(name,ScrollingFrame,true)
+		buttonFunc(button,tool,name)
+		buttonFunc2(button,name)
 
 		rmCon=fold.ChildRemoved:Connect(function(child)
 			table.remove(items[fold.Name],table.find(items[fold.Name],child))
