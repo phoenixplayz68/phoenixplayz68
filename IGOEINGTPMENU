@@ -603,8 +603,8 @@ function setSpawns(num)
 		if not item:IsA("Tool") then return end
 		local elapsed = 0
 		repeat elapsed+=task.wait() if item:FindFirstChildOfClass("Part") or item:FindFirstChildOfClass("MeshPart") or item:FindFirstChildOfClass("UnionOperation") then break end until elapsed>=2
-		if elapsed>=2 then return end
-		task.wait()
+		if elapsed>=5 then return end
+		task.wait(.15)
 		checkItem(item)
 	end)
 	
