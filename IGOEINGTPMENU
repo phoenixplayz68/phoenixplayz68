@@ -360,7 +360,6 @@ local tpItem = function(child,parent,name)
 			if v:IsA("BasePart") then
 				v.Anchored=false
 				v.CanCollide=false
-				v.CFrame=plr.Character:WaitForChild("HumanoidRootPart").CFrame
 			end
 		end
 		task.spawn(function()
