@@ -1,18 +1,22 @@
 local plr = game.Players.LocalPlayer
 
-if not isfolder("GravyTP") then
-	makefolder("GravyTP")
-end
-if not isfile("GravyTP//games.json") then
-	writefile("GravyTP//games.json",game:GetService("HttpService"):JSONEncode({}))
-end
+local isStudio = game:GetService("RunService"):IsStudio()
 
-local data = game:GetService("HttpService"):JSONDecode(readfile("GravyTP//games.json"))
+if not isStudio then
+	if not isfolder("GravyTP") then
+		makefolder("GravyTP")
+	end
+	if not isfile("GravyTP//games.json") then
+		writefile("GravyTP//games.json",game:GetService("HttpService"):JSONEncode({}))
+	end
 
-if not data[tostring(game.GameId)] then
-	data[tostring(game.GameId)] = {}
+	local data = game:GetService("HttpService"):JSONDecode(readfile("GravyTP//games.json"))
+
+	if not data[tostring(game.GameId)] then
+		data[tostring(game.GameId)] = {}
+	end
+	writefile("GravyTP//games.json",game:GetService("HttpService"):JSONEncode(data))
 end
-writefile("GravyTP//games.json",game:GetService("HttpService"):JSONEncode(data))
 
 local note = function(title,text)
 	local NotificationBindable = Instance.new("BindableFunction")
@@ -43,10 +47,10 @@ local TextLabel = Instance.new("TextLabel")
 local TextButton = Instance.new("TextButton")
 local UIStroke = Instance.new("UIStroke",TextButton)
 local UIStroke2 = Instance.new("UIStroke",TextButton)
-local Location = Instance.new("Frame")
+local Filter = Instance.new("Frame")
 local TextBox = Instance.new("TextBox")
 local UIStroke3 = Instance.new("UIStroke",TextBox)
-local Location_2 = Instance.new("TextLabel")
+local Filter_2 = Instance.new("TextLabel")
 local NPCs = Instance.new("Frame")
 local Title_3 = Instance.new("TextLabel")
 local BG_2 = Instance.new("Frame")
@@ -183,13 +187,13 @@ TextButton.TextScaled = true
 TextButton.TextSize = 14.000
 TextButton.TextWrapped = true
 
-Location.Name = "Location"
-Location.Parent = ScrollingFrame_2
-Location.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
-Location.BorderSizePixel = 0
-Location.Size = UDim2.new(1, 0, 0.0710596889, 0)
+Filter.Name = "Filter"
+Filter.Parent = ScrollingFrame_2
+Filter.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+Filter.BorderSizePixel = 0
+Filter.Size = UDim2.new(1, 0, 0.0710596889, 0)
 
-TextBox.Parent = Location
+TextBox.Parent = Filter
 TextBox.AnchorPoint = Vector2.new(0.5, 0.5)
 TextBox.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
 TextBox.Position = UDim2.new(0.74, 0, 0.5, 0)
@@ -202,20 +206,20 @@ TextBox.TextScaled = true
 TextBox.TextSize = 14.000
 TextBox.TextWrapped = true
 
-Location_2.Name = "Location"
-Location_2.Parent = Location
-Location_2.AnchorPoint = Vector2.new(0.5, 0.5)
-Location_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Location_2.BackgroundTransparency = 1.000
-Location_2.Position = UDim2.new(0.5, 0, 0.5, 0)
-Location_2.Size = UDim2.new(0.94, 0, 0.930000007, 0)
-Location_2.Font = Enum.Font.SourceSansBold
-Location_2.Text = "Location:"
-Location_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-Location_2.TextScaled = true
-Location_2.TextSize = 14.000
-Location_2.TextWrapped = true
-Location_2.TextXAlignment = Enum.TextXAlignment.Left
+Filter_2.Name = "Filter"
+Filter_2.Parent = Filter
+Filter_2.AnchorPoint = Vector2.new(0.5, 0.5)
+Filter_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Filter_2.BackgroundTransparency = 1.000
+Filter_2.Position = UDim2.new(0.5, 0, 0.5, 0)
+Filter_2.Size = UDim2.new(0.94, 0, 0.930000007, 0)
+Filter_2.Font = Enum.Font.SourceSansBold
+Filter_2.Text = "Filter:"
+Filter_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+Filter_2.TextScaled = true
+Filter_2.TextSize = 14.000
+Filter_2.TextWrapped = true
+Filter_2.TextXAlignment = Enum.TextXAlignment.Left
 
 NPCs.Name = "NPC's"
 NPCs.Parent = TPMenu
@@ -249,7 +253,7 @@ ScrollingFrame_3.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
 ScrollingFrame_3.BackgroundTransparency = 1.000
 ScrollingFrame_3.BorderSizePixel = 0
 ScrollingFrame_3.Position = UDim2.new(0, 0, 0.967000008, 0)
-ScrollingFrame_3.Size = UDim2.new(1, 0, 14.25, 0)
+ScrollingFrame_3.Size = UDim2.new(1, 0, 11, 0)
 ScrollingFrame_3.ZIndex = 2
 ScrollingFrame_3.ScrollBarThickness = 1
 
@@ -352,7 +356,7 @@ local tpItem = function(child,parent,name)
 			if v:IsA("BasePart") then
 				v.Anchored=false
 				v.CanCollide=false
-				v.CFrame=plr.Character.HumanoidRootPart.CFrame
+				v.CFrame=plr.Character:WaitForChild("HumanoidRootPart").CFrame
 			end
 		end
 		task.spawn(function()
@@ -384,6 +388,7 @@ local createItem = function(name,parent,noDupes)
 	clone.Parent=parent
 	clone.TextLabel.Text=string.split(name,"_SpawnModel")[1]
 	clone.Visible=true
+	
 	parent.CanvasSize=UDim2.new(0,0,0,parent.UIListLayout.AbsoluteContentSize.Y)
 	if noDupes then
 		clone.TextLabel.AnchorPoint = Vector2.new(1,.5)
@@ -419,10 +424,10 @@ local buttonFunc = function(button,obj,name,isNPC)
 		end
 		local curOrder = isNPC and ogNPCOrder or ogOrder
 		button.LayoutOrder = curOrder
-		
+
 		local con
 		local con2
-		if not data[tostring(game.GameId)][name] and not isNPC then
+		if not isStudio and not data[tostring(game.GameId)][name] and not isNPC then
 			table.insert(data[tostring(game.GameId)],name)
 			writefile("GravyTP//games.json",game:GetService("HttpService"):JSONEncode(data))
 		end
@@ -430,7 +435,7 @@ local buttonFunc = function(button,obj,name,isNPC)
 
 			local child=isNPC and obj or nil
 			local num = 0
-			
+
 			repeat task.wait()
 				if items[name][num]~=nil then
 					if items[name][num]:GetAttribute("Teleporting") then 
@@ -443,8 +448,8 @@ local buttonFunc = function(button,obj,name,isNPC)
 					num+=1
 				end
 			until num>#items[name]
-			
-			
+
+
 			if child==nil then return end
 			if child:FindFirstChild("HumanoidRootPart") then
 				plr.Character.HumanoidRootPart.CFrame=child.HumanoidRootPart.CFrame
@@ -462,8 +467,10 @@ local buttonFunc = function(button,obj,name,isNPC)
 				if button.LayoutOrder==curOrder then
 					order-=1
 					button.LayoutOrder=order
+					button.BackgroundColor3 = Color3.fromRGB(255, 0, 55)
 				else
 					button.LayoutOrder=curOrder
+					button.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
 				end
 			else
 				table.insert(blacklist,name)
@@ -506,7 +513,7 @@ local buttonFunc2 = function(button,name)
 				task.spawn(function()
 					local child=nil
 					local num = 0
-					
+
 					repeat task.wait()
 						if items[name][num]~=nil then
 							if items[name][num]:GetAttribute("Teleporting") then 
@@ -519,7 +526,7 @@ local buttonFunc2 = function(button,name)
 							num+=1
 						end
 					until num>#items[name]
-					
+
 					if child==nil then return end
 					tpItem(child,child.Parent,name)
 					if button.Parent.Name=="Banknote" then
@@ -546,9 +553,10 @@ local function addButtonStuff(name,tool)
 
 		local sound = Instance.new("Sound",workspace)
 		sound.SoundId = "rbxassetid://124994471462443"
+		sound.Volume = 1.5
 		sound:Play()
 		game:GetService("Debris"):AddItem(sound,3)
-		
+
 		rmCon=fold.ChildRemoved:Connect(function(child)
 			table.remove(items[fold.Name],table.find(items[fold.Name],child))
 			for i,v in pairs(items[fold.Name]) do
@@ -577,7 +585,7 @@ local text = nil
 local getFolder
 getFolder = function(num)
 	if num~=val then return end
-
+	
 	for i,v in pairs(buttonCons) do
 		task.spawn(function()
 			table.remove(buttonCons,table.find(buttonCons,v))
@@ -589,7 +597,24 @@ getFolder = function(num)
 	local found=false
 	local oldFolder=folder
 	local randomTool = workspace:FindFirstChildOfClass("Tool")
-	if randomTool and randomTool:FindFirstChildOfClass("BasePart") then folder=workspace found=true end
+	if randomTool then 
+		print('yes')
+		for i,v in pairs(workspace:GetChildren()) do
+			if v:IsA("Tool") then
+				for _,g in pairs(v:GetChildren()) do
+					if g:IsA("BasePart") and g:FindFirstChildOfClass("TouchTransmitter") then
+						found=true
+						folder=workspace
+						break
+					end
+				end
+				if found then
+					break
+				end
+			end
+		end
+	end
+	print(found)
 	if not found then
 		for i,v in pairs(workspace:GetDescendants()) do
 			if text==nil and v:IsA("Folder") and v:FindFirstChildOfClass("Tool") or text~=nil and v:IsA("Folder") and v.Name==text then
@@ -607,11 +632,13 @@ getFolder = function(num)
 	else
 		if addCon~=nil then addCon:Disconnect() addCon=nil end
 		if rmCon~=nil then rmCon:Disconnect() rmCon=nil end
-		
-		for i = 1,#data[tostring(game.GameId)] do
-			addButtonStuff(data[tostring(game.GameId)][i])
+
+		if not isStudio then
+			for i = 1,#data[tostring(game.GameId)] do
+				addButtonStuff(data[tostring(game.GameId)][i])
+			end
 		end
-		
+
 		for i,v in pairs(folder:GetChildren()) do
 			if v:IsA("Tool") or game.GameId==3902524649 then
 				if table.find(blacklist,v.Name) then v:Destroy() return end
@@ -641,6 +668,14 @@ getFolder = function(num)
 end
 getFolder(val)
 
+TextBox:GetPropertyChangedSignal("Text"):Connect(function()
+	for i,v in pairs(ScrollingFrame:GetChildren()) do
+		if v:IsA("TextButton") then
+			v.Visible=TextBox.Text=="" or string.find(v.Name,TextBox.Text)
+		end
+	end
+end)
+
 TextButton.MouseButton1Click:Connect(function()
 	bring=not bring
 	updateColor(TextButton,bring)
@@ -649,6 +684,14 @@ end)
 game:GetService("UserInputService").InputBegan:Connect(function(key)
 	if key.KeyCode.Name=="KeypadFive" then
 		TPMenu.Enabled=not TPMenu.Enabled
+	elseif key.KeyCode.Name=="KeypadSeven" then
+		Items.Visible=not Items.Visible
+		NPCs.Position=UDim2.fromScale(Items.Visible and .115 or .003,NPCs.Position.Y.Scale)
+		Settings.Position=UDim2.fromScale(Items.Visible and .115 or .003,Settings.Position.Y.Scale)
+	elseif key.KeyCode.Name=="KeypadEight" then
+		NPCs.Visible=not NPCs.Visible
+	elseif key.KeyCode.Name=="KeypadNine" then
+		Settings.Visible=not Settings.Visible
 	end
 end)
 
@@ -662,6 +705,7 @@ local getNPCs = function()
 				button.TextLabel.AnchorPoint = Vector2.new(.5,0)
 				button.TextLabel.Position = UDim2.new(0.5,0,0,0)
 				button.TextLabel.Size = UDim2.new(.95,0,1,0)
+				button.Size = UDim2.new(1,0,.091,0)
 				buttonFunc(button,v,v.Name,true)
 			end
 		end
