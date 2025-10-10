@@ -1,22 +1,19 @@
 local plr = game.Players.LocalPlayer
 
-local isStudio = game:GetService("RunService"):IsStudio()
 
-if not isStudio then
-	if not isfolder("GravyTP") then
-		makefolder("GravyTP")
-	end
-	if not isfile("GravyTP//games.json") then
-		writefile("GravyTP//games.json",game:GetService("HttpService"):JSONEncode({}))
-	end
-
-	local data = game:GetService("HttpService"):JSONDecode(readfile("GravyTP//games.json"))
-
-	if not data[tostring(game.GameId)] then
-		data[tostring(game.GameId)] = {}
-	end
-	writefile("GravyTP//games.json",game:GetService("HttpService"):JSONEncode(data))
+if not isfolder("GravyTP") then
+	makefolder("GravyTP")
 end
+if not isfile("GravyTP//games.json") then
+	writefile("GravyTP//games.json",game:GetService("HttpService"):JSONEncode({}))
+end
+
+local data = game:GetService("HttpService"):JSONDecode(readfile("GravyTP//games.json"))
+
+if not data[tostring(game.GameId)] then
+	data[tostring(game.GameId)] = {}
+end
+writefile("GravyTP//games.json",game:GetService("HttpService"):JSONEncode(data))
 
 local note = function(title,text)
 	local NotificationBindable = Instance.new("BindableFunction")
@@ -388,7 +385,7 @@ local createItem = function(name,parent,noDupes)
 	clone.Parent=parent
 	clone.TextLabel.Text=string.split(name,"_SpawnModel")[1]
 	clone.Visible=true
-	
+
 	parent.CanvasSize=UDim2.new(0,0,0,parent.UIListLayout.AbsoluteContentSize.Y)
 	if noDupes then
 		clone.TextLabel.AnchorPoint = Vector2.new(1,.5)
@@ -585,7 +582,7 @@ local text = nil
 local getFolder
 getFolder = function(num)
 	if num~=val then return end
-	
+
 	for i,v in pairs(buttonCons) do
 		task.spawn(function()
 			table.remove(buttonCons,table.find(buttonCons,v))
@@ -633,10 +630,8 @@ getFolder = function(num)
 		if addCon~=nil then addCon:Disconnect() addCon=nil end
 		if rmCon~=nil then rmCon:Disconnect() rmCon=nil end
 
-		if not isStudio then
-			for i = 1,#data[tostring(game.GameId)] do
-				addButtonStuff(data[tostring(game.GameId)][i])
-			end
+		for i = 1,#data[tostring(game.GameId)] do
+			addButtonStuff(data[tostring(game.GameId)][i])
 		end
 
 		for i,v in pairs(folder:GetChildren()) do
