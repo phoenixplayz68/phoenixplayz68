@@ -341,6 +341,13 @@ local getNum=function(frame,parent)
 		table.insert(items[frame.Name],g)
 	end
 	frame.amt.Text = "AMT: "..#newFolder[frame.Name]:GetChildren()
+	if frame.BackgroundColor3 == Color3.fromRGB(255, 0, 55) then
+		local sound = Instance.new("Sound",workspace)
+		sound.SoundId = "rbxassetid://83121973236178"
+		sound.Volume = 1.5
+		sound:Play()
+		game:GetService("Debris"):AddItem(sound,3)
+	end
 end
 
 local tpItem = function(child,parent,name)
