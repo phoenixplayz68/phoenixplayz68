@@ -533,12 +533,14 @@ local function addButtonStuff(name,tool)
 	if not ScrollingFrame:FindFirstChild(name) then
 		local fold = Instance.new("Folder",newFolder)
 		fold.Name = name
-		
-		local sound = Instance.new("Sound",workspace)
-		sound.SoundId = "rbxassetid://124994471462443"
-		sound.Volume = 1.5
-		sound:Play()
-		game:GetService("Debris"):AddItem(sound,3)
+
+		if not table.find(data[tostring(game.GameId)],name) then
+			local sound = Instance.new("Sound",workspace)
+			sound.SoundId = "rbxassetid://124994471462443"
+			sound.Volume = 1.5
+			sound:Play()
+			game:GetService("Debris"):AddItem(sound,3)
+		end
 
 		local button=createItem(name,ScrollingFrame,true)
 		buttonFunc(button,tool,name)
@@ -570,7 +572,7 @@ end
 local text = nil
 
 local function checkItem(item)
-	if item:IsA("Tool") and not item.Parent:FindFirstChildOfClass("Humanoid") and not item:IsDescendantOf(newFolder) then
+	if not item.Parent:FindFirstChildOfClass("Humanoid") and not item:IsDescendantOf(newFolder) then
 		for i,v in pairs(item:GetDescendants()) do
 			if v:IsA("TouchTransmitter") then 
 				item.PrimaryPart = v.Parent
@@ -598,10 +600,14 @@ function setSpawns(num)
 	end
 	
 	workspace.DescendantAdded:Connect(function(item)
+		if not item:IsA("Tool") then return end
+		local elapsed = 0
+		repeat elapsed+=task.wait() if item:FindFirstChildOfClass("BasePart") then break end until elapsed>=2
 		checkItem(item)
 	end)
 	
 	for i,item in pairs(workspace:GetDescendants()) do
+		if not item:IsA("Tool") then continue end
 		checkItem(item)
 	end
 end
