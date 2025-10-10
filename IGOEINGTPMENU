@@ -344,7 +344,7 @@ local getNum=function(frame,parent)
 	if frame.BackgroundColor3 == Color3.fromRGB(255, 0, 55) then
 		local sound = Instance.new("Sound",workspace)
 		sound.SoundId = "rbxassetid://83121973236178"
-		sound.Volume = 1.5
+		sound.Volume = 4
 		sound:Play()
 		game:GetService("Debris"):AddItem(sound,3)
 	end
