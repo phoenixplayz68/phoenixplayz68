@@ -438,10 +438,9 @@ local buttonFunc = function(button,obj,name,isNPC)
 		con = button.MouseButton1Click:Connect(function()
 
 			local child=isNPC and obj or nil
-			local num = 0
 			
-			for i = 1,#Items[name] do
-				local thing = Items[name][i]
+			for i = 1,#items[name] do
+				local thing = items[name][i]
 				if thing:GetAttribute("Teleporting") then
 					continue
 				else
@@ -512,20 +511,16 @@ local buttonFunc2 = function(button,name)
 			repeat wait()
 				task.spawn(function()
 					local child=nil
-					local num = 0
-
-					repeat task.wait()
-						if items[name][num]~=nil then
-							if items[name][num]:GetAttribute("Teleporting") then 
-								num+=1 continue 
-							else
-								child=items[name][num]
-								child:SetAttribute("Teleporting",true) break
-							end
+					
+					for i = 1,#items[name] do
+						local thing = items[name][i]
+						if thing:GetAttribute("Teleporting") then
+							continue
 						else
-							num+=1
+							child=thing
+							child:SetAttribute("Teleporting",true) break
 						end
-					until num>#items[name]
+					end
 
 					if child==nil then return end
 					tpItem(child,child.Parent,name)
