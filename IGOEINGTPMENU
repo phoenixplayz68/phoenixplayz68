@@ -310,7 +310,6 @@ local updateColor = function(button,val)
 end
 updateColor(TextButton,bring)
 
-local folder = nil
 local npcFolder = nil
 local addCon = nil
 local rmCon = nil
@@ -329,17 +328,9 @@ local val=0
 
 local items = {}
 
-local getNum=function(frame,parent)
-	for e,g in pairs(parent:GetChildren()) do
-		if g.Name~=frame.Name then continue end
-		local found = false
-		for b,p in pairs(g:GetChildren()) do
-			if p:FindFirstChildOfClass("TouchTransmitter") then g.PrimaryPart=p found=true break end
-		end
-		if not found then continue end
-		g.Parent = newFolder[g.Name]
-		table.insert(items[frame.Name],g)
-	end
+local getNum=function(frame,tool)
+	tool.Parent = newFolder[frame.Name]
+	table.insert(items[frame.Name],tool)
 	frame.amt.Text = "AMT: "..#newFolder[frame.Name]:GetChildren()
 	if frame.BackgroundColor3 == Color3.fromRGB(255, 0, 55) then
 		local sound = Instance.new("Sound",workspace)
@@ -572,13 +563,25 @@ local function refreshItem(tool)
 		tool:Destroy() return
 	end
 	addButtonStuff(tool.Name,tool)
-	getNum(ScrollingFrame[tool.Name],folder)
+	getNum(ScrollingFrame[tool.Name],tool)
 end
 
 local text = nil
 
-local getFolder
-getFolder = function(num)
+local function checkItem(item)
+	if item:IsA("Tool") and not item.Parent:FindFirstChildOfClass("Humanoid") and not item:IsDescendantOf(newFolder) then
+		for i,v in pairs(item:GetDescendants()) do
+			if v:IsA("TouchTransmitter") then 
+				item.PrimaryPart = v.Parent
+				if table.find(blacklist,item.Name) then item:Destroy() return end
+				refreshItem(item)
+				break 
+			end
+		end
+	end
+end
+
+function setSpawns(num)
 	if num~=val then return end
 
 	for i,v in pairs(buttonCons) do
@@ -588,78 +591,20 @@ getFolder = function(num)
 			v=nil
 		end)
 	end
-
-	local found=false
-	local oldFolder=folder
-	local randomTool = workspace:FindFirstChildOfClass("Tool")
-	if randomTool then 
-		print('yes')
-		for i,v in pairs(workspace:GetChildren()) do
-			if v:IsA("Tool") then
-				for _,g in pairs(v:GetChildren()) do
-					if g:IsA("BasePart") and g:FindFirstChildOfClass("TouchTransmitter") then
-						found=true
-						folder=workspace
-						break
-					end
-				end
-				if found then
-					break
-				end
-			end
-		end
+	
+	for i = 1,#data[tostring(game.GameId)] do
+		addButtonStuff(data[tostring(game.GameId)][i])
 	end
-	print(found)
-	if not found then
-		for i,v in pairs(workspace:GetDescendants()) do
-			if text==nil and v:IsA("Folder") and v:FindFirstChildOfClass("Tool") or text~=nil and v:IsA("Folder") and v.Name==text then
-				folder=v break
-			end
-		end
-	end
-	if game.GameId==3902524649 then
-		folder = workspace["Spawned Items"]
-	end
-	if text~=nil and folder==oldFolder then return end
-	if folder==nil then 
-		wait(1) 
-		getFolder(num)
-	else
-		if addCon~=nil then addCon:Disconnect() addCon=nil end
-		if rmCon~=nil then rmCon:Disconnect() rmCon=nil end
-
-		for i = 1,#data[tostring(game.GameId)] do
-			addButtonStuff(data[tostring(game.GameId)][i])
-		end
-
-		for i,v in pairs(folder:GetChildren()) do
-			if v:IsA("Tool") or game.GameId==3902524649 then
-				if table.find(blacklist,v.Name) then v:Destroy() return end
-				refreshItem(v)
-			end
-		end
-
-		addCon=folder.ChildAdded:Connect(function(child)
-			local shouldReturn = false
-			local elapsed = 0
-			local found = false
-			repeat 
-				elapsed+=task.wait() 
-				if elapsed>=1 then 
-					shouldReturn=true break 
-				end
-				for i,v in pairs(child:GetDescendants()) do
-					if v:IsA("TouchTransmitter") then shouldReturn=false found=true break end
-				end
-				if found then break end
-			until false
-			if shouldReturn then return end
-			if table.find(blacklist,child.Name) then child:Destroy() return end
-			refreshItem(child)
-		end)
+	
+	workspace.DescendantAdded:Connect(function(item)
+		checkItem(item)
+	end)
+	
+	for i,item in pairs(workspace:GetDescendants()) do
+		checkItem(item)
 	end
 end
-getFolder(val)
+setSpawns(val)
 
 TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 	for i,v in pairs(ScrollingFrame:GetChildren()) do
