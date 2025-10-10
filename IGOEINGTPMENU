@@ -363,13 +363,14 @@ local tpItem = function(child,parent,name)
 			end
 		end
 		task.spawn(function()
-			repeat task.wait()
+			repeat
 				task.spawn(function()
 					if plr.Character:FindFirstChild("HumanoidRootPart") and child~=nil and child.PrimaryPart~=nil then
 						child.PrimaryPart.CFrame=plr.Character.HumanoidRootPart.CFrame
 						child.PrimaryPart.AssemblyLinearVelocity = Vector3.new(0,0,0)
 					end
 				end)
+				task.wait()
 			until child.Parent~=parent or child==nil or not child.PrimaryPart
 		end)
 	else
@@ -438,20 +439,16 @@ local buttonFunc = function(button,obj,name,isNPC)
 
 			local child=isNPC and obj or nil
 			local num = 0
-
-			repeat task.wait()
-				if items[name][num]~=nil then
-					if items[name][num]:GetAttribute("Teleporting") then 
-						num+=1 continue 
-					else
-						child=items[name][num]
-						child:SetAttribute("Teleporting",true) break
-					end
+			
+			for i = 1,#Items[name] do
+				local thing = Items[name][i]
+				if thing:GetAttribute("Teleporting") then
+					continue
 				else
-					num+=1
+					child=thing
+					child:SetAttribute("Teleporting",true) break
 				end
-			until num>#items[name]
-
+			end
 
 			if child==nil then return end
 			if child:FindFirstChild("HumanoidRootPart") then
