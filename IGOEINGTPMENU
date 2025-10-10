@@ -602,7 +602,7 @@ function setSpawns(num)
 	workspace.DescendantAdded:Connect(function(item)
 		if not item:IsA("Tool") then return end
 		local elapsed = 0
-		repeat elapsed+=task.wait() if item:FindFirstChildOfClass("Part") or item:FindFirstChildOfClass("MeshPart") then break end until elapsed>=2
+		repeat elapsed+=task.wait() if item:FindFirstChildOfClass("Part") or item:FindFirstChildOfClass("MeshPart") or item:FindFirstChildOfClass("UnionOperation") then break end until elapsed>=2
 		if elapsed>=2 then return end
 		task.wait()
 		checkItem(item)
