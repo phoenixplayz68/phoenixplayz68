@@ -672,9 +672,13 @@ getFolder(val)
 TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 	for i,v in pairs(ScrollingFrame:GetChildren()) do
 		if v:IsA("TextButton") then
-			v.Visible=TextBox.Text=="" or string.find(v.Name,TextBox.Text)
+			v.Visible=TextBox.Text=="" or string.find(string.lower(v.Name),string.lower(TextBox.Text))
 		end
 	end
+	if ScrollingFrame.CanvasSize.Y.Offset < ScrollingFrame.AbsoluteSize.Y then
+		ScrollingFrame.BackgroundTransparency=1
+	end
+	ScrollingFrame.CanvasSize=UDim2.new(0,0,0,ScrollingFrame.UIListLayout.AbsoluteContentSize.Y)
 end)
 
 TextButton.MouseButton1Click:Connect(function()
