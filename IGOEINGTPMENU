@@ -571,7 +571,7 @@ local function addButtonStuff(name,tool)
 			end
 			local num = #fold:GetChildren()
 			button.amt.Text = "AMT: "..num
-			button.amt.TextColor3 = num==0 and Color3.fromRGB(255,255,255) or (num<=5) and Color3.fromRGB(255, 255, 0) or (num<=15) and Color3.fromRGB(0, 255, 0) or (num<=30) and Color3.fromRGB(0, 255, 255) or (num<=50) and Color3.fromRGB(255, 0, 255) or Color3.fromRGB(255,0,0)
+			button.amt.TextColor3 = num==0 and Color3.fromRGB(255,255,255) or (num<=5) and Color3.fromRGB(255, 255, 0) or (num<=20) and Color3.fromRGB(0, 255, 0) or (num<=45) and Color3.fromRGB(0, 255, 255) or (num<=75) and Color3.fromRGB(255, 0, 255) or Color3.fromRGB(255,0,0)
 		end)
 	end
 end
