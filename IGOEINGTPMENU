@@ -334,7 +334,7 @@ local getNum=function(frame,tool)
 	frame.amt.Text = "AMT: "..#newFolder[frame.Name]:GetChildren()
 	if frame.BackgroundColor3 == Color3.fromRGB(255, 0, 55) then
 		local sound = Instance.new("Sound",workspace)
-		sound.SoundId = "rbxassetid://83121973236178"
+		sound.SoundId = "rbxassetid://129653888707716"
 		sound.Volume = 4
 		sound:Play()
 		game:GetService("Debris"):AddItem(sound,3)
@@ -537,7 +537,7 @@ local function addButtonStuff(name,tool)
 
 		if not table.find(data[tostring(game.GameId)],name) then
 			local sound = Instance.new("Sound",workspace)
-			sound.SoundId = "rbxassetid://124994471462443"
+			sound.SoundId = "rbxassetid://116361357901849"
 			sound.Volume = 1.5
 			sound:Play()
 			game:GetService("Debris"):AddItem(sound,3)
