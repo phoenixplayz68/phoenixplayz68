@@ -331,7 +331,9 @@ local items = {}
 local getNum=function(frame,tool)
 	tool.Parent = newFolder[frame.Name]
 	table.insert(items[frame.Name],tool)
-	frame.amt.Text = "AMT: "..#newFolder[frame.Name]:GetChildren()
+	local num = #newFolder[frame.Name]:GetChildren()
+	frame.amt.Text = "AMT: "..num
+	frame.amt.TextColor3 = (num<=5) and Color3.fromRGB(255, 255, 0) or (num<=15) and Color3.fromRGB(0, 255, 0) or (num<=30) and Color3.fromRGB(0, 255, 255) or (num<=50) and Color3.fromRGB(255, 0, 255) or Color3.fromRGB(255,0,0)
 	if frame.BackgroundColor3 == Color3.fromRGB(255, 0, 55) then
 		local sound = Instance.new("Sound",workspace)
 		sound.SoundId = "rbxassetid://129653888707716"
@@ -567,7 +569,9 @@ local function addButtonStuff(name,tool)
 			for i,v in pairs(items[fold.Name]) do
 				if v==child then table.remove(items[fold.Name],i) break end
 			end
-			button.amt.Text = "AMT: "..#fold:GetChildren()
+			local num = #fold:GetChildren()
+			button.amt.Text = "AMT: "..num
+			button.amt.TextColor3 = (num<=5) and Color3.fromRGB(255, 255, 0) or (num<=15) and Color3.fromRGB(0, 255, 0) or (num<=30) and Color3.fromRGB(0, 255, 255) or (num<=50) and Color3.fromRGB(255, 0, 255) or Color3.fromRGB(255,0,0)
 		end)
 	end
 end
