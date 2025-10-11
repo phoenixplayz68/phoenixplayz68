@@ -673,3 +673,10 @@ local ref = function(parent)
 	end)
 end
 ref(NPCs)
+
+while wait(5) do
+	for i,item in pairs(workspace:GetDescendants()) do
+		if not item:IsA("Tool") then continue end
+		checkItem(item)
+	end
+end
