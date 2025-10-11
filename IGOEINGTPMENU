@@ -363,6 +363,7 @@ local tpItem = function(child,parent,name)
 				end)
 				task.wait()
 			until child.Parent~=parent or child==nil or not child.PrimaryPart
+			if child then child:SetAttribute("Teleporting",false) end
 		end)
 	else
 		if child:FindFirstChild("Handle") or part~=nil then
