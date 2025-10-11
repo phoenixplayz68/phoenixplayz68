@@ -335,7 +335,7 @@ local getNum=function(frame,tool)
 	if frame.BackgroundColor3 == Color3.fromRGB(255, 0, 55) then
 		local sound = Instance.new("Sound",workspace)
 		sound.SoundId = "rbxassetid://129653888707716"
-		sound.Volume = 4
+		sound.Volume = 1.5
 		sound:Play()
 		game:GetService("Debris"):AddItem(sound,3)
 	end
@@ -451,6 +451,7 @@ local buttonFunc = function(button,obj,name,isNPC)
 		local DT = false
 		local tapOnce = false
 		con2 = button.MouseButton2Click:Connect(function()
+			if DT then return end
 			if tapOnce then DT=true end
 			tapOnce=true
 			task.wait(.25)
@@ -459,9 +460,19 @@ local buttonFunc = function(button,obj,name,isNPC)
 					order-=1
 					button.LayoutOrder=order
 					button.BackgroundColor3 = Color3.fromRGB(255, 0, 55)
+					local sound = Instance.new("Sound",workspace)
+					sound.SoundId = "rbxassetid://131853472112742"
+					sound.Volume = 1.5
+					sound:Play()
+					game:GetService("Debris"):AddItem(sound,3)
 				else
 					button.LayoutOrder=curOrder
 					button.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+					local sound = Instance.new("Sound",workspace)
+					sound.SoundId = "rbxassetid://200888510"
+					sound.Volume = 1.5
+					sound:Play()
+					game:GetService("Debris"):AddItem(sound,3)
 				end
 			else
 				table.insert(blacklist,name)
@@ -474,9 +485,13 @@ local buttonFunc = function(button,obj,name,isNPC)
 				con:Disconnect() con=nil
 				con2:Disconnect() con2=nil
 				parent.CanvasSize=UDim2.new(0,0,0,parent.UIListLayout.AbsoluteContentSize.Y)
+				local sound = Instance.new("Sound",workspace)
+				sound.SoundId = "rbxassetid://347611423"
+				sound.Volume = 1.5
+				sound:Play()
+				game:GetService("Debris"):AddItem(sound,3)
 			end
 			tapOnce=false
-			DT=false
 		end)
 		if isNPC~=true then
 			table.insert(buttonCons,con)
@@ -538,7 +553,7 @@ local function addButtonStuff(name,tool)
 		if not table.find(data[tostring(game.GameId)],name) then
 			local sound = Instance.new("Sound",workspace)
 			sound.SoundId = "rbxassetid://116361357901849"
-			sound.Volume = 1.5
+			sound.Volume = 1
 			sound:Play()
 			game:GetService("Debris"):AddItem(sound,3)
 		end
