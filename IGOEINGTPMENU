@@ -690,9 +690,15 @@ local ref = function(parent)
 end
 ref(NPCs)
 
-while wait(5) do
-	for i,item in pairs(workspace:GetDescendants()) do
-		if not item:IsA("Tool") then continue end
-		checkItem(item)
+
+local elapsed = 0
+while true do
+	elapsed+=task.wait()
+	if elapsed>=5 then
+		elapsed=0
+		for i,item in pairs(workspace:GetDescendants()) do
+			if not item:IsA("Tool") then continue end
+			checkItem(item)
+		end
 	end
 end
