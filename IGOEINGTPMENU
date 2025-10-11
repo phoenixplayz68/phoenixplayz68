@@ -553,9 +553,9 @@ local function addButtonStuff(name,tool)
 		if not table.find(data[tostring(game.GameId)],name) then
 			local sound = Instance.new("Sound",workspace)
 			sound.SoundId = "rbxassetid://116361357901849"
-			sound.Volume = 1
+			sound.Volume = 3
 			sound:Play()
-			game:GetService("Debris"):AddItem(sound,3)
+			game:GetService("Debris"):AddItem(sound,7)
 		end
 
 		local button=createItem(name,ScrollingFrame,true)
