@@ -707,13 +707,10 @@ function addButtonStuff(name,ignore)
 		local con
 		con = fold.ChildRemoved:Connect(function(child)
 			if button==nil then con:Disconnect() return end 
-			local num = #fold:GetChildren()
-			button.amt.Text = "AMT: "..num
-			button.amt.TextColor3 = num==0 and Color3.fromRGB(255,255,255) or (num<=5) and Color3.fromRGB(255, 255, 0) or (num<=25) and Color3.fromRGB(0, 255, 0) or (num<=50) and Color3.fromRGB(0, 255, 255) or (num<=100) and Color3.fromRGB(255, 0, 255) or Color3.fromRGB(255,0,0)
+			getNum(ScrollingFrame[name])
 		end)
 		table.insert(cons,con)
 	end
-	getNum(ScrollingFrame[name])
 end
 
 local function refreshItem(tool)
@@ -729,6 +726,8 @@ local function refreshItem(tool)
 	end
 	addButtonStuff(tool.Name)
 	tool.Parent = newFolder[tool.Name]
+	
+	getNum(ScrollingFrame[tool.Name])
 	
 	if anch then
 		ScrollingFrame[tool.Name].TextLabel.TextColor3 = Color3.fromRGB(125, 125, 125)
