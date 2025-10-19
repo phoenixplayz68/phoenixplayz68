@@ -536,11 +536,10 @@ local dbcl = false
 
 
 if ScrollingFrame_2.CanvasSize.Y.Offset < ScrollingFrame_2.AbsoluteSize.Y then
-	NPCs.Position = UDim2.fromScale(NPCs.Position.X.Scale,Settings.Position.Y.Scale+((bring.AbsoluteSize.Y*#ScrollingFrame_2:GetChildren())/workspace.CurrentCamera.ViewportSize.Y)+.013)
+	NPCs.Position = UDim2.fromScale(NPCs.Position.X.Scale,Settings.Position.Y.Scale+((bring.AbsoluteSize.Y*(#ScrollingFrame_2:GetChildren()*1.05))/workspace.CurrentCamera.ViewportSize.Y)+.01)
 else
-	NPCs.Position = UDim2.fromScale(NPCs.Position.X.Scale,Settings.Position.Y.Scale+(ScrollingFrame_2.AbsoluteSize.Y/workspace.CurrentCamera.ViewportSize.Y)+.013)
+	NPCs.Position = UDim2.fromScale(NPCs.Position.X.Scale,Settings.Position.Y.Scale+(ScrollingFrame_2.AbsoluteSize.Y/workspace.CurrentCamera.ViewportSize.Y)+.052)
 end
-
 
 local reset = false
 
@@ -635,9 +634,9 @@ local buttonFunc = function(button,obj,name,isNPC)
 					createBlacklist(name)
 
 					if ScrollingFrame.CanvasSize.Y.Offset < ScrollingFrame.AbsoluteSize.Y then
-						Blacklist.Position = UDim2.fromScale(Blacklist.Position.X.Scale,Items.Position.Y.Scale+((Y*#ScrollingFrame:GetChildren())/workspace.CurrentCamera.ViewportSize.Y)+.013)
+						Blacklist.Position = UDim2.fromScale(Blacklist.Position.X.Scale,Items.Position.Y.Scale+((Y*(#ScrollingFrame:GetChildren()*1.05))/workspace.CurrentCamera.ViewportSize.Y)+.01)
 					else
-						Blacklist.Position = UDim2.fromScale(Blacklist.Position.X.Scale,Items.Position.Y.Scale+(ScrollingFrame.AbsoluteSize.Y/workspace.CurrentCamera.ViewportSize.Y)+.013)
+						Blacklist.Position = UDim2.fromScale(Blacklist.Position.X.Scale,Items.Position.Y.Scale+(ScrollingFrame.AbsoluteSize.Y/workspace.CurrentCamera.ViewportSize.Y)+.052)
 					end
 				end
 				createSound("rbxassetid://9066167010",1.5,3) -- blacklisted
@@ -709,9 +708,9 @@ function addButtonStuff(name,ignore)
 		button:SetAttribute("Order",button.LayoutOrder)
 		
 		if ScrollingFrame.CanvasSize.Y.Offset < ScrollingFrame.AbsoluteSize.Y then
-			Blacklist.Position = UDim2.fromScale(Blacklist.Position.X.Scale,Items.Position.Y.Scale+((button.AbsoluteSize.Y*#ScrollingFrame:GetChildren())/workspace.CurrentCamera.ViewportSize.Y)+.013)
+			Blacklist.Position = UDim2.fromScale(Blacklist.Position.X.Scale,Items.Position.Y.Scale+((button.AbsoluteSize.Y*(#ScrollingFrame:GetChildren()*1.05))/workspace.CurrentCamera.ViewportSize.Y)+.01)
 		else
-			Blacklist.Position = UDim2.fromScale(Blacklist.Position.X.Scale,Items.Position.Y.Scale+(ScrollingFrame.AbsoluteSize.Y/workspace.CurrentCamera.ViewportSize.Y)+.013)
+			Blacklist.Position = UDim2.fromScale(Blacklist.Position.X.Scale,Items.Position.Y.Scale+(ScrollingFrame.AbsoluteSize.Y/workspace.CurrentCamera.ViewportSize.Y)+.052)
 		end
 		
 		local con
