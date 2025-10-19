@@ -343,7 +343,7 @@ local tpItem = function(child,parent,name)
 	for i,v in pairs(child:GetChildren()) do
 		if v:FindFirstChildOfClass("TouchTransmitter") then part=v break end
 	end
-	if SETTINGS.Bring and ScrollingFrame[name].TextLabel.TextColor3~=Color3.fromRGB(0, 255, 204) then
+	if SETTINGS.Bring and ScrollingFrame[name].TextLabel.TextColor3~=Color3.fromRGB(255, 0, 255) then
 		for i,v in pairs(child:GetDescendants()) do
 			if v:IsA("BasePart") then
 				v.Anchored=false
@@ -741,7 +741,7 @@ local function refreshItem(tool)
 	table.insert(items[tool.Name],tool)
 	
 	if anch then
-		ScrollingFrame[tool.Name].TextLabel.TextColor3 = Color3.fromRGB(0, 255, 204)
+		ScrollingFrame[tool.Name].TextLabel.TextColor3 = Color3.fromRGB(255, 0, 255)
 	end
 end
 
