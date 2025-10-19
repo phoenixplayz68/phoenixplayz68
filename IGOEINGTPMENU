@@ -13,6 +13,12 @@ local data = game:GetService("HttpService"):JSONDecode(readfile("GravyTP//games.
 if not data[tostring(game.GameId)] then
 	data[tostring(game.GameId)] = {}
 end
+if not data.Blacklist then
+	data.Blacklist = {}
+end
+if not data.Blacklist[tostring(game.GameId)] then
+	data.Blacklist[tostring(game.GameId)] = {}
+end
 writefile("GravyTP//games.json",game:GetService("HttpService"):JSONEncode(data))
 
 local note = function(title,text)
@@ -39,41 +45,25 @@ local Settings = Instance.new("Frame")
 local Title_2 = Instance.new("TextLabel")
 local ScrollingFrame_2 = Instance.new("ScrollingFrame")
 local UIListLayout_2 = Instance.new("UIListLayout")
-local Bring = Instance.new("Frame")
-local TextLabel = Instance.new("TextLabel")
-local TextButton = Instance.new("TextButton")
-local UIStroke = Instance.new("UIStroke",TextButton)
-local UIStroke2 = Instance.new("UIStroke",TextButton)
-local Filter = Instance.new("Frame")
-local TextBox = Instance.new("TextBox")
-local UIStroke3 = Instance.new("UIStroke",TextBox)
-local Filter_2 = Instance.new("TextLabel")
 local NPCs = Instance.new("Frame")
 local Title_3 = Instance.new("TextLabel")
 local BG_2 = Instance.new("Frame")
 local ScrollingFrame_3 = Instance.new("ScrollingFrame")
 local UIListLayout_3 = Instance.new("UIListLayout")
+local Blacklist = Instance.new("Frame")
+local Title_4 = Instance.new("TextLabel")
+local BG_3 = Instance.new("Frame")
+local ScrollingFrame_4 = Instance.new("ScrollingFrame")
+local UIListLayout_4 = Instance.new("UIListLayout")
 local Template = Instance.new("TextButton")
 local TextLabel_2 = Instance.new("TextLabel")
 
 ScrollingFrame.AutomaticCanvasSize=Enum.AutomaticSize.XY
 ScrollingFrame_2.AutomaticCanvasSize=Enum.AutomaticSize.XY
 ScrollingFrame_3.AutomaticCanvasSize=Enum.AutomaticSize.XY
+ScrollingFrame_4.AutomaticCanvasSize=Enum.AutomaticSize.XY
 
 --Properties:
-
-UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-UIStroke.Color = Color3.fromRGB(0, 255, 0)
-UIStroke.Thickness = 3
-
-UIStroke2.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
-UIStroke2.Color = Color3.fromRGB(0, 255, 0)
-UIStroke2.Thickness = 1
-UIStroke2.Name = "UIStroke2"
-
-UIStroke3.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-UIStroke3.Color = Color3.fromRGB(255, 0, 0)
-UIStroke3.Thickness = 3
 
 TPMenu.Name = "TPMenu"
 TPMenu.Parent = plr:WaitForChild("PlayerGui")
@@ -151,78 +141,11 @@ ScrollingFrame_2.ScrollBarThickness = 0
 UIListLayout_2.Parent = ScrollingFrame_2
 UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
 
-Bring.Name = "Bring"
-Bring.Parent = ScrollingFrame_2
-Bring.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
-Bring.BorderSizePixel = 0
-Bring.Size = UDim2.new(1, 0, 0.0710596889, 0)
-
-TextLabel.Parent = Bring
-TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
-TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.BackgroundTransparency = 1.000
-TextLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
-TextLabel.Size = UDim2.new(0.94, 0, 0.930000007, 0)
-TextLabel.Font = Enum.Font.SourceSansBold
-TextLabel.Text = "Bring Items"
-TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.TextScaled = true
-TextLabel.TextSize = 14.000
-TextLabel.TextWrapped = true
-TextLabel.TextXAlignment = Enum.TextXAlignment.Left
-
-TextButton.Parent = Bring
-TextButton.AnchorPoint = Vector2.new(0.5, 0.5)
-TextButton.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
-TextButton.BorderSizePixel = 0
-TextButton.Position = UDim2.new(0.920000017, 0, 0.5, 0)
-TextButton.Size = UDim2.new(0.0878048763, 0, 0.634857655, 0)
-TextButton.Font = Enum.Font.SourceSansBold
-TextButton.Text = "✓"
-TextButton.TextColor3 = Color3.fromRGB(0, 255, 0)
-TextButton.TextScaled = true
-TextButton.TextSize = 14.000
-TextButton.TextWrapped = true
-
-Filter.Name = "Filter"
-Filter.Parent = ScrollingFrame_2
-Filter.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
-Filter.BorderSizePixel = 0
-Filter.Size = UDim2.new(1, 0, 0.0710596889, 0)
-
-TextBox.Parent = Filter
-TextBox.AnchorPoint = Vector2.new(0.5, 0.5)
-TextBox.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
-TextBox.Position = UDim2.new(0.74, 0, 0.5, 0)
-TextBox.Size = UDim2.new(0.45, 0, 0.6, 0)
-TextBox.Font = Enum.Font.SourceSansBold
-TextBox.PlaceholderColor3 = Color3.fromRGB(255, 0, 0)
-TextBox.Text = ""
-TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextBox.TextScaled = true
-TextBox.TextSize = 14.000
-TextBox.TextWrapped = true
-
-Filter_2.Name = "Filter"
-Filter_2.Parent = Filter
-Filter_2.AnchorPoint = Vector2.new(0.5, 0.5)
-Filter_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Filter_2.BackgroundTransparency = 1.000
-Filter_2.Position = UDim2.new(0.5, 0, 0.5, 0)
-Filter_2.Size = UDim2.new(0.94, 0, 0.930000007, 0)
-Filter_2.Font = Enum.Font.SourceSansBold
-Filter_2.Text = "Filter:"
-Filter_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-Filter_2.TextScaled = true
-Filter_2.TextSize = 14.000
-Filter_2.TextWrapped = true
-Filter_2.TextXAlignment = Enum.TextXAlignment.Left
-
 NPCs.Name = "NPC's"
 NPCs.Parent = TPMenu
 NPCs.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
 NPCs.BorderSizePixel = 0
-NPCs.Position = UDim2.new(0.115, 0, 0.37, 0)
+NPCs.Position = UDim2.new(0.115, 0, 0.395, 0)
 NPCs.Size = UDim2.new(0.106826469, 0, 0.025925925, 0)
 
 Title_3.Name = "Title"
@@ -250,7 +173,7 @@ ScrollingFrame_3.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
 ScrollingFrame_3.BackgroundTransparency = 1.000
 ScrollingFrame_3.BorderSizePixel = 0
 ScrollingFrame_3.Position = UDim2.new(0, 0, 0.967000008, 0)
-ScrollingFrame_3.Size = UDim2.new(1, 0, 11, 0)
+ScrollingFrame_3.Size = UDim2.new(1, 0, 9.95, 0)
 ScrollingFrame_3.ZIndex = 2
 ScrollingFrame_3.ScrollBarThickness = 1
 
@@ -278,6 +201,45 @@ TextLabel_2.TextWrapped = true
 TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
 TextLabel_2.Position = UDim2.new(.05,0,0,0)
 
+Blacklist.Name = "Blacklist"
+Blacklist.Parent = TPMenu
+Blacklist.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+Blacklist.BorderSizePixel = 0
+Blacklist.Position = UDim2.new(0.003, 0, 0.687, 0)
+Blacklist.Size = UDim2.new(0.106826469, 0, 0.025925925, 0)
+
+Title_4.Name = "Title"
+Title_4.Parent = Blacklist
+Title_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title_4.BackgroundTransparency = 1.000
+Title_4.Size = UDim2.new(1, 0, 1, 0)
+Title_4.Font = Enum.Font.SourceSansBold
+Title_4.Text = "Blacklist"
+Title_4.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title_4.TextScaled = true
+Title_4.TextSize = 14.000
+Title_4.TextWrapped = true
+
+BG_3.Name = "BG"
+BG_3.Parent = Blacklist
+BG_3.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+BG_3.BorderSizePixel = 0
+BG_3.Position = UDim2.new(0, 0, 0.967000008, 0)
+BG_3.Size = UDim2.new(1, 0, 1, 0)
+
+ScrollingFrame_4.Parent = Blacklist
+ScrollingFrame_4.Active = true
+ScrollingFrame_4.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+ScrollingFrame_4.BackgroundTransparency = 1
+ScrollingFrame_4.BorderSizePixel = 0
+ScrollingFrame_4.Position = UDim2.new(0, 0, 0.967000008, 0)
+ScrollingFrame_4.Size = UDim2.new(1, 0, 5, 0)
+ScrollingFrame_4.ZIndex = 2
+ScrollingFrame_4.ScrollBarThickness = 3
+
+UIListLayout_4.Parent = ScrollingFrame_4
+UIListLayout_4.SortOrder = Enum.SortOrder.LayoutOrder
+
 local TextLabel_3 = Instance.new("TextLabel")
 TextLabel_3.Parent = Template
 TextLabel_3.Font = Enum.Font.SourceSansBold
@@ -300,6 +262,43 @@ Refresh.Size = UDim2.new(0.107, 0, 0.813, 0)
 Refresh.Image = "http://www.roblox.com/asset/?id=12938502230"
 Refresh.Visible = false
 
+local function createSound(id,volume,dt)
+	local sound = Instance.new("Sound",workspace)
+	sound.SoundId = id
+	sound.Volume = volume
+	sound:Play()
+	game:GetService("Debris"):AddItem(sound,dt)
+end
+
+local createCheck = function(parent)
+	local TextButton = Instance.new("TextButton")
+	TextButton.Parent = parent
+	TextButton.Name = "Check"
+	TextButton.AnchorPoint = Vector2.new(0.5, 0.5)
+	TextButton.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
+	TextButton.BorderSizePixel = 0
+	TextButton.Position = UDim2.new(0.920000017, 0, 0.5, 0)
+	TextButton.Size = UDim2.new(0.0878048763, 0, 0.634857655, 0)
+	TextButton.Font = Enum.Font.SourceSansBold
+	TextButton.Text = "✓"
+	TextButton.TextColor3 = Color3.fromRGB(0, 255, 0)
+	TextButton.TextScaled = true
+	TextButton.TextSize = 14.000
+	TextButton.TextWrapped = true
+	
+	local UIStroke = Instance.new("UIStroke",TextButton)
+	local UIStroke2 = Instance.new("UIStroke",TextButton)
+	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+	UIStroke.Color = Color3.fromRGB(0, 255, 0)
+	UIStroke.Thickness = 3
+	UIStroke2.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
+	UIStroke2.Color = Color3.fromRGB(0, 255, 0)
+	UIStroke2.Thickness = 1
+	UIStroke2.Name = "UIStroke2"
+	
+	return TextButton
+end
+
 local bring = false
 
 local updateColor = function(button,val)
@@ -308,11 +307,9 @@ local updateColor = function(button,val)
 	button.Text=val and "✓" or "X"
 	button.TextColor3=val and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
 end
-updateColor(TextButton,bring)
 
 local npcFolder = nil
-local addCon = nil
-local rmCon = nil
+local cons = {}
 
 for i,v in pairs(workspace:GetChildren()) do
 	local name=string.lower(v.Name)
@@ -321,34 +318,32 @@ for i,v in pairs(workspace:GetChildren()) do
 	end
 end
 
-local newFolder = Instance.new("Folder",workspace)
+local newFolder = workspace:FindFirstChild("TPMenu Items") or Instance.new("Folder",workspace)
 newFolder.Name = "TPMenu Items"
+local BLFolder = game.ReplicatedStorage:FindFirstChild("Blacklisted Items") or Instance.new("Folder",game.ReplicatedStorage)
+BLFolder.Name = "Blacklisted Items"
 
 local val=0
 
 local items = {}
 
-local getNum=function(frame,tool)
-	tool.Parent = newFolder[frame.Name]
-	table.insert(items[frame.Name],tool)
+local getNum=function(frame)
 	local num = #newFolder[frame.Name]:GetChildren()
 	frame.amt.Text = "AMT: "..num
 	frame.amt.TextColor3 = num==0 and Color3.fromRGB(255,255,255) or (num<=5) and Color3.fromRGB(255, 255, 0) or (num<=25) and Color3.fromRGB(0, 255, 0) or (num<=50) and Color3.fromRGB(0, 255, 255) or (num<=100) and Color3.fromRGB(255, 0, 255) or Color3.fromRGB(255,0,0)
 	if frame.BackgroundColor3 == Color3.fromRGB(255, 0, 55) then
-		local sound = Instance.new("Sound",workspace)
-		sound.SoundId = "rbxassetid://129653888707716"
-		sound.Volume = 1.5
-		sound:Play()
-		game:GetService("Debris"):AddItem(sound,3)
+		createSound("rbxassetid://129653888707716",1.5,3) -- favorite item spawned
 	end
 end
+
+local SETTINGS = {}
 
 local tpItem = function(child,parent,name)
 	local part = nil
 	for i,v in pairs(child:GetChildren()) do
 		if v:FindFirstChildOfClass("TouchTransmitter") then part=v break end
 	end
-	if bring then
+	if SETTINGS.Bring and ScrollingFrame[name].TextLabel.TextColor3~=Color3.fromRGB(0, 255, 204) then
 		for i,v in pairs(child:GetDescendants()) do
 			if v:IsA("BasePart") then
 				v.Anchored=false
@@ -393,18 +388,172 @@ local createItem = function(name,parent,noDupes)
 		clone.TextLabel.Position = UDim2.new(.71,0,.5,0)
 		clone.TextLabel.Size = UDim2.new(.54,0,.85,0)
 
-		local button = TextButton:Clone()
-		button.Parent=clone
+		local button = createCheck(clone)
 		button.Position=UDim2.new(.09,0,.5,0)
-	end
-	wait()
-	if parent.CanvasSize.Y.Offset > parent.AbsoluteSize.Y then
-		parent.BackgroundTransparency=0
+	else
+		clone.amt:Destroy()
+		clone.TextLabel.TextXAlignment = Enum.TextXAlignment.Center
+		clone.TextLabel.AnchorPoint = Vector2.new(.5,0)
+		clone.TextLabel.Position = UDim2.new(0.5,0,0,0)
+		clone.TextLabel.Size = UDim2.new(.95,0,1,0)
+		clone.Size = UDim2.new(1,0,.091,0)
 	end
 	return clone
 end
 
-local buttonCons = {}
+function createBlacklist(name)
+	if ScrollingFrame_4:FindFirstChild(name) then return end
+	local but = createItem(name,ScrollingFrame_4,false)
+	but.Size = UDim2.new(1, 0, 0.2, 0)
+	local dt = false
+	local dt2 = false
+	but.MouseButton1Click:Connect(function()
+		if dt then
+			but:Destroy()
+			createSound("rbxassetid://1655262564",1.5,3) -- unblacklist
+			table.remove(data.Blacklist[tostring(game.GameId)],table.find(data.Blacklist[tostring(game.GameId)],name))
+			writefile("GravyTP//games.json",game:GetService("HttpService"):JSONEncode(data))
+			for i,v in pairs(BLFolder:GetChildren()) do
+				if v.Name==name then
+					v.Parent = workspace
+				end
+			end
+			ScrollingFrame_4.CanvasSize=UDim2.new(0,0,0,ScrollingFrame_4.UIListLayout.AbsoluteContentSize.Y)
+			addButtonStuff(name)
+		end
+		dt=true
+		wait(.25)
+		dt=false
+	end)
+	but.MouseButton2Click:Connect(function()
+		if dt2 then
+			for i,v in pairs(BLFolder:GetChildren()) do
+				if v.Name==name then
+					v:Destroy()
+				end
+			end
+			but:Destroy()
+			createSound("rbxassetid://347611423",1.5,3) -- completely destroy
+			table.remove(data.Blacklist[tostring(game.GameId)],table.find(data.Blacklist[tostring(game.GameId)],name))
+			table.remove(data[tostring(game.GameId)],table.find(data[tostring(game.GameId)],name))
+			writefile("GravyTP//games.json",game:GetService("HttpService"):JSONEncode(data))
+			ScrollingFrame_4.CanvasSize=UDim2.new(0,0,0,ScrollingFrame_4.UIListLayout.AbsoluteContentSize.Y)
+		end
+		dt2=true
+		wait(.25)
+		dt2=false
+	end)
+end
+
+for i,v in pairs(data.Blacklist[tostring(game.GameId)]) do
+	createBlacklist(v)
+end
+
+local createSetting = function(name,Text,check,textbox)
+	local Button = Instance.new("Frame")
+	local TextLabel = Instance.new(check and "TextLabel" or "TextButton")
+	
+	Button.Name = Text
+	Button.Parent = ScrollingFrame_2
+	Button.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+	Button.BorderSizePixel = 0
+	Button.Size = UDim2.new(1, 0, 0.0710596889, 0)
+	
+	TextLabel.Parent = Button
+	TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+	TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel.BackgroundTransparency = 1.000
+	TextLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
+	TextLabel.Size = UDim2.new(0.94, 0, 0.930000007, 0)
+	TextLabel.Font = Enum.Font.SourceSansBold
+	TextLabel.Text = Text
+	TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel.TextScaled = true
+	TextLabel.TextSize = 14.000
+	TextLabel.TextWrapped = true
+	TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+	
+	if check then
+		SETTINGS[name] = false
+		createCheck(Button)
+	elseif textbox then
+		local TextBox = Instance.new("TextBox")
+		TextBox.Parent = Button
+		TextBox.AnchorPoint = Vector2.new(0.5, 0.5)
+		TextBox.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
+		TextBox.Position = UDim2.new(0.74, 0, 0.5, 0)
+		TextBox.Size = UDim2.new(0.45, 0, 0.6, 0)
+		TextBox.Font = Enum.Font.SourceSansBold
+		TextBox.PlaceholderColor3 = Color3.fromRGB(255, 0, 0)
+		TextBox.Text = ""
+		TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TextBox.TextScaled = true
+		TextBox.TextSize = 14.000
+		TextBox.TextWrapped = true
+		local UIStroke3 = Instance.new("UIStroke",TextBox)
+		UIStroke3.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		UIStroke3.Color = Color3.fromRGB(255, 0, 0)
+		UIStroke3.Thickness = 3
+	end
+	return Button
+end
+
+local Filter = createSetting("Filter","Filter:",false,true)
+
+Filter.TextBox:GetPropertyChangedSignal("Text"):Connect(function()
+	for i,v in pairs(ScrollingFrame:GetChildren()) do
+		if v:IsA("TextButton") then
+			v.Visible=Filter.TextBox.Text=="" or string.find(string.lower(v.Name),string.lower(Filter.TextBox.Text))
+		end
+	end
+	ScrollingFrame.CanvasSize=UDim2.new(0,0,0,ScrollingFrame.UIListLayout.AbsoluteContentSize.Y)
+end)
+
+local customItem = createSetting("CustomItem","CS Item:",false,true)
+
+customItem.TextBox.FocusLost:Connect(function(enter)
+	if enter then
+		createSound("rbxassetid://77433517511280",1.5,3)
+		addButtonStuff(customItem.TextBox.Text,true)
+		customItem.TextBox.Text = ""
+	end
+end)
+
+local bring = createSetting("Bring","Bring Items",true)
+bring.Check.MouseButton1Click:Connect(function()
+	SETTINGS.Bring=not SETTINGS.Bring
+	updateColor(bring.Check,SETTINGS.Bring)
+end)
+updateColor(bring.Check,SETTINGS.Bring)
+
+local DLMenu = createSetting("Delete Menu","Delete Menu")
+local dbcl = false
+
+
+if ScrollingFrame_2.CanvasSize.Y.Offset < ScrollingFrame_2.AbsoluteSize.Y then
+	NPCs.Position = UDim2.fromScale(NPCs.Position.X.Scale,Settings.Position.Y.Scale+((bring.AbsoluteSize.Y*#ScrollingFrame_2:GetChildren())/workspace.CurrentCamera.ViewportSize.Y)+.013)
+else
+	NPCs.Position = UDim2.fromScale(NPCs.Position.X.Scale,Settings.Position.Y.Scale+(ScrollingFrame_2.AbsoluteSize.Y/workspace.CurrentCamera.ViewportSize.Y)+.013)
+end
+
+
+local reset = false
+
+DLMenu.TextButton.MouseButton1Click:Connect(function()
+	if dbcl==true then
+		reset=true
+		for i,v in pairs(cons) do
+			v:Disconnect()
+		end
+		TPMenu:Destroy()
+		for i,v in pairs(BLFolder:GetChildren()) do
+			v.Parent = workspace
+		end
+	end
+	dbcl=true
+	wait(.25)
+	dbcl=false
+end)
 
 local blacklist = {}
 local order = 0
@@ -422,14 +571,14 @@ local buttonFunc = function(button,obj,name,isNPC)
 		end
 		local curOrder = isNPC and ogNPCOrder or ogOrder
 		button.LayoutOrder = curOrder
+		
+		local parent = button.Parent
 
-		local con
-		local con2
 		if not table.find(data[tostring(game.GameId)],name) and not isNPC then
 			table.insert(data[tostring(game.GameId)],name)
 			writefile("GravyTP//games.json",game:GetService("HttpService"):JSONEncode(data))
 		end
-		con = button.MouseButton1Click:Connect(function()
+		button.MouseButton1Click:Connect(function()
 
 			local child=isNPC and obj or nil
 			
@@ -452,59 +601,51 @@ local buttonFunc = function(button,obj,name,isNPC)
 		end)
 		local DT = false
 		local tapOnce = false
-		con2 = button.MouseButton2Click:Connect(function()
+		button.MouseButton2Click:Connect(function()
 			if DT then return end
-			if tapOnce then DT=true end
+			if tapOnce then DT=true return end
 			tapOnce=true
 			task.wait(.25)
 			if not DT then
-				if button.LayoutOrder==curOrder then
+				if button.BackgroundColor3~=Color3.fromRGB(255, 0, 55) then
 					order-=1
 					button.LayoutOrder=order
 					button.BackgroundColor3 = Color3.fromRGB(255, 0, 55)
-					local sound = Instance.new("Sound",workspace)
-					sound.SoundId = "rbxassetid://6306609201"
-					sound.Volume = 1.5
-					sound:Play()
-					game:GetService("Debris"):AddItem(sound,3)
+					createSound("rbxassetid://6306609201",1.5,3) --favorited
 				else
-					button.LayoutOrder=curOrder
+					button.LayoutOrder=button:GetAttribute("Order") or curOrder
 					button.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
-					local sound = Instance.new("Sound",workspace)
-					sound.SoundId = "rbxassetid://7239001128"
-					sound.Volume = 1.5
-					sound:Play()
-					game:GetService("Debris"):AddItem(sound,3)
+					createSound("rbxassetid://7239001128",1.5,3) --unfavorited
 				end
 			else
-				table.insert(blacklist,name)
-				local parent=button.Parent
-				if isNPC~=true then
-					table.remove(buttonCons,table.find(buttonCons,con))
-					table.remove(buttonCons,table.find(buttonCons,con2))
-				end
+				local Y = button.AbsoluteSize.Y
 				button:Destroy()
-				con:Disconnect() con=nil
-				con2:Disconnect() con2=nil
-				parent.CanvasSize=UDim2.new(0,0,0,parent.UIListLayout.AbsoluteContentSize.Y)
-				local sound = Instance.new("Sound",workspace)
-				sound.SoundId = "rbxassetid://347611423"
-				sound.Volume = 1.5
-				sound:Play()
-				game:GetService("Debris"):AddItem(sound,3)
+				if not isNPC then
+					table.insert(data.Blacklist[tostring(game.GameId)],name)
+					writefile("GravyTP//games.json",game:GetService("HttpService"):JSONEncode(data))
+					for i,v in pairs(newFolder[name]:GetChildren()) do
+						v.Parent=BLFolder
+					end
+					ScrollingFrame.CanvasSize=UDim2.new(0,0,0,ScrollingFrame.UIListLayout.AbsoluteContentSize.Y)
+					createBlacklist(name)
+
+					if ScrollingFrame.CanvasSize.Y.Offset < ScrollingFrame.AbsoluteSize.Y then
+						Blacklist.Position = UDim2.fromScale(Blacklist.Position.X.Scale,Items.Position.Y.Scale+((Y*#ScrollingFrame:GetChildren())/workspace.CurrentCamera.ViewportSize.Y)+.013)
+					else
+						Blacklist.Position = UDim2.fromScale(Blacklist.Position.X.Scale,Items.Position.Y.Scale+(ScrollingFrame.AbsoluteSize.Y/workspace.CurrentCamera.ViewportSize.Y)+.013)
+					end
+				end
+				createSound("rbxassetid://9066167010",1.5,3) -- blacklisted
+				parent.CanvasSize=UDim2.new(0,0,0,ScrollingFrame.UIListLayout.AbsoluteContentSize.Y)
 			end
 			tapOnce=false
 		end)
-		if isNPC~=true then
-			table.insert(buttonCons,con)
-			table.insert(buttonCons,con2)
-		end
 	end)
 end
 
 local buttonFunc2 = function(button,name)
 	if button==nil then return end
-	button=button.TextButton
+	button=button.Check
 	local con
 	local con2
 	local name = name
@@ -542,29 +683,35 @@ local buttonFunc2 = function(button,name)
 						end
 					end
 				end)
-			until not isTrue
+			until not isTrue or reset or button==nil or not button.Parent
 		end
 	end)
 end
 
-local function addButtonStuff(name,tool)
+function addButtonStuff(name,ignore)
 	if not ScrollingFrame:FindFirstChild(name) then
-		local fold = Instance.new("Folder",newFolder)
+		local fold = newFolder:FindFirstChild(name) or Instance.new("Folder",newFolder)
 		fold.Name = name
-
-		if not table.find(data[tostring(game.GameId)],name) then
-			local sound = Instance.new("Sound",workspace)
-			sound.SoundId = "rbxassetid://116361357901849"
-			sound.Volume = 3
-			sound:Play()
-			game:GetService("Debris"):AddItem(sound,7)
+			
+		if not table.find(data[tostring(game.GameId)],name) and not ignore then
+			createSound("rbxassetid://116361357901849",3,7) -- new item
 		end
 
 		local button=createItem(name,ScrollingFrame,true)
-		buttonFunc(button,tool,name)
+		buttonFunc(button,nil,name)
 		buttonFunc2(button,name)
-
-		rmCon=fold.ChildRemoved:Connect(function(child)
+		button.LayoutOrder = table.find(data[tostring(game.GameId)],name)
+		button:SetAttribute("Order",button.LayoutOrder)
+		
+		if ScrollingFrame.CanvasSize.Y.Offset < ScrollingFrame.AbsoluteSize.Y then
+			Blacklist.Position = UDim2.fromScale(Blacklist.Position.X.Scale,Items.Position.Y.Scale+((button.AbsoluteSize.Y*#ScrollingFrame:GetChildren())/workspace.CurrentCamera.ViewportSize.Y)+.013)
+		else
+			Blacklist.Position = UDim2.fromScale(Blacklist.Position.X.Scale,Items.Position.Y.Scale+(ScrollingFrame.AbsoluteSize.Y/workspace.CurrentCamera.ViewportSize.Y)+.013)
+		end
+		
+		local con
+		con = fold.ChildRemoved:Connect(function(child)
+			if button==nil then con:Disconnect() return end 
 			table.remove(items[fold.Name],table.find(items[fold.Name],child))
 			for i,v in pairs(items[fold.Name]) do
 				if v==child then table.remove(items[fold.Name],i) break end
@@ -573,30 +720,45 @@ local function addButtonStuff(name,tool)
 			button.amt.Text = "AMT: "..num
 			button.amt.TextColor3 = num==0 and Color3.fromRGB(255,255,255) or (num<=5) and Color3.fromRGB(255, 255, 0) or (num<=25) and Color3.fromRGB(0, 255, 0) or (num<=50) and Color3.fromRGB(0, 255, 255) or (num<=100) and Color3.fromRGB(255, 0, 255) or Color3.fromRGB(255,0,0)
 		end)
+		table.insert(cons,con)
 	end
+	getNum(ScrollingFrame[name])
 end
 
 local function refreshItem(tool)
 	local found = false
+	local anch = false
 	for i,v in pairs(tool:GetChildren()) do
-		if v:FindFirstChildOfClass("TouchTransmitter") then found=v break end
+		if v:FindFirstChildOfClass("TouchTransmitter") then found=v end
 	end
+	if tool.ClassName=="Model" then anch=true end
 	if not found then return end
 	if math.abs(found.CFrame.X)>12000 or math.abs(found.CFrame.Y)>12000 or math.abs(found.CFrame.Z)>12000 then
 		tool:Destroy() return
 	end
-	addButtonStuff(tool.Name,tool)
-	getNum(ScrollingFrame[tool.Name],tool)
+	addButtonStuff(tool.Name)
+	tool.Parent = newFolder[tool.Name]
+	table.insert(items[tool.Name],tool)
+	
+	if anch then
+		ScrollingFrame[tool.Name].TextLabel.TextColor3 = Color3.fromRGB(0, 255, 204)
+	end
 end
 
 local text = nil
+local firstTime = true
 
 local function checkItem(item)
-	if not item.Parent:FindFirstChildOfClass("Humanoid") and not item:IsDescendantOf(newFolder) then
+	if not item.Parent:FindFirstChildOfClass("Humanoid") and (firstTime or not item:IsDescendantOf(newFolder)) then
 		for i,v in pairs(item:GetDescendants()) do
-			if v:IsA("TouchTransmitter") then 
+			if v:IsA("TouchTransmitter") then
+				if table.find(data.Blacklist[tostring(game.GameId)],item.Name) then
+					item.Parent = BLFolder
+					continue
+				end
+				
 				item.PrimaryPart = v.Parent
-				if table.find(blacklist,item.Name) then item:Destroy() return end
+				if table.find(blacklist,item.Name) then item.Parent=BLFolder return end
 				refreshItem(item)
 				break 
 			end
@@ -604,55 +766,41 @@ local function checkItem(item)
 	end
 end
 
+local addItems = {
+	["2275514399"] = {"Banknote"}
+}
+
 function setSpawns(num)
 	if num~=val then return end
-
-	for i,v in pairs(buttonCons) do
-		task.spawn(function()
-			table.remove(buttonCons,table.find(buttonCons,v))
-			v:Disconnect()
-			v=nil
-		end)
-	end
 	
 	for i = 1,#data[tostring(game.GameId)] do
+		if table.find(data.Blacklist[tostring(game.GameId)],data[tostring(game.GameId)][i]) then continue end
 		addButtonStuff(data[tostring(game.GameId)][i])
 	end
 	
-	workspace.DescendantAdded:Connect(function(item)
-		if not item:IsA("Tool") then return end
+	table.insert(cons,workspace.DescendantAdded:Connect(function(item)
+		if (not addItems[tostring(game.GameId)] and not item:IsA("Tool")) then return end
+		if addItems[tostring(game.GameId)] and not table.find(addItems[tostring(game.GameId)],item.Name) and not item:IsA("Tool") then return end
+		if addItems[tostring(game.GameId)] and not item:IsA("Tool") and not item:IsA("Model") then return end
+		
 		local elapsed = 0
 		repeat elapsed+=task.wait() if item:FindFirstChildOfClass("Part") or item:FindFirstChildOfClass("MeshPart") or item:FindFirstChildOfClass("UnionOperation") then break end until elapsed>=2
 		if elapsed>=5 then return end
 		task.wait(.15)
 		checkItem(item)
-	end)
+	end))
 	
 	for i,item in pairs(workspace:GetDescendants()) do
-		if not item:IsA("Tool") then continue end
+		if (not addItems[tostring(game.GameId)] and not item:IsA("Tool")) then continue end
+		if addItems[tostring(game.GameId)] and not table.find(addItems[tostring(game.GameId)],item.Name) and not item:IsA("Tool") then continue end
+		if addItems[tostring(game.GameId)] and not item:IsA("Tool") and not item:IsA("Model") then continue end
 		checkItem(item)
 	end
+	firstTime=false
 end
 setSpawns(val)
 
-TextBox:GetPropertyChangedSignal("Text"):Connect(function()
-	for i,v in pairs(ScrollingFrame:GetChildren()) do
-		if v:IsA("TextButton") then
-			v.Visible=TextBox.Text=="" or string.find(string.lower(v.Name),string.lower(TextBox.Text))
-		end
-	end
-	if ScrollingFrame.CanvasSize.Y.Offset < ScrollingFrame.AbsoluteSize.Y then
-		ScrollingFrame.BackgroundTransparency=1
-	end
-	ScrollingFrame.CanvasSize=UDim2.new(0,0,0,ScrollingFrame.UIListLayout.AbsoluteContentSize.Y)
-end)
-
-TextButton.MouseButton1Click:Connect(function()
-	bring=not bring
-	updateColor(TextButton,bring)
-end)
-
-game:GetService("UserInputService").InputBegan:Connect(function(key)
+table.insert(cons,game:GetService("UserInputService").InputBegan:Connect(function(key)
 	if key.KeyCode.Name=="KeypadFive" then
 		TPMenu.Enabled=not TPMenu.Enabled
 	elseif key.KeyCode.Name=="KeypadSeven" then
@@ -664,19 +812,13 @@ game:GetService("UserInputService").InputBegan:Connect(function(key)
 	elseif key.KeyCode.Name=="KeypadNine" then
 		Settings.Visible=not Settings.Visible
 	end
-end)
+end))
 
 local getNPCs = function()
 	if npcFolder~=nil then
 		for i,v in pairs(npcFolder:GetChildren()) do
 			if v:IsA("Model") and v:FindFirstChild("HumanoidRootPart") then
 				local button=createItem(v.Name,ScrollingFrame_3,false)
-				button.amt:Destroy()
-				button.TextLabel.TextXAlignment = Enum.TextXAlignment.Center
-				button.TextLabel.AnchorPoint = Vector2.new(.5,0)
-				button.TextLabel.Position = UDim2.new(0.5,0,0,0)
-				button.TextLabel.Size = UDim2.new(.95,0,1,0)
-				button.Size = UDim2.new(1,0,.091,0)
 				buttonFunc(button,v,v.Name,true)
 			end
 		end
@@ -694,14 +836,15 @@ local ref = function(parent)
 end
 ref(NPCs)
 
-
 local elapsed = 0
-while true do
+while not reset do
 	elapsed+=task.wait()
 	if elapsed>=5 then
 		elapsed=0
 		for i,item in pairs(workspace:GetDescendants()) do
-			if not item:IsA("Tool") then continue end
+			if (not addItems[tostring(game.GameId)] and not item:IsA("Tool")) then continue end
+			if addItems[tostring(game.GameId)] and not table.find(addItems[tostring(game.GameId)],item.Name) and not item:IsA("Tool") then continue end
+			if addItems[tostring(game.GameId)] and not item:IsA("Tool") and not item:IsA("Model") then continue end
 			checkItem(item)
 		end
 	end
