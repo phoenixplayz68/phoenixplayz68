@@ -654,16 +654,19 @@ local buttonFunc2 = function(button,name)
 		updateColor(button,isTrue)
 
 		if isTrue then
+			local child=nil
 			repeat wait()
 				task.spawn(function()
-					local child=nil
 					
-					for i,v in pairs(newFolder[name]:GetChildren()) do
-						if v:GetAttribute("Teleporting") then continue end
-						v:SetAttribute("Teleporting",true)
-						child=v break
+					if child==nil then
+						for i,v in pairs(newFolder[name]:GetChildren()) do
+							if v:GetAttribute("Teleporting") then continue end
+							v:SetAttribute("Teleporting",true)
+							child=v break
+						end
 					end
-
+					if child.Parent~=newFolder[name] then child=nil end
+					
 					if child==nil then return end
 					tpItem(child,child.Parent,name)
 					if button.Parent.Name=="Banknote" then
