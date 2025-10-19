@@ -590,9 +590,6 @@ local buttonFunc = function(button,obj,name,isNPC)
 				local thing = items[name][i]
 				if thing:GetAttribute("Teleporting") then
 					continue
-				else
-					child=thing
-					child:SetAttribute("Teleporting",true) break
 				end
 			end
 
