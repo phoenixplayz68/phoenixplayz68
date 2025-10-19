@@ -803,14 +803,6 @@ setSpawns(val)
 table.insert(cons,game:GetService("UserInputService").InputBegan:Connect(function(key)
 	if key.KeyCode.Name=="KeypadFive" then
 		TPMenu.Enabled=not TPMenu.Enabled
-	elseif key.KeyCode.Name=="KeypadSeven" then
-		Items.Visible=not Items.Visible
-		NPCs.Position=UDim2.fromScale(Items.Visible and .115 or .003,NPCs.Position.Y.Scale)
-		Settings.Position=UDim2.fromScale(Items.Visible and .115 or .003,Settings.Position.Y.Scale)
-	elseif key.KeyCode.Name=="KeypadEight" then
-		NPCs.Visible=not NPCs.Visible
-	elseif key.KeyCode.Name=="KeypadNine" then
-		Settings.Visible=not Settings.Visible
 	end
 end))
 
