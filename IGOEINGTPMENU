@@ -583,7 +583,7 @@ local buttonFunc = function(button,obj,name,isNPC)
 			
 			if not isNPC then
 				for i,v in pairs(newFolder[name]:GetChildren()) do
-					if child:GetAttribute("Teleporting") then continue end
+					if v:GetAttribute("Teleporting") then continue end
 					child=v break
 				end
 			end
@@ -659,8 +659,8 @@ local buttonFunc2 = function(button,name)
 					local child=nil
 					
 					for i,v in pairs(newFolder[name]:GetChildren()) do
-						if child:GetAttribute("Teleporting") then continue end
-						child:SetAttribute("Teleporting",true)
+						if v:GetAttribute("Teleporting") then continue end
+						v:SetAttribute("Teleporting",true)
 						child=v break
 					end
 
