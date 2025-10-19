@@ -501,6 +501,7 @@ end
 local Filter = createSetting("Filter","Filter:",false,true)
 
 Filter.TextBox:GetPropertyChangedSignal("Text"):Connect(function()
+	createSound("rbxassetid://9116158916",1,1.2)
 	for i,v in pairs(ScrollingFrame:GetChildren()) do
 		if v:IsA("TextButton") then
 			v.Visible=Filter.TextBox.Text=="" or string.find(string.lower(v.Name),string.lower(Filter.TextBox.Text))
@@ -512,11 +513,15 @@ end)
 local customItem = createSetting("CustomItem","CS Item:",false,true)
 
 customItem.TextBox.FocusLost:Connect(function(enter)
-	if enter then
+	if enter and customItem.TextBox.Text~="" then
 		createSound("rbxassetid://77433517511280",1.5,3)
 		addButtonStuff(customItem.TextBox.Text,true)
 		customItem.TextBox.Text = ""
 	end
+end)
+
+customItem.TextBox:GetPropertyChangedSignal("Text"):Connect(function()
+	createSound("rbxassetid://9116158916",1,1.2)
 end)
 
 local bring = createSetting("Bring","Bring Items",true)
